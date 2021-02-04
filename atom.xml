@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>欢迎来到Franの杂货铺</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="/"/>
+  <updated>2021-02-04T06:09:54.369Z</updated>
+  <id>/</id>
+  
+  <author>
+    <name>Kitholt Frank</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Preface</title>
+    <link href="/2021/02/04/Preface/"/>
+    <id>/2021/02/04/Preface/</id>
+    <published>2021-02-04T11:47:53.161Z</published>
+    <updated>2021-02-04T06:09:54.369Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2021年1月31日半夜
+    
+    </summary>
+    
+      <category term="生活" scheme="/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="吐槽" scheme="/tags/%E5%90%90%E6%A7%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Keep searching......</title>
+    <link href="/2021/02/04/hello-world-zy/"/>
+    <id>/2021/02/04/hello-world-zy/</id>
+    <published>2021-02-04T11:47:53.153Z</published>
+    <updated>2021-02-04T06:16:32.239Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Fran还在努力寻找资源……&quot;&gt;&lt;a href=&quot;#Fran还在努力寻找资源……&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="资源" scheme="/categories/%E8%B5%84%E6%BA%90/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>待添加......</title>
+    <link href="/2021/02/04/hello-world-tech/"/>
+    <id>/2021/02/04/hello-world-tech/</id>
+    <published>2021-02-04T11:47:53.147Z</published>
+    <updated>2021-02-04T06:14:20.585Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;2 b
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo-Theme-Sakura</title>
+    <link href="/2018/12/12/Hexo-Theme-Sakura/"/>
+    <id>/2018/12/12/Hexo-Theme-Sakura/</id>
+    <published>2018-12-12T14:16:01.000Z</published>
+    <updated>2021-02-04T11:26:04.050Z</updated>
+    
+    <summary type="html">
+    
+      hexo-sakura主题使用教程
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="web" scheme="/tags/web/"/>
+    
+      <category term="悦读" scheme="/tags/%E6%82%A6%E8%AF%BB/"/>
+    
+  </entry>
+  
+</feed>
