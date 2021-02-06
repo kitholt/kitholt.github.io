@@ -36,8 +36,8 @@
   mashiro_option.site_name = "KItholtFrank";
   mashiro_option.author_name = "Frank";
   mashiro_option.site_url = "https://kitholt.github.io/";
-  mashiro_option.v_appId = "";
-  mashiro_option.v_appKey = "";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
   mashiro_option.mathjax = "0";
   mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
   mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
@@ -500,6 +500,20 @@ server.on(&#39;request&#39;, function (request, response) {//server监听是否�
         
       </section>
       
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "alright"
+      })
+  }
+</script>
+
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
           <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
