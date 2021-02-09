@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">蛋疼のNode学习之路 | 欢迎来到Franの杂货铺</title>
+  <title itemprop="name">欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -313,7 +313,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      蛋疼のNode学习之路</h1>
+      </h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -391,7 +391,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="⑥简单的实操环节"><a href="#⑥简单的实操环节" class="headerlink" title="⑥简单的实操环节"></a>⑥简单的实操环节</h2><ol>
+<h2 id="——————-分割线，下面进入简单的实操环节——————–"><a href="#——————-分割线，下面进入简单的实操环节——————–" class="headerlink" title="——————-分割线，下面进入简单的实操环节——————–"></a>——————-分割线，下面进入简单的实操环节——————–</h2><ol>
 <li><p>启动一个简单服务器</p>
 <pre><code class="javascript">var http = require(&#39;http&#39;)//创建http对象
 var server = http.createServer()//利用http对象创建一个服务器对象server
@@ -438,7 +438,7 @@ server.on(&#39;request&#39;, function (request, response) {//server监听是否�
 <p>解释：在demo中引入模板a—&gt;执行a的代码，在控制台打印starting语句—&gt;引入模板b—&gt;打印模板b的opening和closed—&gt;a中的引用结束，打印a的end—&gt;打印从a模板获取的值foo=200</p>
 <p>从中我们发现输出的foo值是模板a中的，而不是b模板中的。这也体现了模块作用域的好处：<span style="color:red;font-family:隶书;font-size:30px">可以加载执行多个文件，可以完全避免变量命名而产生的冲突</span>（认真脸）</p>
 <hr>
-<h2 id="⑦相关知识补充"><a href="#⑦相关知识补充" class="headerlink" title="⑦相关知识补充"></a>⑦相关知识补充</h2><ol>
+<h2 id="⑥相关知识补充"><a href="#⑥相关知识补充" class="headerlink" title="⑥相关知识补充"></a>⑥相关知识补充</h2><ol>
 <li><p>同步（Synchronous）</p>
 <p>A程序调用B程序，必须等待B程序完成才能返回到A程序，A程序继续执行……从流程上看是一条”直线“</p>
 </li>
@@ -452,6 +452,143 @@ server.on(&#39;request&#39;, function (request, response) {//server监听是否�
 <p><del>什么还不懂？</del>行，还有个例子：<del>②约会结束后你送你女朋友回家，离别时，你肯定会说：“到家了给我发条信息，我很担心你。” 对不，然后你女朋友回家以后还真给你发了条信息。小伙子，你有戏了。其实这就是一个回调的过程。你留了个参数函数（要求女朋友给你发条信息）给你女朋友，然后你女朋友回家，回家的动作是主函数。她必须先回到家以后，主函数执行完了，再执行传进去的函数，然后你就收到一条信息了。</del>~（单身的看例子①就好了）</p>
 </li>
 </ol>
+<h1 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h1><p>   今天主要围绕模板引擎的概念以及应用方式、渲染这两点展开，并且相对应地结合两个小案例来更进一步的理解感受它们。话不多少，先介绍主要概念。</p>
+<h2 id="神么是模板引擎？"><a href="#神么是模板引擎？" class="headerlink" title="神么是模板引擎？"></a>神么是模板引擎？</h2><p>   模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。这就好比于我们的写作模板，我们想写什么类型的文章比如说明文，记叙文，抒情文，应用文。它们都有固定的一套模式，我们只要按照这套模式来，往里面添加我们自己的内容即可。</p>
+<p>   常用模板：art-template（art-template 是一个简约、超快的模板引擎。<br>   它采用作用域预声明的技术来优化模板渲染速度，从而获得接近 JavaScript 极限的运行性能，并且同时支持 NodeJS 和浏览器。）</p>
+<p>   安装方法：</p>
+<pre><code class="控制台">npm install art-template --save
+</code></pre>
+<h2 id="啥是渲染？"><a href="#啥是渲染？" class="headerlink" title="啥是渲染？"></a>啥是渲染？</h2><p>在电脑绘图中，<em>渲染</em>是指在指用软件从模型生成图像的过程。而在HTML中则是指如何加工并且显示出最终的HTML页面。我们又根据加工场景位置的不同把HTML渲染分为服务端渲染和客户端渲染。</p>
+<p> 互联网早期，用户使用浏览器浏览的都是一些没有复杂逻辑的、简单的页面，这些页面都是在后端将html拼接好的然后将之返回给前端完整的html文件，浏览器拿到这个html文件之后就可以直接解析展示了，而这也就是所谓的<strong>服务器端渲染</strong>了。而随着前端页面的复杂性提高，前端就不仅仅是普通的页面展示了，而可能添加了更多功能性的组件，复杂性更大，另外，彼时<strong>ajax的兴起</strong>，使得业界就开始推崇<strong>前后端分离</strong>的开发模式，即后端不提供完整的html页面，而是提供一些api使得前端可以获取到json数据，然后前端拿到json数据之后再在前端进行html页面的拼接，然后展示在浏览器上，这就是所谓的<strong>客户端渲染</strong>了，这样前端就可以专注UI的开发，后端专注于逻辑的开发。</p>
+<h3 id="服务端渲染aka后端渲染（service-side-render）の优缺点："><a href="#服务端渲染aka后端渲染（service-side-render）の优缺点：" class="headerlink" title="服务端渲染aka后端渲染（service-side render）の优缺点："></a>服务端渲染aka后端渲染（service-side render）の优缺点：</h3><ul>
+<li>优点</li>
+</ul>
+<ol>
+<li>减轻前端压力</li>
+<li>不用占用前端的资源，比如在用手机浏览网页时，浏览器的负担减轻，因此能够节省手机的电量</li>
+<li>有利于SEO（Search Engine Optimization）搜索引擎优化。爬虫能够爬取到在后端的HTML文档</li>
+</ol>
+<ul>
+<li>缺点</li>
+</ul>
+<ol>
+<li><strong>不利于前后端分离，开发效率低。</strong>使用服务器端渲染，则无法进行分工合作，则对于前端复杂度高的项目，不利于项目高效开发。另外，如果是服务器端渲染，则<strong>前端一般就是写一个静态html文件</strong>，然后<strong>后端再修改为模板</strong>，这样是非常低效的，并且还常常需要前后端共同完成修改的动作； <strong>或者是前端直接完成html模板，然后交由后端</strong>。另外，如果后端改了模板，前端还需要根据改动的模板再调节css，这样使得前后端联调的时间增加。</li>
+<li><strong>占用服务器端资源</strong>。即服务器端完成html模板的解析，如果请求较多，会对服务器造成一定的访问压力。而如果使用前端渲染，就是把这些解析的压力分摊了前端，而这里确实完全交给了一个服务器。</li>
+</ol>
+<h3 id="客户端渲染aka前端渲染（client-side-render）的优缺点："><a href="#客户端渲染aka前端渲染（client-side-render）的优缺点：" class="headerlink" title="客户端渲染aka前端渲染（client-side render）的优缺点："></a>客户端渲染aka前端渲染（client-side render）的优缺点：</h3><ul>
+<li><p>艾达王替矩（advantages）：</p>
+<ol>
+<li>前后端分离，前端能够自定义UI而不用去过度依赖后端</li>
+</ol>
+</li>
+<li><p>diss艾达王替矩：</p>
+<ol>
+<li>前端的响应速度会变慢，这就是为什么我们在浏览一些网页时，经常会<em>“爱的魔力转圈圈”</em>。（后端的渲染速度要比前端的快）</li>
+<li><strong>不利于SEO</strong>。目前比如百度、谷歌的爬虫对于SPA都是不认的，只是记录了一个页面，所以SEO很差。因为服务器端可能没有保存完整的html，而是前端通过js进行dom的拼接，那么爬虫无法爬取信息。 除非搜索引擎的seo可以增加对于JavaScript的爬取能力，这才能保证seo。</li>
+</ol>
+</li>
+</ul>
+<h2 id="小案例一：模拟Apacheの目录HTML（服务端渲染）"><a href="#小案例一：模拟Apacheの目录HTML（服务端渲染）" class="headerlink" title="小案例一：模拟Apacheの目录HTML（服务端渲染）"></a>小案例一：模拟Apacheの目录HTML（服务端渲染）</h2><p>在此之前我们还需要用到fs模块的readFile()和readdir()方法，简单介绍一下这两个方法：</p>
+<ul>
+<li><p>readFile()：<br>能够读取指定路径下的文件并保存到data中，data是一个二进制的数据流（里面全是010101），因此要将其转变为我们认识的字符串需要用到toString()方法。</p>
+</li>
+<li><p>readdir()：</p>
+<p>读取指定目录下的所有文件夹名，并返回一个由这些文件夹名构成的字符串数组files。</p>
+<pre><code class="javascript">var fs = require(&#39;fs&#39;);
+fs.readdir(&#39;readdirtest&#39;, function(err,files){
+ if(err){
+  console.log(err);
+ }
+ console.log(files);
+})
+</code></pre>
+</li>
+</ul>
+<p>操作描述：</p>
+<ol>
+<li><p>加载必要的模块fs，http…</p>
+</li>
+<li><p>设置端口号xxxx</p>
+</li>
+<li><p>为服务器设置响应信息</p>
+<ul>
+<li>读取模板文件template.html（目录显示页），并且将要替换的区域使用特殊符号进行标记，这里我使用了<strong><em><span style="color: blue;font-size:30px">-.-</span></em></strong>这个标记</li>
+<li>读取目录列表的所有文件夹</li>
+<li>并将要替换的部分用一个变量content表示</li>
+<li>用forEach方法依次取出files里的文件夹名并构建content（见代码20—24）</li>
+<li>将第一步读取的data转换为字符串</li>
+<li><p>简单字符串解析替换操作，将template中替换的区域-.-（特殊标记）用content代替</p>
+</li>
+<li><p>发送响应</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>下面是<span style="color:green;font-size:26px">一小段</span>代码：</p>
+<pre><code class="javascript">var fs = require(&#39;fs&#39;)
+var http = require(&#39;http&#39;)
+var server = http.createServer()
+var wwwDir = &#39;F:/www&#39;
+
+server.on(&#39;request&#39;, function (req, res) {
+
+    fs.readFile(&#39;./template.html&#39;, function (err, data) {//获得模板template.html
+        if (err) {
+            console.log(&#39;找不到文件......请重试&#39;)
+        }
+
+
+        fs.readdir(wwwDir, function (err, files) {//得到wwwDir的目录列表中的文件名和目录名
+            if (err) {
+                return console.log(&#39;读取目录失败&#39;)
+            }
+            console.log(files)//files是一个字符数组，元素为目录中的文件名
+            var content = &#39;&#39;//将模板中要替换的部分构建为content
+            files.forEach(function (item) {//利用forEach，取出files数组的每个元素（item），进行渲染${item}替换
+                content += `&lt;tr&gt;&lt;td data-value=&quot;新建 Microsoft Word 文档.docx&quot;&gt;&lt;a class=&quot;icon file&quot; draggable=&quot;true&quot; href=&quot;/F:/www/%E6%96%B0%E5%BB%BA%20Microsoft%20Word%20%E6%96%87%E6%A1%A3.docx&quot;&gt;${item}&lt;/a&gt;&lt;/td&gt;
+                                &lt;td class=&quot;detailsColumn&quot; data-value=&quot;0&quot;&gt;0 B&lt;/td&gt;
+                                &lt;td class=&quot;detailsColumn&quot; data-value=&quot;1612679895&quot;&gt;2021/2/7 下午2:38:15&lt;/td&gt;
+                            &lt;/tr&gt;`
+            })
+
+
+            data = data.toString()//将二进制流的data转换为字符串
+            data=data.replace(&#39;-.-&#39;, content)//简单字符串解析替换操作，将template中替换的区域-.-（特殊标记）用content代替
+            res.end(data)//发送响应数据
+        })
+    })
+})
+
+server.listen(4001, function () {
+    console.log(&#39;服务器，琦动！&#39;)
+})
+</code></pre>
+<p>结果截图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/Apache.png" alt></p>
+<h2 id="小案例二：art-template"><a href="#小案例二：art-template" class="headerlink" title="小案例二：art-template"></a>小案例二：art-template</h2><p>需要一个用于<strong><em>储存模板的htm</em>l</strong>和一个<strong><em>js文件</em></strong></p>
+<p>html模板:</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;This is Frank&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;My name is {{ name }}.&lt;/p&gt;
+&lt;p&gt;I am {{ age }} years old.&lt;/p&gt;
+&lt;p&gt;I am from {{ province }}.&lt;/p&gt;
+&lt;p&gt;I like {{ each hobbies }} {{ $value }} {{/each}}&lt;/p&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+<p>如果没有art-template，运行结果如下：</p>
+<p><img src="http://r.photo.store.qq.com/psc?/V53IelwN4WhBA02YDe1a34IokT47iUtd/45NBuzDIW489QBoVep5mcYRGQ6MX9QLt.ZabGPiEYi15Ba0otCJVhzv*bdCntYBvAuXm*D.3zucSdafP*BeQ.C8f*TXyYFvFk9yAYOpFRqM!/r" alt></p>
+<p>加了art-template后：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/aboutFrank.png" alt></p>
+<p>由此可见，art-template只关注中的值，不会去关心html中的格式。因此可以理解为<strong><em><span style="color:red;font-size:35px">js数据传到html中展示出来</span></em></strong></p>
+<h1 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h1><p>2 be continued <img src="蛋疼のNode学习之路/014AF78A.jpg" alt="img"></p>
 
         </div>
         <!-- .entry-content -->
