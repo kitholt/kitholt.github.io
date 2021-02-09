@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">欢迎来到Franの杂货铺</title>
+  <title itemprop="name">蛋疼のNode学习之路 | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -313,7 +313,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      </h1>
+      蛋疼のNode学习之路</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -586,10 +586,182 @@ server.listen(4001, function () {
 <p>如果没有art-template，运行结果如下：</p>
 <p><img src="http://r.photo.store.qq.com/psc?/V53IelwN4WhBA02YDe1a34IokT47iUtd/45NBuzDIW489QBoVep5mcYRGQ6MX9QLt.ZabGPiEYi15Ba0otCJVhzv*bdCntYBvAuXm*D.3zucSdafP*BeQ.C8f*TXyYFvFk9yAYOpFRqM!/r" alt></p>
 <p>加了art-template后：</p>
+<pre><code class="javascript">var fs=require(&#39;fs&#39;)
+var http=require(&#39;http&#39;)
+var template=require(&#39;art-template&#39;)
+http
+    .createServer(function(req,res){
+        var url=req.url
+        if(url===&#39;/&#39;){
+            fs.readFile(&#39;./Frank.html&#39;,function(err,data){
+                if(err){
+                    return res.end(&#39;你访问的网址不存在噢&#39;)
+                }
+                data=data.toString()
+                var Frank=template.render(data,{
+                    name:&#39;Frank&#39;,
+                    age:20,
+                    province:&#39;ChongQing&#39;,
+                    hobbies:[&#39;打篮球&#39;,&#39;写博客&#39;,&#39;吹水&#39;]
+                })
+                res.end(data)
+            })
+        }
+
+    })
+.listen(3000,function(){
+    console.log(&#39;琦动！&#39;)
+</code></pre>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/aboutFrank.png" alt></p>
 <p>由此可见，art-template只关注中的值，不会去关心html中的格式。因此可以理解为<strong><em><span style="color:red;font-size:35px">js数据传到html中展示出来</span></em></strong></p>
-<h1 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h1><p>2 be continued <img src="蛋疼のNode学习之路/014AF78A.jpg" alt="img"></p>
+<h1 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h1><h2 id="Node中的模块系统"><a href="#Node中的模块系统" class="headerlink" title="Node中的模块系统"></a>Node中的模块系统</h2><h3 id="模块の定义："><a href="#模块の定义：" class="headerlink" title="模块の定义："></a>模块の定义：</h3><p> node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。require方法用于加载模块。</p>
+<hr>
+<p>使用Node编写应用程序主要就是在使用：</p>
+<ul>
+<li>Ecmascript</li>
+<li>核心模块<ul>
+<li>文件操作fs</li>
+<li>http服务的http</li>
+<li>url路径操作的模块</li>
+<li>path路径处理模块</li>
+<li>os操作系统模块</li>
+</ul>
+</li>
+<li><p>第三方模块</p>
+<ul>
+<li>art-template</li>
+<li>必须通过npm下载</li>
+</ul>
+</li>
+<li><p>开发者自个儿写的模块（自定义的）</p>
+</li>
+</ul>
+<h3 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h3><ul>
+<li><p>文件作用域</p>
+</li>
+<li><p>通信规则</p>
+<ul>
+<li>加载require</li>
+<li>导出<h3 id="CommonJs模块规范"><a href="#CommonJs模块规范" class="headerlink" title="CommonJs模块规范"></a>CommonJs模块规范</h3></li>
+</ul>
+</li>
+</ul>
+<p>这就是要谈论的——模 块 系 统</p>
+<ul>
+<li>模块作用域</li>
+<li>使用require方法用来加载模块</li>
+<li>使用exports接口对象来导出模块中的成员</li>
+</ul>
+<h4 id="加载require"><a href="#加载require" class="headerlink" title="加载require"></a>加载require</h4><p>操作：</p>
+<pre><code class="javascript">var 自定义变量名称=require(&#39;模块&#39;)
+</code></pre>
+<p>两个作用：</p>
+<ul>
+<li><p>执行被加载模块中的代码</p>
+</li>
+<li><p>得到被加载模块中的<code>exports</code>导出接口对象</p>
+</li>
+</ul>
+<h4 id="导出exports"><a href="#导出exports" class="headerlink" title="导出exports"></a>导出<code>exports</code></h4><ul>
+<li>Node中是模块作用域，默认文件中所有成员只在当前文件模块有效</li>
+<li>如果我们想要访问其他模块的成员，可以把这些成员加载到<code>exports</code>上去</li>
+</ul>
+<p>导出多个成员：</p>
+<pre><code class="javascript">exports.demo=foo
+exports.test=&#39;233&#39;
+exports.fun=function(){
+    xxxxxxxxxxxxx
+}
+</code></pre>
+<p>也可以这样导出多个成员：</p>
+<pre><code class="javascript">module.exports={
+    add: function(){
+    return xxxxxxx
+    },
+    foo:&#39;123&#39;
+}
+</code></pre>
+<p>导出单个成员（指定的）：</p>
+<pre><code class="javascript">module.exports=&#39;666&#39;
+module.exports=function(){
 
+}
+</code></pre>
+<p>注意：<strong>在使用module.exports时，后一个的会覆盖前一个的module.exports</strong></p>
+<h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在底层代码中：<strong><span style="color:red;font-size:35px">exports是module.exports的一个引用—&gt;exports=module.exports</span></strong></p>
+<pre><code class="javascript">console.log(exports===module.exports)//会返回true
+exports.foo=&#39;666&#39;
+module.exports.foo=&#39;666&#39;//等价
+</code></pre>
+<h3 id="require方法加载规则"><a href="#require方法加载规则" class="headerlink" title="require方法加载规则"></a>require方法加载规则</h3><ul>
+<li><p>核心模块</p>
+<ul>
+<li>模块名</li>
+</ul>
+</li>
+<li><p>第三方模块</p>
+<ul>
+<li>模块名</li>
+</ul>
+</li>
+<li><p>开发者自己写的</p>
+<ul>
+<li>路径</li>
+</ul>
+</li>
+<li><p>优先从缓存加载</p>
+<ul>
+<li>加载过的模块会暂存入缓存中，若下次还有调用，直接从缓存中读取， 能有效提高模块加载效率</li>
+</ul>
+</li>
+</ul>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>每一个项目最好有一个包描述文件（package.json，就像产品的说明书）。可通过<code>npm init</code>生成 。有了该文件，再用<code>npm install</code>就能把文件里的依赖项全部下载回来，就相当于原先有了备份，现在进行备份还原</p>
+<ol>
+<li>在每个项目的根目录下应该有一个package.json文件</li>
+<li>每次安装第三方包时，应该在后面加上<code></code>–save`，可以用来保存依赖项信息</li>
+</ol>
+<h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><ul>
+<li><p>[npm网站]: npmjs.com</p>
+</li>
+<li><p>命令行工具</p>
+</li>
+</ul>
+<pre><code>npm install --global npm//更新命令
+</code></pre><ul>
+<li><p>常用命令</p>
+<ul>
+<li><pre><code>npm init -y//快速生成package.json文件
+</code></pre></li>
+<li><pre><code>npm install
+</code></pre></li>
+<li><pre><code>npm install 包名//下载指定包
+</code></pre></li>
+<li><pre><code>npm install --save 包名//下载指定包并保存到package.json的dependencies中
+</code></pre></li>
+<li><pre><code>npm uninstall 包名
+</code></pre></li>
+<li><pre><code>npm help//查看使用帮助
+</code></pre></li>
+<li><pre><code>npm 命令 --help//查看指定命令的使用帮助
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>如何解决npm被墙的问题</p>
+<ul>
+<li><p>安装淘宝的cnpm：</p>
+<pre><code>npm install --global cnpm//--global表示安装到全局，不能省略。以后就能用cnpm代替npm了
+</code></pre></li>
+<li><p>如果不想安装cnpm但是又想用淘宝的服务器下载，可以通过:</p>
+<pre><code>npm config set registry https://registry.npm.taobao.org//默认使用淘宝服务器下载
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h2><p>一种Web开发框架</p>
+<pre><code>npm install express --save//安装express
+</code></pre><h1 id="O-∩-∩-O-2-b-continued…"><a href="#O-∩-∩-O-2-b-continued…" class="headerlink" title="O(∩_∩)O 2 b continued…"></a>O(∩_∩)O 2 b continued…</h1>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -646,7 +818,7 @@ server.listen(4001, function () {
         appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
         appKey: "e9eG1y4IcG54g4l676M1xeWQ",
         path: window.location.pathname,
-        placeholder: "Come on, say something. Somebody says something."
+        placeholder: "整点留言呗"
       })
   }
 </script>
@@ -986,7 +1158,7 @@ $(document).ready(function() {
 
     loop="all"
 
-    order="random"
+    order="list"
 
     preload="none"
 
