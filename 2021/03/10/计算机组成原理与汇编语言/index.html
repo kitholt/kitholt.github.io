@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">复习堆排序 | 欢迎来到Franの杂货铺</title>
+  <title itemprop="name">计算机组成原理与汇编语言(持续更新...) | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -313,7 +313,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      复习堆排序</h1>
+      计算机组成原理与汇编语言(持续更新...)</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -325,7 +325,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2021-3-6<span class="bull">
+        2021-3-10<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -339,59 +339,34 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="复习堆排序"><a href="#复习堆排序" class="headerlink" title="复习堆排序"></a>复习堆排序</h1><h2 id="堆的定义："><a href="#堆的定义：" class="headerlink" title="堆的定义："></a>堆的定义：</h2><p>堆是一个具有以下性质的二叉树：每个结点的值都大于或者等于其左右孩子结点的值，称之为大顶堆。反之称之为小顶堆。</p>
-<h2 id="那么，在代码中如何表示大小顶堆？"><a href="#那么，在代码中如何表示大小顶堆？" class="headerlink" title="那么，在代码中如何表示大小顶堆？"></a>那么，在代码中如何表示大小顶堆？</h2><pre><code class="java">arr[i]&gt;=arr[2*i+1]&amp;&amp;arr[i]&gt;=arr[2*i+2]//大顶堆
-
-arr[i]&lt;=arr[2*i+1]&amp;&amp;arr[i]&lt;=arr[2*i+2]//小顶堆
-</code></pre>
-<h2 id="堆排序の思想"><a href="#堆排序の思想" class="headerlink" title="堆排序の思想"></a>堆排序の思想</h2><ol>
-<li><p>先把待排序序列构建成一个大（小）顶堆</p>
+          <h1 id="计算机组成原理与汇编语言"><a href="#计算机组成原理与汇编语言" class="headerlink" title="计算机组成原理与汇编语言"></a>计算机组成原理与汇编语言</h1><h2 id="note①"><a href="#note①" class="headerlink" title="note①"></a>note①</h2><h3 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h3><p><strong>机器数</strong>：数字在计算机中的二进制表达形式，在二进制的最高位存放正或负符号，正数为0，负数为1</p>
+<p><strong>真值</strong>：带符号位的机器数对应的真正的数值</p>
+<p><strong>原码</strong>：符号位加上真值的绝对值</p>
+<p><strong>反码</strong>：正数の反码还是本身，而负数的反码：符号位不变，其余位按位取反</p>
+<p><strong>补码</strong>：反码+1</p>
+<hr>
+<h3 id="那么，为什么要引入反码和补码？"><a href="#那么，为什么要引入反码和补码？" class="headerlink" title="那么，为什么要引入反码和补码？"></a>那么，为什么要引入反码和补码？</h3><ul>
+<li><p>人脑计算：我们会自动将符号位分开并进行计算</p>
 </li>
-<li><p>这时，整个序列的最大值就是堆顶的根节点（也就是数组的第一个元素）</p>
+<li><p>电脑（计算机）计算：因为符号位也是0,1表示，在做计算时，计算机无法辨别哪些是符号位哪些是数值位。如果硬要让计算机认识的话也不是不行，但是这会使计算机的基础电路设计变得异常复杂（这是要累死设计计算机的人- -）</p>
 </li>
-<li><p>将其与末尾元素进行交换，此时末尾就是最大值</p>
-</li>
-<li><p>然后将剩余的n-1个元素重新构造成一个新的堆，这样就得到n-1个元素的次小值，如此反复，就能得到一个有序序列——[重复（1），（2），（3）步骤]</p>
-</li>
-</ol>
-<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code class="java">import java.util.Arrays;
-public class heapSort {
-    public static void main(String[] args){
-        int[] arr={25, 30, 11, 7, 22, 16, 18, 33, 40, 55};
-        int temp=0;
-        for(int i=arr.length/2-1;i&gt;=0;i--){//从左往右，从下往上寻找非叶子节点进行初始的堆排序
-            adjustHeap(arr,i, arr.length);
-        }
-
-        for(int j=arr.length-1;j&gt;=0;j--){//初始堆建成后，首尾的元素进行交换，此时大顶堆的结构被破坏
-            temp=arr[j];
-            arr[j]=arr[0];
-            arr[0]=temp;
-            adjustHeap(arr,0,j);//因为是首尾交换所以只有最顶部的结点不符合顶堆的定义，中间的非叶子节点均符合堆顶义，所此时的i等于0，也就是只从顶部开始调整
-        }
-        System.out.println(&quot;排序后的数组为：&quot;+Arrays.toString(arr));
-    }
-     /**
-     * 
-     * @param arr 待排序数组
-     * @param i 以i为父节点进行堆排序的树（数组）
-     * @param length 数组长度
-     */
-    public static void adjustHeap(int[] arr,int i,int length){
-        int temp=arr[i];
-        for(int k=2*i+1;k&lt;length;k=2*k+1){//k指向i的较大的一个子结点
-            if((k+1&lt;length)&amp;&amp;arr[k]&lt;arr[k+1]){//判断i叶子结点的左右结点的大小，如果左边的小于右边的，则k++
-                k++;
-            }
-            if(arr[k]&gt;temp){//如果该子结点大于它的父结点，则将该子结点赋值给父节点
-                arr[i]=arr[k];
-                i=k;//以k为父节点继续和它的子节点比较
-            }
-        }
-        arr[i]=temp;//将最开始保存的arr[i]放到末尾
-    }
-}
-</code></pre>
+</ul>
+<p>所以我们希望符号位也能参与到运算当中。另外我们都知道CPU只有加法器而没有减法器，这是为什么呢？我们小学就知道，减法是加法的逆运算（减去一个数等于加上那个数的负数），因此只要解决计算机的加法问题就好啦</p>
+<h4 id="At-First…"><a href="#At-First…" class="headerlink" title="At First…"></a>At First…</h4><p>原码君出来了，但是在运算中很快就发现了问题，比如一个正数和一个负数相加，就会出问题。比如1-1</p>
+<pre><code>1 - 1 = 1 + (-1) = [0000_0001]原 + [1000_0001]原 = [1000_0010]原 = -2 
+</code></pre><h4 id="And…"><a href="#And…" class="headerlink" title="And…"></a>And…</h4><p>出现了原码君的儿子反码君，值得高兴的是，反码能够使得计算结果的真值正确，但是唯独在0这个值上栽了跟头</p>
+<pre><code>1 - 1 = 1 + (-1) = [0000_0001]原 + [1000_0001]原= [0000_0001]反 + [1111_1110]反 = [1111_1111]反 
+= [1000_0000]原 = -0
+</code></pre><p>0已经能用[0000_0000]原 表示了，现在又整出一个[1000_0000]，没有意义啊这</p>
+<h4 id="Finally"><a href="#Finally" class="headerlink" title="Finally!"></a>Finally!</h4><p>原码君的孙子aka反码君的孙子——补码君诞生了，他很完美地解决了这个问题：</p>
+<pre><code>1-1 = 1 + (-1) = [0000_0001]原 + [1000_0001]原 = [0000_0001]补 + [1111_1111]补 = [0000_0000]补
+=[0000_0000]原 = 0
+</code></pre><h4 id="Besides…"><a href="#Besides…" class="headerlink" title="Besides…"></a>Besides…</h4><p>除此之外，还可以用 [1000_0000]补 表示-128：</p>
+<pre><code>(-1) + (-127) = [1000_0001]原 + [1111_1111]原 = [1111_1111]补 + [1000_0001]补 = [1000_0000]补
+</code></pre><p>-1-127的结果应该是-128，在用补码运算的结果中， [1000_0000]补 就代表-128。</p>
+<p>注意，-128并没有原码和反码表示。</p>
+<p>使用补码不仅仅修复了0的符号以及存在两个编码的问题，而且还能够多表示一个最低数，这就是为什么8位二进制使用原码或反码表示的范围为 [-127, +127]，而使用补码表示的范围为 [-128, 127] 的原因。</p>
+<p>因为机器使用补码，所以对于编程中常用到的32位int类型可以表示范围是  [-2^31, 2^31-1] ，因为第一位表示的是符号位，而使用补码表示时又可以多保存一个最小值。</p>
 
         </div>
         <!-- .entry-content -->
@@ -420,28 +395,11 @@ public class heapSort {
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2021/03/10/计算机组成原理与汇编语言/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                计算机组成原理与汇编语言(持续更新...)</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2021/03/04/计算机网络/" rel="next">
+            <a href="/2021/03/06/复习堆排序/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
@@ -449,7 +407,7 @@ public class heapSort {
               Next Post</span>
               <div class="info">
                 <h3>
-                计算机网络(持续更新...)</h3>
+                复习堆排序</h3>
                 <hr>
               </div>
             </a>
