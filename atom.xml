@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-03-10T14:13:46.000Z</updated>
+  <updated>2021-03-12T09:50:53.156Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>全排列问题</title>
+    <link href="/2021/03/12/%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98/"/>
+    <id>/2021/03/12/全排列问题/</id>
+    <published>2021-03-12T09:30:00.000Z</published>
+    <updated>2021-03-12T09:50:53.156Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;全排列问题&quot;&gt;&lt;a href=&quot;#全排列问题&quot; class=&quot;headerlink&quot; title=&quot;全排列问题&quot;&gt;&lt;/a&gt;全排列问题&lt;/h1&gt;&lt;h2 id=&quot;问题定义：&quot;&gt;&lt;a href=&quot;#问题定义：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>计算机组成原理与汇编语言(持续更新...)</title>
