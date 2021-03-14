@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Keep searching...... | 欢迎来到Franの杂货铺</title>
+  <title itemprop="name">计算机网络(持续更新...) | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -307,6 +307,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      计算机网络(持续更新...)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-3-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -314,15 +338,87 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">Keep searching......</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <h1 id="Fran还在努力寻找资源……"><a href="#Fran还在努力寻找资源……" class="headerlink" title="Fran还在努力寻找资源……"></a>Fran还在努力寻找资源……</h1>
+          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p>注：按照课时进度整理</p>
+<h2 id="Part①"><a href="#Part①" class="headerlink" title="Part①"></a>Part①</h2><h3 id="网络的分类"><a href="#网络的分类" class="headerlink" title="网络的分类"></a>网络的分类</h3><ul>
+<li>电信网络：向客户提供电话，电报以及传真等服务</li>
+<li>有线电视网络：向用户传送各类电视节目</li>
+<li><span style="color:red;font-size:30px"><strong>计算机网络</strong></span>：能允许用户能够在计算机之间传送数据文件</li>
+</ul>
+<h3 id="思考：internet和Internet有何区别？"><a href="#思考：internet和Internet有何区别？" class="headerlink" title="思考：internet和Internet有何区别？"></a>思考：<span style="font-size:35px;color:blue">i</span>nternet和<span style="font-size:60px;color:blue">I</span>nternet有何区别？</h3><ol>
+<li>internet指的是互<span style="font-size:35px;color:red">连</span>网，它泛指有多个计算机网络互相连而成的计算机网络（网络的网络）。在这些网络之间的通信协议可以任意选择，不一定非要TCP/IP协议</li>
+<li>Internet则是我们经常谈到的互<span style="font-size:35px;color:red">联</span>网（因特网），它是由当前全球最大的、开放的、由众多网络互相连接而成的互连网，它采用TCP/IP协议族作为通信的规则，其前身是美国的ARPANET。PS：现在的互联网具有三级结构，即主干网、地区网、校园网（企业网）</li>
+</ol>
+<h3 id="相关名词："><a href="#相关名词：" class="headerlink" title="相关名词："></a>相关名词：</h3><p>ISP（Internet Service Provider）：互联网服务提供者，也就是提供IP地址，比如我国的三大通信巨头：“移”不动、“联”不通、“信”不过，根据覆盖面积大小和IP数量的不同，ISP又分为：主干ISP、地区ISP、本地ISP</p>
+<h3 id="互联网的组成："><a href="#互联网的组成：" class="headerlink" title="互联网的组成："></a>互联网的组成：</h3><h4 id="边缘部分："><a href="#边缘部分：" class="headerlink" title="边缘部分："></a>边缘部分：</h4><p>连接在互联网的所有的端系统（手机端、电脑端、网络摄像头……），通过C/S方式和P2P方式进行通信</p>
+<h4 id="核心部分："><a href="#核心部分：" class="headerlink" title="核心部分："></a>核心部分：</h4><p>路由器使用<strong><em>分组交换</em></strong>向边缘部分的端系统提供连通性</p>
+<h5 id="啥是分组交换？"><a href="#啥是分组交换？" class="headerlink" title="啥是分组交换？"></a>啥是分组交换？</h5><p>在通信过程中，通信双方以分组为单位、使用存储-转发机制实现数据交互的通信方式，被称为分组交换（PS:packet switching）。</p>
+<p>分组交换也称为包交换，它将用户通信的数据划分成多个更小的等长数据段，在每个数据段的前面加上必要的控制信息作为数据段的首部，每个带有首部的数据段就构成了一个分组。首部指明了该分组发送的地址，当交换机收到分组之后，将根据首部中的地址信息将分组转发到目的地，这个过程就是分组交换。能够进行分组交换的通信网被称为分组交换网。</p>
+<p>分组交换的本质就是存储转发，它将所接受的分组暂时存储下来，在目的方向路由上排队，当它可以发送信息时，再将信息发送到相应的路由上，完成转发。其存储转发的过程就是分组交换的过程。</p>
+<p>分组交换的思想来源于报文交换，报文交换也称为存储转发交换，它们交换过程的本质都是存储转发，所不同的是分组交换的最小信息单位是分组，而报文交换则是一个个报文。由于以较小的分组为单位进行传输和交换，所以分组交换比报文交换快。报文交换主要应用于公用电报网中。</p>
+<h1 id="Part②"><a href="#Part②" class="headerlink" title="Part②"></a>Part②</h1><h2 id="计算机网络的分类"><a href="#计算机网络的分类" class="headerlink" title="计算机网络的分类"></a>计算机网络的分类</h2><ul>
+<li>按照作用范围分类</li>
+</ul>
+<ol>
+<li>广域网（远程网）WAN（Wide Area Network）</li>
+<li>城域网MAN（Metropolitan Area Network）</li>
+<li>局域网LAN（Local Area Network）</li>
+<li>个人局域网PAN（Personal Area Network）</li>
+</ol>
+<ul>
+<li>按照网络的使用者分类</li>
+</ul>
+<ol>
+<li>公用网（public network）</li>
+<li>专用网（private network）</li>
+</ol>
+<ul>
+<li>用来把用户接入到互联网的网络</li>
+</ul>
+<ol>
+<li>接入网AN（Access Network）</li>
+</ol>
+<h2 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h2><p>七dark指标</p>
+<p><strong>1、速率</strong></p>
+<p>计算机发送出的信号都是数字形式的。比特（bit）来源于binary digit，意思是一个”<strong>二进制数字</strong>“，因此一个比特就是二进制数字中的一个1或0。比特也是信息论中使用的信息量的单位。网络技术中的<strong>速率</strong>指的是<strong>数据的传送速率</strong>，它也称为<strong>数据率</strong>或<strong>比特率</strong>。速率的单位是bit/s（比特每秒）（或b/s，有时也写作bps，即bit per second）。</p>
+<p>当提到网络的速率时，往往指的是<strong>额定速率</strong>或<strong>标称速率</strong>，而并非网络实际上运行的速率。</p>
+<p><strong>2、带宽</strong></p>
+<p>”带宽“有以下两种不同的意义：</p>
+<p>（1）带宽本来指某个<strong>信号具有的频带宽度。</strong>信号的带宽是指该信号所包含的各种不同频率成分所占据的频率范围。这种意义的带宽的单位是赫兹（或千赫、兆赫、吉赫等），在过去很长的一段时间，通信的主干线路传送的是模拟信号（即连续变化的信号）。因此表示某信道允许通过的信号频带范围就称为该信道的带宽。</p>
+<p><strong>3、吞吐量</strong></p>
+<p>吞吐量表示在单位时间内通过某个网络的实际数据量。</p>
+<p><strong>4、时延</strong></p>
+<p>时延是指数据从网络的一端传送到另一端所需的时间。时延是个很重要的性能指标，它有时也称为延迟或者迟延。</p>
+<p>网络中的时延是由一下几个不同的部分组成的：</p>
+<p>（1）发送时延</p>
+<p>发送时延是主机或路由器发送数据帧所需要的时间，也就是从发送数据帧的第一个比特算起，到该帧的最后一个比特发送完毕所需的时间。因此发送时延也叫做传输时延。发送时延的计算公式是：</p>
+<p>发送时延=数据帧长度（bit）/发送速率（bit/s）</p>
+<p>（2）传播时延</p>
+<p>传播时延是电磁波在信道中传播一定的距离需要花费的时间。传播时延的计算公式是：</p>
+<p>传播时延=信道长度（m）/电磁波在信道上大的传播速率（m/s）</p>
+<p>电磁波在自由空间的传播速率是光速。即3.0*10^5km/s。</p>
+<p>发送时延发生在机器内部的发送器中，与传输信道的长度没有任何关系。传播时延发生在机器外部的传输信道媒体上，而与信道的发送速率无关。信号传送的距离越远，传播时延就越大。</p>
+<p>（3）处理时延</p>
+<p>主机或路由器在收到分组时需要花费一定时间进行处理，例如分析分组的首部，从分组中提取数据部分、进行差错检验或查找合适的路由等，这就产生了处理时延。</p>
+<p>（4）排队时延</p>
+<p>分组在进行网络传输时，要经过许多路由器。但分组在进入路由器后要先在输入队列中排队等待，在路由器确定了转发接口后，还要在输出队列中排队等待转发。这就产生了排队时延。排队时延的长短取决于网络当时的通信量。当网络的通信量很大时会发生队列溢出，使分组丢失，这相当于排队时延无穷大。</p>
+<p>这样数据在网络中经历的总时延就是以上四种时延之和：<strong><span style="color:red;font-size:30px">总时延=发送时延+传播时延+处理时延+排队时延</span>。</strong></p>
+<p>一般来说，小时延的网络要优于大时延的网络。</p>
+<p><strong>5、时延带宽积</strong></p>
+<p>把传播时延和带宽相乘，就可以得到：传播时延带宽积，即：</p>
+<p>时延带宽积=传播时延*带宽0</p>
+<p><strong>6、往返时间RTT</strong></p>
+<p>在计算机网络中，往返时间RTT是一个重要的性能指标。这是因为在许多情况下，互联网上的信息不仅仅单方向传输而是双向交互的。因此，我们有时很需要知道双向交互一次所需的时间。</p>
+<p><strong>7、利用率</strong></p>
+<p>利用率有信道利用率和网络利用率等。信道利用率指出某信道有百分之几的时间是被利用的（有数据通过）。完全空闲的信道利用率是零。网络利用率则是全网络的信道利用率的加权平均值。信道利用率并非越高越好。这是因为，根据排队论的理论，当某信道的利用率增大时，该信道引起的时延也就迅速增加。</p>
+<p>信道或网络的利用率过高会产生非常大的时延。</p>
+<h2 id="计算机网络的非性能"><a href="#计算机网络的非性能" class="headerlink" title="计算机网络的非性能"></a>计算机网络的非性能</h2><ol>
+<li>费用（网络设计和实现的费用，简称“网费”【我猜的】）</li>
+<li>质量（构件质量）</li>
+<li>标准化</li>
+<li>…</li>
+</ol>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -353,7 +449,7 @@
           
             <div class="post-nepre half previous">
           
-            <a href="/2021/03/01/蛋疼のNode学习之路/" rel="prev">
+            <a href="/2021/03/03/算法分析与设计/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
@@ -361,7 +457,7 @@
               Previous Post</span>
               <div class="info">
                 <h3>
-                蛋疼のNode学习之路(持续更新...)</h3>
+                算法分析与设计(持续更新...)</h3>
                 <hr>
               </div>
             </a>
@@ -371,15 +467,15 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2021/02/04/hello-world-tech/" rel="next">
+            <a href="/2021/02/02/蛋疼のNode学习之路/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                待添加......</h3>
+                蛋疼のNode学习之路(持续更新...)</h3>
                 <hr>
               </div>
             </a>
@@ -403,7 +499,7 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">

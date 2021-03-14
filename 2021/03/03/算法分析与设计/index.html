@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">待添加...... | 欢迎来到Franの杂货铺</title>
+  <title itemprop="name">算法分析与设计(持续更新...) | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -307,6 +307,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      算法分析与设计(持续更新...)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-3-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -314,15 +338,99 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">待添加......</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-2-4&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <p>2 b continued……</p>
+          <h1 id="算法分析与设计"><a href="#算法分析与设计" class="headerlink" title="算法分析与设计"></a>算法分析与设计</h1><hr>
+<h2 id="chapter①：算法引论"><a href="#chapter①：算法引论" class="headerlink" title="chapter①：算法引论"></a>chapter①：算法引论</h2><p>定义：解决某种问题的方法</p>
+<p>特征：输入，输出，确定性（指令清晰无歧义），有限性（指令执行次数有限）</p>
+<h3 id="算法复杂性の分析"><a href="#算法复杂性の分析" class="headerlink" title="算法复杂性の分析"></a>算法复杂性の分析</h3><ul>
+<li><p><span style="color:red">时间复杂性：T=T(N[问题规模],I[算法的输入],A[算法本身])</span></p>
+</li>
+<li><p>空间复杂性 ：S=S(N,I)</p>
+</li>
+</ul>
+<p>渐进时间复杂性＝时间复杂度</p>
+<p>大O表示法（算法时间运行时间的上界）</p>
+<ul>
+<li>设f(n)和g(n)是定义在正整数集上的正函数，若有正常数C和自然数n0。使得当n≥n0时，有f(n)≤C(g(n))，则称f(n)=O(g(n))，也称f(n)的阶不高于g(n)的阶</li>
+</ul>
+<p>大Ω表示法（算法时间运行时间的下界）</p>
+<ul>
+<li>设f(n)和g(n)是定义在正整数集上的正函数，若有正常数C和自然数n0。使得当n≥n0时，有f(n)≥C(g(n))，则称f(n)=Ω(g(n))，也称f(n)的阶不低于g(n)的阶</li>
+</ul>
+<p>θ表示法（算法时间运行时间的准确界）</p>
+<ul>
+<li>C1(g1(n))≤f(n)≤C2(g2(n))</li>
+</ul>
+<h1 id="chapter②：递归与分治策略"><a href="#chapter②：递归与分治策略" class="headerlink" title="chapter②：递归与分治策略"></a>chapter②：递归与分治策略</h1><h2 id="神魔是递归？"><a href="#神魔是递归？" class="headerlink" title="神魔是递归？"></a>神魔是递归？</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/digui1.jpg" alt>)</p>
+<p><span style="font-size:30px">还是</span>……</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/digui2.jpg" alt></p>
+<p>从上面的两张图我们可以看出，递归就是自己调用自己的过程。在算法中就是算法自己调用自己，这就是<strong><em>递归算法</em></strong></p>
+<p>很容易知道函数中自身调用自己就成为<strong><em>递归函数</em></strong></p>
+<h2 id="分治（divide-amp-conquer）是乜嘢？"><a href="#分治（divide-amp-conquer）是乜嘢？" class="headerlink" title="分治（divide&amp;conquer）是乜嘢？"></a>分治（divide&amp;conquer）是乜嘢？</h2><p>凡治众如治寡，分数是也。分治分治，分而治之。大白话就是说把一个规模很大的问题<span style="font-size:35px;color:red">分</span>解成一个个规模较小的子问题，逐个求解，然后子问题的解再“<span style="font-size:35px;color:blue">治</span>理”成大问题的最终解</p>
+<h3 id="如何使用分治法解决问题？"><a href="#如何使用分治法解决问题？" class="headerlink" title="如何使用分治法解决问题？"></a>如何使用分治法解决问题？</h3><ol>
+<li>解决小规模的问题</li>
+<li>分解问题（divide）</li>
+<li>递归求解子问题</li>
+<li>将所有子问题的解合并为主问题的解</li>
+</ol>
+<h2 id="分治-递归"><a href="#分治-递归" class="headerlink" title="分治?=递归"></a>分治?=递归</h2><p>分治是解决问题的一种思想，递归是解决问题的一种方法，也就是说用分治法解决问题的具体实现形式大多是采用递归的方法</p>
+<h2 id="有关递归的经典算法实例："><a href="#有关递归的经典算法实例：" class="headerlink" title="有关递归的经典算法实例："></a>有关递归的经典算法实例：</h2><p>汉诺塔问题（略）</p>
+<h3 id="整数划分问题"><a href="#整数划分问题" class="headerlink" title="整数划分问题"></a>整数划分问题</h3><p>问题定义：一个非负正整数都能拆分成若干个数之和或者恰好为自身，比如6这个整数。可以被划分为</p>
+<table>
+<thead>
+<tr>
+<th>6</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5+1</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4+2</td>
+<td>4+1+1</td>
+<td></td>
+</tr>
+<tr>
+<td>3+3</td>
+<td>3+2+1</td>
+<td>3+1+1+1</td>
+</tr>
+<tr>
+<td>2+2+2</td>
+<td>2+2+1+1</td>
+<td>2+1+1+1+1</td>
+</tr>
+<tr>
+<td>1+1+1+1+1+1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>一共有11种划分。并且我们注意到最大的加数是<strong>它本身</strong>。所以这称为6的划分。如果我们想要得到最大加数≯m的划分个数。比如我们想要最大加数≯5的划分个数，通过上面的表格可以很容易地知道个数是9个，我们用一个函数来表示这个关系<span style="color:red"><strong>f(n,m)</strong></span></p>
+<ol>
+<li><p>我们很容易知道当n=1时，也就是——————f(1,m)，因为1的划分只能是1，什么你说1+0+0+0+0…不行么，我劝你还是关闭网页吧（bushi）</p>
+</li>
+<li><p>m=1时，——————f(n,1)，也就是说n=(1+1+…+1)[n个1]</p>
+</li>
+<li><p>当n=m时，从上面的表格可以知道，f(n,n)=1+f(n,n-1)，”1“指的是加数是整数本身时的划分个数，而f(n,n-1)则指的是不包括整数本身的划分个数</p>
+</li>
+<li><p>当n&gt;m&gt;1时，f(n,m)：</p>
+<ul>
+<li>划分中不包含m的情况，则划分中所有值都比m小，即n的(m-1)划分，个数为f(n,m-1);</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>当划分中包含m时，{m, {x1,x2,…xi}}, 其中{x1,x2,… xi} 的和为n-m。此时的划分个数其实就是n-m的划分个数，也就是f(n-m,m)<ul>
+<li>所以f(n,m)=f(n,m-1)+f(n-m,m)</li>
+</ul>
+</li>
+</ul>
 
         </div>
         <!-- .entry-content -->
@@ -354,15 +462,15 @@
           
             <div class="post-nepre half previous">
           
-            <a href="/2021/02/04/hello-world-zy/" rel="prev">
+            <a href="/2021/03/05/计算机组成原理与汇编语言/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
               <span class="label">
               Previous Post</span>
               <div class="info">
                 <h3>
-                Keep searching......</h3>
+                计算机组成原理与汇编语言(持续更新...)</h3>
                 <hr>
               </div>
             </a>
@@ -372,7 +480,7 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2021/02/01/Preface/" rel="next">
+            <a href="/2021/03/03/计算机网络/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
@@ -380,7 +488,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                Preface</h3>
+                计算机网络(持续更新...)</h3>
                 <hr>
               </div>
             </a>
@@ -404,7 +512,7 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
