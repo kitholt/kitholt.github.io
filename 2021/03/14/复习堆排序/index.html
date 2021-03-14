@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">Keep searching...... | 欢迎来到Franの杂货铺</title>
+  <title itemprop="name">复习堆排序 | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -307,6 +307,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      复习堆排序</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-3-14<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -314,15 +338,61 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title">Keep searching......</h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-3-3&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <h1 id="Fran还在努力寻找资源……"><a href="#Fran还在努力寻找资源……" class="headerlink" title="Fran还在努力寻找资源……"></a>Fran还在努力寻找资源……</h1>
+          <h1 id="复习堆排序"><a href="#复习堆排序" class="headerlink" title="复习堆排序"></a>复习堆排序</h1><h2 id="堆的定义："><a href="#堆的定义：" class="headerlink" title="堆的定义："></a>堆的定义：</h2><p>堆是一个具有以下性质的二叉树：每个结点的值都大于或者等于其左右孩子结点的值，称之为大顶堆。反之称之为小顶堆。</p>
+<h2 id="那么，在代码中如何表示大小顶堆？"><a href="#那么，在代码中如何表示大小顶堆？" class="headerlink" title="那么，在代码中如何表示大小顶堆？"></a>那么，在代码中如何表示大小顶堆？</h2><pre><code class="java">arr[i]&gt;=arr[2*i+1]&amp;&amp;arr[i]&gt;=arr[2*i+2]//大顶堆
+
+arr[i]&lt;=arr[2*i+1]&amp;&amp;arr[i]&lt;=arr[2*i+2]//小顶堆
+</code></pre>
+<h2 id="堆排序の思想"><a href="#堆排序の思想" class="headerlink" title="堆排序の思想"></a>堆排序の思想</h2><ol>
+<li><p>先把待排序序列构建成一个大（小）顶堆</p>
+</li>
+<li><p>这时，整个序列的最大值就是堆顶的根节点（也就是数组的第一个元素）</p>
+</li>
+<li><p>将其与末尾元素进行交换，此时末尾就是最大值</p>
+</li>
+<li><p>然后将剩余的n-1个元素重新构造成一个新的堆，这样就得到n-1个元素的次小值，如此反复，就能得到一个有序序列——[重复（1），（2），（3）步骤]</p>
+</li>
+</ol>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code class="java">import java.util.Arrays;
+public class heapSort {
+    public static void main(String[] args){
+        int[] arr={25, 30, 11, 7, 22, 16, 18, 33, 40, 55};
+        int temp=0;
+        for(int i=arr.length/2-1;i&gt;=0;i--){//从左往右，从下往上寻找非叶子节点进行初始的堆排序
+            adjustHeap(arr,i, arr.length);
+        }
+
+        for(int j=arr.length-1;j&gt;=0;j--){//初始堆建成后，首尾的元素进行交换，此时大顶堆的结构被破坏
+            temp=arr[j];
+            arr[j]=arr[0];
+            arr[0]=temp;
+            adjustHeap(arr,0,j);//因为是首尾交换所以只有最顶部的结点不符合顶堆的定义，中间的非叶子节点均符合堆顶义，所此时的i等于0，也就是只从顶部开始调整
+        }
+        System.out.println(&quot;排序后的数组为：&quot;+Arrays.toString(arr));
+    }
+     /**
+     * 
+     * @param arr 待排序数组
+     * @param i 以i为父节点进行堆排序的树（数组）
+     * @param length 数组长度
+     */
+    public static void adjustHeap(int[] arr,int i,int length){
+        int temp=arr[i];
+        for(int k=2*i+1;k&lt;length;k=2*k+1){//k指向i的较大的一个子结点
+            if((k+1&lt;length)&amp;&amp;arr[k]&lt;arr[k+1]){//判断i叶子结点的左右结点的大小，如果左边的小于右边的，则k++
+                k++;
+            }
+            if(arr[k]&gt;temp){//如果该子结点大于它的父结点，则将该子结点赋值给父节点
+                arr[i]=arr[k];
+                i=k;//以k为父节点继续和它的子节点比较
+            }
+        }
+        arr[i]=temp;//将最开始保存的arr[i]放到末尾
+    }
+}
+</code></pre>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -353,7 +423,7 @@
           
             <div class="post-nepre half previous">
           
-            <a href="/2021/03/04/算法分析与设计/" rel="prev">
+            <a href="/2021/03/14/计算机组成原理与汇编语言/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
@@ -361,7 +431,7 @@
               Previous Post</span>
               <div class="info">
                 <h3>
-                算法分析与设计(持续更新...)</h3>
+                计算机组成原理与汇编语言(持续更新...)</h3>
                 <hr>
               </div>
             </a>
@@ -371,15 +441,15 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2021/03/03/hello-world-tech/" rel="next">
+            <a href="/2021/03/14/汇编语言学习笔记/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                待添加......</h3>
+                汇编语言学习笔记（注：本篇笔记均摘自一位热心的B站用户---_惜取少年时_）</h3>
                 <hr>
               </div>
             </a>
@@ -403,7 +473,7 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
