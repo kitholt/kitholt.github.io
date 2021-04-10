@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-04-07T13:36:36.648Z</updated>
+  <updated>2021-04-10T13:03:48.999Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于我写了个装载问题的野鸡算法的那档事</title>
+    <link href="/2021/04/10/%E5%85%B3%E4%BA%8E%E6%88%91%E5%86%99%E4%BA%86%E4%B8%AA%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8E%E9%B8%A1%E7%AE%97%E6%B3%95%E7%9A%84%E9%82%A3%E6%A1%A3%E4%BA%8B/"/>
+    <id>/2021/04/10/关于我写了个装载问题的野鸡算法的那档事/</id>
+    <published>2021-04-10T13:00:00.000Z</published>
+    <updated>2021-04-10T13:03:48.999Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;由于原来的（书上的）算法我实在是看不懂…所以我想仿照我之前解决全排列的思路（逐个选择法）解决这个问题&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>汇编语言学习笔记（注：本篇笔记均摘自一位热心的B站用户---_惜取少年时_）</title>
