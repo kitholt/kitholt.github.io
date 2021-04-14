@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-04-10T13:03:48.999Z</updated>
+  <updated>2021-04-14T16:05:24.000Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>霍夫曼树の创建、编码、解码</title>
+    <link href="/2021/04/14/%E9%9C%8D%E5%A4%AB%E6%9B%BC%E6%A0%91%E3%81%AE%E5%88%9B%E5%BB%BA%E3%80%81%E7%BC%96%E7%A0%81%E3%80%81%E8%A7%A3%E7%A0%81/"/>
+    <id>/2021/04/14/霍夫曼树の创建、编码、解码/</id>
+    <published>2021-04-14T08:30:00.000Z</published>
+    <updated>2021-04-14T16:05:24.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;开头&quot;&gt;&lt;a href=&quot;#开头&quot; class=&quot;headerlink&quot; title=&quot;开头&quot;&gt;&lt;/a&gt;开头&lt;/h3&gt;&lt;p&gt;霍夫曼树的相关概念就不一一赘述了，直接上代码。放心，必要的地方我会加上我自己都&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>关于我写了个装载问题的野鸡算法的那档事</title>
     <link href="/2021/04/10/%E5%85%B3%E4%BA%8E%E6%88%91%E5%86%99%E4%BA%86%E4%B8%AA%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8E%E9%B8%A1%E7%AE%97%E6%B3%95%E7%9A%84%E9%82%A3%E6%A1%A3%E4%BA%8B/"/>
     <id>/2021/04/10/关于我写了个装载问题的野鸡算法的那档事/</id>
     <published>2021-04-10T13:00:00.000Z</published>
-    <updated>2021-04-10T13:03:48.999Z</updated>
+    <updated>2021-04-10T13:11:40.277Z</updated>
     
     <summary type="html">
     
