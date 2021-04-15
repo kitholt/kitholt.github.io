@@ -284,11 +284,11 @@ try {
 } catch (e) {}
 
 function copy_code_block () {
-  $('pre code').each(function (i, block) {
-    $(block).attr({ id: 'hljs-' + i })
-    $(this).after('<a class="copy-code" href="javascript:" data-clipboard-target="#hljs-' + i + '" title="拷贝代码"><i class="fa fa-clipboard" aria-hidden="true"></i></a>')
-  })
-  var clipboard = new ClipboardJS('.copy-code')
+  //$('pre code').each(function (i, block) {
+   // $(block).attr({ id: 'hljs-' + i })
+    //$(this).after('<a class="copy-code" href="javascript:" data-clipboard-target="#hljs-' + i + '" title="拷贝代码"><i class="fa fa-clipboard" aria-hidden="true"></i></a>')
+ // })
+  //var clipboard = new ClipboardJS('.copy-code')
 }
 
 function attach_image () {
