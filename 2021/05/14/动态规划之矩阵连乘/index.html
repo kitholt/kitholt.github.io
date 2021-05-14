@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">欢迎来到Franの杂货铺</title>
+  <title itemprop="name">动态规划矩阵连乘 | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -304,204 +304,209 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      动态规划矩阵连乘</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-5-14<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
-  
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <div class="notice-content">下面播报一条没有通知的通知</div>
-  </div>
-  
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  START:DASH!!</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://www.bilibili.com/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/bilibili.jpg">
-        </div>
-        <div class="info">
-          <h3>Bilibili</h3>
-          <p>(゜-゜)つロ 干杯~-bilibili</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://www.meiju11.com/new/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
-        </div>
-        <div class="info">
-          <h3>英语学习网站</h3>
-          <p>学习时间到！(bushi)</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="http://www.jrkan.com/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/nba.jpeg">
-        </div>
-        <div class="info">
-          <h3>恩比诶</h3>
-          <p>球盲鉴定器</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-</div>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h2 id="Throw-the-problem"><a href="#Throw-the-problem" class="headerlink" title="Throw the problem"></a>Throw the problem</h2><p>事情是这样的，有这样一群捣鼓矩阵的人，他们模拟数的运算法则，整出了矩阵的运算法则。他们发现矩阵A和矩阵B相乘得到矩阵C要做很多次乘法。两个矩阵相乘，计算这个有手就行。三个矩阵相乘还可以接受，四个的话就有点慌，五个的话就有点吃力，六个、七个…既然人算费力，那就交给鸡算，呸，机算。虽然说不用人算，但是矩阵链的长度一上来，电脑也顶不住啊。这帮人开始思考能不能尽可能用最少的乘法次数来实现矩阵的连乘，他们联想到数的运算法则的<span style="color:red">乘法结合律</span>,因为相邻的矩阵之间是可以若干个组合的。如果给他们加上括号以此来决定乘法的优先级，岂不美哉？光想没用，那就是试试呗。这一试就试出“问题”了。他们发现通过这种“结合运算”的方式，都能得到最终的结果，但是中间用到的乘法次数多少却是“两极分化”! </p>
+<hr>
+<p>举个栗子 ：比如 A1 = 10x100，A2 = 100x5，A3 = 5x50，假如矩阵组合的方式为 ((A1A2)A3) 那么总的相乘次数应为 10<em>100</em>5+10<em>5</em>50 = 7500，而假如矩阵的组合方式为 (A1(A2A3)) 那么相乘的次数应为 100<em>5</em>50+10<em>100</em>50 = 75000，我们可以发现两种不同的组合方式的相乘次数竟然相差这么多。</p>
+<hr>
+<p>因此，如何找到最少的相乘次数显得尤为重要，那么该如何解决这个问题呢？</p>
+<h2 id="How-2-solve-this-shit？"><a href="#How-2-solve-this-shit？" class="headerlink" title="How 2 solve this shit？"></a>How 2 solve this shit？</h2><h3 id="Recursion"><a href="#Recursion" class="headerlink" title="Recursion"></a>Recursion</h3><p>对于一个规模比较庞大的问题，我们首先想到的就是嫩不能把问题分解成若干个子问题。对于矩阵链（MatrixChain），我们可以递归一下</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/recursion.jpg" alt></p>
+<p>图中用红色方框框起来的代表在递归的过程中，会被重复计算的矩阵链，这还只是四个矩阵，那如果是四十个，四百个…重复计算的矩阵链只会越来越多（这谁顶得住啊.jpg），因此我们希望寻找更好的方法来解决它。</p>
+<h3 id="Dynamic-planning"><a href="#Dynamic-planning" class="headerlink" title="Dynamic planning"></a><font style="color:red">Dynamic planning</font></h3><p>要解决重复计算的问题，我们能想到的是用一张表来保存每次计算出的矩阵连乘积，如果在后续的计算中要用到原先的结果，只需要去表中查找就好了。于是乎，动态规划就起了作用。那么，啥是动态规划？</p>
+<h4 id="What-is-it"><a href="#What-is-it" class="headerlink" title="What is it?"></a>What is it?</h4><p>先来看它的官方定义：动态规划算法通常用于求解具有某种<strong>最优性质</strong>的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有<a href="https://baike.baidu.com/item/最优值" target="_blank" rel="noopener">最优值</a>的解。动态规划算法与<a href="https://baike.baidu.com/item/分治法" target="_blank" rel="noopener">分治法</a>类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从<a href="https://baike.baidu.com/item/这些子" target="_blank" rel="noopener">这些子</a>问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。这就是动态规划法的基本思路。具体的动态规划算法多种多样，但它们具有相同的填表格式。</p>
+<p>PS：其实在生活中，我们有时候也会使用动态规划这一思想。比如，公司评选优秀员工（最），直接评选不好安排，但是我们可以“自底向上”地比较筛选，那方法就是：选出每个小组表现优秀的员工，又因为一个部门有很多小组，这样能选出一个部门的优秀员工，最后公司又是由很多部门组成的，最后通过类似“集成”的形式就能选出最优秀的员工了。</p>
+<h4 id="Exert-it！"><a href="#Exert-it！" class="headerlink" title="Exert it！"></a>Exert it！</h4><p>那么，对于矩阵链连乘积次数的求法，也能用类似的思路（自底向上），因为一个矩阵相乘的需要的连乘积次数为0。</p>
+<ol>
+<li>所以我们先算出两个两个矩阵相乘的连乘积，然后把结果分别存入一张记录表里</li>
+<li>接着计算三个矩阵链的…</li>
+<li>四个的</li>
+<li>五个的</li>
+<li>…………….</li>
+</ol>
+<p>最后我们需要几个变量</p>
+<ul>
+<li><p>p 数组用于存放每个矩阵的维数（每个矩阵对应的行和列）</p>
+</li>
+<li><p>m 一个二维数组，用于存放计算某一个矩阵链所需的【连乘积】的次数</p>
+</li>
+<li><p>s 还是一个二维数组，用于存放矩阵链Ai···Aj的断裂点（k的位置）</p>
+</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/dp.jpg" alt></p>
+<p><em>承接纸上，解释代码三层for循环的r，i，k的取值范围</em></p>
+<p>拿两个矩阵相乘的情况举例，起始矩阵下标i从1开始，而i最后的位置应该为n-2，因为我们当前为两个矩阵相乘，到最后时结尾矩阵下标j位于整个矩阵序列的结尾处，所以此时起始矩阵下标i应该在结尾矩阵的下标j往回减2。结尾坐标的起始位置就是起始坐标的下标加上当前相乘矩阵的数目。举个例子，比如当前为两个矩阵相乘，那么 r = 2，那么起始坐标 i 的开始位置就是 1，结束位置就为 n - r+1，结尾下标为 j = i + n - 1。</p>
+<p>然后我们在这个区间内再来求取断点 k ，断点的取值范围应该为[i,j)，然后对区间内的所有情况进行计算，即 m[i][k] + m[k+1][j] + 结果矩阵相乘次数（这里需要注意一下，这里是为了好理解，其实按照我们给定的输入，它的每三个数字代表两个矩阵，即比如 {35，30，25}，对应的矩阵应为 A1 = 35x30，A2 = 30x<em>25。所以完全写成递归式应该为 m[i][k] + m[k+1][j] + p[i]</em>p[k+1]*p[j]），比如当 i = i，r = 2 时，j = 1，k = i = 1 那么这时当前断点开始处的计算结果应为 m[1][1] + m[2][2] + p[0]p[1]p[2].</p>
+<h2 id="Code-Segment（Less-important）"><a href="#Code-Segment（Less-important）" class="headerlink" title="Code Segment（Less important）"></a>Code Segment（Less important）</h2><pre><code class="java">public class matrixChain {
+    /***
+     *
+     * @param p 用于存放每个矩阵的维数（每个矩阵对应的行和列）
+     * @param m 一个二维数组，用于存放计算某一个矩阵链所需的【连乘积】的次数
+     * @param s 还是一个二维数组，用于存放矩阵链Ai···Aj的断裂点（k的位置）
+     * @return
+     */
+    public static int solution(int[]p,int[][]m,int[][]s){
+        int n=p.length-1;//矩阵个数
+        for(int r=2;r&lt;=n;r++){
+            for(int i=1;i&lt;=n-r+1;i++){
+                int j=i+r-1;
+                m[i][j]=m[i+1][j]+p[i-1]*p[i]*p[j];
+                s[i][j]=i;
+                for(int k=i+1;k&lt;j;k++){
+                    int temp=m[i][k]+m[k+1][j]+p[i-1]*p[k]*p[j];
+                    if(temp&lt;m[i][j]){
+                        m[i][j]=temp;
+                        s[i][j]=k;
+                    }
+                }
+            }
+        }
+        return m[1][n];
+    }
+
+    public static void traceback(int i, int j, int[][] s) {
+        // 输出A[i:j] 的最优计算次序
+        if (i == j) {
+            // 递归出口
+            System.out.print(&quot;A&quot;+i);
+            return;
+        } else {
+            System.out.print(&quot;(&quot;);
+            // 递归输出左边
+            traceback(i, s[i][j], s);
+            // 递归输出右边
+            traceback(s[i][j] + 1, j, s);
+            System.out.print(&quot;)&quot;);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] p = new int[]{5,200, 2, 100, 30, 200};
+        int[][] m=new int[p.length][p.length];
+        int[][] s=new int[p.length][p.length];
+        int result=matrixChain.solution(p,m,s);
+        System.out.println(result);
+        traceback(1, p.length-1, s);
+    }
+
+}
+</code></pre>
+<h2 id="Result-of-running-the-code"><a href="#Result-of-running-the-code" class="headerlink" title="Result of running the code"></a>Result of running the code</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/resulOfMatrixChain.png" alt></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2021/04/14/霍夫曼树の创建、编码、解码/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                霍夫曼树の创建、编码、解码</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
 
-  <div class="post-thumb">
-    <a href="/2021/02/01/Preface/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-2-1 00:00</div>
-      <a href="/2021/02/01/Preface/" class="post-title">
-        <h3>Preface</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/吐槽/">吐槽<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/生活/">生活</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/02/01/Preface/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2021/01/31/hello-world-tech/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-1-31 16:00</div>
-      <a href="/2021/01/31/hello-world-tech/" class="post-title">
-        <h3>待添加......</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/技术/">技术</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/01/31/hello-world-tech/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2021/01/31/hello-world-zy/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-1-31 16:00</div>
-      <a href="/2021/01/31/hello-world-zy/" class="post-title">
-        <h3>Keep searching......</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/资源/">资源</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/01/31/hello-world-zy/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-      <!-- 首页默认取最最新文章集 -->
-    <!-- 
-      <nav class="navigator">
-        
-        <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-back"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-      </nav>
-     -->
-  </div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">
