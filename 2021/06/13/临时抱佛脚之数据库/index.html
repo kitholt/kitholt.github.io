@@ -304,243 +304,290 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
 <div id="content" class="site-content">
-  
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <div class="notice-content">下面播报一条没有通知的通知</div>
-  </div>
-  
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  START:DASH!!</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://www.bilibili.com/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/bilibili.jpg">
-        </div>
-        <div class="info">
-          <h3>Bilibili</h3>
-          <p>(゜-゜)つロ 干杯~-bilibili</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="https://www.meiju11.com/new/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
-        </div>
-        <div class="info">
-          <h3>英语学习网站</h3>
-          <p>学习时间到！(bushi)</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="http://www.jrkan.com/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/nba.jpeg">
-        </div>
-        <div class="info">
-          <h3>恩比诶</h3>
-          <p>球盲鉴定器</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-</div>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+          <header class="entry-header">
+            <h1 class="entry-title"></h1>
+            <p class="entry-census">&nbsp;·&nbsp;2021-6-13&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
+
+            <hr>
+          </header>
+        
+        <div class="entry-content">
+          <h1 id="临时抱佛脚之数据库"><a href="#临时抱佛脚之数据库" class="headerlink" title="临时抱佛脚之数据库"></a>临时抱佛脚之数据库</h1><p>面向死记硬背的Oracle数据库</p>
+<h2 id="第一单元：实例"><a href="#第一单元：实例" class="headerlink" title="第一单元：实例"></a>第一单元：实例</h2><ol>
+<li>Oracle进程结构中完成更新控制文件与数据文件,使其同步并触发DBWR进程,使其将脏缓存块写入数据文件中的进程是( )。—<strong>后台进程CKPT</strong></li>
+<li>当Oracle服务器启动时,下列哪种文件不是必须的( )。—<strong>归档日志文件</strong></li>
+<li>( )是数据库数据字典的所有者。—<strong>sys</strong></li>
+<li>在同一个表空间中，可以有多个但是不会存在重复的是（）—<strong>文件号</strong></li>
+<li>可以在Oracle 11g服务器的安装目录下的( )文件中查看Oracle11g服务器的各种参数的使用情况。—<strong>initorcl.ora</strong></li>
+<li>Oracle数据库的实例由( )组成。—<strong>SGA(系统全局区)和后台进程</strong></li>
+<li>以下内存区不属于实例的是( )。—<strong>PGA</strong></li>
+<li>如果服务器进程无法在数据缓冲区中找到空闲块,为添加从数据文件中读出的数据块,则系统会启动如下哪一个进程( )。—<strong>DBWR</strong></li>
+<li>数据字典表和视图存储在( )。—<strong>SYSTEM表空间</strong></li>
+<li>Bob试图正常关闭数据库,Oracle显示实例处于空闲状态,他试图启动数据库,Oracle显示数据库已启动,Bob最好使用( )命令关闭数据库。—<strong>ABORT</strong></li>
+<li>Oracle进程结构中完成将重做记录从重做日志高速缓冲区写入重做日志文件的进程是( )。—<strong>后台进程LGWR</strong></li>
+<li>将修改过的数据块写入数据文件的进程是( )。—<strong>DBWR</strong></li>
+<li>关闭数据库的各种方式中,最省时又不会出现数据不一致(不一致即需要恢复数据库)的情况的是( )。—<strong>immediate</strong></li>
+<li>使用哪一条SHUTDOWN语句关闭数据库时,下次打开数据库是需要做恢复操作( )。—<br><strong>SHUTDOWN ABORT</strong></li>
+<li>指定( )表空间参与排序操作,可以提高排序效率。—<strong>TEMPORARY</strong></li>
+<li>最近使用过的SQL语句存储在( )。—<strong>共享池</strong></li>
+<li>下列哪种表空间可以被设置为脱机状态( )。—<strong>用户表空间</strong></li>
+<li>( )不属于数据库物理存储结构。—<strong>表空间</strong></li>
+<li>Oracle分配磁盘空间的最小单位是( )。—<strong>数据块</strong></li>
+<li>Oracle 数据库启动时需要经历三个步骤和状态变换,以下顺序正确的是( )。—<strong>nomount→mount→open</strong></li>
+<li>回退段存储( )。—<strong>事务修改的数据原值</strong></li>
+<li>段是表空间中一种逻辑存储结构,以下( )不是ORACLE数据库使用的段类型。—<strong>代码段</strong>.</li>
+<li>回退段的作用是( )。—<strong>数据库恢复、事务回滚、数据的读一致性</strong></li>
+<li>已提交的事务所做的数据改变由( )进程记录。–<strong>-DBWR</strong></li>
+<li>Oracle中标准的数据块大小应该由参数 ( )决定。—<strong>DB_BLOCK_SIZE</strong></li>
+<li>Oracle事务提交即( ) 。—<strong>LGWR进程成功写入日志</strong></li>
+<li>数据块的哪三个部分合称为块头部?( )—<strong>表目录、行目录、标题</strong></li>
+<li>数据库启动过程中哪一步读取初始化参数文件?( )—<strong>实例启动</strong></li>
+<li>( )是用于保存数据库的所有变化信息的,从而保护数据库的安全。—<strong>重做日志文件</strong></li>
+<li>( )是较小的二进制文件,用来描述数据库结构。—<strong>控制文件</strong></li>
+<li>启动DBWR进程的条件有( )。—<strong>当数据缓存的LRU列表的长度达到初始化 DB_ BLOCK _WRITE _BATCH指定值的一半时、当检查点发生时,将启动DBWR进程、若发生超时(大约3秒未被启动)、执行INSERT、UPDATE等操作时 ,没有足够的空闲块</strong></li>
+<li>下面属于SGA组成部分的是( )。—<strong>数据高速缓冲区、大型池、共享池、Java池</strong></li>
+<li>启动LGWR进程的条件包括( )。—<strong>每隔3秒,即发生一次超时,将启动LGWR、重做日志缓存被写满三分之一、用户通过COMMIT语句提交当前事务、DBWR进程开始将脏缓存块写入数据文件时先启动LGWR</strong></li>
+<li>CKTP进程一定会引起更新的文件有( )。—<strong>控制文件、联机重做日志文件、数据文件</strong></li>
+</ol>
+<h2 id="第二单元：结构管理"><a href="#第二单元：结构管理" class="headerlink" title="第二单元：结构管理"></a>第二单元：结构管理</h2><ol>
+<li><p>在非归档日志方式下,操作的数据库禁用了( )。—<strong>归档日志</strong></p>
+</li>
+<li><p>当复用了控制文件后,其中一个控制文件损坏,理想的解决方法是( )。—<strong>用好的控制文件,覆盖坏的控制文件</strong></p>
+</li>
+<li><p>创建一个数据库需要多少个控制文件?( )— <strong>1</strong></p>
+</li>
+<li><p>利用哪个参数可以设置撤销空间的管理方式?( )—<strong>UNDO_MANAGEMENT</strong></p>
+</li>
+<li><p>Oracle数据文件的管理策略<span style="color:red">不包含</span>( )。—<strong>重做日志文件最好与数据文件存放在同一个磁盘上。</strong></p>
+</li>
+<li><p>如何修改数据库所允许的重做日志个数( )。—<strong>修改控制文件</strong></p>
+</li>
+<li><p>UNDO 数据的自动管理方式下( )。—<strong>使用 UNDO 表空间统一存储还原数据</strong></p>
+</li>
+<li><p>控制文件中<span style="color:red">不包含</span>( )。—<strong>实例信息</strong></p>
+</li>
+<li><p>以下哪一个文件记录了在数据库恢复期间使用的检查点信息?( )—<strong>控制文件</strong>3</p>
+</li>
+<li><p>启动数据库时,如果一个或多个CONTROL_FILES参数指定的文件不存在或不可用,会出现什么样的结果?( )—<strong>Oracle返回警告信息,但不加载数据库</strong></p>
+</li>
+<li><p>尽管oracle默认每个重做日志组中至少有一个成员,但是oracle建议在生产数据库中重做日志文件应该至少有几个成员?( )—<strong>4</strong></p>
+</li>
+<li><p>增加控制文件的镜像文件,说法正确的是( )。—<strong>需要修改初始化参数文件</strong></p>
+</li>
+<li><p>当创建一个新数据库时,以下哪种方法可以正确地多重映像控制文件?( )—<strong>在发CREATE DATABASE语句之前使用参数文件中的CONTROL_FILES初始化参数来说明至少两个控制文件的名字和位置</strong></p>
+</li>
+<li><p>关于脱机表空间的说法哪一个是正确的?( )—<strong>如果将表空间设置为脱机状态,下次启动数据库时,不会对该表空间的数据文件进行可用性检查。</strong></p>
+</li>
+<li><p>对撤销表空间不能执行哪些操作?( )—<strong>CREATE TABLE</strong></p>
+</li>
+<li><p>在创建数据库时,必需的表空间是( )。—<strong>SYSTEM TABLESPACE</strong></p>
+</li>
+<li><p>DBA使用( )命令显示当前归档状态。—<strong>ARCHIVE LOG LIST</strong></p>
+</li>
+<li><p>DBA 在执行下列语句时返回了错误,DROP TABLESPACE USRES;可能的原因是下列哪个?( )—<strong>该表空间为非空,包含数据对象。</strong></p>
+</li>
+<li><p>如果UNDO空间有活动事务,那么( )。—<strong>可以正常切换,切换后活动事务对应的撤销段保留在旧的 UNDO 表空间。</strong></p>
+</li>
+<li><p>如果日志文件尺寸过小,最可能引起的问题是?( )—<strong>日志经常处于等待</strong></p>
+</li>
+<li><p>在为已有的数据库增加重做日志文件时,数据库应处于哪种状态?( )—<strong>OPEN</strong></p>
+</li>
+<li><p>当创建控制文件时,数据库必须处于什么状态?( )—<strong>未加载</strong></p>
+</li>
+<li><p>在( )状态下可对重做日志组进行删除。—<strong>inactive</strong></p>
+</li>
+<li><p>哪一个表空间不能切换为脱机状态?( )—<strong>系统表空间</strong></p>
+</li>
+<li><p>假如一个表空间只具有一个大小为 100MB 的数据文件,现需将该数据文件的大小<br>修改为 10MB,哪种方法是正确的?( )—<strong>使用带有 RESIZE 子句的 ALTER DATABASE DATAFILE 语句</strong></p>
+</li>
+<li><p>如果某个数据库拥有两个重做日志组,但是第 2 重做日志组突然损坏(其中所有的<br>成员日志都不可用),这时 DBA 应采取下列哪项操作?( )—<strong>删除原有的第 2 重做日志组,然后再使用 ALTER DATABASE ADD LOGFILE GROUP2 语句建立新的第 2 重做日志组。</strong></p>
+</li>
+<li><p>表空间与数据文件关系属性正确的是( )。—<strong>一个数据文件只可属于一个表空间</strong></p>
+</li>
+<li><p>把多路复用控制文件存储于不同磁盘的最大好处是( )。—<strong>防止失败</strong></p>
+</li>
+<li><p>以下哪个不是撤销段的作用( )。—<strong>存储数据库对象</strong></p>
+</li>
+<li><p>一个实例最多可以建立( )个归档进程。—<strong>10</strong></p>
+</li>
+<li><p>删除表空间数据文件的说明正确的是( )。—<strong>只能删除空的数据文件。</strong></p>
+</li>
+<li><p>在向一个现有的数据库中添加了一个数据文件之后,紧接着要做的操作是什么?( )—*<em>备份控制文件</em></p>
+</li>
+<li><p>启动Oracle Database 11g至少需要( )个联机重做日志组。—<strong>2</strong></p>
+</li>
+<li><p>如果某个数据库 LGWR 进程经常会因为检查点未完成而进入等待状态,DBA 应当采取什么措施来解决这个问题?( )—<strong>增加新的重做日志组</strong></p>
+</li>
+<li><p>如果需要将oracle数据库的模式从NOARCHIVE 改为ARCHIVE模式,需要在什么状态进行?( )—<strong>mount</strong></p>
+</li>
+<li><p>用于显示所有表空间描述信息的视图是（ ）—<strong>v$tablespaces</strong></p>
+</li>
+<li><p>表空间管理策略,正确的是( )。—<strong><em>A、</em></strong></p>
+<p><strong>[将表空间的数据文件分散保存到不同的硬盘上,平均分布物理I/O操作。]</strong></p>
+<p><strong><em>B、</em></strong></p>
+<p><strong>[将回滚数据与用户数据分离,避免硬盘损坏而导致永久性的数据丢失。]</strong></p>
+<p><strong><em>C、</em></strong></p>
+<p><strong>[将数据字典与用户数据分离,避免由于数据字典对象和用户对象保存在一个数据文件中而产生I/O冲突。]</strong></p>
+<p><strong><em>D、</em></strong></p>
+<p><strong>[能够将表空间设置为脱机状态或联机状态,以便对数据库的一部分进行备份或恢复。]</strong></p>
+<p><strong><em>E、</em></strong></p>
+<p><strong>[为不同的应用创建独立的表空间,避免多个应用之间的相互干扰。]</strong></p>
+<p><strong><em>F、</em></strong></p>
+<p><strong>[能够将表空间设置为只读状态,从而将数据库的一部分设置为只读状态。]</strong></p>
+</li>
+<li><p>关于联机重做日志,以下哪两个说法是正确的?( )—<strong>同一组中的所有成员文件都是同样大小、同一组的成员文件应置于不同的磁盘、同一组的成员文件内容完全相同</strong></p>
+</li>
+<li><p>在以下有关控制文件设置与备份的论述中,哪个是正确的?( )—<strong>应该在向一个现有的数据库中添加一个数据文件之后备份控制文件、应该在创建一个表空间之后备份控制文件</strong></p>
+</li>
+</ol>
+<h2 id="第三单元：模式对象"><a href="#第三单元：模式对象" class="headerlink" title="第三单元：模式对象"></a>第三单元：模式对象</h2><ol>
+<li>在Oracle中创建用户时,比较适合DEFAULT TABLESPACE的表空间是( )—<strong>USERS</strong></li>
+<li>关于创建表时,对于表的存储参数设置说法<span style="color:red">错误</span>的是()—<strong>同一个表空间中的表的存储参数不能冲突</strong></li>
+<li>关于索引使用的说法,<span style="color:red">错误</span>的是()—<strong>Oracle对索引使用的决定都是最优的</strong></li>
+<li>关于模式的描述下列哪一项<span style="color:red">不正确</span>( )。—<strong>一个表可以属于多个模式</strong></li>
+<li>下列的约束中,不会自动创建索引的是()—<strong>foreign key</strong></li>
+<li>什么是模式?( )—<strong>数据库对象的逻辑组织结构</strong></li>
+<li>在Oracle中,一个用户拥有的所有数据库对象统称为 ( )。—<strong>模式</strong></li>
+<li>下列( )<span style="color:red">不是</span>Oracle系统中提供的约束。—<strong>控制约束</strong></li>
+<li>在Oracle中当一个数据表产生了大量存储碎片时,最好的调整方式是()—<strong>表结构重组</strong></li>
+<li>关于索引的存储,说法<span style="color:red">错误</span>的是()—<strong>索引的存储参数必须跟表的参数一致</strong></li>
+<li>表结构重组时,不会发生变化的是()—<strong>段的名称</strong></li>
+<li>关于约束的延迟检查,说法错误的是()—<strong>可以一次性将某个表中所有的可延迟的约束设置为延迟</strong></li>
+<li>分区表中的索引类型，<span style="color:red">不存在</span>的是（）—<strong>本地非分区索引</strong></li>
+<li>下列不属于分区表类型的是（）—<strong>Time分区</strong></li>
+<li>唯一值约束和主键约束的区别是什么?( )—<strong>唯一值约束的列可以为空、主码列不可以为空</strong></li>
+<li>关于约束禁用与激活,说法错误的是()—<strong>禁用主键约束、惟一性约束时,会删除其对应的索引,无法保留。</strong></li>
+<li>删除表时,不会删除的内容是()—<strong>与该表相关的区</strong></li>
+<li>关于B树索引的效率与数据量相关性低的原因,正确的是()—<strong>B树索引会优先扩展同层节点,而不是增加层数</strong></li>
+<li>关于分区表中各个分区的数据存储，说法正确的是（）—<strong>可以忽略分区，直接向表中添加数据</strong></li>
+</ol>
+<h2 id="第四单元：安全与备份"><a href="#第四单元：安全与备份" class="headerlink" title="第四单元：安全与备份"></a>第四单元：安全与备份</h2><ol>
+<li>关于闪回技术,说法错误的是( )—<strong>闪回技术可以保护系统表空间中的表。</strong></li>
+<li>DML误操作可以使用( )来恢复。—<strong>还原段</strong></li>
+<li>创建用户的命令中,( )子句限制用户对象在数据库中占用的空间。—<strong>QUOTA</strong></li>
+<li>数据库运行在归档模式时,关于RMAN操作的描述正确的是( )。—<strong>RMAN需要恢复目录</strong></li>
+<li>完全备份时,数据库应该处于( )—<strong>mount状态</strong></li>
+<li>下面不是常用的对象权限的是( )。—<strong>grant</strong></li>
+<li>要恢复一个丢失的数据文件,而归档重做日志文件已经损坏,DBA应该执行的命令是( )。—<strong>RECOVER DATABASE UNTIL CANCEL;</strong></li>
+<li>使用RMAN进行数据库不完全恢复,目标数据库必须处于的状态为( )。—<strong>MOUNT</strong></li>
+<li>下列关于角色描述,说法有误的是( )—<strong>角色可以授予自己,也可以循环授予。</strong></li>
+<li>以下哪个权限是对象权限?( )—<strong>INDEX</strong></li>
+<li>Oracle有不同类型的备份,不包括( )。—<strong>人工备份</strong></li>
+<li>利用下面闪回技术不能直接进行数据恢复的是( )。—<strong>闪回事务查询</strong></li>
+<li>为了执行一次完整的数据库介质恢复操作,数据库必须处于那种状态?( )—<strong>处于Mount状态,但不打开数据库</strong></li>
+<li>当数据库系统崩溃以后首要任务是()。—<strong>让数据库开启并对外提供服务</strong></li>
+<li>数据库运行在非归档模式,数据库的一个表空间不可用,DBA恢复数据库的方法是( )。—<strong>利用数据库的一致性备份修复数据文件、控制文件和重做日志文件</strong></li>
+<li>修复Recover是利用重做日志文件或数据库的增量备份文件重新建立已经丢失的数据,这是一种( )。—<strong>逻辑修复</strong></li>
+<li>概要文件中SESSIONS_PER_USER限制了什么?( )—<strong>每用户会话数量</strong></li>
+<li>若用户要连接数据库,则该用户必须拥有的权限是( )。—<strong>create session</strong></li>
+<li>哪个参数限制用户在断开前的最大空闲时间?( )—<strong>IDLE_TIME</strong></li>
+<li>给用户定义缺省角色时,下列哪种情况不行? ( )—<strong>当角色有密码时</strong></li>
+<li>关于闪回技术的描述正确的是( )。—<strong>闪回技术是数据库物理备份与恢复、逻辑备份与恢复的重要补充</strong></li>
+<li>使用( )命令,被授予权限的用户可以进一步将这个权限授予其他用户。—<strong>WITH ADMIN OPTION</strong></li>
+<li>以下权限哪个是系统权限?( )—<strong>BACKUP ANY TABLE</strong></li>
+<li>概要文件不能限制下列哪个资源的使用?( )—<strong>读取数据块时间</strong></li>
+<li>数据库处于归档模式,不可进行( )类型的备份。—<strong>使用ALTER DATABASE BACKUP TABLESPACE备份联机表空间</strong></li>
+<li>以下4种关闭数据库的方式中,只有( )在系统重新启动时需要进行数据库的恢复。—<strong>shutdown abort</strong></li>
+<li>以下哪种备份方式需要完全关闭数据库( )—<strong>非归档日志模式下的数据库备份</strong></li>
+<li>在数据库打开状态下进行备份时,下面描述<span style="color:red">不正确</span>的是( )。—<strong>数据库必须处于READ ONLY状态</strong></li>
+<li>Oracle数据库利用( )进行资源限制和口令管理。—<strong>概要文件</strong></li>
+<li>在Oracle数据库中,管理员以管理员身份登录后,进入的模式是( )。—<strong>SYS</strong></li>
+<li>闪回数据库功能需要满足的条件有( )。—<strong>数据库必须处于归档模式、数据库设置了闪回恢复区、数据库必须使用管理员帐号登录、数据库启用了FLASHBACK DATABASE特性</strong></li>
+<li>用户属性包括( )。—<strong><em>A、</em>账户状态<em>B、</em>表空间配额<em>C、</em>临时表空间<em>D、</em>默认表空间<em>E、</em>概要文件<em>F、</em>用户身份认证方式</strong></li>
+<li>概要文件资源限制类型包括( )。—<strong>用户连接数据库的总时间、CPU使用时间、用户连接数据库的空闲时间、逻辑读时间</strong></li>
+<li>备份原则与策略正确的有( )。—<strong><em>A、</em>对于重要的表中的数据,可以采用逻辑备份方式进行备份。    <em>B、</em>在归档模式下,当数据库结构发生变化时,如创建或删除表空间、添加数据文件、重做日志文件等,应该备份数据库的控制文件        <em>C、</em>在刚建立数据库时,应该立即进行数据库的完全备份        <em>D、</em>至少保证两个归档重做日志文件的归档目标,不同归档目标应该分散于不同磁盘        <em>E、</em>将所有的数据库备份保存在一个独立磁盘上        <em>F、</em>根据数据库数据变化的频率情况确定数据库备份规律</strong></li>
+</ol>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2021/05/14/动态规划之矩阵连乘/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                动态规划矩阵连乘</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
 
-  <div class="post-thumb">
-    <a href="/2021/02/02/蛋疼のNode学习之路/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-2-2 07:00</div>
-      <a href="/2021/02/02/蛋疼のNode学习之路/" class="post-title">
-        <h3>蛋疼のNode学习之路(持续更新...)</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/技术/">技术</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/02/02/蛋疼のNode学习之路/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2021/02/01/Preface/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-2-1 00:00</div>
-      <a href="/2021/02/01/Preface/" class="post-title">
-        <h3>Preface</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/吐槽/">吐槽<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/生活/">生活</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/02/01/Preface/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2021/01/31/hello-world-tech/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-1-31 16:00</div>
-      <a href="/2021/01/31/hello-world-tech/" class="post-title">
-        <h3>待添加......</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/技术/">技术</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/01/31/hello-world-tech/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2021/01/31/hello-world-zy/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/image-404.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2021-1-31 16:00</div>
-      <a href="/2021/01/31/hello-world-zy/" class="post-title">
-        <h3>Keep searching......</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/资源/">资源</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p></p>
-        <div class="post-bottom">
-          <a href="/2021/01/31/hello-world-zy/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-      <!-- 首页默认取最最新文章集 -->
-    <!-- 
-      <nav class="navigator">
-        
-        <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-back"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-      </nav>
-     -->
-  </div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">
