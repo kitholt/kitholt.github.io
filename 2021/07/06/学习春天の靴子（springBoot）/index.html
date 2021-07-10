@@ -640,7 +640,224 @@ person:
         &lt;/plugins&gt;
     &lt;/build&gt;
 </code></pre>
-<h2 id="Chapter4—Web开发"><a href="#Chapter4—Web开发" class="headerlink" title="Chapter4—Web开发"></a>Chapter4—Web开发</h2>
+<h2 id="Chapter4—Web开发"><a href="#Chapter4—Web开发" class="headerlink" title="Chapter4—Web开发"></a>Chapter4—Web开发</h2><h3 id="1-1、模板抽取（thymeleaf）"><a href="#1-1、模板抽取（thymeleaf）" class="headerlink" title="1.1、模板抽取（thymeleaf）"></a>1.1、模板抽取（thymeleaf）</h3><ol>
+<li>首先，根据需求提取出模板网页</li>
+<li>在模板网页中，利用th:fragment=”xxx”将模板”碎片化“</li>
+<li>然后在需要的网页中使用th:insert=“[模板名称]::[碎片名]”或th:replace=“[模板名称]::[碎片名]”或th:include=“[模板名称]::[碎片名]”</li>
+</ol>
+<h3 id="1-2、拦截器配置"><a href="#1-2、拦截器配置" class="headerlink" title="1.2、拦截器配置"></a>1.2、拦截器配置</h3><ol>
+<li><p>配置拦截器</p>
+</li>
+<li><p>将拦截器注册到容器中（其实是先配置到一个config配置类中，然后容器再通过调用 配置类 来进行 装配）</p>
+<p>必要时会指定拦截路径</p>
+</li>
+</ol>
+<h4 id="1-2-1、拦截器原理（复习）"><a href="#1-2-1、拦截器原理（复习）" class="headerlink" title="1.2.1、拦截器原理（复习）"></a>1.2.1、拦截器原理（复习）</h4><p>1、根据当前请求，找到<strong>HandlerExecutionChain【</strong>可以处理请求的handler以及handler的所有 拦截器】</p>
+<p>2、先来<strong>顺序执行</strong> 所有拦截器的 preHandle方法</p>
+<ul>
+<li>1、如果当前拦截器prehandler返回为true。则执行下一个拦截器的preHandle</li>
+<li>2、如果当前拦截器返回为false。直接    倒序执行所有已经执行了的拦截器的  afterCompletion；</li>
+</ul>
+<p><strong>3、如果任何一个拦截器返回false。直接跳出不执行目标方法</strong></p>
+<p><strong>4、所有拦截器都返回True。执行目标方法</strong></p>
+<p><strong>5、倒序执行所有拦截器的postHandle方法。</strong></p>
+<p><strong>6、前面的步骤有任何异常都会直接倒序触发</strong> afterCompletion</p>
+<p>7、页面成功渲染完成以后，也会倒序触发 afterCompletion</p>
+<h3 id="1-3、文件上传"><a href="#1-3、文件上传" class="headerlink" title="1.3、文件上传"></a>1.3、文件上传</h3><pre><code class="java">    /**
+     * MultipartFile 自动封装上传过来的文件
+     * @param email
+     * @param username
+     * @param headerImg
+     * @param photos
+     * @return
+     */
+    @PostMapping(&quot;/upload&quot;)
+    public String upload(@RequestParam(&quot;email&quot;) String email,
+                         @RequestParam(&quot;username&quot;) String username,
+                         @RequestPart(&quot;headerImg&quot;) MultipartFile headerImg,
+                         @RequestPart(&quot;photos&quot;) MultipartFile[] photos) throws IOException {
+
+        log.info(&quot;上传的信息：email={}，username={}，headerImg={}，photos={}&quot;,
+                email,username,headerImg.getSize(),photos.length);
+
+        if(!headerImg.isEmpty()){
+            //保存到文件服务器，OSS服务器
+            String originalFilename = headerImg.getOriginalFilename();
+            headerImg.transferTo(new File(&quot;H:\\cache\\&quot;+originalFilename));
+        }
+
+        if(photos.length &gt; 0){
+            for (MultipartFile photo : photos) {
+                if(!photo.isEmpty()){
+                    String originalFilename = photo.getOriginalFilename();
+                    photo.transferTo(new File(&quot;H:\\cache\\&quot;+originalFilename));
+                }
+            }
+        }
+
+
+        return &quot;main&quot;;
+    }
+</code></pre>
+<h3 id="1-4、原生组件注入（Servlet、Filter、Listener）"><a href="#1-4、原生组件注入（Servlet、Filter、Listener）" class="headerlink" title="1.4、原生组件注入（Servlet、Filter、Listener）"></a>1.4、原生组件注入（Servlet、Filter、Listener）</h3><p>该注解写在主程序类中</p>
+<p>@ServletComponentScan(basePackages = <strong>“xxx”</strong>) :指定原生Servlet组件都放在那里</p>
+<hr>
+<p>下列注解用来表示各个组件：</p>
+<p>@WebServlet(urlPatterns = <strong>“/my”</strong>)</p>
+<p>@WebFilter(urlPatterns={<strong>“/css/*“</strong>,<strong>“/images/*“</strong>})</p>
+<p>@WebListener</p>
+<hr>
+<h4 id="1-4-1、利用RegistrationBean来注入组件"><a href="#1-4-1、利用RegistrationBean来注入组件" class="headerlink" title="1.4.1、利用RegistrationBean来注入组件"></a>1.4.1、利用RegistrationBean来注入组件</h4><pre><code class="java">@Configuration
+public class MyRegistConfig {
+
+    @Bean
+    public ServletRegistrationBean myServlet(){
+        MyServlet myServlet = new MyServlet();
+
+        return new ServletRegistrationBean(myServlet,&quot;/my&quot;,&quot;/my02&quot;);//在注入的servlet，以及对应的映射路径
+    }
+
+
+    @Bean
+    public FilterRegistrationBean myFilter(){
+
+        MyFilter myFilter = new MyFilter();
+//        return new FilterRegistrationBean(myFilter,myServlet());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter);
+        filterRegistrationBean.setUrlPatterns(Arrays.asList(&quot;/my&quot;,&quot;/css/*&quot;));
+        return filterRegistrationBean;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean myListener(){
+        MySwervletContextListener mySwervletContextListener = new MySwervletContextListener();
+        return new ServletListenerRegistrationBean(mySwervletContextListener);
+    }
+}
+</code></pre>
+<h2 id="Chapter5—数据访问"><a href="#Chapter5—数据访问" class="headerlink" title="Chapter5—数据访问"></a>Chapter5—数据访问</h2><h3 id="导入JDBC场景"><a href="#导入JDBC场景" class="headerlink" title="导入JDBC场景"></a>导入JDBC场景</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+</code></pre>
+<h3 id="导入数据库驱动"><a href="#导入数据库驱动" class="headerlink" title="导入数据库驱动"></a>导入数据库驱动</h3><pre><code class="xml">默认版本：&lt;mysql.version&gt;8.0.22&lt;/mysql.version&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;!--            &lt;version&gt;5.1.49&lt;/version&gt;--&gt;
+        &lt;/dependency&gt;
+想要修改版本
+1、直接依赖引入具体版本（maven的就近依赖原则）
+2、重新声明版本（maven的属性的就近优先原则）
+    &lt;properties&gt;
+        &lt;java.version&gt;1.8&lt;/java.version&gt;
+        &lt;mysql.version&gt;5.1.49&lt;/mysql.version&gt;
+    &lt;/properties&gt;
+</code></pre>
+<h3 id="另外，可以通过修改spring-jdbc来修改JdbcTemplate的相关值"><a href="#另外，可以通过修改spring-jdbc来修改JdbcTemplate的相关值" class="headerlink" title="另外，可以通过修改spring.jdbc来修改JdbcTemplate的相关值"></a>另外，可以通过修改spring.jdbc来修改JdbcTemplate的相关值</h3><h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><pre><code class="xml">@Slf4j
+@SpringBootTest
+class Boot05WebAdminApplicationTests {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;//！！！！！！！！！！！！！这里的自动注入可能会无法注入，解决方法在下面
+
+
+    @Test
+    void contextLoads() {
+
+//        jdbcTemplate.queryForObject(&quot;select * from account_tbl&quot;)
+//        jdbcTemplate.queryForList(&quot;select * from account_tbl&quot;,)
+        Long aLong = jdbcTemplate.queryForObject(&quot;select count(*) from account_tbl&quot;, Long.class);
+        log.info(&quot;记录总数：{}&quot;,aLong);
+    }
+
+}
+</code></pre>
+<h3 id="解决JdbcTemplate无法自动注入的问题："><a href="#解决JdbcTemplate无法自动注入的问题：" class="headerlink" title="解决JdbcTemplate无法自动注入的问题："></a><span style="color:red">解决JdbcTemplate无法自动注入的问题：</span></h3><pre><code class="xml"> &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+       &lt;!-- &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+            &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;--&gt;
+</code></pre>
+<p>只要不引入上面那个注释掉的依赖就可以了（我也不知道为什么，我给这个折磨了好一阵子了。。。）</p>
+<hr>
+<h3 id="使用Druid数据源"><a href="#使用Druid数据源" class="headerlink" title="使用Druid数据源"></a>使用Druid数据源</h3><ol>
+<li><p>引入druid-starter</p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+            &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.1.17&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>能够进行自动配置的相关属性</p>
+<ul>
+<li>扩展配置项 <strong>spring.datasource.druid</strong></li>
+<li><p>DruidSpringAopConfiguration.<strong>class</strong>,   监控SpringBean的；配置项：<strong>spring.datasource.druid.aop-patterns</strong></p>
+</li>
+<li><p>DruidStatViewServletConfiguration.<strong>class</strong>, 监控页的配置：<strong>spring.datasource.druid.stat-view-servlet；默认开启</strong></p>
+</li>
+<li><p>DruidWebStatFilterConfiguration.<strong>class</strong>, web监控配置；<strong>spring.datasource.druid.web-stat-filter；默认开启</strong></p>
+</li>
+<li><p>DruidFilterConfiguration.<strong>class</strong>}) 所有Druid自己filter的配置</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用mybatis"><a href="#使用mybatis" class="headerlink" title="使用mybatis"></a>使用mybatis</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;2.1.4&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>使用yaml配置mybatis（替代原先的mybatis-congfig.xml全局配置文件）</p>
+<pre><code class="yaml"># 配置mybatis规则
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+ 可以不写全局；配置文件，所有全局配置文件的配置都放在configuration配置项中即可
+</code></pre>
+<p>总的来说整合mybatis的操作和以前几乎一样</p>
+<ul>
+<li>导入mybatis官方starter</li>
+<li><p>编写mapper接口。标准@Mapper注解</p>
+</li>
+<li><p>编写sql映射文件并绑定mapper接口</p>
+</li>
+<li>在application.yaml中指定Mapper配置文件的位置，以及指定全局配置文件的信息 （建议；<strong>配置在mybatis.configuration</strong>）</li>
+</ul>
+<h3 id="mybatis-plus-mybatisX-不用手写crud了！"><a href="#mybatis-plus-mybatisX-不用手写crud了！" class="headerlink" title="mybatis-plus(mybatisX)不用手写crud了！"></a>mybatis-plus(mybatisX)不用手写crud了！</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.4.1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<ul>
+<li>MybatisPlusAutoConfiguration 配置类，MybatisPlusProperties 配置项绑定。<strong>mybatis-plus：xxx 就是对**</strong>mybatis-plus的定制**</li>
+<li><p><strong>SqlSessionFactory 自动配置好。底层是容器中默认的数据源</strong></p>
+</li>
+<li><p><strong>mapperLocations 自动配置好的。有默认值。**</strong>classpath*:/mapper/*<em>/\</em>.xml；任意包的类路径下的所有mapper文件夹下任意路径下的所有xml都是sql映射文件。  建议以后sql映射文件，放在 mapper下**</p>
+</li>
+<li><p><strong>容器中也自动配置好了</strong> <strong>SqlSessionTemplate</strong></p>
+</li>
+<li><p><strong>@Mapper 标注的接口也会被自动扫描；建议直接</strong> @MapperScan(<strong>“xxx”</strong>) 批量扫描就行</p>
+</li>
+</ul>
+<p><span style="color:red;font-size:36px">注意：</span></p>
+<p>mybatis_plus 默认会使用 “id” 为主键字段，如果数据库的主键字段不是“id”的话，使用mybatis-plus中的 selectById ,getById 方法查询数据是查询不出来的。所以就会出现空指针…（折磨人，别问我为什么知道…）</p>
+<p>解决方法：</p>
+<p>在实体类的主键字段加上@TableId(value =“数据库你的主键字段”)注解即可</p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
