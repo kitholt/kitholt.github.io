@@ -388,6 +388,290 @@
 <li>解决对象之间的松耦合设计</li>
 <li>将不用变化的代码独立出来，在以后的编程过程中尽量扩展而不是修改（个人理解）</li>
 </ul>
+<h2 id="正餐"><a href="#正餐" class="headerlink" title="正餐"></a>正餐</h2><p>创建型模式：单独对对象的创建进行研究，从而能够高效地创建对象</p>
+<ul>
+<li>单例模式</li>
+<li>抽象工厂模式</li>
+<li>原型模式</li>
+<li>建造者模式</li>
+<li>工厂模式</li>
+</ul>
+<p>结构型模式：设计对象的结构、继承和依赖关系</p>
+<ul>
+<li>适配器模式</li>
+<li>桥接模式</li>
+<li>装饰模式</li>
+<li>组合模式</li>
+<li>外观模式</li>
+<li>享元模式</li>
+<li>代理模式</li>
+</ul>
+<p>行为型模式：设计对象的行为，使对象的工作效率提高</p>
+<ul>
+<li>模板方法模式</li>
+<li>命令模式</li>
+<li>访问者模式</li>
+<li>迭代器模式</li>
+<li>观察者模式</li>
+<li>中介者模式</li>
+<li>备忘录模式</li>
+<li>解释器模式</li>
+<li>状态模式</li>
+<li>策略模式</li>
+<li>责任链模式</li>
+</ul>
+<hr>
+<h3 id="①单例模式（Singleton）"><a href="#①单例模式（Singleton）" class="headerlink" title="①单例模式（Singleton）"></a>①单例模式（Singleton）</h3><p>下定义：采取一定方法在整个软件系统中，对某个类只能存在一个对象实例</p>
+<p>它の几种创建方式：</p>
+<p>饿汉式</p>
+<pre><code class="java">package singleton.type1;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getSingleton();
+        singleton s2=singleton.getSingleton();
+        System.out.println(s1==s2);
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+    }
+}
+//所谓饿汉，就是不管三七二十一，在类加载的时候就已经创建好单例对象了
+class singleton{
+    private static final singleton singleton=new singleton();//使用静态变量去创建单例对象
+
+    private singleton(){//构造方法私有化，防止外部new对象
+
+    }
+    public static singleton getSingleton(){//向外提供一个方法获取单例对象
+        return singleton;
+    }
+}
+
+</code></pre>
+<pre><code class="java">package singleton.type2;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1= singleton.getSingleton();
+        singleton s2= singleton.getSingleton();
+        System.out.println(s1==s2);
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+    }
+}
+
+class singleton{
+
+    private static singleton singleton;
+
+    private singleton(){//构造方法私有化，防止外部new对象
+
+    }
+
+    static{
+        singleton=new singleton();//使用静态代码块创建单例对象
+    }
+
+    public static singleton getSingleton(){//向外提供一个方法获取单例对象
+        return singleton;
+    }
+
+}
+</code></pre>
+<p>注意：对于饿汉式，因为在类加载时就已经创建，若不使用单例对象，可能造成内存的浪费</p>
+<hr>
+<p>懒汉式（单线程且不安全）</p>
+<pre><code class="java">package singleton.type3;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getSingleton();
+        singleton s2=singleton.getSingleton();
+        System.out.println(s1==s2);
+    }
+}
+
+class singleton{
+    private static singleton singleton;
+    private singleton(){ }
+
+    public static singleton getSingleton(){//所谓懒汉就是，只有要用到单例对象时才创建，不用就不创建。就像青蛙一样，你戳它一下 它就往前跳一下
+        if(singleton==null){
+            singleton=new singleton();
+        }
+        return singleton;
+    }
+}
+
+</code></pre>
+<p>注意：如果遇到这一种情况：线程 1 运行到<span style="color:red">instance = new Singleton()</span>处的时候，线程 2 抢到的 CPU 的执行权，进入 getInstance() 方法，也运行了<span style="color:red">instance = new Singleton()</span>，但线程 2 创建了对象这件事情，线程 1 压根儿不晓得，等到线程 1 重新获得 CPU 执行权的时候，从原先的地方 处继续执行，又运行了 instance = new Singleton(); 这行代码，这样就会存在多个对象，得到singleton就不再唯一，这样就失去了原本的意义</p>
+<hr>
+<p>最完美的创建方式来啦！使用枚举！</p>
+<pre><code class="java">package singleton.typeEnum;
+
+public class demo {
+
+
+    public static void main(String[] args) {
+        singleton s1=singleton.SINGLETON;
+        singleton s2=singleton.SINGLETON;
+        System.out.println(s1==s2);
+        s1.test();
+    }
+
+}
+
+enum singleton{
+    SINGLETON;
+    public void test(){
+        System.out.println(&quot;is singleton...&quot;);
+    }
+}
+
+</code></pre>
+<p>使用枚举的方式实现单例模式是《Effective Java》作者力推的方式，在很多优秀的开源代码中经常可以看到使用枚举方式实现单例模式的（身影），枚举类型不允许被继承，同样是线程安全的且只能被实例化一次</p>
+<hr>
+<p>除此之外，还能使用静态内部类的方式来实现单例模式</p>
+<pre><code class="java">package singleton.type4;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getInstance();
+        singleton s2=singleton.getInstance();
+        System.out.println(s1==s2);
+    }
+}
+
+class singleton {
+    private singleton(){}
+
+    private static class getSingleton{//创建内部类
+        private static final singleton instance=new singleton();//将单例对象设置为内部类成员变量
+    }
+    public static singleton getInstance(){//对外开放一个获取单例对象
+        return getSingleton.instance;
+    }
+}
+
+</code></pre>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h4 id="简单工厂模式（（））"><a href="#简单工厂模式（（））" class="headerlink" title="简单工厂模式（（））"></a>简单工厂模式（（））</h4><p>下定义：是由一个工厂对象决定创建出哪一种产品类的实例。定义一个创建对象的类，由这个类去<strong>封装实例化对象的行为</strong></p>
+<p>典型案例：订购pizza业务</p>
+<p>pizza工厂：</p>
+<pre><code class="java">package factory.simpleFactory.pizzaStore.simplePizzaFactory;
+
+import factory.simpleFactory.pizzaStore.pizza.pizza;
+import factory.simpleFactory.pizzaStore.pizza.spicyPizza;
+
+import java.util.Scanner;
+
+public class pizzaFactory {
+    public pizza createPizza(){
+        System.out.println(&quot;******使用简单工厂模式...******&quot;);
+        System.out.println(&quot;请选择要制作的pizza...&quot;);
+        pizza pizza=null;
+        String type=getType();
+        if(type.equals(&quot;spicy&quot;)){
+            pizza=new spicyPizza();
+            pizza.setName(type);
+            System.out.println(type+&quot;Pizza制作完成...&quot;);
+        }
+        else if(type.equals(&quot;NewOrleans&quot;)){
+            pizza=new spicyPizza();
+            pizza.setName(type);
+            System.out.println(type+&quot;Pizza制作完成...&quot;);
+        }
+        else {
+            System.out.println(&quot;制作失败，暂无此种类...&quot;);
+        }
+        return pizza;
+    }
+
+
+
+
+    private String getType(){//获取要制造的pizza的种类
+        String type;
+        Scanner sc=new Scanner(System.in);
+        type=sc.next();
+        return type;
+    }
+}
+
+</code></pre>
+<p>订购pizza业务：</p>
+<pre><code class="java">package factory.simpleFactory.pizzaStore;
+
+import factory.simpleFactory.pizzaStore.pizza.pizza;
+import factory.simpleFactory.pizzaStore.simplePizzaFactory.pizzaFactory;
+
+public class orderPizza {
+    pizzaFactory pizzaFactory;
+
+    orderPizza(pizzaFactory pizzaFactory){
+        this.pizzaFactory=pizzaFactory;
+    }
+
+    public pizza order(){
+       return pizzaFactory.createPizza();
+    }
+
+    public static void main(String[] args) {
+        orderPizza orderPizza=new orderPizza(new pizzaFactory());
+        pizza pizza=orderPizza.order();
+        while(pizza!=null){
+            pizza=orderPizza.order();
+        }
+    }
+}
+
+</code></pre>
+<p>这里没有放出pizza类…</p>
+<p>结果如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/simpleFactory.png" alt></p>
+<h4 id="②工厂方法模式（简单工厂的进阶）"><a href="#②工厂方法模式（简单工厂的进阶）" class="headerlink" title="②工厂方法模式（简单工厂的进阶）"></a>②工厂方法模式（简单工厂的进阶）</h4><p>下定义：定义一个创建子类的抽象方法，由子类决定要实例化的类。简单工厂模式是在工厂内部就实例化需要的类，而工厂方法则是将<span style="color:red">对象的实例化的权限交给了子类</span>，一般来说，这一个子类对应一类产品</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/factorymethod.png" alt></p>
+<h4 id="③抽象工厂模式（工厂方法的进阶）"><a href="#③抽象工厂模式（工厂方法的进阶）" class="headerlink" title="③抽象工厂模式（工厂方法的进阶）"></a>③抽象工厂模式（工厂方法的进阶）</h4><p>下定义：定义一个接口用于创建相关的<span style="color:red;font-size:30px"><strong>对象簇</strong></span>,而无需指定具体的类</p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/abstractfactory.png" alt></p>
+<p>Hold on，什么是簇？簇的意思就是聚集的一团东西，就比如华为产品簇（包含手机，电脑，智能穿戴设备等），在这里就是指多个产品（类）上图中的各个pizza。OrderPizza就是抽象工厂，它旗下又有BJOrderPizza和LDOrderPizza这两个具体生产Pizza的子类。其实严格来说抽象工厂的具体工厂所实现的类都是不同类别的。上面的例子最终都是和pizza有关的。这个例子不能很好的区别抽象工厂和工厂方法的区别。</p>
+<h4 id="关于工厂模式的思考与理解"><a href="#关于工厂模式的思考与理解" class="headerlink" title="关于工厂模式的思考与理解"></a><span style="color:blue;font-size:25px">关于工厂模式的思考与理解</span></h4><p>学完了工厂设计模式，我明白了此类设计模式的思想就是来源于<em>现实生活</em> 。我看看我显示屏旁的机箱里的电脑配件…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/computer.png" alt></p>
+<p>配一台电脑不就要经过工厂模式的一系列操作么。</p>
+<p>下面开始讲故事：</p>
+<p>张三（三迟但到）是个计算机天才aka装B猿，呸，装机猿。刚开始装机数量不是特别多，他一个人也应付得过来且口碑也不错。但是随着客户的数量的增加，他一个人有点吃不消了。因此他想，”为什么开一个工厂来专门装电脑呢？“。很快他找银行贷了一笔款用于新建工厂<span style="color:red"><strong>（这就是简单工厂设计模式）</strong></span>。工厂<em>内部</em>负责生产。效率相比以前大大提升<span style="color:red"><strong>（利用工厂生成需要的对象）</strong></span>。</p>
+<hr>
+<p>但是过了一阵子，张三发现每个用户的装机要求不尽相同，有人想要一台配置不高的办公电脑，而有人是臭打游戏的（比如我），他们想要一台配置高的发烧电脑。因此他们对配件的要求也不一样。可是<strong>工厂只有一个</strong>，所有配件的生产都在这里进行，同时工厂场地有限<span style="color:red"><strong>（类の大小）</strong></span>，虽然能扩建但是较为麻烦<span style="color:red"><strong>（在一个工厂类不断地添加新的代码）</strong></span>。很快张三想到了解决方案：再开设几个工厂生产不同的整机<span style="color:red"><strong>（具体实现类）</strong></span>，这几个工厂都要听总工厂的指示<span style="color:red"><strong>（实现总工厂的抽象方法）</strong></span>，生产符合不同配置需求的整机<span style="color:red"><strong>（产品对象）</strong></span>张三很快就做强做大，总工厂也变成了大公司。</p>
+<hr>
+<p>当然大公司也有大公司的麻烦，随着计算机硬件的高速发展，人们不再满足于购买整机，他们更加偏向于DIY：自己买配件来组装电脑。张三注意到了这个现象，所以他联系许多硬件的生产厂商，拿到他们的销售权。最后原先的工厂不再组装整机，而是组装加工配件。比如GPU工厂、CPU工厂、主板工厂…<span style="color:red"><strong>（具体工厂）</strong></span>，如果在后续还有新的电脑硬件需求，只要再开设一间新的代工厂<span style="color:red"><strong>（新的具体工厂）</strong></span>就好了</p>
+<hr>
+<p>上面的三种发展历程对应的是工厂模式的演变过程。从一个人全干到交给工厂再到交给多个工厂完成。可以看出，生产一个简单产品，我们可以用简单工厂模式，但是如果产品需要扩展，我们就需要工厂方法模式。如果一个产品不够还需要多种类别的产品，也就是产品簇，我们就要采取抽象工厂模式。</p>
+<hr>
+<p>最后我想说，设计模式源于生活！生活中的例子能够加深我对不同设计模式的理解</p>
+<h3 id="④原型模式（Prototype）对象-clone"><a href="#④原型模式（Prototype）对象-clone" class="headerlink" title="④原型模式（Prototype）对象.clone()"></a>④原型模式（Prototype）对象.clone()</h3><p>下定义：用原型实例执行创建对象的种类，而且通过拷贝这些原型，创建新的对象</p>
+<p>优点：</p>
+<ol>
+<li>创建新的对象比较复杂时，可以利用原型模式来简化对象的创建过程，同时也能提高效率</li>
+<li>不同重复新初始化对象，而是动态地获得对象运行时的状态</li>
+<li>如果原始对象发生变化，比如增加属性或者删除属性，其他克隆对象也能发生相应的变化，无需修改代码</li>
+</ol>
+<p>缺点：</p>
+<p>需要为每一个类配备一个克隆方法，对旧的类需要修改其源代码，这违背了OCP原则</p>
+<h3 id="⑤建造者模式（Builder）"><a href="#⑤建造者模式（Builder）" class="headerlink" title="⑤建造者模式（Builder）"></a>⑤建造者模式（Builder）</h3><p>下定义：生成器模式，是一种对象构建模式，他可以将复杂对象的建造过程抽象出来，使这个抽象过程的不同实现方法可以构造不同表现的对象</p>
+<p>建造者模式的四个角色</p>
+<ol>
+<li>Product（产品角色）：一个具体的产品对象</li>
+<li>Builder（抽象建造者）：创建一个Product对象的各个部件指定的接口或抽象类</li>
+<li>ConcreteBuilder（具体建造者）：实现接口，构建和装配各个部件</li>
+<li>Director（指挥者）：构建一个是使用Builder接口的对象，它主要用于创建一个复杂对象，它主要有两个作用，<strong>隔离客户和对象的生产过程</strong>，<strong>负责控制对象的生产过程</strong></li>
+</ol>
+<h3 id="⑥适配器模式（Adapter）"><a href="#⑥适配器模式（Adapter）" class="headerlink" title="⑥适配器模式（Adapter）"></a>⑥适配器模式（Adapter）</h3><p>下定义：将某个类的接口转换成客户端期望的另一个接口表示，主要是为了兼容性，让原本接口不匹配的两个类能够协同工作，适配器又名为包装器（Wrapper）</p>
+<p>一般来说适配器的作用就是使src类和target类发生联系：target——adapter——src</p>
+<p>适配器有三种类型：</p>
+<ol>
+<li>类适配器模式【适配器继承src类】</li>
+<li>对象适配器模式（最常用）【适配器持有src类】</li>
+<li>接口适配器模式</li>
+</ol>
 
         </div>
         <!-- .entry-content -->
