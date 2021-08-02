@@ -662,8 +662,11 @@ public class orderPizza {
 <li>Product（产品角色）：一个具体的产品对象</li>
 <li>Builder（抽象建造者）：创建一个Product对象的各个部件指定的接口或抽象类</li>
 <li>ConcreteBuilder（具体建造者）：实现接口，构建和装配各个部件</li>
-<li>Director（指挥者）：构建一个是使用Builder接口的对象，它主要用于创建一个复杂对象，它主要有两个作用，<strong>隔离客户和对象的生产过程</strong>，<strong>负责控制对象的生产过程</strong></li>
+<li><p>Director（指挥者）：构建一个是使用Builder接口的对象，它主要用于创建一个复杂对象，它主要有两个作用，<strong>隔离客户和对象的生产过程</strong>，<strong>负责控制对象的生产过程</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/builderUML.png" alt></p>
+</li>
 </ol>
+<p>————————————-人工分界线————————————-</p>
 <h3 id="⑥适配器模式（Adapter）"><a href="#⑥适配器模式（Adapter）" class="headerlink" title="⑥适配器模式（Adapter）"></a>⑥适配器模式（Adapter）</h3><p>下定义：将某个类的接口转换成客户端期望的另一个接口表示，主要是为了兼容性，让原本接口不匹配的两个类能够协同工作，适配器又名为包装器（Wrapper）</p>
 <p>一般来说适配器的作用就是使src类和target类发生联系：target——adapter——src</p>
 <p>适配器有三种类型：</p>
@@ -672,6 +675,83 @@ public class orderPizza {
 <li>对象适配器模式（最常用）【适配器持有src类】</li>
 <li>接口适配器模式</li>
 </ol>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/adapterUML.png" alt></p>
+<h3 id="⑦桥接模式（Bridge）"><a href="#⑦桥接模式（Bridge）" class="headerlink" title="⑦桥接模式（Bridge）"></a>⑦桥接模式（Bridge）</h3><p>下定义：将实现与抽象放在两个不同的层次，是这两个层次能够独立改变</p>
+<p>作用：替代多层继承方案，有效地避免了类爆炸问题，可以减少子类的数量，降低维护系统的维护成本</p>
+<p><span style="font-size:30px"><strong>但是</strong></span>，该模式的引入会增加对系统的理解和设计难度，再者该模式还需要正确识别出系统中两个独立变化的维度（抽象和实现）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/bridgeUML.png" alt></p>
+<h3 id="⑧装饰者模式（晕…）"><a href="#⑧装饰者模式（晕…）" class="headerlink" title="⑧装饰者模式（晕…）"></a>⑧装饰者模式（晕…）</h3><p>下定义：动态的将新功能附加到对象上。在功能拓展上，比继承更有弹性，装饰者模式也体现了OCP原则</p>
+<p>现实情景：快递包装、咖啡加料…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/decoratorUML.png" alt></p>
+<h3 id="⑨组合模式（Composite）-部分整体"><a href="#⑨组合模式（Composite）-部分整体" class="headerlink" title="⑨组合模式（Composite）/部分整体"></a>⑨组合模式（Composite）/部分整体</h3><p>下定义：它创建了对象组的树形结构，将对象组合成树形结构以表示“整体-部分”的层次关系</p>
+<p>使用情景：当我们要处理的对象可以生成一颗树形结构，而我们要对树上的节点和叶子节点进行操作时，它能够提供一致的方式，而不用考虑它是节点还是叶子</p>
+<p>具体场景：学校院系展示</p>
+<p><span style="color:red">注意：</span>如果节点和叶子具有较大的差异性，比如方法和属性很多都不一样，则不适合组合模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/compositeUML.png" alt></p>
+<h3 id="⑩外观模式（Facade）-最简单的设计模式，原来以前使用过"><a href="#⑩外观模式（Facade）-最简单的设计模式，原来以前使用过" class="headerlink" title="⑩外观模式（Facade）/最简单的设计模式，原来以前使用过"></a>⑩外观模式（Facade）/最简单的设计模式，原来以前使用过</h3><p>下定义：也称过程模式，为子系统中的一组接口提供一个一致的界面。此模式定义了一个高层接口，这个接口使得这一子系统容易使用</p>
+<h3 id="⑪享元模式（Flyweight）"><a href="#⑪享元模式（Flyweight）" class="headerlink" title="⑪享元模式（Flyweight）"></a>⑪享元模式（Flyweight）</h3><p>下定义：又称蝇量模式，使用共享技术有效支持大量<strong>细粒度</strong>的对象，常用于系统的底层开发，比如数据库连接池、String常量池等</p>
+<p>享元模式能够有效解决重读对象的内存的浪费问题，比如数据库连接池的connection</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/flyweight.png" alt></p>
+<p>　其中，Flyweight是抽象享元角色。它是产品的抽象类，同时定义出对象的外部状态和内部状态（外部状态及内部状态相关内容见后方）的接口或实现；ConcreteFlyweight是具体享元角色，是具体的产品类，实现抽象角色定义的业务；UnsharedConcreteFlyweight是不可共享的享元角色，一般不会出现在享元工厂中；FlyweightFactory是享元工厂，它用于构造一个池容器，同时提供从池中获得对象的方法。</p>
+<h3 id="⑫代理模式"><a href="#⑫代理模式" class="headerlink" title="⑫代理模式"></a>⑫代理模式</h3><p><span style="color:red"><strong>注意区别于装饰模式</strong></span></p>
+<p>下定义：为一个对象提供一个替身，控制这个对象的访问，即通过代理对象访问目标对象，这样做的好处是可以在目标对象实现的基础上，增强额外的功能操作，进而做到扩展目标对象的功能</p>
+<p>代理分类：</p>
+<h4 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h4><p>最简单的代理，有手就行（雀氏雀氏）</p>
+<p>proxy代理对象和target目标对象共同实现一个interface接口，然后将代理对象内部聚合目标对象，然后即可在调用目标对象的目标方法前后进行各种操作。</p>
+<p>但是，不要高兴得太早，因为代理对象和目标对象要实现一样的接口，所以会有很多的代理类，并且一旦接口增加了方法，目标对象和代理对象都要进行维护…（维护？狗都不干）</p>
+<h4 id="动态代理（JDK代理）"><a href="#动态代理（JDK代理）" class="headerlink" title="动态代理（JDK代理）"></a>动态代理（JDK代理）</h4><p>代理对象不需要实现接口，但是目标对象要实现接口</p>
+<p>cglib代理（可在内存中动态创建对象，不需要实现接口）</p>
+<p><span style="color:green">————————————-人工分界线（以下是行为型设计模式）————————————-</span></p>
+<h3 id="⑬模板方法模式（Template-Method）"><a href="#⑬模板方法模式（Template-Method）" class="headerlink" title="⑬模板方法模式（Template Method）"></a>⑬模板方法模式（Template Method）</h3><p><span style="color:red"><strong>注意区别于外观模式</strong></span></p>
+<p>下定义：在一个抽象类公开定义了执行它的方法的模板，它的子类按需要重写方法实现，<strong>但调用将以抽象类中定义的方式进行</strong></p>
+<p>现实生活中的例子：小时候没少背一些作文模板吧！不同文体是什么样的模板我不用解释了吧（反正现在也忘得差不多了- -）</p>
+<h3 id="⑭命令模式（Command）"><a href="#⑭命令模式（Command）" class="headerlink" title="⑭命令模式（Command）"></a>⑭命令模式（Command）</h3><p>下定义：在命令模式中存在着这样一条关系链：</p>
+<p>传统的调用方式：</p>
+<p><em>调用者——被调用者</em></p>
+<p>在命令模式下：</p>
+<p><em>调用者（Invoker）——<strong>命令（Command）</strong>——被调用者（Receiver）</em></p>
+<p>很显然我们能够看出，命令模式能够很好的消除调用者与被调用者之间的耦合（实现解耦）</p>
+<p>现实情景：打仗的时候，将军发布进攻命令，众将士发起冲锋</p>
+<p>主要实现方式（类图）：</p>
+<p>（待补充…）</p>
+<h3 id="⑮访问者模式-（看不懂了…-）"><a href="#⑮访问者模式-（看不懂了…-）" class="headerlink" title="⑮访问者模式/（看不懂了….）"></a>⑮访问者模式/（看不懂了….）</h3><p>下定义：null </p>
+<h3 id="⑯迭代者模式（Iterator）"><a href="#⑯迭代者模式（Iterator）" class="headerlink" title="⑯迭代者模式（Iterator）"></a>⑯迭代者模式（Iterator）</h3><p>下定义：如果我们的集合元素是用不同的方式实现的，比如数组，集合类等，当客户端要遍历这些元素就会使用到不同的遍历方式，而且会暴露元素的内部结构，可以考虑使用迭代器模式解决</p>
+<p>提供一种遍历集合元素的统一接口，用一致的方法遍历集合元素，不需要知道集合对象的底层表示</p>
+<p><span style="color:red">主要目的：将管理对象集合和遍历对象集合的责任分开</span></p>
+<ol>
+<li>Iterator：迭代器接口，是系统提供，含义hasNext，next，remove</li>
+<li>ConcreteIterator：具体的迭代器类</li>
+<li>Aggregate：统一的聚合接口，将客户端和具体聚合解耦</li>
+<li>ConcreteAggregate：具体的聚合，持有对象集合</li>
+</ol>
+<h3 id="⑰观察者模式（Observer）-太简单了"><a href="#⑰观察者模式（Observer）-太简单了" class="headerlink" title="⑰观察者模式（Observer）/太简单了"></a>⑰观察者模式（Observer）/太简单了</h3><p>下定义：定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。比如社交账号上的订阅或者关注按钮，多个用户关注同一个up主，up主发布新动态时便会通知所有关注他的用户</p>
+<p>优点：使用该模式后，会以集合的方式来管理用户（Observer），包括注册，移除和通知</p>
+<h3 id="⑱中介者模式（Mediator）-减少子系统之间的相互调用"><a href="#⑱中介者模式（Mediator）-减少子系统之间的相互调用" class="headerlink" title="⑱中介者模式（Mediator）/减少子系统之间的相互调用"></a>⑱中介者模式（Mediator）/减少子系统之间的<strong>相互调用</strong></h3><p><span style="color:red">注意和外观模式进行区分</span></p>
+<p>下定义：用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/mediatorUML.png" alt></p>
+<h3 id="⑲备忘录模式（Memento）"><a href="#⑲备忘录模式（Memento）" class="headerlink" title="⑲备忘录模式（Memento）"></a>⑲备忘录模式（Memento）</h3><p>下定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可以将这个对象恢复到原先保存的状态（游戏的存档机制？？？）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/mementoUML.png" alt></p>
+<h3 id="⑳解释器模式（Interpreter）-看到文法我就蚌埠煮了"><a href="#⑳解释器模式（Interpreter）-看到文法我就蚌埠煮了" class="headerlink" title="⑳解释器模式（Interpreter）/看到文法我就蚌埠煮了"></a>⑳解释器模式（Interpreter）/看到文法我就蚌埠煮了</h3><p>下定义：给一个语言表达式，定义它的文法的一种表示，并定义一个解释器，使用该解释器来解释语言中的句子（表达式）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/interpreter.png" alt></p>
+<p>Context：环境角色（上下文），含有解释器之外的全局信息</p>
+<p>AbstractExpression：抽象表达式，声明一个抽象的解释操作，这个方法为抽象语法树中所有节点共享</p>
+<p>TerminalExpression：终结符表达式，实现文法中的终结符相关的解释操作</p>
+<p>NonTerminalExpression：非终结符表达式，实现文法中的非终结符相关的解释操作</p>
+<h3 id="②①状态模式（State）"><a href="#②①状态模式（State）" class="headerlink" title="②①状态模式（State）"></a>②①状态模式（State）</h3><p>下定义：它主要解决对象在多种状态转换时，需要对外输出不同的行为的问题。状态和行为是一一对应的，状态之间可以相互转换。当一个对象的状态发生变化时，允许改变其行为，这个对象看起来像是改变了其类</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/state.png" alt></p>
+<p>Context：维护state实例，这个实例定义当前实例</p>
+<p>state：定义一个接口封装与Context的一个特点接口相关行为</p>
+<p>concreteState：每个子类实现一个与context的一个状态的相关行为</p>
+<h3 id="②②策略模式（Strategy）"><a href="#②②策略模式（Strategy）" class="headerlink" title="②②策略模式（Strategy）"></a>②②策略模式（Strategy）</h3><p>下定义：定义算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的用户</p>
+<p>该算法题体现了几个设计原则，第一，把变化的代码从不变的代码分离开来；第二，针对接口编程而不是具体类；第三，多用组合/聚合，少用继承</p>
+<p>  <span style="color:red">注意和桥接模式进行区分</span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/strategyUML.png" alt></p>
+<h3 id="②③职责链模式（Chain-Of-Responsibility）"><a href="#②③职责链模式（Chain-Of-Responsibility）" class="headerlink" title="②③职责链模式（Chain Of Responsibility）"></a>②③职责链模式（Chain Of Responsibility）</h3><p>下定义：责任链模式，为请求创建一个接受者对象的链，这种模式对请求的发送者和接受者进行解耦</p>
+<p>该模式通常每个接收者都包含对另一个接收者的引用，如果一个对象不能处理该请求，那么它会把相同的请求传送给下一个接收者，以此类推…</p>
+<hr>
+<p>最佳应用场景：多个对象处理同一个请求，比如多级请求、请假/加薪、易班请假等审批流程。再比如javaWeb的拦截器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/chainUML.png" alt></p>
+<h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1><p>现在只是简单理解了这些设计模式的基本思想，自身的思考还是不够。当然也有些模式还是一知半解。希望在后续的学习中能够有一些新的见解…嗯，先这样吧…</p>
 
         </div>
         <!-- .entry-content -->
