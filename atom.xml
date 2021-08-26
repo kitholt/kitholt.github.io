@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2021-08-02T15:35:12.490Z</updated>
+  <updated>2021-08-26T05:44:19.315Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>学习设计me式（Design Pattern）</title>
-    <link href="/2021/07/19/%E5%AD%A6%E4%B9%A0%E8%AE%BE%E8%AE%A1me%E5%BC%8F/"/>
-    <id>/2021/07/19/学习设计me式/</id>
-    <published>2021-07-19T07:00:00.000Z</published>
-    <updated>2021-08-02T15:35:12.490Z</updated>
+    <title>试试jQuery</title>
+    <link href="/2021/08/23/jQuery/"/>
+    <id>/2021/08/23/jQuery/</id>
+    <published>2021-08-23T01:00:00.000Z</published>
+    <updated>2021-08-26T05:44:19.315Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,55 @@
       
         
         
-          &lt;h1 id=&quot;设计模式-（Design-Pattern）&quot;&gt;&lt;a href=&quot;#设计模式-（Design-Pattern）&quot; class=&quot;headerlink&quot; title=&quot;设计模式?（Design Pattern）&quot;&gt;&lt;/a&gt;设计模式?（Design
+          &lt;h1 id=&quot;试试jQuery&quot;&gt;&lt;a href=&quot;#试试jQuery&quot; class=&quot;headerlink&quot; title=&quot;试试jQuery&quot;&gt;&lt;/a&gt;试试jQuery&lt;/h1&gt;&lt;h2 id=&quot;使用jQuery&quot;&gt;&lt;a href=&quot;#使用jQuery&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>琢磨JS（不是笔记的笔记）</title>
+    <link href="/2021/08/15/%E7%90%A2%E7%A3%A8JS/"/>
+    <id>/2021/08/15/琢磨JS/</id>
+    <published>2021-08-15T05:00:00.000Z</published>
+    <updated>2021-08-26T05:45:10.203Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;琢磨JS（不是笔记的笔记）&quot;&gt;&lt;a href=&quot;#琢磨JS（不是笔记的笔记）&quot; class=&quot;headerlink&quot; title=&quot;琢磨JS（不是笔记的笔记）&quot;&gt;&lt;/a&gt;琢磨JS（不是笔记的笔记）&lt;/h1&gt;&lt;h2 id=&quot;关于变量&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于盒子模型的不是笔记的笔记</title>
+    <link href="/2021/08/01/%E5%85%B3%E4%BA%8E%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E4%B8%8D%E6%98%AF%E7%AC%94%E8%AE%B0%E7%9A%84%E7%AC%94%E8%AE%B0/"/>
+    <id>/2021/08/01/关于盒子模型的不是笔记的笔记/</id>
+    <published>2021-08-01T06:00:00.000Z</published>
+    <updated>2021-08-26T05:45:37.792Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;关于盒子模型的不是笔记的笔记&quot;&gt;&lt;a href=&quot;#关于盒子模型的不是笔记的笔记&quot; class=&quot;headerlink&quot;
         
       
     
@@ -378,30 +426,6 @@
   </entry>
   
   <entry>
-    <title>待添加......</title>
-    <link href="/2021/01/31/hello-world-tech/"/>
-    <id>/2021/01/31/hello-world-tech/</id>
-    <published>2021-01-31T08:00:00.000Z</published>
-    <updated>2021-03-14T06:41:32.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;2 b
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Keep searching......</title>
     <link href="/2021/01/31/hello-world-zy/"/>
     <id>/2021/01/31/hello-world-zy/</id>
@@ -421,6 +445,30 @@
     </summary>
     
       <category term="资源" scheme="/categories/%E8%B5%84%E6%BA%90/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>待添加......</title>
+    <link href="/2021/01/31/hello-world-tech/"/>
+    <id>/2021/01/31/hello-world-tech/</id>
+    <published>2021-01-31T08:00:00.000Z</published>
+    <updated>2021-03-14T06:41:32.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;2 b
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
   </entry>
