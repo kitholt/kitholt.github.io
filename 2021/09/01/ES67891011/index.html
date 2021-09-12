@@ -806,7 +806,50 @@ this.callbacks.push({
         })
     }
 </code></pre>
-<h2 id="注：未完待续，回头再研究其他方法的源码"><a href="#注：未完待续，回头再研究其他方法的源码" class="headerlink" title="注：未完待续，回头再研究其他方法的源码"></a>注：未完待续，回头再研究其他方法的源码</h2><h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1>
+<h2 id="注：未完待续，回头再研究其他方法的源码"><a href="#注：未完待续，回头再研究其他方法的源码" class="headerlink" title="注：未完待续，回头再研究其他方法的源码"></a>注：未完待续，回头再研究其他方法的源码</h2><h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>定义：Promise based HTTP client for the browser and node.js</p>
+<p>用于发送ajax请求（browser）</p>
+<p>用于发送http请求（node.js）</p>
+<h2 id="可以使用-函数axios-发送ajax请求"><a href="#可以使用-函数axios-发送ajax请求" class="headerlink" title="可以使用 函数axios()发送ajax请求"></a>可以使用 函数axios()发送ajax请求</h2><pre><code class="javascript">//为按钮绑定发送get请求的事件
+btns[0].onclick = function(){
+                axios({//该函数接收一个对象作为参数
+                    method: &#39;GET&#39;,
+                    url: &#39;http://localhost:3000/comments/1&#39;
+                }).then(repsonse =&gt; {
+                    console.log(repsonse);
+                })
+            };
+</code></pre>
+<p>除了发送get请求，还可发送post，put，delete请求</p>
+<p>另外，除了使用上述的方法发送请求，还可以使用axios对象发送请求</p>
+<blockquote>
+<p>axios.request(config)</p>
+<p>axios.post(url, data, config)</p>
+<p>…</p>
+</blockquote>
+<p>需要注意的是config指的是一个配置对象，我们可以设置一些属性，比如：请求方式，baseURL，设置超时等</p>
+<h2 id="创建实例对象发送请求"><a href="#创建实例对象发送请求" class="headerlink" title="创建实例对象发送请求"></a>创建实例对象发送请求</h2><p>我们可以使用axios的create()方法，该方法接收一个配置对象config，并返回一个与axios相近的对象</p>
+<p>Q：为什么要创建实例对象发送请求呢？</p>
+<p>A：在实际项目中，页面一般会从不同的服务器发送请求，axios的配置对象就会随着服务器的不同而变化。因此创建不同的实例对象，每个实例对象负责一个服务器，各司其职</p>
+<h2 id="axios拦截器"><a href="#axios拦截器" class="headerlink" title="axios拦截器"></a>axios拦截器</h2><h2 id="axios取消请求"><a href="#axios取消请求" class="headerlink" title="axios取消请求"></a>axios取消请求</h2><pre><code class="javascript">let cancel = null;
+btns[4].onclick = function(){
+    if(cancel != null){//检测上一次的请求是否已经完成
+        cancel();//取消上一次的请求
+       };
+     axios({
+           method: &#39;GET&#39;,
+           url: &#39;http://localhost:3000/comments/1&#39;,
+         //给配置对象添加属性，该属性用于取消请求
+           cancelToken: new axios.CancelToken(function(c){//通过该回调函数能拿到一个cancel对象
+                cancel = c;
+                   })
+        }).then(repsonse =&gt; {
+               console.log(repsonse);
+               console.log(cancel);
+               cancel = null;//cancel的值初始化
+        });
+};
+</code></pre>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -834,9 +877,26 @@ this.callbacks.push({
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/09/10/学个P的Vue/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                学个P的Vue</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/2021/08/30/阿·贾克斯（Ajax）/" rel="next">
               <div class="background">
