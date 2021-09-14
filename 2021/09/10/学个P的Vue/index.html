@@ -310,7 +310,7 @@
 
   <div class="pattern-center single-center">
     <!-- 有配图默认渲染第一张 -->
-    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg">
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
@@ -340,7 +340,7 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="学个P-erfect-gt-的Vue"><a href="#学个P-erfect-gt-的Vue" class="headerlink" title="学个P(erfect)&gt;的Vue"></a>学个P<span style="color:green">(erfect)</span>&gt;的Vue</h1><h2 id="Vue的特点"><a href="#Vue的特点" class="headerlink" title="Vue的特点"></a>Vue的特点</h2><ol>
+          <h1 id="错了错了，是学个P-erfect-gt-的Vue"><a href="#错了错了，是学个P-erfect-gt-的Vue" class="headerlink" title="错了错了，是学个P(erfect)&gt;的Vue"></a>错了错了，是学个P<span style="color:green">(erfect)</span>&gt;的Vue</h1><h2 id="Vue的特点"><a href="#Vue的特点" class="headerlink" title="Vue的特点"></a>Vue的特点</h2><ol>
 <li>组件化模式，提高代码复用率</li>
 <li>声明式编码（无需直接操作DOM）</li>
 </ol>
@@ -438,7 +438,7 @@
 <li>self：只有event.target是当前操作的元素才触发事件</li>
 <li>passive：事件的默认行为立即执行，元素无需等到事件回调执行完毕</li>
 </ol>
-<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><ol>
+<h2 id="计算属性（computed-）"><a href="#计算属性（computed-）" class="headerlink" title="计算属性（computed ）"></a>计算属性（computed ）</h2><ol>
 <li>定义：要用的属性不存在，要通过已有属性计算得来</li>
 <li>原理：底层借助了Object.defineProperty方法提供的getter和setter</li>
 <li><p><strong>get函数什么时候执行？（面试可能会问）</strong></p>
@@ -456,7 +456,117 @@
 </ul>
 </li>
 </ol>
+<ol start="6">
+<li>语法</li>
+</ol>
+<pre><code class="javascript">    const vm = new Vue({
+                el: &#39;.demo&#39;,
+                data:{
+                    firstname: &#39;张&#39;,
+                    lastname: &#39;三&#39;
+                },
+                methods:{
+                    fun(){
+                        return this.firstname + &#39;-&#39; + this.lastname;
+                    }
+                },
+                computed: {
+                    fullname:{//计算属性fullname，需要通过firstname和lastname
+                        get(){
+                            return this.firstname + &#39;-&#39; + this.lastname;
+                        }
+                    }
+                }
 
+
+            });
+</code></pre>
+<h2 id="监视属性（watch）"><a href="#监视属性（watch）" class="headerlink" title="监视属性（watch）"></a>监视属性（watch）</h2><pre><code class="javascript">const vm = new Vue({
+    el: &#39;#root&#39;,
+    data: {
+        msg: &#39;111&#39;
+    },
+    watch: {
+    //第一种写法
+    msg: {
+        immediate: true//初始化时让handler调用一下，
+        handler(newValue, oldValue){//handler在msg发生改变时便会调用,newValue表示修改后的新值
+        //code
+        }
+    }
+}
+});
+//第二种写法
+vm.$watch(&#39;msg&#39;,[配置对象]);
+</code></pre>
+<h3 id="深度监视"><a href="#深度监视" class="headerlink" title="深度监视"></a>深度监视</h3><blockquote>
+<p>在watch里配置deep: true</p>
+</blockquote>
+<ol>
+<li>Vue中的watch默认不检测对象内部值的改变</li>
+<li>配置deep: true 可以监测对象内部值改变</li>
+</ol>
+<p>值得注意的是：</p>
+<ol>
+<li>Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以</li>
+</ol>
+<h4 id="深度监视的简写方式"><a href="#深度监视的简写方式" class="headerlink" title="深度监视的简写方式"></a>深度监视的简写方式</h4><p>使用条件：</p>
+<p><strong>不配置immediate和deep时即可使用</strong></p>
+<pre><code class="javascript">  watch: {
+    msg(){
+        //code
+    }
+}
+</code></pre>
+<h2 id="computed和watch的区别"><a href="#computed和watch的区别" class="headerlink" title="computed和watch的区别"></a>computed和watch的区别</h2><ol>
+<li>computed能完成的，watch也能完成，反之则不一定（因为watch能够完成异步操作</li>
+</ol>
+<p>需要注意的是：Vue所管理的函数，最好写成普通函数，this的指向才是vm或者组件实例对象</p>
+<p>所有不被Vue管理的函数（定时器的回调函数、ajax等），最好写成箭头函数，这样this的指向才是vm或组件实例对象</p>
+<h2 id="绑定class样式-style样式"><a href="#绑定class样式-style样式" class="headerlink" title="绑定class样式/style样式"></a>绑定class样式/style样式</h2><p>需求：有些时候，我们会对class进行动态调整。比如用户点击一个按钮就能切换样式，或者取消一个样式，再或者是实现样式的叠加呈现效果</p>
+<ul>
+<li><p>传统方式</p>
+<p>开发者亲自调用DOM进行样式切换（命令式）</p>
+</li>
+<li><p>Vue方式</p>
+<p>使用单项绑定来实现，由Vue来做</p>
+</li>
+</ul>
+<h2 id="条件渲染"><a href="#条件渲染" class="headerlink" title="条件渲染"></a>条件渲染</h2><p>条件条件，顾名思义就会有if，else，在Vue里面提供了这个一系列语法</p>
+<blockquote>
+<ol>
+<li>v-if = “表达式”</li>
+<li>v-else-if = “表达式”</li>
+<li>v-else = “表达式”<ul>
+<li>适用于切换频率较低的场景</li>
+<li>特点：不展示的DOM元素直接被移除</li>
+<li>注意：v-if和v-else-if和v-else一起使用，但要求结构不能被”打断”</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>v-show</p>
+<p>写法：v-show=”表达式”</p>
+<p>适用于：切换频率较高的场景</p>
+<p>特点：不展示的DOM元素不会被移除，仅仅是样式被隐藏</p>
+</blockquote>
+<h2 id="列表渲染（很重要）"><a href="#列表渲染（很重要）" class="headerlink" title="列表渲染（很重要）"></a>列表渲染（很重要）</h2><p>基本介绍：</p>
+<blockquote>
+<p>v-for</p>
+<ol>
+<li>用于展示列表数据</li>
+<li>语法：v-for = “(item, index) in xxx” :key=” yyy”</li>
+<li>可遍历：数组，对象，字符串，指定次数</li>
+</ol>
+</blockquote>
+<h3 id="key的作用和原理（面试可能会问）"><a href="#key的作用和原理（面试可能会问）" class="headerlink" title="key的作用和原理（面试可能会问）"></a>key的作用和原理（面试可能会问）</h3><p>key是标签的唯一标识（相当于身份证）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/key_index.png" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/key_id.png" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/defineKey.png" alt></p>
+<h2 id="跳过p35-p37"><a href="#跳过p35-p37" class="headerlink" title="跳过p35-p37"></a>跳过p35-p37</h2><h2 id="收集表单数据"><a href="#收集表单数据" class="headerlink" title="收集表单数据"></a>收集表单数据</h2>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
