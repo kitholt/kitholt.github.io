@@ -566,7 +566,82 @@ vm.$watch(&#39;msg&#39;,[配置对象]);
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/key_id.png" alt></p>
 <hr>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/defineKey.png" alt></p>
-<h2 id="跳过p35-p37"><a href="#跳过p35-p37" class="headerlink" title="跳过p35-p37"></a>跳过p35-p37</h2><h2 id="收集表单数据"><a href="#收集表单数据" class="headerlink" title="收集表单数据"></a>收集表单数据</h2>
+<h2 id="跳过p35-p37以及p39"><a href="#跳过p35-p37以及p39" class="headerlink" title="跳过p35-p37以及p39"></a>跳过p35-p37以及p39</h2><h2 id="收集表单数据"><a href="#收集表单数据" class="headerlink" title="收集表单数据"></a>收集表单数据</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/collectForm.png" alt></p>
+<h2 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h2><ol>
+<li><p>v-text</p>
+</li>
+<li><p>v-html</p>
+<blockquote>
+<p>向指定节点中渲染包含html结构的内容</p>
+<p>与插值语法的区别：</p>
+<ol>
+<li><p>v-html会替换掉节点中所有内容，则不会</p>
+</li>
+<li><p>v-html可以识别html结构</p>
+</li>
+</ol>
+<p>另外，v-html会有安全性问题，容易导致xss（跨站点攻击）攻击</p>
+<p>例子：盗取别人的cookie</p>
+</blockquote>
+</li>
+<li><p>v-cloak</p>
+<blockquote>
+<p>本质是一个特殊属性，Vue实例创建完毕后并接管容器，会删掉v-cloak属性</p>
+<p>配合css使用可以解决网速慢时页面展示出的问题（解决方法：将带有cloak属性的标签的设置为display：none）</p>
+</blockquote>
+</li>
+<li><p>v-once</p>
+<blockquote>
+<p>v-once所在节点在初次动态渲染后，就视为静态内容</p>
+<p>以后数据的改变不会引起v-once所在结构的更新，可用于性能优化</p>
+</blockquote>
+</li>
+<li><p>v-pre</p>
+<blockquote>
+<p>跳过所在节点的编译过程</p>
+<p>可利用它跳过：没有使用指令语法、没有使用插值语法的节点，会加快编译</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/diy.PNG" alt></p>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a><span style="color:red">生命周期</span></h2><p>分为四个阶段</p>
+<ol>
+<li>create阶段</li>
+<li>mount阶段</li>
+<li>update阶段</li>
+<li>destroy阶段</li>
+</ol>
+<p>每个阶段都有一个beforeXXX和XXXed的钩子函数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/lifeFunction.PNG" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/lifecycle1.PNG" alt></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/sumLifecycle.PNG" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/endLifecycle.PNG" alt></p>
+<h1 id="组件化编程"><a href="#组件化编程" class="headerlink" title="组件化编程"></a>组件化编程</h1><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/component.PNG" alt></p>
+<h2 id="关于VueComponent"><a href="#关于VueComponent" class="headerlink" title="关于VueComponent"></a>关于VueComponent</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/VueComponent.PNG" alt></p>
+<h2 id="单文件组件"><a href="#单文件组件" class="headerlink" title="单文件组件"></a>单文件组件</h2><h2 id="脚手架结构"><a href="#脚手架结构" class="headerlink" title="脚手架结构"></a>脚手架结构</h2><h2 id="render函数"><a href="#render函数" class="headerlink" title="render函数"></a>render函数</h2><p>main.js里的代码</p>
+<pre><code class="javascript">import Vue from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+
+Vue.config.productionTip = false
+
+new Vue({
+  render: h =&gt; h(App),
+}).$mount(&#39;#app&#39;)
+
+</code></pre>
+<p>为什么在脚手架环境下，Vue实例里面只能使用render函数而不能使用<strong>template: <code></code></strong>(配置项)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/render.PNG" alt></p>
+<h2 id="ref属性"><a href="#ref属性" class="headerlink" title="ref属性"></a>ref属性</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/ref.PNG" alt></p>
+<h2 id="props属性"><a href="#props属性" class="headerlink" title="props属性"></a>props属性</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/props.PNG" alt></p>
+<h2 id="mixin"><a href="#mixin" class="headerlink" title="mixin"></a>mixin</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/mixin.PNG" alt></p>
+<h2 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/plugin.PNG" alt></p>
+<h2 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/TodoDemo.png" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/TodoList.png" alt></p>
+<h2 id="webStorage"><a href="#webStorage" class="headerlink" title="webStorage"></a>webStorage</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/webStorage.png" alt></p>
+<h2 id="组件自定义事件"><a href="#组件自定义事件" class="headerlink" title="组件自定义事件"></a>组件自定义事件</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/diyEvent.png" alt></p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
