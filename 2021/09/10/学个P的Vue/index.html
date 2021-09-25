@@ -649,6 +649,54 @@ new Vue({
 <h2 id="插槽"><a href="#插槽" class="headerlink" title="插槽"></a>插槽</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/slot1.png" alt></p>
 <hr>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/slot2.png" alt></p>
+<h2 id="Vuex"><a href="#Vuex" class="headerlink" title="Vuex"></a>Vuex</h2><h3 id="原理图"><a href="#原理图" class="headerlink" title="原理图"></a>原理图</h3><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/vuex.png" alt></p>
+<h3 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h3><p>创建文件：src/store/index.js</p>
+<pre><code class="javascript">//创建vuex的store
+
+//引入Vue
+import Vue from &#39;vue&#39;
+//引入Vuex
+import Vuex from &#39;vuex&#39;
+Vue.use(Vuex)
+
+//准备action--用于响应组件的动作
+const actions = {};
+//准备mutation--用于操作数据（state）
+const mutations = {};
+//准备state---用于存储数据
+const state = {};
+
+//创建并导出store
+export default new Vuex.Store({
+    actions,
+    mutations,
+    state,
+});
+</code></pre>
+<p>在main.js中创建vm传入store配置项</p>
+<pre><code class="javascript">import Vue from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+import Vuex from &#39;vuex&#39;
+import store from &#39;./store&#39;
+Vue.config.productionTip = false
+
+Vue.use(Vuex);
+
+new Vue({
+  render: h =&gt; h(App),
+  store,
+}).$mount(&#39;#app&#39;)
+</code></pre>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>多个组件需要共享的数据是放在state对象里面的</li>
+<li>对于数据的加工处理（逻辑代码）一般在actions里面进行</li>
+<li>对数据最后的操作一般在mutation进行</li>
+</ol>
+<h2 id="四种map方法的使用"><a href="#四种map方法的使用" class="headerlink" title="四种map方法的使用"></a>四种map方法的使用</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/map12.png" alt></p>
+<p>mapActions和mapMutation同理</p>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/vuexModule2.png" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/vuexModule.png" alt></p>
 
         </div>
         <!-- .entry-content -->
@@ -1034,9 +1082,9 @@ $(document).ready(function() {
 </style>
 <meting-js
 
-    id="2166294272"
+    id="8153220533"
 
-    server="netease"
+    server="tencent"
 
     type="playlist"
 
