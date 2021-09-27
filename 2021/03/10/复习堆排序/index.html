@@ -62,7 +62,7 @@
   </style>
 </head>
 </html>
-<body oncopy="alert('I know what u want 2 do...');return false;" leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" ondragstart="return true" onselectstart ="return tfalse" onselect="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
   <div class="scrollbar" id="bar">
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
@@ -341,10 +341,7 @@
         
         <div class="entry-content">
           <h1 id="复习堆排序"><a href="#复习堆排序" class="headerlink" title="复习堆排序"></a>复习堆排序</h1><h2 id="堆的定义："><a href="#堆的定义：" class="headerlink" title="堆的定义："></a>堆的定义：</h2><p>堆是一个具有以下性质的二叉树：每个结点的值都大于或者等于其左右孩子结点的值，称之为大顶堆。反之称之为小顶堆。</p>
-<h2 id="那么，在代码中如何表示大小顶堆？"><a href="#那么，在代码中如何表示大小顶堆？" class="headerlink" title="那么，在代码中如何表示大小顶堆？"></a>那么，在代码中如何表示大小顶堆？</h2><pre><code class="java">arr[i]&gt;=arr[2*i+1]&amp;&amp;arr[i]&gt;=arr[2*i+2]//大顶堆
-
-arr[i]&lt;=arr[2*i+1]&amp;&amp;arr[i]&lt;=arr[2*i+2]//小顶堆
-</code></pre>
+<h2 id="那么，在代码中如何表示大小顶堆？"><a href="#那么，在代码中如何表示大小顶堆？" class="headerlink" title="那么，在代码中如何表示大小顶堆？"></a>那么，在代码中如何表示大小顶堆？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arr[i]&gt;=arr[<span class="number">2</span>*i+<span class="number">1</span>]&amp;&amp;arr[i]&gt;=arr[<span class="number">2</span>*i+<span class="number">2</span>]<span class="comment">//大顶堆</span></span><br><span class="line"></span><br><span class="line">arr[i]&lt;=arr[<span class="number">2</span>*i+<span class="number">1</span>]&amp;&amp;arr[i]&lt;=arr[<span class="number">2</span>*i+<span class="number">2</span>]<span class="comment">//小顶堆</span></span><br></pre></td></tr></table></figure>
 <h2 id="堆排序の思想"><a href="#堆排序の思想" class="headerlink" title="堆排序の思想"></a>堆排序の思想</h2><ol>
 <li><p>先把待排序序列构建成一个大（小）顶堆</p>
 </li>
@@ -355,44 +352,7 @@ arr[i]&lt;=arr[2*i+1]&amp;&amp;arr[i]&lt;=arr[2*i+2]//小顶堆
 <li><p>然后将剩余的n-1个元素重新构造成一个新的堆，这样就得到n-1个元素的次小值，如此反复，就能得到一个有序序列——[重复（1），（2），（3）步骤]</p>
 </li>
 </ol>
-<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><pre><code class="java">import java.util.Arrays;
-public class heapSort {
-    public static void main(String[] args){
-        int[] arr={25, 30, 11, 7, 22, 16, 18, 33, 40, 55};
-        int temp=0;
-        for(int i=arr.length/2-1;i&gt;=0;i--){//从左往右，从下往上寻找非叶子节点进行初始的堆排序
-            adjustHeap(arr,i, arr.length);
-        }
-
-        for(int j=arr.length-1;j&gt;=0;j--){//初始堆建成后，首尾的元素进行交换，此时大顶堆的结构被破坏
-            temp=arr[j];
-            arr[j]=arr[0];
-            arr[0]=temp;
-            adjustHeap(arr,0,j);//因为是首尾交换所以只有最顶部的结点不符合顶堆的定义，中间的非叶子节点均符合堆顶义，所此时的i等于0，也就是只从顶部开始调整
-        }
-        System.out.println(&quot;排序后的数组为：&quot;+Arrays.toString(arr));
-    }
-     /**
-     * 
-     * @param arr 待排序数组
-     * @param i 以i为父节点进行堆排序的树（数组）
-     * @param length 数组长度
-     */
-    public static void adjustHeap(int[] arr,int i,int length){
-        int temp=arr[i];
-        for(int k=2*i+1;k&lt;length;k=2*k+1){//k指向i的较大的一个子结点
-            if((k+1&lt;length)&amp;&amp;arr[k]&lt;arr[k+1]){//判断i叶子结点的左右结点的大小，如果左边的小于右边的，则k++
-                k++;
-            }
-            if(arr[k]&gt;temp){//如果该子结点大于它的父结点，则将该子结点赋值给父节点
-                arr[i]=arr[k];
-                i=k;//以k为父节点继续和它的子节点比较
-            }
-        }
-        arr[i]=temp;//将最开始保存的arr[i]放到末尾
-    }
-}
-</code></pre>
+<h2 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">heapSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr=&#123;<span class="number">25</span>, <span class="number">30</span>, <span class="number">11</span>, <span class="number">7</span>, <span class="number">22</span>, <span class="number">16</span>, <span class="number">18</span>, <span class="number">33</span>, <span class="number">40</span>, <span class="number">55</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=arr.length/<span class="number">2</span>-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)&#123;<span class="comment">//从左往右，从下往上寻找非叶子节点进行初始的堆排序</span></span><br><span class="line">            adjustHeap(arr,i, arr.length);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=arr.length-<span class="number">1</span>;j&gt;=<span class="number">0</span>;j--)&#123;<span class="comment">//初始堆建成后，首尾的元素进行交换，此时大顶堆的结构被破坏</span></span><br><span class="line">            temp=arr[j];</span><br><span class="line">            arr[j]=arr[<span class="number">0</span>];</span><br><span class="line">            arr[<span class="number">0</span>]=temp;</span><br><span class="line">            adjustHeap(arr,<span class="number">0</span>,j);<span class="comment">//因为是首尾交换所以只有最顶部的结点不符合顶堆的定义，中间的非叶子节点均符合堆顶义，所此时的i等于0，也就是只从顶部开始调整</span></span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"排序后的数组为："</span>+Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">	 <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 待排序数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> i 以i为父节点进行堆排序的树（数组）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> length 数组长度</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">adjustHeap</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> i,<span class="keyword">int</span> length)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp=arr[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">2</span>*i+<span class="number">1</span>;k&lt;length;k=<span class="number">2</span>*k+<span class="number">1</span>)&#123;<span class="comment">//k指向i的较大的一个子结点</span></span><br><span class="line">            <span class="keyword">if</span>((k+<span class="number">1</span>&lt;length)&amp;&amp;arr[k]&lt;arr[k+<span class="number">1</span>])&#123;<span class="comment">//判断i叶子结点的左右结点的大小，如果左边的小于右边的，则k++</span></span><br><span class="line">                k++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(arr[k]&gt;temp)&#123;<span class="comment">//如果该子结点大于它的父结点，则将该子结点赋值给父节点</span></span><br><span class="line">                arr[i]=arr[k];</span><br><span class="line">                i=k;<span class="comment">//以k为父节点继续和它的子节点比较</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[i]=temp;<span class="comment">//将最开始保存的arr[i]放到末尾</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
         <!-- .entry-content -->
@@ -827,31 +787,7 @@ $(document).ready(function() {
     })
   });
 </script>
-
-<script language="Javascript">
-    //PC端 使右键和复制失效
-    document.oncontextmenu = new Function("event.returnValue=false");
-    document.onselectstart = new Function("event.returnValue=false");
-
-    //ios
-    document.oncontextmenu = function (e) {
-        e.preventDefault();
-    };
-    document.onselectstart = function (e) {
-        e.preventDefault();
-    };
-    //安卓
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-    document.ontouchend = function () {
-        throw new Error("NO ERRPR:禁止长按弹出");
-    }
-</script>
-
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-
 <noscript><iframe src="/blog/*>";</iframe></noscript>
 <script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
 
@@ -861,7 +797,6 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
-
 
 
 </html>

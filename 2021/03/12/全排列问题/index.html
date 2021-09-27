@@ -62,7 +62,7 @@
   </style>
 </head>
 </html>
-<body oncopy="alert('I know what u want 2 do...');return false;" leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" ondragstart="return true" onselectstart ="return tfalse" onselect="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
   <div class="scrollbar" id="bar">
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
@@ -359,40 +359,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/quanpailie.jpg" alt></p>
 <p>由图可知，我们每次<strong>不重复地</strong>从arr中取出一个数进行“固定”，每一次的“固定”都会影响下一次的“固定”的选择。<strong><em><span style="color:red;font-size:25px">通俗地讲，就是高中学过的排列组合里面的排列，第一次可以有三种选择，第二次有两种选择，第三次只有一种选择。</span></em></strong></p>
 <h2 id="问题解决："><a href="#问题解决：" class="headerlink" title="问题解决："></a>问题解决：</h2><p>话不多说，先上代码： </p>
-<pre><code class="java">import java.util.Arrays;
-
-public class fullPermutation {
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3};
-        int[] temp = new int[arr.length];
-        boolean isVisit[] = new boolean[arr.length];
-        perm(arr, 0, temp, isVisit);
-    }
-/**
-     * 
-     * @param arr 需要进行全排列的数
-     * @param index 指向“固定”的位置的指针，值为0时，指向第一个固定位置，也就是temp[0]
-     * @param temp 临时数组，用于存放被“固定”的数
-     * @param isVisit  用来标记该数是否已经被选择“固定”
-     */
-    public static void perm(int[] arr, int index, int[] temp, boolean[] isVisit) {
-        if (index==arr.length) {//结束递归条件
-            System.out.println(Arrays.toString(temp));
-            return;
-        }
-
-        for (int i = 0; i &lt; arr.length; i++) {//遍历数组的每个数
-            if (!isVisit[i]) {//判断数是否被使用，如果未使用则继续后面的操作
-                temp[index] = arr[i];//将该数插入temp数组
-                isVisit[i]=true;//将该数标记为已使用
-                perm(arr, index + 1, temp, isVisit);//开始递归，插入下一个数
-                    isVisit[i] = false;//执行到这一步的时候，说明有一个排列已经打印出来了，这时从后往前将每个数重置为未访问使用
-            }
-        }
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">fullPermutation</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[arr.length];</span><br><span class="line">        <span class="keyword">boolean</span> isVisit[] = <span class="keyword">new</span> <span class="keyword">boolean</span>[arr.length];</span><br><span class="line">        perm(arr, <span class="number">0</span>, temp, isVisit);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 需要进行全排列的数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index 指向“固定”的位置的指针，值为0时，指向第一个固定位置，也就是temp[0]</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> temp 临时数组，用于存放被“固定”的数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> isVisit  用来标记该数是否已经被选择“固定”</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">perm</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> index, <span class="keyword">int</span>[] temp, <span class="keyword">boolean</span>[] isVisit)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index==arr.length) &#123;<span class="comment">//结束递归条件</span></span><br><span class="line">            System.out.println(Arrays.toString(temp));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;<span class="comment">//遍历数组的每个数</span></span><br><span class="line">            <span class="keyword">if</span> (!isVisit[i]) &#123;<span class="comment">//判断数是否被使用，如果未使用则继续后面的操作</span></span><br><span class="line">                temp[index] = arr[i];<span class="comment">//将该数插入temp数组</span></span><br><span class="line">                isVisit[i]=<span class="keyword">true</span>;<span class="comment">//将该数标记为已使用</span></span><br><span class="line">                perm(arr, index + <span class="number">1</span>, temp, isVisit);<span class="comment">//开始递归，插入下一个数</span></span><br><span class="line">                    isVisit[i] = <span class="keyword">false</span>;<span class="comment">//执行到这一步的时候，说明有一个排列已经打印出来了，这时从后往前将每个数重置为未访问使用</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>人脑在“固定”数时能避开选择重复数，但是计算机本身是不能避开的。那么如何解决这个问题呢？很简单，我们可以给每个数arr[i]“贴上”一个名叫isVisit[i]的布尔值。如果第一次选择到的数，isVisit[i]会被赋值为true，表示该数已被访问使用，再加上一个if（! isVisit[i]）判断，所以在下一次再选择到这个数的时候就会跳过选择【见line 24】</p>
 </li>
@@ -842,31 +809,7 @@ $(document).ready(function() {
     })
   });
 </script>
-
-<script language="Javascript">
-    //PC端 使右键和复制失效
-    document.oncontextmenu = new Function("event.returnValue=false");
-    document.onselectstart = new Function("event.returnValue=false");
-
-    //ios
-    document.oncontextmenu = function (e) {
-        e.preventDefault();
-    };
-    document.onselectstart = function (e) {
-        e.preventDefault();
-    };
-    //安卓
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-    document.ontouchend = function () {
-        throw new Error("NO ERRPR:禁止长按弹出");
-    }
-</script>
-
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-
 <noscript><iframe src="/blog/*>";</iframe></noscript>
 <script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
 
@@ -876,7 +819,6 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
-
 
 
 </html>

@@ -62,7 +62,7 @@
   </style>
 </head>
 </html>
-<body oncopy="alert('I know what u want 2 do...');return false;" leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" ondragstart="return true" onselectstart ="return tfalse" onselect="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
   <div class="scrollbar" id="bar">
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
@@ -350,8 +350,8 @@
 <li>可靠性（增加新功能，对原先的功能没有影响）</li>
 <li><span style="color:red">低耦合、高内聚</span></li>
 </ol>
-<h2 id="七大原则（设计模式设计的依据）"><a href="#七大原则（设计模式设计的依据）" class="headerlink" title="七大原则（设计模式设计的依据）"></a>七大原则（设计模式设计的依据）</h2><h3 id="单一职责（singleResponsibility）"><a href="#单一职责（singleResponsibility）" class="headerlink" title="单一职责（singleResponsibility）"></a>单一职责（singleResponsibility）</h3><pre><code>对类来说，一个类只负责一类职责（比如userDao）如果A类负责两个职责，则需要将A类的粒度分解为A1、A2
-</code></pre><p> 效果：</p>
+<h2 id="七大原则（设计模式设计的依据）"><a href="#七大原则（设计模式设计的依据）" class="headerlink" title="七大原则（设计模式设计的依据）"></a>七大原则（设计模式设计的依据）</h2><h3 id="单一职责（singleResponsibility）"><a href="#单一职责（singleResponsibility）" class="headerlink" title="单一职责（singleResponsibility）"></a>单一职责（singleResponsibility）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对类来说，一个类只负责一类职责（比如userDao）如果A类负责两个职责，则需要将A类的粒度分解为A1、A2</span><br></pre></td></tr></table></figure>
+<p> 效果：</p>
 <ul>
 <li>降低类的复杂度</li>
 <li>提高类的可读性</li>
@@ -424,207 +424,26 @@
 <h3 id="①单例模式（Singleton）"><a href="#①单例模式（Singleton）" class="headerlink" title="①单例模式（Singleton）"></a>①单例模式（Singleton）</h3><p>下定义：采取一定方法在整个软件系统中，对某个类只能存在一个对象实例</p>
 <p>它の几种创建方式：</p>
 <p>饿汉式</p>
-<pre><code class="java">package singleton.type1;
-
-public class demo {
-    public static void main(String[] args) {
-        singleton s1=singleton.getSingleton();
-        singleton s2=singleton.getSingleton();
-        System.out.println(s1==s2);
-        System.out.println(s1.hashCode());
-        System.out.println(s2.hashCode());
-    }
-}
-//所谓饿汉，就是不管三七二十一，在类加载的时候就已经创建好单例对象了
-class singleton{
-    private static final singleton singleton=new singleton();//使用静态变量去创建单例对象
-
-    private singleton(){//构造方法私有化，防止外部new对象
-
-    }
-    public static singleton getSingleton(){//向外提供一个方法获取单例对象
-        return singleton;
-    }
-}
-
-</code></pre>
-<pre><code class="java">package singleton.type2;
-
-public class demo {
-    public static void main(String[] args) {
-        singleton s1= singleton.getSingleton();
-        singleton s2= singleton.getSingleton();
-        System.out.println(s1==s2);
-        System.out.println(s1.hashCode());
-        System.out.println(s2.hashCode());
-    }
-}
-
-class singleton{
-
-    private static singleton singleton;
-
-    private singleton(){//构造方法私有化，防止外部new对象
-
-    }
-
-    static{
-        singleton=new singleton();//使用静态代码块创建单例对象
-    }
-
-    public static singleton getSingleton(){//向外提供一个方法获取单例对象
-        return singleton;
-    }
-
-}
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> singleton.type1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        singleton s1=singleton.getSingleton();</span><br><span class="line">        singleton s2=singleton.getSingleton();</span><br><span class="line">        System.out.println(s1==s2);</span><br><span class="line">        System.out.println(s1.hashCode());</span><br><span class="line">        System.out.println(s2.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//所谓饿汉，就是不管三七二十一，在类加载的时候就已经创建好单例对象了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">singleton</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> singleton singleton=<span class="keyword">new</span> singleton();<span class="comment">//使用静态变量去创建单例对象</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">singleton</span><span class="params">()</span></span>&#123;<span class="comment">//构造方法私有化，防止外部new对象</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> singleton <span class="title">getSingleton</span><span class="params">()</span></span>&#123;<span class="comment">//向外提供一个方法获取单例对象</span></span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> singleton.type2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        singleton s1= singleton.getSingleton();</span><br><span class="line">        singleton s2= singleton.getSingleton();</span><br><span class="line">        System.out.println(s1==s2);</span><br><span class="line">        System.out.println(s1.hashCode());</span><br><span class="line">        System.out.println(s2.hashCode());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">singleton</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> singleton singleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">singleton</span><span class="params">()</span></span>&#123;<span class="comment">//构造方法私有化，防止外部new对象</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        singleton=<span class="keyword">new</span> singleton();<span class="comment">//使用静态代码块创建单例对象</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> singleton <span class="title">getSingleton</span><span class="params">()</span></span>&#123;<span class="comment">//向外提供一个方法获取单例对象</span></span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：对于饿汉式，因为在类加载时就已经创建，若不使用单例对象，可能造成内存的浪费</p>
 <hr>
 <p>懒汉式（单线程且不安全）</p>
-<pre><code class="java">package singleton.type3;
-
-public class demo {
-    public static void main(String[] args) {
-        singleton s1=singleton.getSingleton();
-        singleton s2=singleton.getSingleton();
-        System.out.println(s1==s2);
-    }
-}
-
-class singleton{
-    private static singleton singleton;
-    private singleton(){ }
-
-    public static singleton getSingleton(){//所谓懒汉就是，只有要用到单例对象时才创建，不用就不创建。就像青蛙一样，你戳它一下 它就往前跳一下
-        if(singleton==null){
-            singleton=new singleton();
-        }
-        return singleton;
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> singleton.type3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        singleton s1=singleton.getSingleton();</span><br><span class="line">        singleton s2=singleton.getSingleton();</span><br><span class="line">        System.out.println(s1==s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">singleton</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> singleton singleton;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">singleton</span><span class="params">()</span></span>&#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> singleton <span class="title">getSingleton</span><span class="params">()</span></span>&#123;<span class="comment">//所谓懒汉就是，只有要用到单例对象时才创建，不用就不创建。就像青蛙一样，你戳它一下 它就往前跳一下</span></span><br><span class="line">        <span class="keyword">if</span>(singleton==<span class="keyword">null</span>)&#123;</span><br><span class="line">            singleton=<span class="keyword">new</span> singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：如果遇到这一种情况：线程 1 运行到<span style="color:red">instance = new Singleton()</span>处的时候，线程 2 抢到的 CPU 的执行权，进入 getInstance() 方法，也运行了<span style="color:red">instance = new Singleton()</span>，但线程 2 创建了对象这件事情，线程 1 压根儿不晓得，等到线程 1 重新获得 CPU 执行权的时候，从原先的地方 处继续执行，又运行了 instance = new Singleton(); 这行代码，这样就会存在多个对象，得到singleton就不再唯一，这样就失去了原本的意义</p>
 <hr>
 <p>最完美的创建方式来啦！使用枚举！</p>
-<pre><code class="java">package singleton.typeEnum;
-
-public class demo {
-
-
-    public static void main(String[] args) {
-        singleton s1=singleton.SINGLETON;
-        singleton s2=singleton.SINGLETON;
-        System.out.println(s1==s2);
-        s1.test();
-    }
-
-}
-
-enum singleton{
-    SINGLETON;
-    public void test(){
-        System.out.println(&quot;is singleton...&quot;);
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> singleton.typeEnum;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        singleton s1=singleton.SINGLETON;</span><br><span class="line">        singleton s2=singleton.SINGLETON;</span><br><span class="line">        System.out.println(s1==s2);</span><br><span class="line">        s1.test();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum</span> singleton&#123;</span><br><span class="line">    SINGLETON;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"is singleton..."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用枚举的方式实现单例模式是《Effective Java》作者力推的方式，在很多优秀的开源代码中经常可以看到使用枚举方式实现单例模式的（身影），枚举类型不允许被继承，同样是线程安全的且只能被实例化一次</p>
 <hr>
 <p>除此之外，还能使用静态内部类的方式来实现单例模式</p>
-<pre><code class="java">package singleton.type4;
-
-public class demo {
-    public static void main(String[] args) {
-        singleton s1=singleton.getInstance();
-        singleton s2=singleton.getInstance();
-        System.out.println(s1==s2);
-    }
-}
-
-class singleton {
-    private singleton(){}
-
-    private static class getSingleton{//创建内部类
-        private static final singleton instance=new singleton();//将单例对象设置为内部类成员变量
-    }
-    public static singleton getInstance(){//对外开放一个获取单例对象
-        return getSingleton.instance;
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> singleton.type4;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        singleton s1=singleton.getInstance();</span><br><span class="line">        singleton s2=singleton.getInstance();</span><br><span class="line">        System.out.println(s1==s2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">singleton</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">getSingleton</span></span>&#123;<span class="comment">//创建内部类</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> singleton instance=<span class="keyword">new</span> singleton();<span class="comment">//将单例对象设置为内部类成员变量</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;<span class="comment">//对外开放一个获取单例对象</span></span><br><span class="line">        <span class="keyword">return</span> getSingleton.instance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h4 id="简单工厂模式（（））"><a href="#简单工厂模式（（））" class="headerlink" title="简单工厂模式（（））"></a>简单工厂模式（（））</h4><p>下定义：是由一个工厂对象决定创建出哪一种产品类的实例。定义一个创建对象的类，由这个类去<strong>封装实例化对象的行为</strong></p>
 <p>典型案例：订购pizza业务</p>
 <p>pizza工厂：</p>
-<pre><code class="java">package factory.simpleFactory.pizzaStore.simplePizzaFactory;
-
-import factory.simpleFactory.pizzaStore.pizza.pizza;
-import factory.simpleFactory.pizzaStore.pizza.spicyPizza;
-
-import java.util.Scanner;
-
-public class pizzaFactory {
-    public pizza createPizza(){
-        System.out.println(&quot;******使用简单工厂模式...******&quot;);
-        System.out.println(&quot;请选择要制作的pizza...&quot;);
-        pizza pizza=null;
-        String type=getType();
-        if(type.equals(&quot;spicy&quot;)){
-            pizza=new spicyPizza();
-            pizza.setName(type);
-            System.out.println(type+&quot;Pizza制作完成...&quot;);
-        }
-        else if(type.equals(&quot;NewOrleans&quot;)){
-            pizza=new spicyPizza();
-            pizza.setName(type);
-            System.out.println(type+&quot;Pizza制作完成...&quot;);
-        }
-        else {
-            System.out.println(&quot;制作失败，暂无此种类...&quot;);
-        }
-        return pizza;
-    }
-
-
-
-
-    private String getType(){//获取要制造的pizza的种类
-        String type;
-        Scanner sc=new Scanner(System.in);
-        type=sc.next();
-        return type;
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> factory.simpleFactory.pizzaStore.simplePizzaFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> factory.simpleFactory.pizzaStore.pizza.pizza;</span><br><span class="line"><span class="keyword">import</span> factory.simpleFactory.pizzaStore.pizza.spicyPizza;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">pizzaFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> pizza <span class="title">createPizza</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"******使用简单工厂模式...******"</span>);</span><br><span class="line">        System.out.println(<span class="string">"请选择要制作的pizza..."</span>);</span><br><span class="line">        pizza pizza=<span class="keyword">null</span>;</span><br><span class="line">        String type=getType();</span><br><span class="line">        <span class="keyword">if</span>(type.equals(<span class="string">"spicy"</span>))&#123;</span><br><span class="line">            pizza=<span class="keyword">new</span> spicyPizza();</span><br><span class="line">            pizza.setName(type);</span><br><span class="line">            System.out.println(type+<span class="string">"Pizza制作完成..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(type.equals(<span class="string">"NewOrleans"</span>))&#123;</span><br><span class="line">            pizza=<span class="keyword">new</span> spicyPizza();</span><br><span class="line">            pizza.setName(type);</span><br><span class="line">            System.out.println(type+<span class="string">"Pizza制作完成..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"制作失败，暂无此种类..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pizza;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getType</span><span class="params">()</span></span>&#123;<span class="comment">//获取要制造的pizza的种类</span></span><br><span class="line">        String type;</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        type=sc.next();</span><br><span class="line">        <span class="keyword">return</span> type;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>订购pizza业务：</p>
-<pre><code class="java">package factory.simpleFactory.pizzaStore;
-
-import factory.simpleFactory.pizzaStore.pizza.pizza;
-import factory.simpleFactory.pizzaStore.simplePizzaFactory.pizzaFactory;
-
-public class orderPizza {
-    pizzaFactory pizzaFactory;
-
-    orderPizza(pizzaFactory pizzaFactory){
-        this.pizzaFactory=pizzaFactory;
-    }
-
-    public pizza order(){
-       return pizzaFactory.createPizza();
-    }
-
-    public static void main(String[] args) {
-        orderPizza orderPizza=new orderPizza(new pizzaFactory());
-        pizza pizza=orderPizza.order();
-        while(pizza!=null){
-            pizza=orderPizza.order();
-        }
-    }
-}
-
-</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> factory.simpleFactory.pizzaStore;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> factory.simpleFactory.pizzaStore.pizza.pizza;</span><br><span class="line"><span class="keyword">import</span> factory.simpleFactory.pizzaStore.simplePizzaFactory.pizzaFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">orderPizza</span> </span>&#123;</span><br><span class="line">    pizzaFactory pizzaFactory;</span><br><span class="line"></span><br><span class="line">    orderPizza(pizzaFactory pizzaFactory)&#123;</span><br><span class="line">        <span class="keyword">this</span>.pizzaFactory=pizzaFactory;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> pizza <span class="title">order</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> pizzaFactory.createPizza();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        orderPizza orderPizza=<span class="keyword">new</span> orderPizza(<span class="keyword">new</span> pizzaFactory());</span><br><span class="line">        pizza pizza=orderPizza.order();</span><br><span class="line">        <span class="keyword">while</span>(pizza!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            pizza=orderPizza.order();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里没有放出pizza类…</p>
 <p>结果如下图所示：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/simpleFactory.png" alt></p>
@@ -1186,31 +1005,7 @@ $(document).ready(function() {
     })
   });
 </script>
-
-<script language="Javascript">
-    //PC端 使右键和复制失效
-    document.oncontextmenu = new Function("event.returnValue=false");
-    document.onselectstart = new Function("event.returnValue=false");
-
-    //ios
-    document.oncontextmenu = function (e) {
-        e.preventDefault();
-    };
-    document.onselectstart = function (e) {
-        e.preventDefault();
-    };
-    //安卓
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-    document.ontouchend = function () {
-        throw new Error("NO ERRPR:禁止长按弹出");
-    }
-</script>
-
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-
 <noscript><iframe src="/blog/*>";</iframe></noscript>
 <script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
 
@@ -1220,7 +1015,6 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
-
 
 
 </html>

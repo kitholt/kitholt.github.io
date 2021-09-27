@@ -62,7 +62,7 @@
   </style>
 </head>
 </html>
-<body oncopy="alert('I know what u want 2 do...');return false;" leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" ondragstart="return true" onselectstart ="return tfalse" onselect="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
   <div class="scrollbar" id="bar">
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
@@ -376,164 +376,11 @@
 </ul>
 <h2 id="关于坑爹的setInterval"><a href="#关于坑爹的setInterval" class="headerlink" title="关于坑爹的setInterval"></a>关于坑爹的setInterval</h2><p>一定要及时关掉，不然定时器的数量可能会叠加，比如轮播图的快速点击…就会出事</p>
 <p>可以在定时器执行前设置一个flag来标记</p>
-<h2 id="我的轮播图"><a href="#我的轮播图" class="headerlink" title="我的轮播图"></a>我的轮播图</h2><pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;&lt;/title&gt;
-        &lt;link rel=&quot;stylesheet&quot; href=&quot;fa/css/all.css&quot;/&gt;
-        &lt;style&gt;
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        .clearfix::after
-                {
-                    content: &quot;&quot;;
-                    display: block;
-                    clear: both;
-                } 
-        #wrapper{
-            width: 1024px;
-            height: 768px;
-            background-color: #BBFFAA;
-            margin: 0 auto;
-            overflow: hiddn;
-            position: relative;
-
-        }
-        #banner{
-            list-style-type: none;
-            width: 6144px;
-            height: 768px;
-            position: absolute;
-            left: 0;
-        }
-        #banner li{
-        float: left;
-        }
-        #toLeft{
-            position: absolute;
-            top: 384px;
-        }
-        #toRight{
-            position: absolute;
-            top: 384px;
-            left: 1010px;
-        }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;script src=&quot;js/jquery-3.6.0.js&quot;&gt;&lt;/script&gt;
-        &lt;script&gt;
-            $(function(){ 
-            var $wrapper = $(&#39;#wrapper&#39;);
-            var $banner = $(&#39;#banner&#39;);//获取轮播图
-            var $left = $(&#39;#toLeft&#39;);//翻页的左指针
-            var $right = $(&#39;#toRight&#39;);//翻页的右指针
-            var moving = false;//当前是否在翻页
-            var timer = 0;
-
-            var auto = setInterval(function(){//每隔三秒自动翻页
-                nextPage(false);
-            },3000);
-
-            $wrapper.hover(function(){//鼠标悬停在轮播图上时停止轮播，移除则继续自动轮播
-                clearInterval(auto);
-            },function(){
-                auto = setInterval(function(){
-                    nextPage(false);
-                },3000);
-            });
-
-            $left.click(function(){//向前翻页
-                nextPage(true);
-            });
-            $right.click(function(){//向后翻页
-                console.log(&#39;向后翻页&#39;);
-                nextPage(false);
-            });
-            function nextPage (next) {//执行翻页的
-                if(moving){
-                    return;
-                };
-                moving = true;
-                var curLeft = $banner.position().left;//当前left
-                var offset = next ? 1024 : -1024;//向前或者向后的翻页距离
-                var targetOffset = (curLeft+offset)%6144;//目标翻页距离
-                var itemOffset = -20;//每次interval移动的距离20px    
-                if(offset &lt; 0){
-                      timer = setInterval(function(){
-
-                         curLeft += itemOffset;
-                         if(curLeft &lt; targetOffset){
-                            curLeft = targetOffset;
-                            if(targetOffset === -5120){//如果向后翻页到最后一张图片
-                                $banner.css(&#39;left&#39;,-1024);//重新定位到第一张图片（其实是第二张，因为前面一张是最后一张图片）
-                                moving = false;
-                                clearInterval(timer);//关闭定时器
-                                return;
-                            }
-                             $banner.css(&#39;left&#39;,(curLeft)%5120);
-                            clearInterval(timer);//关闭定时器
-                            moving = false;
-                            return;
-                         }
-                        $banner.css(&#39;left&#39;,((curLeft%5120)));
-                    },1000/144);
-                }
-                else{
-                    timer = setInterval(function(){
-                        curLeft += (-itemOffset);
-                        if(curLeft &gt; targetOffset){
-                            curLeft = targetOffset;
-                            if(targetOffset === 0){
-                                $banner.css(&#39;left&#39;,-4096);
-                                moving = false;
-                                clearInterval(timer);//关闭定时器
-                                return;
-                            }
-                            $banner.css(&#39;left&#39;,(curLeft)%5120);
-                            clearInterval(timer);//关闭定时器
-                            moving = false;
-                            return;
-                        }
-                        $banner.css(&#39;left&#39;,((curLeft%5120)));
-                    },1000/144);
-                }
-            }
-        });
-        &lt;/script&gt;
-
-
-
-        &lt;div id=&quot;wrapper&quot; class=&quot;clearfix&quot;&gt;
-                &lt;ul id=&quot;banner&quot; style=&quot;left:-1024px&quot;&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/4.jpg&quot;/&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/1.jpeg&quot;/&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/2.jpg&quot;/&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/3.jpg&quot;/&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/4.jpg&quot;/&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;img src=&quot;pic/1.jpeg&quot;/&gt;&lt;/li&gt;
-                &lt;/ul&gt;
-                &lt;div id=&quot;pointDiv&quot;&gt;
-                    &lt;a href=&quot;#&quot; id=&quot;toLeft&quot;class=&quot;arrow&quot;&gt;&lt;i class=&quot; fas fa-angle-double-left&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                    &lt;a href=&quot;#&quot; id=&quot;toRight&quot; class=&quot;arrow&quot;&gt;&lt;i class=&quot;fas fa-angle-double-right&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                &lt;/div&gt;
-        &lt;/div&gt;
-
-    &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+<h2 id="我的轮播图"><a href="#我的轮播图" class="headerlink" title="我的轮播图"></a>我的轮播图</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"fa/css/all.css"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">		*&#123;</span><br><span class="line">			margin: 0;</span><br><span class="line">			padding: 0;</span><br><span class="line">		&#125;</span><br><span class="line">		.clearfix::after</span><br><span class="line">				&#123;</span><br><span class="line">					content: "";</span><br><span class="line">					display: block;</span><br><span class="line">					clear: both;</span><br><span class="line">				&#125; </span><br><span class="line">		#wrapper&#123;</span><br><span class="line">			width: 1024px;</span><br><span class="line">			height: 768px;</span><br><span class="line">			background-color: #BBFFAA;</span><br><span class="line">			margin: 0 auto;</span><br><span class="line">			overflow: hiddn;</span><br><span class="line">			position: relative;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">		#banner&#123;</span><br><span class="line">			list-style-type: none;</span><br><span class="line">			width: 6144px;</span><br><span class="line">			height: 768px;</span><br><span class="line">			position: absolute;</span><br><span class="line">			left: 0;</span><br><span class="line">		&#125;</span><br><span class="line">		#banner li&#123;</span><br><span class="line">		float: left;</span><br><span class="line">		&#125;</span><br><span class="line">		#toLeft&#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			top: 384px;</span><br><span class="line">		&#125;</span><br><span class="line">		#toRight&#123;</span><br><span class="line">			position: absolute;</span><br><span class="line">			top: 384px;</span><br><span class="line">			left: 1010px;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery-3.6.0.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">			$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; </span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> $wrapper = $(<span class="string">'#wrapper'</span>);</span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> $banner = $(<span class="string">'#banner'</span>);<span class="comment">//获取轮播图</span></span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> $left = $(<span class="string">'#toLeft'</span>);<span class="comment">//翻页的左指针</span></span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> $right = $(<span class="string">'#toRight'</span>);<span class="comment">//翻页的右指针</span></span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> moving = <span class="literal">false</span>;<span class="comment">//当前是否在翻页</span></span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> timer = <span class="number">0</span>;</span></span><br><span class="line">			</span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> auto = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//每隔三秒自动翻页</span></span></span><br><span class="line"><span class="javascript">				nextPage(<span class="literal">false</span>);</span></span><br><span class="line">			&#125;,3000);</span><br><span class="line">			</span><br><span class="line"><span class="javascript">			$wrapper.hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//鼠标悬停在轮播图上时停止轮播，移除则继续自动轮播</span></span></span><br><span class="line">				clearInterval(auto);</span><br><span class="line"><span class="javascript">			&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">				auto = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">					nextPage(<span class="literal">false</span>);</span></span><br><span class="line">				&#125;,3000);</span><br><span class="line">			&#125;);</span><br><span class="line">			</span><br><span class="line"><span class="javascript">			$left.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//向前翻页</span></span></span><br><span class="line"><span class="javascript">				nextPage(<span class="literal">true</span>);</span></span><br><span class="line">			&#125;);</span><br><span class="line"><span class="javascript">			$right.click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//向后翻页</span></span></span><br><span class="line"><span class="javascript">				<span class="built_in">console</span>.log(<span class="string">'向后翻页'</span>);</span></span><br><span class="line"><span class="javascript">				nextPage(<span class="literal">false</span>);</span></span><br><span class="line">			&#125;);</span><br><span class="line"><span class="javascript">			<span class="function"><span class="keyword">function</span> <span class="title">nextPage</span> (<span class="params">next</span>) </span>&#123;<span class="comment">//执行翻页的</span></span></span><br><span class="line">				if(moving)&#123;</span><br><span class="line"><span class="javascript">					<span class="keyword">return</span>;</span></span><br><span class="line">				&#125;;</span><br><span class="line"><span class="javascript">				moving = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">				<span class="keyword">var</span> curLeft = $banner.position().left;<span class="comment">//当前left</span></span></span><br><span class="line"><span class="javascript">				<span class="keyword">var</span> offset = next ? <span class="number">1024</span> : <span class="number">-1024</span>;<span class="comment">//向前或者向后的翻页距离</span></span></span><br><span class="line"><span class="javascript">				<span class="keyword">var</span> targetOffset = (curLeft+offset)%<span class="number">6144</span>;<span class="comment">//目标翻页距离</span></span></span><br><span class="line"><span class="javascript">				<span class="keyword">var</span> itemOffset = <span class="number">-20</span>;<span class="comment">//每次interval移动的距离20px	</span></span></span><br><span class="line">				if(offset &lt; 0)&#123;</span><br><span class="line"><span class="javascript">					  timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">						 </span><br><span class="line">						 curLeft += itemOffset;</span><br><span class="line">						 if(curLeft &lt; targetOffset)&#123;</span><br><span class="line">							curLeft = targetOffset;</span><br><span class="line"><span class="javascript">							<span class="keyword">if</span>(targetOffset === <span class="number">-5120</span>)&#123;<span class="comment">//如果向后翻页到最后一张图片</span></span></span><br><span class="line"><span class="javascript">								$banner.css(<span class="string">'left'</span>,<span class="number">-1024</span>);<span class="comment">//重新定位到第一张图片（其实是第二张，因为前面一张是最后一张图片）</span></span></span><br><span class="line"><span class="javascript">								moving = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">								clearInterval(timer);<span class="comment">//关闭定时器</span></span></span><br><span class="line"><span class="javascript">								<span class="keyword">return</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line"><span class="javascript">						 	$banner.css(<span class="string">'left'</span>,(curLeft)%<span class="number">5120</span>);</span></span><br><span class="line"><span class="javascript">							clearInterval(timer);<span class="comment">//关闭定时器</span></span></span><br><span class="line"><span class="javascript">							moving = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">							<span class="keyword">return</span>;</span></span><br><span class="line">						 &#125;</span><br><span class="line"><span class="javascript">						$banner.css(<span class="string">'left'</span>,((curLeft%<span class="number">5120</span>)));</span></span><br><span class="line">					&#125;,1000/144);</span><br><span class="line">				&#125;</span><br><span class="line"><span class="javascript">				<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">					timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">						curLeft += (-itemOffset);</span><br><span class="line">						if(curLeft &gt; targetOffset)&#123;</span><br><span class="line">							curLeft = targetOffset;</span><br><span class="line">							if(targetOffset === 0)&#123;</span><br><span class="line"><span class="javascript">								$banner.css(<span class="string">'left'</span>,<span class="number">-4096</span>);</span></span><br><span class="line"><span class="javascript">								moving = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">								clearInterval(timer);<span class="comment">//关闭定时器</span></span></span><br><span class="line"><span class="javascript">								<span class="keyword">return</span>;</span></span><br><span class="line">							&#125;</span><br><span class="line"><span class="javascript">							$banner.css(<span class="string">'left'</span>,(curLeft)%<span class="number">5120</span>);</span></span><br><span class="line"><span class="javascript">							clearInterval(timer);<span class="comment">//关闭定时器</span></span></span><br><span class="line"><span class="javascript">							moving = <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">							<span class="keyword">return</span>;</span></span><br><span class="line">						&#125;</span><br><span class="line"><span class="javascript">						$banner.css(<span class="string">'left'</span>,((curLeft%<span class="number">5120</span>)));</span></span><br><span class="line">					&#125;,1000/144);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrapper"</span> <span class="attr">class</span>=<span class="string">"clearfix"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"banner"</span> <span class="attr">style</span>=<span class="string">"left:-1024px"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/4.jpg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/1.jpeg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/2.jpg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/3.jpg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/4.jpg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"pic/1.jpeg"</span>/&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"pointDiv"</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"toLeft"</span><span class="attr">class</span>=<span class="string">"arrow"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">" fas fa-angle-double-left"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"toRight"</span> <span class="attr">class</span>=<span class="string">"arrow"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fas fa-angle-double-right"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h2 id="自定义动画（略）"><a href="#自定义动画（略）" class="headerlink" title="自定义动画（略）"></a>自定义动画（略）</h2><h2 id="多库共存"><a href="#多库共存" class="headerlink" title="多库共存"></a>多库共存</h2><p>解决两个库都要使用$的问题</p>
 <p>jQuery库可以释放$的使用权，让另外一个库可以正常使用，此时jQuery库只能使用jQuery</p>
 <p>方法：jQuery.noConflict()</p>
-<h2 id="区别onload和ready的区别"><a href="#区别onload和ready的区别" class="headerlink" title="区别onload和ready的区别"></a>区别onload和ready的区别</h2><pre><code class="javascript">window.onload = function(){};
-
-$(function(){});//与下面的写法是等价的
-
-$(document).ready(function(){})
-</code></pre>
+<h2 id="区别onload和ready的区别"><a href="#区别onload和ready的区别" class="headerlink" title="区别onload和ready的区别"></a>区别onload和ready的区别</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;);<span class="comment">//与下面的写法是等价的</span></span><br><span class="line"></span><br><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
 <p>onload只能添加一个监听回调，而ready可添加多个</p>
 <p>如果页面有图片，onload会在文档里所有图片加载完再执行</p>
 <p>而ready是只要文档（图片还未加载）加载完毕就执行，因此可能会出现无法获取图片的情况</p>
@@ -971,31 +818,7 @@ $(document).ready(function() {
     })
   });
 </script>
-
-<script language="Javascript">
-    //PC端 使右键和复制失效
-    document.oncontextmenu = new Function("event.returnValue=false");
-    document.onselectstart = new Function("event.returnValue=false");
-
-    //ios
-    document.oncontextmenu = function (e) {
-        e.preventDefault();
-    };
-    document.onselectstart = function (e) {
-        e.preventDefault();
-    };
-    //安卓
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-    document.ontouchend = function () {
-        throw new Error("NO ERRPR:禁止长按弹出");
-    }
-</script>
-
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-
 <noscript><iframe src="/blog/*>";</iframe></noscript>
 <script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
 
@@ -1005,7 +828,6 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
-
 
 
 </html>

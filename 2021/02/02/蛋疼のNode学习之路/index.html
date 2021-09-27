@@ -62,7 +62,7 @@
   </style>
 </head>
 </html>
-<body oncopy="alert('I know what u want 2 do...');return false;" leftmargin="2" topmargin="0" marginwidth="0" marginheight="0" oncontextmenu="return false" ondragstart="return true" onselectstart ="return tfalse" onselect="document.selection.empty()" onbeforecopy="return false" onmouseup="document.selection.empty()"  class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
   <div class="scrollbar" id="bar">
   </div>
   <a href="#" class="cd-top faa-float animated"></a>
@@ -353,8 +353,8 @@
 <li>轻量和高效</li>
 </ol>
 <h3 id="与Node-js相关的东东"><a href="#与Node-js相关的东东" class="headerlink" title="与Node.js相关的东东"></a>与Node.js相关的东东</h3><p>npm：全称是Node Package Manager。世界上最大的开源生态系统（大多数的js相关的包都在npm里）可在命令行通过下列语法获取相关包</p>
-<pre><code>npm install [jquery]
-</code></pre><h2 id="②Node-js能干啥哇？（do-what？）"><a href="#②Node-js能干啥哇？（do-what？）" class="headerlink" title="②Node.js能干啥哇？（do what？）"></a>②Node.js能干啥哇？（do what？）</h2><ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install [jquery]</span><br></pre></td></tr></table></figure>
+<h2 id="②Node-js能干啥哇？（do-what？）"><a href="#②Node-js能干啥哇？（do-what？）" class="headerlink" title="②Node.js能干啥哇？（do what？）"></a>②Node.js能干啥哇？（do what？）</h2><ul>
 <li><p>web服务器后台（能干类似活的有Java,，PHP，Python，balabala…….）</p>
 </li>
 <li><p>命令行工具</p>
@@ -386,45 +386,20 @@
 <li><p>其实每个模块中有都一个exports专属的对象，该对象中可以封装各自模块中的数据和方法，方便其他模块应用</p>
 <ul>
 <li><p>举个例子</p>
-<pre><code class="javascript">var demo =require(&#39;./a&#39;)//调用模板a，并且获得a的exports对象,并且用一个变量demo接收
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo =<span class="built_in">require</span>(<span class="string">'./a'</span>)<span class="comment">//调用模板a，并且获得a的exports对象,并且用一个变量demo接收</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
 <h2 id="——————-分割线，下面进入简单的实操环节——————–"><a href="#——————-分割线，下面进入简单的实操环节——————–" class="headerlink" title="——————-分割线，下面进入简单的实操环节——————–"></a>——————-分割线，下面进入简单的实操环节——————–</h2><ol>
 <li><p>启动一个简单服务器</p>
-<pre><code class="javascript">var http = require(&#39;http&#39;)//创建http对象
-var server = http.createServer()//利用http对象创建一个服务器对象server
-server.listen(4000, function () {//选择端口
-   console.log(&quot;贪玩蓝月服务器，琦动！&quot;)
-})
-server.on(&#39;request&#39;, function (request, response) {//server监听是否收到客户端发送过来的request，收到后根据回调函数再返回响应
-   console.log(&quot;收到请求&quot;)
-   response.writeHeader(200, {&#39;Content-Type&#39;: &#39;text/html;charset=utf-8&#39;})//&lt;-----------解决乱码的方法
-   var url = request.url
-   if (url == &#39;/&#39;) {
-       response.end(&quot;欢迎来到贪玩蓝月，是兄弟就来砍我&quot;)
-   }
-   else if(url==&#39;/login&#39;){
-       response.end(&quot;貪玩藍月登錄註冊界面...&quot;)
-   }
-   else if(url==&#39;/register&#39;){
-       response.end(&quot;快進到貪玩藍月の註冊界面&quot;)
-   }
-   else{
-       response.end(&quot;404 not found...&quot;)
-   }
-
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)<span class="comment">//创建http对象</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer()<span class="comment">//利用http对象创建一个服务器对象server</span></span><br><span class="line">server.listen(<span class="number">4000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;<span class="comment">//选择端口</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"贪玩蓝月服务器，琦动！"</span>)</span><br><span class="line">&#125;)</span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">request, response</span>) </span>&#123;<span class="comment">//server监听是否收到客户端发送过来的request，收到后根据回调函数再返回响应</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"收到请求"</span>)</span><br><span class="line">    response.writeHeader(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/html;charset=utf-8'</span>&#125;)<span class="comment">//&lt;-----------解决乱码的方法</span></span><br><span class="line">    <span class="keyword">var</span> url = request.url</span><br><span class="line">    <span class="keyword">if</span> (url == <span class="string">'/'</span>) &#123;</span><br><span class="line">        response.end(<span class="string">"欢迎来到贪玩蓝月，是兄弟就来砍我"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(url==<span class="string">'/login'</span>)&#123;</span><br><span class="line">        response.end(<span class="string">"貪玩藍月登錄註冊界面..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(url==<span class="string">'/register'</span>)&#123;</span><br><span class="line">        response.end(<span class="string">"快進到貪玩藍月の註冊界面"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        response.end(<span class="string">"404 not found..."</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>但是第一次运行的时候出现这种情况…….</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/error.png" alt="第一反应：响应头没有设置utf-8编码"></p>
 </li>
 </ol>
 <p>不用慌，在回调函数里的第一行加上</p>
-<pre><code class="javascript">response.writeHeader(200, {&#39;Content-Type&#39;: &#39;text/html;charset=utf-8&#39;})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.writeHeader(<span class="number">200</span>, &#123;<span class="string">'Content-Type'</span>: <span class="string">'text/html;charset=utf-8'</span>&#125;)</span><br></pre></td></tr></table></figure>
 <hr>
 <p>运行后的截图</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/fixed.png" alt></p>
@@ -457,8 +432,7 @@ server.on(&#39;request&#39;, function (request, response) {//server监听是否�
 <h2 id="神么是模板引擎？"><a href="#神么是模板引擎？" class="headerlink" title="神么是模板引擎？"></a>神么是模板引擎？</h2><p>   模板引擎（这里特指用于Web开发的模板引擎）是为了使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档。这就好比于我们的写作模板，我们想写什么类型的文章比如说明文，记叙文，抒情文，应用文。它们都有固定的一套模式，我们只要按照这套模式来，往里面添加我们自己的内容即可。</p>
 <p>   常用模板：art-template（art-template 是一个简约、超快的模板引擎。<br>   它采用作用域预声明的技术来优化模板渲染速度，从而获得接近 JavaScript 极限的运行性能，并且同时支持 NodeJS 和浏览器。）</p>
 <p>   安装方法：</p>
-<pre><code class="控制台">npm install art-template --save
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install art-template --save</span><br></pre></td></tr></table></figure>
 <h2 id="啥是渲染？"><a href="#啥是渲染？" class="headerlink" title="啥是渲染？"></a>啥是渲染？</h2><p>在电脑绘图中，<em>渲染</em>是指在指用软件从模型生成图像的过程。而在HTML中则是指如何加工并且显示出最终的HTML页面。我们又根据加工场景位置的不同把HTML渲染分为服务端渲染和客户端渲染。</p>
 <p> 互联网早期，用户使用浏览器浏览的都是一些没有复杂逻辑的、简单的页面，这些页面都是在后端将html拼接好的然后将之返回给前端完整的html文件，浏览器拿到这个html文件之后就可以直接解析展示了，而这也就是所谓的<strong>服务器端渲染</strong>了。而随着前端页面的复杂性提高，前端就不仅仅是普通的页面展示了，而可能添加了更多功能性的组件，复杂性更大，另外，彼时<strong>ajax的兴起</strong>，使得业界就开始推崇<strong>前后端分离</strong>的开发模式，即后端不提供完整的html页面，而是提供一些api使得前端可以获取到json数据，然后前端拿到json数据之后再在前端进行html页面的拼接，然后展示在浏览器上，这就是所谓的<strong>客户端渲染</strong>了，这样前端就可以专注UI的开发，后端专注于逻辑的开发。</p>
 <h3 id="服务端渲染aka后端渲染（service-side-render）の优缺点："><a href="#服务端渲染aka后端渲染（service-side-render）の优缺点：" class="headerlink" title="服务端渲染aka后端渲染（service-side render）の优缺点："></a>服务端渲染aka后端渲染（service-side render）の优缺点：</h3><ul>
@@ -495,14 +469,7 @@ server.on(&#39;request&#39;, function (request, response) {//server监听是否�
 </li>
 <li><p>readdir()：</p>
 <p>读取指定目录下的所有文件夹名，并返回一个由这些文件夹名构成的字符串数组files。</p>
-<pre><code class="javascript">var fs = require(&#39;fs&#39;);
-fs.readdir(&#39;readdirtest&#39;, function(err,files){
- if(err){
-  console.log(err);
- }
- console.log(files);
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line">fs.readdir(<span class="string">'readdirtest'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err,files</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">if</span>(err)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(err);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">console</span>.log(files);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>操作描述：</p>
@@ -526,93 +493,16 @@ fs.readdir(&#39;readdirtest&#39;, function(err,files){
 </li>
 </ol>
 <p>下面是<span style="color:green;font-size:26px">一小段</span>代码：</p>
-<pre><code class="javascript">var fs = require(&#39;fs&#39;)
-var http = require(&#39;http&#39;)
-var server = http.createServer()
-var wwwDir = &#39;F:/www&#39;
-
-server.on(&#39;request&#39;, function (req, res) {
-
-    fs.readFile(&#39;./template.html&#39;, function (err, data) {//获得模板template.html
-        if (err) {
-            console.log(&#39;找不到文件......请重试&#39;)
-        }
-
-
-        fs.readdir(wwwDir, function (err, files) {//得到wwwDir的目录列表中的文件名和目录名
-            if (err) {
-                return console.log(&#39;读取目录失败&#39;)
-            }
-            console.log(files)//files是一个字符数组，元素为目录中的文件名
-            var content = &#39;&#39;//将模板中要替换的部分构建为content
-            files.forEach(function (item) {//利用forEach，取出files数组的每个元素（item），进行渲染${item}替换
-                content += `&lt;tr&gt;&lt;td data-value=&quot;新建 Microsoft Word 文档.docx&quot;&gt;&lt;a class=&quot;icon file&quot; draggable=&quot;true&quot; href=&quot;/F:/www/%E6%96%B0%E5%BB%BA%20Microsoft%20Word%20%E6%96%87%E6%A1%A3.docx&quot;&gt;${item}&lt;/a&gt;&lt;/td&gt;
-                                &lt;td class=&quot;detailsColumn&quot; data-value=&quot;0&quot;&gt;0 B&lt;/td&gt;
-                                &lt;td class=&quot;detailsColumn&quot; data-value=&quot;1612679895&quot;&gt;2021/2/7 下午2:38:15&lt;/td&gt;
-                            &lt;/tr&gt;`
-            })
-
-
-            data = data.toString()//将二进制流的data转换为字符串
-            data=data.replace(&#39;-.-&#39;, content)//简单字符串解析替换操作，将template中替换的区域-.-（特殊标记）用content代替
-            res.end(data)//发送响应数据
-        })
-    })
-})
-
-server.listen(4001, function () {
-    console.log(&#39;服务器，琦动！&#39;)
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> server = http.createServer()</span><br><span class="line"><span class="keyword">var</span> wwwDir = <span class="string">'F:/www'</span></span><br><span class="line"></span><br><span class="line">server.on(<span class="string">'request'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    fs.readFile(<span class="string">'./template.html'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;<span class="comment">//获得模板template.html</span></span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'找不到文件......请重试'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        fs.readdir(wwwDir, <span class="function"><span class="keyword">function</span> (<span class="params">err, files</span>) </span>&#123;<span class="comment">//得到wwwDir的目录列表中的文件名和目录名</span></span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">console</span>.log(<span class="string">'读取目录失败'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">console</span>.log(files)<span class="comment">//files是一个字符数组，元素为目录中的文件名</span></span><br><span class="line">            <span class="keyword">var</span> content = <span class="string">''</span><span class="comment">//将模板中要替换的部分构建为content</span></span><br><span class="line">            files.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;<span class="comment">//利用forEach，取出files数组的每个元素（item），进行渲染$&#123;item&#125;替换</span></span><br><span class="line">                content += <span class="string">`&lt;tr&gt;&lt;td data-value="新建 Microsoft Word 文档.docx"&gt;&lt;a class="icon file" draggable="true" href="/F:/www/%E6%96%B0%E5%BB%BA%20Microsoft%20Word%20%E6%96%87%E6%A1%A3.docx"&gt;<span class="subst">$&#123;item&#125;</span>&lt;/a&gt;&lt;/td&gt;</span></span><br><span class="line"><span class="string">                                &lt;td class="detailsColumn" data-value="0"&gt;0 B&lt;/td&gt;</span></span><br><span class="line"><span class="string">                                &lt;td class="detailsColumn" data-value="1612679895"&gt;2021/2/7 下午2:38:15&lt;/td&gt;</span></span><br><span class="line"><span class="string">                            &lt;/tr&gt;`</span></span><br><span class="line">            &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            data = data.toString()<span class="comment">//将二进制流的data转换为字符串</span></span><br><span class="line">            data=data.replace(<span class="string">'-.-'</span>, content)<span class="comment">//简单字符串解析替换操作，将template中替换的区域-.-（特殊标记）用content代替</span></span><br><span class="line">            res.end(data)<span class="comment">//发送响应数据</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">4001</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务器，琦动！'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>结果截图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/Apache.png" alt></p>
 <h2 id="小案例二：art-template"><a href="#小案例二：art-template" class="headerlink" title="小案例二：art-template"></a>小案例二：art-template</h2><p>需要一个用于<strong><em>储存模板的htm</em>l</strong>和一个<strong><em>js文件</em></strong></p>
 <p>html模板:</p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;This is Frank&lt;/title&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-&lt;p&gt;My name is {{ name }}.&lt;/p&gt;
-&lt;p&gt;I am {{ age }} years old.&lt;/p&gt;
-&lt;p&gt;I am from {{ province }}.&lt;/p&gt;
-&lt;p&gt;I like {{ each hobbies }} {{ $value }} {{/each}}&lt;/p&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code></pre>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>This is Frank<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>My name is &#123;&#123; name &#125;&#125;.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I am &#123;&#123; age &#125;&#125; years old.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I am from &#123;&#123; province &#125;&#125;.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>I like &#123;&#123; each hobbies &#125;&#125; &#123;&#123; $value &#125;&#125; &#123;&#123;/each&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>如果没有art-template，运行结果如下：</p>
 <p><img src="http://r.photo.store.qq.com/psc?/V53IelwN4WhBA02YDe1a34IokT47iUtd/45NBuzDIW489QBoVep5mcYRGQ6MX9QLt.ZabGPiEYi15Ba0otCJVhzv*bdCntYBvAuXm*D.3zucSdafP*BeQ.C8f*TXyYFvFk9yAYOpFRqM!/r" alt></p>
 <p>加了art-template后：</p>
-<pre><code class="javascript">var fs=require(&#39;fs&#39;)
-var http=require(&#39;http&#39;)
-var template=require(&#39;art-template&#39;)
-http
-    .createServer(function(req,res){
-        var url=req.url
-        if(url===&#39;/&#39;){
-            fs.readFile(&#39;./Frank.html&#39;,function(err,data){
-                if(err){
-                    return res.end(&#39;你访问的网址不存在噢&#39;)
-                }
-                data=data.toString()
-                var Frank=template.render(data,{
-                    name:&#39;Frank&#39;,
-                    age:20,
-                    province:&#39;ChongQing&#39;,
-                    hobbies:[&#39;打篮球&#39;,&#39;写博客&#39;,&#39;吹水&#39;]
-                })
-                res.end(data)
-            })
-        }
-
-    })
-.listen(3000,function(){
-    console.log(&#39;琦动！&#39;)
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs=<span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>)</span><br><span class="line"><span class="keyword">var</span> template=<span class="built_in">require</span>(<span class="string">'art-template'</span>)</span><br><span class="line">http</span><br><span class="line">    .createServer(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> url=req.url</span><br><span class="line">        <span class="keyword">if</span>(url===<span class="string">'/'</span>)&#123;</span><br><span class="line">            fs.readFile(<span class="string">'./Frank.html'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(err)&#123;</span><br><span class="line">                    <span class="keyword">return</span> res.end(<span class="string">'你访问的网址不存在噢'</span>)</span><br><span class="line">                &#125;</span><br><span class="line">                data=data.toString()</span><br><span class="line">                <span class="keyword">var</span> Frank=template.render(data,&#123;</span><br><span class="line">                    name:<span class="string">'Frank'</span>,</span><br><span class="line">                    age:<span class="number">20</span>,</span><br><span class="line">                    province:<span class="string">'ChongQing'</span>,</span><br><span class="line">                    hobbies:[<span class="string">'打篮球'</span>,<span class="string">'写博客'</span>,<span class="string">'吹水'</span>]</span><br><span class="line">                &#125;)</span><br><span class="line">                res.end(data)</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">.listen(<span class="number">3000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'琦动！'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/aboutFrank.png" alt></p>
 <p>由此可见，art-template只关注中的值，不会去关心html中的格式。因此可以理解为<strong><em><span style="color:red;font-size:35px">js数据传到html中展示出来</span></em></strong></p>
 <h1 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h1><h2 id="Node中的模块系统"><a href="#Node中的模块系统" class="headerlink" title="Node中的模块系统"></a>Node中的模块系统</h2><h3 id="模块の定义："><a href="#模块の定义：" class="headerlink" title="模块の定义："></a>模块の定义：</h3><p> node应用由模块组成，采用的commonjs模块规范。每一个文件就是一个模块，拥有自己独立的作用域，变量，以及方法等，对其他的模块都不可见。CommonJS规范规定，每个模块内部，module变量代表当前模块。这个变量是一个对象，它的exports属性（即module.exports）是对外的接口。加载某个模块，其实是加载该模块的module.exports属性。require方法用于加载模块。</p>
@@ -654,8 +544,7 @@ http
 <li>使用exports接口对象来导出模块中的成员</li>
 </ul>
 <h4 id="加载require"><a href="#加载require" class="headerlink" title="加载require"></a>加载require</h4><p>操作：</p>
-<pre><code class="javascript">var 自定义变量名称=require(&#39;模块&#39;)
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> 自定义变量名称=<span class="built_in">require</span>(<span class="string">'模块'</span>)</span><br></pre></td></tr></table></figure>
 <p>两个作用：</p>
 <ul>
 <li><p>执行被加载模块中的代码</p>
@@ -668,32 +557,14 @@ http
 <li>如果我们想要访问其他模块的成员，可以把这些成员加载到<code>exports</code>上去</li>
 </ul>
 <p>导出多个成员：</p>
-<pre><code class="javascript">exports.demo=foo
-exports.test=&#39;233&#39;
-exports.fun=function(){
-    xxxxxxxxxxxxx
-}
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exports.demo=foo</span><br><span class="line">exports.test=<span class="string">'233'</span></span><br><span class="line">exports.fun=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    xxxxxxxxxxxxx</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>也可以这样导出多个成员：</p>
-<pre><code class="javascript">module.exports={
-    add: function(){
-    return xxxxxxx
-    },
-    foo:&#39;123&#39;
-}
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports=&#123;</span><br><span class="line">	add: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> xxxxxxx</span><br><span class="line">	&#125;,</span><br><span class="line">	foo:<span class="string">'123'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>导出单个成员（指定的）：</p>
-<pre><code class="javascript">module.exports=&#39;666&#39;
-module.exports=function(){
-
-}
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports=<span class="string">'666'</span></span><br><span class="line"><span class="built_in">module</span>.exports=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：<strong>在使用module.exports时，后一个的会覆盖前一个的module.exports</strong></p>
 <h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在底层代码中：<strong><span style="color:red;font-size:35px">exports是module.exports的一个引用—&gt;exports=module.exports</span></strong></p>
-<pre><code class="javascript">console.log(exports===module.exports)//会返回true
-exports.foo=&#39;666&#39;
-module.exports.foo=&#39;666&#39;//等价
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(exports===<span class="built_in">module</span>.exports)<span class="comment">//会返回true</span></span><br><span class="line">exports.foo=<span class="string">'666'</span></span><br><span class="line"><span class="built_in">module</span>.exports.foo=<span class="string">'666'</span><span class="comment">//等价</span></span><br></pre></td></tr></table></figure>
 <h3 id="require方法加载规则"><a href="#require方法加载规则" class="headerlink" title="require方法加载规则"></a>require方法加载规则</h3><ul>
 <li><p>核心模块</p>
 <ul>
@@ -727,142 +598,65 @@ module.exports.foo=&#39;666&#39;//等价
 <li><p>命令行工具</p>
 </li>
 </ul>
-<pre><code class="shell">npm install --global npm//更新命令
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global npm//更新命令</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>常用命令</p>
 <ul>
-<li><pre><code class="shell">npm init -y//快速生成package.json文件
-</code></pre>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init -y//快速生成package.json文件</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="shell">npm install
-</code></pre>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code>npm install 包名//下载指定包
-</code></pre></li>
-<li><pre><code class="shell">npm install --save 包名//下载指定包并保存到package.json的dependencies中
-</code></pre>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install 包名//下载指定包</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="shell">npm uninstall 包名
-</code></pre>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save 包名//下载指定包并保存到package.json的dependencies中</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="shell">npm help//查看使用帮助
-</code></pre>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall 包名</span><br></pre></td></tr></table></figure>
 </li>
-<li><pre><code class="shell">npm 命令 --help//查看指定命令的使用帮助
-</code></pre>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm help//查看使用帮助</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm 命令 --help//查看指定命令的使用帮助</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>如何解决npm被墙的问题</p>
 <ul>
 <li><p>安装淘宝的cnpm：</p>
-<pre><code>npm install --global cnpm//--global表示安装到全局，不能省略。以后就能用cnpm代替npm了
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global cnpm//--global表示安装到全局，不能省略。以后就能用cnpm代替npm了</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>如果不想安装cnpm但是又想用淘宝的服务器下载，可以通过:</p>
-<pre><code>npm config set registry https://registry.npm.taobao.org//默认使用淘宝服务器下载
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org//默认使用淘宝服务器下载</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h2><p>一种Web开发框架</p>
-<pre><code>npm install express --save//安装express
-</code></pre><p>拿到框架的第一步当然是Hello World！</p>
-<pre><code class="javascript">var express=require(&#39;express&#39;)
-var app=express()//相当于以前的server对象
-
-app.listen(3000,function(){
-    console.log(&#39;服务器，琦动&#39;)
-})
-
-app.get(&#39;/&#39;,function(req,res){//以get方法请求&#39;/&#39;，并执行对应的处理函数
-    res.send(&#39;Hello World!&#39;)
-})
-</code></pre>
-<h3 id="静态服务（静态-资源获取）"><a href="#静态服务（静态-资源获取）" class="headerlink" title="静态服务（静态 资源获取）"></a>静态服务（静态 资源获取）</h3><pre><code class="javascript">// 开放静态资源
-// 1.当以/public/开头的时候，去./public/目录中找对应资源
-// 访问：http://127.0.0.1:3000/public/login.html
-app.use(&#39;/public/&#39;,express.static(&#39;./public/&#39;)); 
-
-// 2.当省略第一个参数的时候，可以通过省略/public的方式来访问
-// 访问：http://127.0.0.1:3000/login.html
-// app.use(express.static(&#39;./public/&#39;));   
-
-// 3.访问：http://127.0.0.1:3000/a/login.html
-// a相当于public的别名
-// app.use(&#39;/a/&#39;,express.static(&#39;./public/&#39;)); 
-</code></pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express --save//安装express</span><br></pre></td></tr></table></figure>
+<p>拿到框架的第一步当然是Hello World！</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="keyword">var</span> app=express()<span class="comment">//相当于以前的server对象</span></span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">3000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务器，琦动'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;<span class="comment">//以get方法请求'/'，并执行对应的处理函数</span></span><br><span class="line">    res.send(<span class="string">'Hello World!'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="静态服务（静态-资源获取）"><a href="#静态服务（静态-资源获取）" class="headerlink" title="静态服务（静态 资源获取）"></a>静态服务（静态 资源获取）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开放静态资源</span></span><br><span class="line"><span class="comment">// 1.当以/public/开头的时候，去./public/目录中找对应资源</span></span><br><span class="line"><span class="comment">// 访问：http://127.0.0.1:3000/public/login.html</span></span><br><span class="line">app.use(<span class="string">'/public/'</span>,express.static(<span class="string">'./public/'</span>)); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.当省略第一个参数的时候，可以通过省略/public的方式来访问</span></span><br><span class="line"><span class="comment">// 访问：http://127.0.0.1:3000/login.html</span></span><br><span class="line"><span class="comment">// app.use(express.static('./public/'));   </span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.访问：http://127.0.0.1:3000/a/login.html</span></span><br><span class="line"><span class="comment">// a相当于public的别名</span></span><br><span class="line"><span class="comment">// app.use('/a/',express.static('./public/'));</span></span><br></pre></td></tr></table></figure>
 <h3 id="在Express中获取表单请求数据"><a href="#在Express中获取表单请求数据" class="headerlink" title="在Express中获取表单请求数据"></a>在Express中获取表单请求数据</h3><h6 id="获取get请求数据："><a href="#获取get请求数据：" class="headerlink" title="获取get请求数据："></a>获取get请求数据：</h6><p>Express内置了一个api，可以直接通过<code>req.query</code>来获取数据</p>
-<pre><code class="javascript">// 通过requery方法获取用户输入的数据
-// req.query只能拿到get请求的数据
- var comment = req.query;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过requery方法获取用户输入的数据</span></span><br><span class="line"><span class="comment">// req.query只能拿到get请求的数据</span></span><br><span class="line"> <span class="keyword">var</span> comment = req.query;</span><br></pre></td></tr></table></figure>
 <h6 id="获取post请求数据："><a href="#获取post请求数据：" class="headerlink" title="获取post请求数据："></a>获取post请求数据：</h6><p>在Express中没有内置获取表单post请求体的api，这里我们需要使用一个第三方包<code>body-parser</code>来获取数据。</p>
 <p>安装：</p>
-<pre><code class="javascript">npm install --save body-parser;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save body-parser;</span><br></pre></td></tr></table></figure>
 <p>配置：</p>
 <p>// 配置解析表单 POST 请求体插件（注意：一定要在 app.use(router) 之前 ）</p>
-<pre><code class="javascript">var express = require(&#39;express&#39;)
-// 引包
-var bodyParser = require(&#39;body-parser&#39;)
-
-var app = express()
-
-// 配置body-parser
-// 只要加入这个配置，则在req请求对象上会多出来一个属性：body
-// 也就是说可以直接通过req.body来获取表单post请求数据
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
-app.use(bodyParser.json())
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="comment">// 引包</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置body-parser</span></span><br><span class="line"><span class="comment">// 只要加入这个配置，则在req请求对象上会多出来一个属性：body</span></span><br><span class="line"><span class="comment">// 也就是说可以直接通过req.body来获取表单post请求数据</span></span><br><span class="line"><span class="comment">// parse application/x-www-form-urlencoded</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">// parse application/json</span></span><br><span class="line">app.use(bodyParser.json())</span><br></pre></td></tr></table></figure>
 <p>使用：</p>
-<pre><code class="javascript">app.use(function (req, res) {
-  res.setHeader(&#39;Content-Type&#39;, &#39;text/plain&#39;)
-  res.write(&#39;you posted:\n&#39;)
-  // 可以通过req.body来获取表单请求数据
-  res.end(JSON.stringify(req.body, null, 2))
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">  res.setHeader(<span class="string">'Content-Type'</span>, <span class="string">'text/plain'</span>)</span><br><span class="line">  res.write(<span class="string">'you posted:\n'</span>)</span><br><span class="line">  <span class="comment">// 可以通过req.body来获取表单请求数据</span></span><br><span class="line">  res.end(<span class="built_in">JSON</span>.stringify(req.body, <span class="literal">null</span>, <span class="number">2</span>))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h3 id="在express中配合和使用art-template"><a href="#在express中配合和使用art-template" class="headerlink" title="在express中配合和使用art-template"></a>在express中配合和使用<code>art-template</code></h3><p>安装：</p>
-<pre><code class="shell">npm install --svae art-template
-npm install --save express-art-template
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install --svae art-template</span><br><span class="line">npm install --save express-art-template</span><br></pre></td></tr></table></figure>
 <p>配置：</p>
-<pre><code class="javascript">app.engine(&#39;html&#39;,require(&#39;express-art-template&#39;))//第一个参数表示渲染以art结尾的文件
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.engine(<span class="string">'html'</span>,<span class="built_in">require</span>(<span class="string">'express-art-template'</span>))<span class="comment">//第一个参数表示渲染以art结尾的文件</span></span><br></pre></td></tr></table></figure>
 <p>使用：</p>
-<pre><code class="javascript">app.get(&#39;/&#39;,function(req,res){
-    //express默认会从项目的views目录去寻找index.html
-    res.render(&#39;index.html&#39;,{
-        title:&#39;hello world&#39;
-    })
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//express默认会从项目的views目录去寻找index.html</span></span><br><span class="line">    res.render(<span class="string">'index.html'</span>,&#123;</span><br><span class="line">        title:<span class="string">'hello world'</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>如果希望修改视图渲染的目录（原本是views），可：</p>
-<pre><code class="javascript">app.set(&#39;views&#39;,目录路径)
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.set(<span class="string">'views'</span>,目录路径)</span><br></pre></td></tr></table></figure>
 <h3 id="CRUD-待更…"><a href="#CRUD-待更…" class="headerlink" title="CRUD(待更…)"></a>CRUD(待更…)</h3><h1 id="其他项"><a href="#其他项" class="headerlink" title="其他项"></a>其他项</h1><h2 id="①修改完代码自动重启"><a href="#①修改完代码自动重启" class="headerlink" title="①修改完代码自动重启"></a>①修改完代码自动重启</h2><p>以前每次修改完代码都要傻乎乎地去<code>node xxx.js</code>现在有了nodemon这一个第三方命令行工具，就能解决这一问题。</p>
 <p>安装方法，懂得都懂</p>
-<pre><code class="shell">npm install nodemon --global
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install nodemon --global</span><br></pre></td></tr></table></figure>
 <h2 id="②封装异步API"><a href="#②封装异步API" class="headerlink" title="②封装异步API"></a>②封装异步API</h2><p>回调函数：获取异步操作的结果</p>
-<pre><code class="javascript">function fn(callback){
-    // var callback = funtion(data){ console.log(data); }
-    setTimeout(function(){
-        var data = &#39;hello&#39;;
-        callback(data);
-    },1000);
-}
-// 如果需要获取一个函数中异步操作的结果，则必须通过回调函数的方式来获取
-fn(function(data){
-    console.log(data);
-})
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// var callback = funtion(data)&#123; console.log(data); &#125;</span></span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="string">'hello'</span>;</span><br><span class="line">        callback(data);</span><br><span class="line">    &#125;,<span class="number">1000</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果需要获取一个函数中异步操作的结果，则必须通过回调函数的方式来获取</span></span><br><span class="line">fn(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <h2 id="③关于json文件格式の坑"><a href="#③关于json文件格式の坑" class="headerlink" title="③关于json文件格式の坑"></a>③关于json文件格式の坑</h2><p>json文件格式要求极其严格，比如</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/err_json.png" alt></p>
 <p>致命错误在：id为5的一行<strong><em>末尾的逗号</em></strong>，一定要去掉！！！<strong><em><span style="color:red;font-size:30px">结尾</span></em></strong>的一个花括号不能有逗号（就这个错误折磨了我半个小时……）</p>
@@ -923,145 +717,10 @@ fn(function(data){
 </tbody>
 </table>
 <h2 id="提取路由模块"><a href="#提取路由模块" class="headerlink" title="提取路由模块"></a>提取路由模块</h2><p>router.js:</p>
-<pre><code class="javascript">/**
-* router.js路由模块
-* 职责：
-*      处理路由
-*      根据不同的请求方法+请求路径设置具体的请求函数
-* 模块职责要单一，我们划分模块的目的就是增强代码的可维护性，提升开发效率
-*/
-var fs = require(&#39;fs&#39;);
-
-// Express专门提供了一种更好的方式
-// 专门用来提供路由的
-var express = require(&#39;express&#39;);
-// 1 创建一个路由容器
-var router = express.Router();
-// 2 把路由都挂载到路由容器中
-
-var Students=require(&#39;./student&#39;)
-
-router.get(&#39;/students&#39;, function(req, res) {
-    // res.send(&#39;hello world&#39;);
-    // readFile的第二个参数是可选的，传入utf8就是告诉他把读取到的文件直接按照utf8编码，直接转成我们认识的字符
-    // 除了这样来转换，也可以通过data.toString（）来转换
-        Students.find(function(err,students){
-            if (err) {
-                return res.status(500).send(&#39;Server error.&#39;)
-            }
-
-            res.render(&#39;index.html&#39;,{students:students})
-        })
-
-});
-router.get(&#39;/students/new&#39;,function(req,res){
-    res.render(&#39;new.html&#39;)
-});
-
-router.post(&#39;/students/new&#39;,function(req,res){
-    //获取表单数据
-    console.log(JSON.stringify(req.body))
-    //处理数据
-    //将数据写入json文件
-    //发送响应
-    //读取json文件并转换为对象--&gt;在对象中添加数据--&gt;将对象转换为字符串--&gt;将字符串写入json文件
-    Students.save(req.body,function (err){
-        if(err){
-            return res.status(500).send(&#39;Server error.&#39;)
-        }
-        res.redirect(&#39;/&#39;)
-    })
-});
-
-
-router.get(&#39;/students/edit&#39;,function(req,res){
-
-});
-
-router.post(&#39;/students/edit&#39;,function(req,res){
-
-});
-
-router.get(&#39;/students/delete&#39;,function(req,res){
-
-});
-
-// 3 把router导出
-module.exports = router;
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* router.js路由模块</span></span><br><span class="line"><span class="comment">* 职责：</span></span><br><span class="line"><span class="comment">*      处理路由</span></span><br><span class="line"><span class="comment">*      根据不同的请求方法+请求路径设置具体的请求函数</span></span><br><span class="line"><span class="comment">* 模块职责要单一，我们划分模块的目的就是增强代码的可维护性，提升开发效率</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Express专门提供了一种更好的方式</span></span><br><span class="line"><span class="comment">// 专门用来提供路由的</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="comment">// 1 创建一个路由容器</span></span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"><span class="comment">// 2 把路由都挂载到路由容器中</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Students=<span class="built_in">require</span>(<span class="string">'./student'</span>)</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/students'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// res.send('hello world');</span></span><br><span class="line">    <span class="comment">// readFile的第二个参数是可选的，传入utf8就是告诉他把读取到的文件直接按照utf8编码，直接转成我们认识的字符</span></span><br><span class="line">    <span class="comment">// 除了这样来转换，也可以通过data.toString（）来转换</span></span><br><span class="line">        Students.find(<span class="function"><span class="keyword">function</span>(<span class="params">err,students</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="keyword">return</span> res.status(<span class="number">500</span>).send(<span class="string">'Server error.'</span>)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            res.render(<span class="string">'index.html'</span>,&#123;<span class="attr">students</span>:students&#125;)</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">router.get(<span class="string">'/students/new'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    res.render(<span class="string">'new.html'</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/students/new'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取表单数据</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">JSON</span>.stringify(req.body))</span><br><span class="line">    <span class="comment">//处理数据</span></span><br><span class="line">    <span class="comment">//将数据写入json文件</span></span><br><span class="line">    <span class="comment">//发送响应</span></span><br><span class="line">    <span class="comment">//读取json文件并转换为对象--&gt;在对象中添加数据--&gt;将对象转换为字符串--&gt;将字符串写入json文件</span></span><br><span class="line">    Students.save(req.body,<span class="function"><span class="keyword">function</span> (<span class="params">err</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="keyword">return</span> res.status(<span class="number">500</span>).send(<span class="string">'Server error.'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        res.redirect(<span class="string">'/'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/students/edit'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/students/edit'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/students/delete'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3 把router导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
 <p>app.js:</p>
-<pre><code class="javascript">var router = require(&#39;./router&#39;);
-
-// router(app);
-// 把路由容器挂载到app服务中
-// 挂载路由
-app.use(router);
-</code></pre>
-<h2 id="数据操作文件模块"><a href="#数据操作文件模块" class="headerlink" title="数据操作文件模块"></a>数据操作文件模块</h2><pre><code class="javascript">/**
- * student.js
- * 数据操作文件模块
- * 职责：操作文件中的数据，只处理数据，不关心业务
- */
-var fs = require(&#39;fs&#39;);
-var dbPath = &#39;./db.json&#39;
-/**
- * 获取所有学生列表
- * return []
- */
-exports.find = function (callback) {
-    fs.readFile(dbPath, &#39;utf8&#39;, function (err, data) {
-        if (err) {
-            return callback(err)
-        }
-        callback(null, JSON.parse(data).students)
-    })
-}
-
-
-/**
- * 获取添加保存学生
- */
-exports.save = function (student, callback) {
-    fs.readFile(dbPath, &#39;utf8&#39;, function (err, data) {
-        if (err) {
-            return callback(err)
-        }
-        //将json字符串转换为数组对象
-        var students = JSON.parse(data).students
-        //将对象保存到数组对象中
-       if (students.length==0) {
-            student.id =1
-        }
-        else{
-            student.id=students[students.length-1].id+1
-        }
-        students.push(student)
-        //将数组对象转换为json文件（字符串）
-        var newData = JSON.stringify({students: students})
-        //字符串写入到文件中
-        fs.writeFile(dbPath, newData, function (err) {
-            if (err) {
-                return callback(err)
-            }
-            callback(null)
-        })
-    })
-}
-
-/**
- * 更新学生
- */
-exports.update = function () {
-
-}
-
-/**
- * 删除学生
- */
-exports.delete = function () {
-
-}
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="built_in">require</span>(<span class="string">'./router'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// router(app);</span></span><br><span class="line"><span class="comment">// 把路由容器挂载到app服务中</span></span><br><span class="line"><span class="comment">// 挂载路由</span></span><br><span class="line">app.use(router);</span><br></pre></td></tr></table></figure>
+<h2 id="数据操作文件模块"><a href="#数据操作文件模块" class="headerlink" title="数据操作文件模块"></a>数据操作文件模块</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * student.js</span></span><br><span class="line"><span class="comment"> * 数据操作文件模块</span></span><br><span class="line"><span class="comment"> * 职责：操作文件中的数据，只处理数据，不关心业务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">var</span> dbPath = <span class="string">'./db.json'</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取所有学生列表</span></span><br><span class="line"><span class="comment"> * return []</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">exports.find = <span class="function"><span class="keyword">function</span> (<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    fs.readFile(dbPath, <span class="string">'utf8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="keyword">return</span> callback(err)</span><br><span class="line">        &#125;</span><br><span class="line">        callback(<span class="literal">null</span>, <span class="built_in">JSON</span>.parse(data).students)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取添加保存学生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">exports.save = <span class="function"><span class="keyword">function</span> (<span class="params">student, callback</span>) </span>&#123;</span><br><span class="line">    fs.readFile(dbPath, <span class="string">'utf8'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="keyword">return</span> callback(err)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将json字符串转换为数组对象</span></span><br><span class="line">        <span class="keyword">var</span> students = <span class="built_in">JSON</span>.parse(data).students</span><br><span class="line">        <span class="comment">//将对象保存到数组对象中</span></span><br><span class="line">       <span class="keyword">if</span> (students.length==<span class="number">0</span>) &#123;</span><br><span class="line">            student.id =<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            student.id=students[students.length<span class="number">-1</span>].id+<span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        students.push(student)</span><br><span class="line">        <span class="comment">//将数组对象转换为json文件（字符串）</span></span><br><span class="line">        <span class="keyword">var</span> newData = <span class="built_in">JSON</span>.stringify(&#123;<span class="attr">students</span>: students&#125;)</span><br><span class="line">        <span class="comment">//字符串写入到文件中</span></span><br><span class="line">        fs.writeFile(dbPath, newData, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="keyword">return</span> callback(err)</span><br><span class="line">            &#125;</span><br><span class="line">            callback(<span class="literal">null</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 更新学生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">exports.update = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 删除学生</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">exports.delete = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>成功插入数据の截图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/Node_img/add_students.png" alt></p>
 <p>点击submit，成功重定向回主页并渲染完成の截图</p>
@@ -1501,31 +1160,7 @@ $(document).ready(function() {
     })
   });
 </script>
-
-<script language="Javascript">
-    //PC端 使右键和复制失效
-    document.oncontextmenu = new Function("event.returnValue=false");
-    document.onselectstart = new Function("event.returnValue=false");
-
-    //ios
-    document.oncontextmenu = function (e) {
-        e.preventDefault();
-    };
-    document.onselectstart = function (e) {
-        e.preventDefault();
-    };
-    //安卓
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    });
-    document.ontouchend = function () {
-        throw new Error("NO ERRPR:禁止长按弹出");
-    }
-</script>
-
-
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
-
 <noscript><iframe src="/blog/*>";</iframe></noscript>
 <script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
 
@@ -1535,7 +1170,6 @@ $(document).ready(function() {
 <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
-
 
 
 </html>

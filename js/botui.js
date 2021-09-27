@@ -26,19 +26,19 @@ function bot_ui_ini() {
     }).then(function () {
         botui.message.add({
             delay: 1100,
-            content: "My name is Fran."
+            content: "这里是 Mashiro"
         }).then(function () {
             botui.message.add({
                 delay: 1100,
-                content: "性别男，爱好女"
+                content: "一个可爱的蓝孩子~"
             }).then(function () {
                 botui.action.button({
                     delay: 1600,
                     action: [{
-                        text: "嗯，然后呢？ 😃",
+                        text: "然后呢？ 😃",
                         value: "sure"
                     }, {
-                        text: "害搁这说废话呢！ 🙄",
+                        text: "少废话！ 🙄",
                         value: "skip"
                     }]
                 }).then(function (a) {
@@ -65,32 +65,32 @@ function bot_ui_ini() {
         secondpart = function () {
             botui.message.add({
                 delay: 1500,
-                content: "现在是一名来自广金软件工程专业的大二学生"
+                content: "目前就读于上海财经大学"
             }).then(function () {
                 botui.message.add({
                     delay: 1500,
-                    content: "在一个月黑风高的晚上"
+                    content: "向往技术却误入商科，但后来喜欢上了经济学…"
                 }).then(function () {
                     botui.message.add({
                         delay: 1200,
-                        content: "偶尔会突发奇想"
+                        content: "因为数据分析也需要Coder嘛"
                     }).then(function () {
                         botui.message.add({
                             delay: 1500,
-                            content: "Why can't I build a blog of my own"
+                            content: "主攻 R 语言和 Python，略懂 STATA，偶尔也折腾 HTML/CSS/JavaScript/PHP"
                         }).then(function () {
                             botui.message.add({
                                 delay: 1500,
-                                content: "于是乎，我开始疯狂地搜索资料和文件，开始搭建属于我的小小blog"
+                                content: "研究的方向，是经济/金融方向的数据分析（data science）以及机器学习（machine learning）"
                             }).then(function () {
                                 botui.message.add({
                                     delay: 1800,
-                                    content: "经过几天的“折磨”,然后就 快进到 我和你聊天的环节啦"
+                                    content: "喜欢画画，希望有一天能够被称为画师"
                                 }).then(function () {
                                     botui.action.button({
                                         delay: 1100,
                                         action: [{
-                                            text: "你的英文名为啥叫Frank呢？ 🤔",
+                                            text: "为什么叫Mashiro呢？ 🤔",
                                             value: "why-mashiro"
                                         }]
                                     }).then(function (a) {
@@ -106,12 +106,12 @@ function bot_ui_ini() {
         thirdpart = function () {
             botui.message.add({
                 delay: 1E3,
-                content: "Frank is my first and last English name. （this name have accompanied with me for 11 years.）this really means a lot to meI suppose that I won't change it anymore. Here the secrets come. Secret 1:The capital letter of Frank is F,which is similar to my family name Fu. Secret 2:the meaning of frank in English is refer to honest and straight. And we have a phrase called To be frank. I wanna be a guy like that. "
+                content: "Mashiro以及站名都来自一部动画，因为和主角有一样的爱好~ 如果有兴趣可以找找首页上的视频~"
             }).then(function () {
                 botui.action.button({
                     delay: 1500,
                     action: [{
-                        text: "那kitholt又是啥意思哇，没见过这个英文名诶？ 🤔",
+                        text: "为什么是白猫呢？ 🤔",
                         value: "why-cat"
                     }]
                 }).then(function (a) {
@@ -122,11 +122,32 @@ function bot_ui_ini() {
         fourthpart = function () {
             botui.message.add({
                 delay: 1E3,
-                content: "哈哈哈，你用白话读一下就知道啥意思了哈哈哈哈，白话读出来我的名（杰豪）的音"
+                content: "因为对GitHub有种执念… "
+            }).then(function () {
+                botui.message.add({
+                    delay: 1100,
+                    content: "而且我真的是猫控！"
+                }).then(function () {
+                    botui.action.button({
+                        delay: 1500,
+                        action: [{
+                            text: "域名有什么含意吗？(ง •_•)ง",
+                            value: "why-domain"
+                        }]
+                    }).then(function (a) {
+                        fifthpart()
+                    })
+                })
+            })
+        },
+        fifthpart = function () {
+            botui.message.add({
+                delay: 1E3,
+                content: "emmmm，看备案信息你就知道了=.= 本来想要zheng.xin的，但50万真买不起。。"
             }).then(function () {
                 botui.message.add({
                     delay: 1600,
-                    content: "那现在，仔细看看我的博客呗？，顺便资瓷一下我呗（bushi）（疯狂暗示.jpg）"
+                    content: "那么，仔细看看我的博客吧？ ^_^"
                 })
             })
         } 
