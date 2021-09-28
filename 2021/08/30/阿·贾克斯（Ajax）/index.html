@@ -349,7 +349,8 @@
 </ul>
 <h2 id="发送相关请求"><a href="#发送相关请求" class="headerlink" title="发送相关请求"></a>发送相关请求</h2><p>GET、POST……</p>
 <h2 id="设置相关参数"><a href="#设置相关参数" class="headerlink" title="设置相关参数"></a>设置相关参数</h2><p>setRequestHeader();</p>
-<h2 id="服务端响应JSON数据"><a href="#服务端响应JSON数据" class="headerlink" title="服务端响应JSON数据"></a>服务端响应JSON数据</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">XMLHttpRequest.responseType = <span class="string">'json'</span>;<span class="comment">//将响应体的信息指定为json</span></span><br></pre></td></tr></table></figure>
+<h2 id="服务端响应JSON数据"><a href="#服务端响应JSON数据" class="headerlink" title="服务端响应JSON数据"></a>服务端响应JSON数据</h2><pre><code class="javascript">XMLHttpRequest.responseType = &#39;json&#39;;//将响应体的信息指定为json
+</code></pre>
 <h2 id="请求超时与网络异常处理"><a href="#请求超时与网络异常处理" class="headerlink" title="请求超时与网络异常处理"></a>请求超时与网络异常处理</h2><ol>
 <li>设置它请求超时的时间</li>
 </ol>
@@ -362,8 +363,16 @@
 <h2 id="取消请求"><a href="#取消请求" class="headerlink" title="取消请求"></a>取消请求</h2><p>要使用到它的一个方法：abort()</p>
 <h2 id="请求重复发送"><a href="#请求重复发送" class="headerlink" title="请求重复发送"></a>请求重复发送</h2><p>核心：需要一个标识变量（isSending）来标记请求是否正在发送</p>
 <p>部分代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isSending = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">if</span>(isSending)&#123;xhr.abort()&#125;;</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span>) &#123;</span><br><span class="line">                    <span class="built_in">document</span>.getElementById(<span class="string">"result"</span>).innerHTML = xhr.responseText;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="利用jQuery发送Ajax请求"><a href="#利用jQuery发送Ajax请求" class="headerlink" title="利用jQuery发送Ajax请求"></a>利用jQuery发送Ajax请求</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(url,[待发送的参数],[载入成功的回调函数],[设置响应体的类型]);</span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">let isSending = false;
+if(isSending){xhr.abort()};
+xhr.onreadystatechange = function(){
+                if (xhr.readyState == 4) {
+                    document.getElementById(&quot;result&quot;).innerHTML = xhr.responseText;
+                }
+            }
+</code></pre>
+<h2 id="利用jQuery发送Ajax请求"><a href="#利用jQuery发送Ajax请求" class="headerlink" title="利用jQuery发送Ajax请求"></a>利用jQuery发送Ajax请求</h2><pre><code class="javascript">$.get(url,[待发送的参数],[载入成功的回调函数],[设置响应体的类型]);
+</code></pre>
 <h2 id="同源策略（same-origin-policy）"><a href="#同源策略（same-origin-policy）" class="headerlink" title="同源策略（same-origin-policy）"></a>同源策略（same-origin-policy）</h2><p>是浏览器的安全策略</p>
 <p>同源：协议、域名、端口号必须完全相同</p>
 <h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>Jsonp(JSON with Padding) 是 json 的一种”使用模式”，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。</p>

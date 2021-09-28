@@ -349,12 +349,261 @@
 <li>对每一个字符进行霍夫曼编码，并得到一张编码表</li>
 <li>根据编码表，输入一个编码后能够对其进行解码并返回其所对应的字符</li>
 </ol>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="读取文本文件并统计各个字符的出现次数（权值）"><a href="#读取文本文件并统计各个字符的出现次数（权值）" class="headerlink" title="读取文本文件并统计各个字符的出现次数（权值）"></a>读取文本文件并统计各个字符的出现次数（权值）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> readtxt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadTxt</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 传入txt路径读取txt文件</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> txtPath</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 返回读取到的内容</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HashMap&lt;String, Integer&gt; <span class="title">readTxtAndCount</span><span class="params">(String txtPath)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(txtPath);</span><br><span class="line">        FileInputStream fileInputStream = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">        InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(fileInputStream);</span><br><span class="line">        BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(inputStreamReader);</span><br><span class="line"></span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">        String text = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span> ((text = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;<span class="comment">//按行读取字符串</span></span><br><span class="line">            sb.append(text);<span class="comment">//将每一行保存到StringBuffer缓冲里</span></span><br><span class="line">        &#125;</span><br><span class="line">        String txt = sb.toString();<span class="comment">//保存为字符串</span></span><br><span class="line">        <span class="keyword">char</span>[] TXT = txt.toCharArray();<span class="comment">//将字符串保存为字符数组</span></span><br><span class="line">        Map&lt;String, Integer&gt; m = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();<span class="comment">//创建哈希表（类似键值对），统计字符出现的次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : TXT) &#123;</span><br><span class="line">            String s = String.valueOf(c);<span class="comment">//取出一个字符</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span> != m.get(s)) &#123;<span class="comment">//若该字符不是第一次出现</span></span><br><span class="line">                <span class="keyword">int</span> count = m.get(s);<span class="comment">//取出之前出现的次数count</span></span><br><span class="line">                m.put(s, count + <span class="number">1</span>);<span class="comment">//+1</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                m.put(s, <span class="number">1</span>);<span class="comment">//若一次也没有出现，则置为1</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (HashMap&lt;String, Integer&gt;) m;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        HashMap&lt;String,Integer&gt; m=ReadTxt.readTxtAndCount(<span class="string">"U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="读取文本文件并统计各个字符的出现次数（权值）"><a href="#读取文本文件并统计各个字符的出现次数（权值）" class="headerlink" title="读取文本文件并统计各个字符的出现次数（权值）"></a>读取文本文件并统计各个字符的出现次数（权值）</h3><pre><code class="java">package readtxt;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ReadTxt {
+
+    /**
+     * 传入txt路径读取txt文件
+     *
+     * @param txtPath
+     * @return 返回读取到的内容
+     */
+    public static HashMap&lt;String, Integer&gt; readTxtAndCount(String txtPath) throws IOException {
+        File file = new File(txtPath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        StringBuffer sb = new StringBuffer();
+        String text = null;
+        while ((text = bufferedReader.readLine()) != null) {//按行读取字符串
+            sb.append(text);//将每一行保存到StringBuffer缓冲里
+        }
+        String txt = sb.toString();//保存为字符串
+        char[] TXT = txt.toCharArray();//将字符串保存为字符数组
+        Map&lt;String, Integer&gt; m = new HashMap&lt;String, Integer&gt;();//创建哈希表（类似键值对），统计字符出现的次数
+        for (char c : TXT) {
+            String s = String.valueOf(c);//取出一个字符
+            if (null != m.get(s)) {//若该字符不是第一次出现
+                int count = m.get(s);//取出之前出现的次数count
+                m.put(s, count + 1);//+1
+            } else {
+                m.put(s, 1);//若一次也没有出现，则置为1
+            }
+        }
+        return (HashMap&lt;String, Integer&gt;) m;
+    }
+
+    public static void main(String[] args) throws IOException {
+        HashMap&lt;String,Integer&gt; m=ReadTxt.readTxtAndCount(&quot;U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;);
+    }
+}
+
+</code></pre>
 <p><em>值得一提的是，哈希表yyds。它的作用类似Python里面的字典（键值对），字符:出现次数</em></p>
-<h3 id="创建节点类Node保存字符信息"><a href="#创建节点类Node保存字符信息" class="headerlink" title="创建节点类Node保存字符信息"></a>创建节点类Node保存字符信息</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> node;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Node</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">//字符</span></span><br><span class="line">    <span class="keyword">public</span> String sign;</span><br><span class="line">    <span class="comment">//每个叶子节点对应的哈夫曼编码</span></span><br><span class="line">    String code;</span><br><span class="line">    <span class="comment">//叶子节点的权重</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> weight;</span><br><span class="line">    <span class="comment">//非叶子节点的左右孩子</span></span><br><span class="line">    <span class="keyword">public</span> Node lchild;</span><br><span class="line">    <span class="keyword">public</span> Node rchild;</span><br><span class="line">    Node next;<span class="comment">//叶子节点的enxt，用于专门指向root，便于后续的解码操作</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(String sign, <span class="keyword">int</span> weight)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sign = sign;</span><br><span class="line">        <span class="keyword">this</span>.weight = weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> code;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Node o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.weight - o.weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Node&#123;"</span> +</span><br><span class="line">                <span class="string">"sign='"</span> + sign + <span class="string">'\''</span> +</span><br><span class="line">                <span class="string">", weight="</span> + weight +</span><br><span class="line">                <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">CodingByPreOrder</span><span class="params">(String code, Node root)</span> </span>&#123;<span class="comment">//先序遍历哈夫曼树</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.sign.equals(<span class="string">"非叶子节点"</span>) &amp;&amp; !<span class="keyword">this</span>.sign.equals(<span class="string">"根节点"</span>)) &#123;</span><br><span class="line">            <span class="keyword">this</span>.code = code;</span><br><span class="line">            System.out.println(<span class="keyword">this</span>.sign + <span class="string">"的哈夫曼编码"</span> + code);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.lchild != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.lchild.CodingByPreOrder(code += <span class="string">"0"</span>, root);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//StringBuilder能够替换原字符串的最后一个字符（仅仅是替换最后一个），不使用String的substring方法是因为这个方法会替换所有与替换字符相同的字符</span></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(code);<span class="comment">//回溯时，需要修改最后一个字符，将其置为空，下一次向右递归code的最后一个字符就会被置为1</span></span><br><span class="line">        <span class="comment">//replace(参数1，参数2，参数3)，参数1为要替换的开始位置，参数2为要替换的结束位置，参数3为替换内容,</span></span><br><span class="line">        code = sb.replace(code.length() - <span class="number">1</span>, code.length(), <span class="string">""</span>).toString();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.rchild != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">this</span>.rchild.CodingByPreOrder(code + <span class="string">"1"</span>, root);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将所有叶子节点的next都指向root节点，方便后续的解码操作</span></span><br><span class="line">        <span class="keyword">if</span> (!<span class="keyword">this</span>.sign.equals(<span class="string">"非叶子节点"</span>) &amp;&amp; !<span class="keyword">this</span>.sign.equals(<span class="string">"根节点"</span>)) &#123;</span><br><span class="line">            <span class="keyword">this</span>.next = root;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> root 霍夫曼树根节点</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> code 输入的一个编码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> index code的索引下标</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Decoding</span><span class="params">(Node root, String code, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        Node ROOT=root;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (index &lt; code.length()) &#123;<span class="comment">//遍历code的每一个字符（也就是那一串01...）</span></span><br><span class="line">            <span class="keyword">if</span> (code.charAt(index) == <span class="string">'0'</span>) &#123;</span><br><span class="line">                ROOT = ROOT.lchild;<span class="comment">//向左子树移动</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (code.charAt(index) == <span class="string">'1'</span>) &#123;</span><br><span class="line">                ROOT = ROOT.rchild;<span class="comment">//向右子树移动</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ROOT.next == root) &#123;<span class="comment">//如果到达叶子节点，也就是它的next指向了根节点</span></span><br><span class="line">                s.append(ROOT.sign);</span><br><span class="line">                ROOT=root;<span class="comment">//当解码出一个字符，需要将ROOT重置为root根节点，方便进行下一个字符的解码</span></span><br><span class="line">            &#125;</span><br><span class="line">            index++;<span class="comment">//索引后移</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ROOT==root)&#123;<span class="comment">//编码全部正确</span></span><br><span class="line">            System.out.println(code+ <span class="string">"解码后对应的字符为"</span> + s.toString());</span><br><span class="line">            <span class="keyword">return</span> s.toString();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!s.toString().equals(<span class="string">""</span>)&amp;&amp;ROOT.next==<span class="keyword">null</span>)&#123;<span class="comment">//部分编码正确的情况</span></span><br><span class="line">            System.out.println(<span class="string">"输入的编码部分有误，仅能解码出部分字符"</span>+s.toString()+<span class="string">"..."</span>);</span><br><span class="line">            <span class="keyword">return</span> s.toString();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;<span class="comment">//编码全部错误</span></span><br><span class="line">            System.out.println(<span class="string">"输入的编码完全错误，无法解码..."</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="利用得到的节点类构建霍夫曼树"><a href="#利用得到的节点类构建霍夫曼树" class="headerlink" title="利用得到的节点类构建霍夫曼树"></a>利用得到的节点类构建霍夫曼树</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> huffmantree;</span><br><span class="line"><span class="keyword">import</span> node.Node;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HuffmanTree</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    public static void main(String[] args) throws IOException &#123;</span></span><br><span class="line"><span class="comment">        Node root = createHuffmanTree(ReadTxt.readTxtAndCount("E:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt"));</span></span><br><span class="line"><span class="comment">        root.sign = "根节点";</span></span><br><span class="line"><span class="comment">        preOrder(root);</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//构建哈弗曼树</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Node <span class="title">createHuffmanTree</span><span class="params">(HashMap&lt;String, Integer&gt; arr)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//int count = 0;</span></span><br><span class="line">        List&lt;Node&gt; nodes = <span class="keyword">new</span> ArrayList&lt;Node&gt;();</span><br><span class="line">        <span class="comment">//将字符出现的次数作为权值value，并以此加入node节点中</span></span><br><span class="line">        <span class="keyword">for</span> (String key : arr.keySet()) &#123;</span><br><span class="line">            nodes.add(<span class="keyword">new</span> Node(key, arr.get(key)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//System.out.println(nodes);//打印所有节点（验证）</span></span><br><span class="line">        Collections.sort(nodes);<span class="comment">//将节点排序</span></span><br><span class="line">        System.out.println(<span class="string">"各个字符对应的权重："</span>);</span><br><span class="line">        System.out.println(<span class="string">"nodes ="</span> + nodes);</span><br><span class="line">        <span class="keyword">while</span> (nodes.size() &gt; <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">//取出根节点权值最小的兩顆二叉树</span></span><br><span class="line">            <span class="comment">//取出权值最小的结点（二叉树）</span></span><br><span class="line">            Node leftNode = nodes.get(<span class="number">0</span>);</span><br><span class="line">            <span class="comment">//取出权值第二小的结点（二叉树）</span></span><br><span class="line">            Node rightNode = nodes.get(<span class="number">1</span>);</span><br><span class="line">            <span class="comment">//构建一棵新的二叉树</span></span><br><span class="line">            Node parent = <span class="keyword">new</span> Node(<span class="string">"非叶子节点"</span>, leftNode.weight + rightNode.weight);</span><br><span class="line">            parent.lchild = leftNode;</span><br><span class="line">            parent.rchild = rightNode;</span><br><span class="line">            <span class="comment">//删除处理过的二叉树</span></span><br><span class="line">            nodes.remove(leftNode);</span><br><span class="line">            nodes.remove(rightNode);</span><br><span class="line">            <span class="comment">//将parent加入到nodes</span></span><br><span class="line">            nodes.add(parent);</span><br><span class="line">            <span class="comment">//重新排序</span></span><br><span class="line">            Collections.sort(nodes);</span><br><span class="line">            <span class="comment">//System.out.println("第" + (++count) + "次处理后" + nodes);</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nodes.get(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preOrder</span><span class="params">(Node root)</span> </span>&#123;<span class="comment">//利用先序遍历打印霍夫曼编码表</span></span><br><span class="line">        <span class="keyword">if</span> (root != <span class="keyword">null</span>) &#123;</span><br><span class="line">            root.CodingByPreOrder(<span class="string">""</span>, root);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">"空树无法遍历..."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">deCoding</span><span class="params">(Node root, String code, <span class="keyword">int</span> index)</span> </span>&#123;<span class="comment">//解码</span></span><br><span class="line">        <span class="keyword">return</span> root.Decoding(root, code, index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建节点类Node保存字符信息"><a href="#创建节点类Node保存字符信息" class="headerlink" title="创建节点类Node保存字符信息"></a>创建节点类Node保存字符信息</h3><pre><code class="java">package node;
+
+public class Node implements Comparable&lt;Node&gt; {
+    //字符
+    public String sign;
+    //每个叶子节点对应的哈夫曼编码
+    String code;
+    //叶子节点的权重
+    public int weight;
+    //非叶子节点的左右孩子
+    public Node lchild;
+    public Node rchild;
+    Node next;//叶子节点的enxt，用于专门指向root，便于后续的解码操作
+
+    public Node(String sign, int weight) {
+        this.sign = sign;
+        this.weight = weight;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return this.weight - o.weight;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;Node{&quot; +
+                &quot;sign=&#39;&quot; + sign + &#39;\&#39;&#39; +
+                &quot;, weight=&quot; + weight +
+                &#39;}&#39;;
+    }
+
+    public void CodingByPreOrder(String code, Node root) {//先序遍历哈夫曼树
+        if (!this.sign.equals(&quot;非叶子节点&quot;) &amp;&amp; !this.sign.equals(&quot;根节点&quot;)) {
+            this.code = code;
+            System.out.println(this.sign + &quot;的哈夫曼编码&quot; + code);
+        }
+        if (this.lchild != null) {
+            this.lchild.CodingByPreOrder(code += &quot;0&quot;, root);
+
+        }
+        //StringBuilder能够替换原字符串的最后一个字符（仅仅是替换最后一个），不使用String的substring方法是因为这个方法会替换所有与替换字符相同的字符
+        StringBuilder sb = new StringBuilder(code);//回溯时，需要修改最后一个字符，将其置为空，下一次向右递归code的最后一个字符就会被置为1
+        //replace(参数1，参数2，参数3)，参数1为要替换的开始位置，参数2为要替换的结束位置，参数3为替换内容,
+        code = sb.replace(code.length() - 1, code.length(), &quot;&quot;).toString();
+        if (this.rchild != null) {
+            this.rchild.CodingByPreOrder(code + &quot;1&quot;, root);
+        }
+        //将所有叶子节点的next都指向root节点，方便后续的解码操作
+        if (!this.sign.equals(&quot;非叶子节点&quot;) &amp;&amp; !this.sign.equals(&quot;根节点&quot;)) {
+            this.next = root;
+        }
+    }
+
+    /***
+     *
+     * @param root 霍夫曼树根节点
+     * @param code 输入的一个编码
+     * @param index code的索引下标
+     * @return
+     */
+    public String Decoding(Node root, String code, int index) {
+        Node ROOT=root;
+        StringBuilder s = new StringBuilder();
+        while (index &lt; code.length()) {//遍历code的每一个字符（也就是那一串01...）
+            if (code.charAt(index) == &#39;0&#39;) {
+                ROOT = ROOT.lchild;//向左子树移动
+            }
+            if (code.charAt(index) == &#39;1&#39;) {
+                ROOT = ROOT.rchild;//向右子树移动
+            }
+            if (ROOT.next == root) {//如果到达叶子节点，也就是它的next指向了根节点
+                s.append(ROOT.sign);
+                ROOT=root;//当解码出一个字符，需要将ROOT重置为root根节点，方便进行下一个字符的解码
+            }
+            index++;//索引后移
+        }
+        if(ROOT==root){//编码全部正确
+            System.out.println(code+ &quot;解码后对应的字符为&quot; + s.toString());
+            return s.toString();
+        }
+        else if(!s.toString().equals(&quot;&quot;)&amp;&amp;ROOT.next==null){//部分编码正确的情况
+            System.out.println(&quot;输入的编码部分有误，仅能解码出部分字符&quot;+s.toString()+&quot;...&quot;);
+            return s.toString();
+        }
+        else {//编码全部错误
+            System.out.println(&quot;输入的编码完全错误，无法解码...&quot;);
+            return null;
+        }
+    }
+}
+</code></pre>
+<h3 id="利用得到的节点类构建霍夫曼树"><a href="#利用得到的节点类构建霍夫曼树" class="headerlink" title="利用得到的节点类构建霍夫曼树"></a>利用得到的节点类构建霍夫曼树</h3><pre><code class="java">package huffmantree;
+import node.Node;
+import java.util.*;
+
+public class HuffmanTree {
+    /*
+    public static void main(String[] args) throws IOException {
+        Node root = createHuffmanTree(ReadTxt.readTxtAndCount(&quot;E:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;));
+        root.sign = &quot;根节点&quot;;
+        preOrder(root);
+    }*/
+
+    //构建哈弗曼树
+    public static Node createHuffmanTree(HashMap&lt;String, Integer&gt; arr) {
+        //int count = 0;
+        List&lt;Node&gt; nodes = new ArrayList&lt;Node&gt;();
+        //将字符出现的次数作为权值value，并以此加入node节点中
+        for (String key : arr.keySet()) {
+            nodes.add(new Node(key, arr.get(key)));
+        }
+        //System.out.println(nodes);//打印所有节点（验证）
+        Collections.sort(nodes);//将节点排序
+        System.out.println(&quot;各个字符对应的权重：&quot;);
+        System.out.println(&quot;nodes =&quot; + nodes);
+        while (nodes.size() &gt; 1) {
+            //取出根节点权值最小的兩顆二叉树
+            //取出权值最小的结点（二叉树）
+            Node leftNode = nodes.get(0);
+            //取出权值第二小的结点（二叉树）
+            Node rightNode = nodes.get(1);
+            //构建一棵新的二叉树
+            Node parent = new Node(&quot;非叶子节点&quot;, leftNode.weight + rightNode.weight);
+            parent.lchild = leftNode;
+            parent.rchild = rightNode;
+            //删除处理过的二叉树
+            nodes.remove(leftNode);
+            nodes.remove(rightNode);
+            //将parent加入到nodes
+            nodes.add(parent);
+            //重新排序
+            Collections.sort(nodes);
+            //System.out.println(&quot;第&quot; + (++count) + &quot;次处理后&quot; + nodes);
+        }
+        return nodes.get(0);
+    }
+
+    public static void preOrder(Node root) {//利用先序遍历打印霍夫曼编码表
+        if (root != null) {
+            root.CodingByPreOrder(&quot;&quot;, root);
+        } else {
+            System.out.println(&quot;空树无法遍历...&quot;);
+        }
+    }
+
+    public static String deCoding(Node root, String code, int index) {//解码
+        return root.Decoding(root, code, index);
+    }
+}
+
+
+</code></pre>
 <p><span style="color:red">PS：另外，编码和解码的核心代码在Node类中</span></p>
-<h3 id="主程序的测试代码"><a href="#主程序的测试代码" class="headerlink" title="主程序的测试代码"></a>主程序的测试代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">import</span> huffmantree.HuffmanTree;</span><br><span class="line"><span class="keyword">import</span> node.Node;</span><br><span class="line"><span class="keyword">import</span> readtxt.ReadTxt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">boolean</span> flag=<span class="keyword">true</span>;</span><br><span class="line">        Scanner sc=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> key=<span class="number">0</span>;</span><br><span class="line">        Node root=<span class="keyword">new</span> Node(<span class="keyword">null</span>,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">while</span>(flag)&#123;</span><br><span class="line">            menu();</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>) &#123;</span><br><span class="line">                key = sc.nextInt();</span><br><span class="line">                <span class="keyword">if</span>(key&lt;<span class="number">1</span>||key&gt;<span class="number">3</span>)&#123;</span><br><span class="line">                    System.out.println(<span class="string">"请输入正确的序号..."</span>);</span><br><span class="line">                    menu();</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">switch</span> (key)&#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">                    root=HuffmanTree.createHuffmanTree(ReadTxt.readTxtAndCount(<span class="string">"U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt"</span>));</span><br><span class="line">                    HuffmanTree.preOrder(root);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">                    System.out.println(<span class="string">"请输入一个来自编码表的编码..."</span>);</span><br><span class="line">                    String s=sc.next();</span><br><span class="line">                    HuffmanTree.deCoding(root,s,<span class="number">0</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">                    flag=<span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">menu</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"\n    §※§※§※§※§※§ 霍夫曼编码与解码.§※§※§※§※§※§\t\n"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t※◎※◎※◎※◎  1. 霍夫曼の编码(获得编码表).※◎※◎※◎※◎\t"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t※◎※◎※◎※◎  2. 霍夫曼の解码.※◎※◎※◎※◎\t"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\t※◎※◎※◎※◎  3. 退出程序.※◎※◎※◎※◎\t"</span>);</span><br><span class="line">        System.out.println(<span class="string">"\n\t请选择：\t"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="主程序的测试代码"><a href="#主程序的测试代码" class="headerlink" title="主程序的测试代码"></a>主程序的测试代码</h3><pre><code class="java">import java.io.IOException;
+import java.util.Scanner;
+import huffmantree.HuffmanTree;
+import node.Node;
+import readtxt.ReadTxt;
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+        boolean flag=true;
+        Scanner sc=new Scanner(System.in);
+        int key=0;
+        Node root=new Node(null,0);
+        while(flag){
+            menu();
+            while(true) {
+                key = sc.nextInt();
+                if(key&lt;1||key&gt;3){
+                    System.out.println(&quot;请输入正确的序号...&quot;);
+                    menu();
+                }else{
+                    break;
+                }
+            }
+
+            switch (key){
+                case 1:
+                    root=HuffmanTree.createHuffmanTree(ReadTxt.readTxtAndCount(&quot;U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;));
+                    HuffmanTree.preOrder(root);
+                    break;
+                case 2:
+                    System.out.println(&quot;请输入一个来自编码表的编码...&quot;);
+                    String s=sc.next();
+                    HuffmanTree.deCoding(root,s,0);
+                    break;
+                case 3:
+                    flag=false;
+                    break;
+            }
+        }
+    }
+    public static void menu() {
+        System.out.println(&quot;\n    §※§※§※§※§※§ 霍夫曼编码与解码.§※§※§※§※§※§\t\n&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  1. 霍夫曼の编码(获得编码表).※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  2. 霍夫曼の解码.※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  3. 退出程序.※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\n\t请选择：\t&quot;);
+    }
+}
+
+</code></pre>
 <p>结果截图：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/huffman1.png" alt></p>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/huffman2.png" alt></p>

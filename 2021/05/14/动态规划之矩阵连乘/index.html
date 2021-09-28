@@ -372,7 +372,60 @@
 <p><em>承接纸上，解释代码三层for循环的r，i，k的取值范围</em></p>
 <p>拿两个矩阵相乘的情况举例，起始矩阵下标i从1开始，而i最后的位置应该为n-2，因为我们当前为两个矩阵相乘，到最后时结尾矩阵下标j位于整个矩阵序列的结尾处，所以此时起始矩阵下标i应该在结尾矩阵的下标j往回减2。结尾坐标的起始位置就是起始坐标的下标加上当前相乘矩阵的数目。举个例子，比如当前为两个矩阵相乘，那么 r = 2，那么起始坐标 i 的开始位置就是 1，结束位置就为 n - r+1，结尾下标为 j = i + n - 1。</p>
 <p>然后我们在这个区间内再来求取断点 k ，断点的取值范围应该为[i,j)，然后对区间内的所有情况进行计算，即 m[i][k] + m[k+1][j] + 结果矩阵相乘次数（这里需要注意一下，这里是为了好理解，其实按照我们给定的输入，它的每三个数字代表两个矩阵，即比如 {35，30，25}，对应的矩阵应为 A1 = 35x30，A2 = 30x<em>25。所以完全写成递归式应该为 m[i][k] + m[k+1][j] + p[i]</em>p[k+1]*p[j]），比如当 i = i，r = 2 时，j = 1，k = i = 1 那么这时当前断点开始处的计算结果应为 m[1][1] + m[2][2] + p[0]p[1]p[2].</p>
-<h2 id="Code-Segment（Less-important）"><a href="#Code-Segment（Less-important）" class="headerlink" title="Code Segment（Less important）"></a>Code Segment（Less important）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">matrixChain</span> </span>&#123;</span><br><span class="line">    <span class="comment">/***</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> p 用于存放每个矩阵的维数（每个矩阵对应的行和列）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> m 一个二维数组，用于存放计算某一个矩阵链所需的【连乘积】的次数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> s 还是一个二维数组，用于存放矩阵链Ai···Aj的断裂点（k的位置）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">int</span>[]p,<span class="keyword">int</span>[][]m,<span class="keyword">int</span>[][]s)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=p.length-<span class="number">1</span>;<span class="comment">//矩阵个数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> r=<span class="number">2</span>;r&lt;=n;r++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n-r+<span class="number">1</span>;i++)&#123;</span><br><span class="line">                <span class="keyword">int</span> j=i+r-<span class="number">1</span>;</span><br><span class="line">                m[i][j]=m[i+<span class="number">1</span>][j]+p[i-<span class="number">1</span>]*p[i]*p[j];</span><br><span class="line">                s[i][j]=i;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=i+<span class="number">1</span>;k&lt;j;k++)&#123;</span><br><span class="line">                    <span class="keyword">int</span> temp=m[i][k]+m[k+<span class="number">1</span>][j]+p[i-<span class="number">1</span>]*p[k]*p[j];</span><br><span class="line">                    <span class="keyword">if</span>(temp&lt;m[i][j])&#123;</span><br><span class="line">                        m[i][j]=temp;</span><br><span class="line">                        s[i][j]=k;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> m[<span class="number">1</span>][n];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">traceback</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 输出A[i:j] 的最优计算次序</span></span><br><span class="line">        <span class="keyword">if</span> (i == j) &#123;</span><br><span class="line">            <span class="comment">// 递归出口</span></span><br><span class="line">            System.out.print(<span class="string">"A"</span>+i);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.print(<span class="string">"("</span>);</span><br><span class="line">            <span class="comment">// 递归输出左边</span></span><br><span class="line">            traceback(i, s[i][j], s);</span><br><span class="line">            <span class="comment">// 递归输出右边</span></span><br><span class="line">            traceback(s[i][j] + <span class="number">1</span>, j, s);</span><br><span class="line">            System.out.print(<span class="string">")"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] p = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>,<span class="number">200</span>, <span class="number">2</span>, <span class="number">100</span>, <span class="number">30</span>, <span class="number">200</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[][] m=<span class="keyword">new</span> <span class="keyword">int</span>[p.length][p.length];</span><br><span class="line">        <span class="keyword">int</span>[][] s=<span class="keyword">new</span> <span class="keyword">int</span>[p.length][p.length];</span><br><span class="line">        <span class="keyword">int</span> result=matrixChain.solution(p,m,s);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">        traceback(<span class="number">1</span>, p.length-<span class="number">1</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Code-Segment（Less-important）"><a href="#Code-Segment（Less-important）" class="headerlink" title="Code Segment（Less important）"></a>Code Segment（Less important）</h2><pre><code class="java">public class matrixChain {
+    /***
+     *
+     * @param p 用于存放每个矩阵的维数（每个矩阵对应的行和列）
+     * @param m 一个二维数组，用于存放计算某一个矩阵链所需的【连乘积】的次数
+     * @param s 还是一个二维数组，用于存放矩阵链Ai···Aj的断裂点（k的位置）
+     * @return
+     */
+    public static int solution(int[]p,int[][]m,int[][]s){
+        int n=p.length-1;//矩阵个数
+        for(int r=2;r&lt;=n;r++){
+            for(int i=1;i&lt;=n-r+1;i++){
+                int j=i+r-1;
+                m[i][j]=m[i+1][j]+p[i-1]*p[i]*p[j];
+                s[i][j]=i;
+                for(int k=i+1;k&lt;j;k++){
+                    int temp=m[i][k]+m[k+1][j]+p[i-1]*p[k]*p[j];
+                    if(temp&lt;m[i][j]){
+                        m[i][j]=temp;
+                        s[i][j]=k;
+                    }
+                }
+            }
+        }
+        return m[1][n];
+    }
+
+    public static void traceback(int i, int j, int[][] s) {
+        // 输出A[i:j] 的最优计算次序
+        if (i == j) {
+            // 递归出口
+            System.out.print(&quot;A&quot;+i);
+            return;
+        } else {
+            System.out.print(&quot;(&quot;);
+            // 递归输出左边
+            traceback(i, s[i][j], s);
+            // 递归输出右边
+            traceback(s[i][j] + 1, j, s);
+            System.out.print(&quot;)&quot;);
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] p = new int[]{5,200, 2, 100, 30, 200};
+        int[][] m=new int[p.length][p.length];
+        int[][] s=new int[p.length][p.length];
+        int result=matrixChain.solution(p,m,s);
+        System.out.println(result);
+        traceback(1, p.length-1, s);
+    }
+
+}
+</code></pre>
 <h2 id="Result-of-running-the-code"><a href="#Result-of-running-the-code" class="headerlink" title="Result of running the code"></a>Result of running the code</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/resulOfMatrixChain.png" alt></p>
 
         </div>

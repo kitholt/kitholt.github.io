@@ -449,7 +449,10 @@
 <p>乍一看很像，说简单点，变量类型就是一个装数据类型的容器，比如变量类型中的基本类型保存的就是基本类型的数据，例子有var a = 3</p>
 <h2 id="关于IIFE（Immediately-Invoked-Function-Expression）"><a href="#关于IIFE（Immediately-Invoked-Function-Expression）" class="headerlink" title="关于IIFE（Immediately Invoked Function Expression）"></a>关于IIFE（Immediately Invoked Function Expression）</h2><p>立刻执行函数</p>
 <p>类似于函数声明，但由于包含在括号内，所以会被解释成函数式表达式，紧跟在第一组括号后面的第二组括号会立即调用前面的函数表达式，具体如下所示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//块级作用域</span></span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<pre><code class="javascript">(function(){
+    //块级作用域
+})();
+</code></pre>
 <h2 id="关于函数高级（这应该才是真正的高级）"><a href="#关于函数高级（这应该才是真正的高级）" class="headerlink" title="关于函数高级（这应该才是真正的高级）"></a>关于函数高级（这应该才是真正的高级）</h2><ul>
 <li>原型！！！（prototype）</li>
 </ul>

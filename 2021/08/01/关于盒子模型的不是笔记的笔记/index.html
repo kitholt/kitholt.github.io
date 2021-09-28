@@ -435,9 +435,47 @@
 </li>
 </ol>
 <h2 id="盒子盖度塌陷"><a href="#盒子盖度塌陷" class="headerlink" title="盒子盖度塌陷"></a>盒子盖度塌陷</h2><p>发生原因：当父元素宽高未被写死，内部元素设置为float后无法撑起父元素的高度</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!<span class="selector-tag">DOCTYPE</span> <span class="selector-tag">html</span>&gt;</span><br><span class="line">&lt;<span class="selector-tag">html</span>&gt;</span><br><span class="line">	&lt;<span class="selector-tag">head</span>&gt;</span><br><span class="line">		&lt;meta charset="utf-8"&gt;</span><br><span class="line">		&lt;title&gt;&lt;/title&gt;</span><br><span class="line">		&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line">		<span class="selector-id">#box1</span>&#123;</span><br><span class="line">		<span class="attribute">border</span>: red <span class="number">10px</span> solid;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="selector-id">#box2</span>&#123;</span><br><span class="line">			<span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">			<span class="attribute">height</span>: <span class="number">300px</span>;</span><br><span class="line">			<span class="attribute">background-color</span>: <span class="number">#008000</span>;</span><br><span class="line">			<span class="attribute">float</span>: left;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="selector-id">#box3</span>&#123;</span><br><span class="line">			<span class="attribute">clear</span>: both;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="selector-id">#box1</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">			<span class="attribute">clear</span>: both;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		&lt;/style&gt;</span><br><span class="line">	&lt;/head&gt;</span><br><span class="line">	&lt;<span class="selector-tag">body</span>&gt;</span><br><span class="line">		&lt;div id="box1"&gt;</span><br><span class="line">			&lt;div id="box2"&gt;&lt;/div&gt;</span><br><span class="line">			&lt;!-- &lt;div id="box3"&gt;&lt;/div&gt; --&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="css">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;&lt;/title&gt;
+        &lt;style&gt;
+        #box1{
+        border: red 10px solid;
+        }
+        #box2{
+            width: 600px;
+            height: 300px;
+            background-color: #008000;
+            float: left;
+        }
+        #box3{
+            clear: both;
+        }
+        #box1::after{
+            clear: both;
+            display: block;
+            content: &quot;&quot;;
+        }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id=&quot;box1&quot;&gt;
+            &lt;div id=&quot;box2&quot;&gt;&lt;/div&gt;
+            &lt;!-- &lt;div id=&quot;box3&quot;&gt;&lt;/div&gt; --&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
 <p>***解决方法</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">::after</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">			<span class="attribute">display</span>: block;</span><br><span class="line">			<span class="attribute">clear</span>: both;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="css">.clearfix::after
+        {
+            content: &quot;&quot;;
+            display: block;
+            clear: both;
+        } 
+</code></pre>
 
         </div>
         <!-- .entry-content -->
