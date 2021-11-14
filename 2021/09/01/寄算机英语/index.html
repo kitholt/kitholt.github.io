@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">欢迎来到Franの杂货铺</title>
+  <title itemprop="name">寄·算机英格力士 | 欢迎来到Franの杂货铺</title>
   
     <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
   
@@ -308,6 +308,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 <div class="pattern-center-blank"></div>
 
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      寄·算机英格力士</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-9-1<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
@@ -315,105 +339,135 @@
         <div class="toc"></div>
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
-          <header class="entry-header">
-            <h1 class="entry-title"></h1>
-            <p class="entry-census">&nbsp;·&nbsp;2021-11-14&nbsp;·&nbsp;<span id="busuanzi_value_page_pv"></span>次阅读</p></p>
-
-            <hr>
-          </header>
-        
         <div class="entry-content">
-          <h1 id="关于算法周预习作业的一些答案"><a href="#关于算法周预习作业的一些答案" class="headerlink" title="关于算法周预习作业的一些答案"></a>关于算法周预习作业的一些答案</h1><h2 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h2><ol>
-<li>适合用分治法求解的问题一般具有哪些基本特征？<ul>
-<li><strong>首先问题规模一般比较大，但是随着问题规模的缩小到一定程度便能够轻松解决</strong></li>
-<li><strong>各个子问题之间相互独立，无公共子问题</strong></li>
-</ul>
-</li>
-<li>分治法求解问题主要包括哪几个步骤？<ul>
-<li><strong>分而治之（分解，求子问题的解，最后合并所有问题的解）</strong></li>
-</ul>
-</li>
-<li>递归算法的算法框架？ <ul>
-<li><strong>寻找递归方程，确定递归出口n0，若问题规模超过n0，则将问题分解成子问题</strong></li>
-</ul>
-</li>
-<li>分治策略若使用递归算法实现，如何使用主定理法推算其大 O? <ul>
-<li></li>
-</ul>
-</li>
-<li>合并排序算法基本思想？<ul>
-<li><strong>将n个待排序的元素分成两个规模差不多的子数组，如果子数组不为单元素则继续分解。因为单元素数组默认已经排好了序，这时候再将相邻的两个数组两两合并，最后得到结果</strong></li>
-</ul>
-</li>
-<li>合并排序算法解题步骤？ <ul>
-<li></li>
-</ul>
-</li>
-<li>如何建立递归方程分析合并排序算法的时间复杂性？ <ul>
-<li><strong>由T(n)=aT(n/b)+f(n)得，规模为n的问题被分为两个规模为n/2的子问题，即a=2，b=2，因此k=1。所以T(n)=O(nlogn)</strong></li>
-</ul>
-</li>
-<li>二分搜索是如何完成折半查找的？<ul>
-<li>有手就行</li>
-</ul>
-</li>
-<li>如何分析二分搜索的搜索效率？<ul>
-<li><strong>规模n的问题简化为一个规模为n/2的子问题，所以a=1，b=2，因此k=0,。所以T(n)=O(logn)</strong></li>
-</ul>
-</li>
-</ol>
-<h2 id="第三周"><a href="#第三周" class="headerlink" title="第三周"></a>第三周</h2><p>1) 二分搜索具有较高搜索效率的主要原因是什么？</p>
-<ul>
-<li><strong>充分利用了元素之间的次序关系，加速了搜索进程</strong></li>
-</ul>
-<p>2) 快速排序算法包含哪几个主要步骤？</p>
+          <h1 id="寄·算机英格力士"><a href="#寄·算机英格力士" class="headerlink" title="寄·算机英格力士"></a>寄·算机英格力士</h1><h2 id="the-Second-class"><a href="#the-Second-class" class="headerlink" title="the Second class"></a>the Second class</h2><p>the base raised to a power基的若干次幂</p>
+<p>memory：</p>
 <ol>
-<li><strong>分解：一般默认第一个元素为基准元素，将数组中的元素依次与基准元素比较，比其大的放在基准右边，反之放在左边。一轮扫描结束后，基准元素应该处于整个数组的中间位置。之后以基准元素的分界点，将数组分为两段。</strong></li>
-<li><strong>递归求解：若数组长度不为1，一直递归求解左右子问题</strong></li>
-<li><strong>合并</strong></li>
+<li>main memory（主存）</li>
+<li>auxiliary  ~（辅助存储）</li>
 </ol>
-<p>3) 快速排序当选择了基准元素之后如何进行子问题划分？</p>
-<ul>
-<li><strong>比基准元素小的所有元素划分为左子问题，比基准元素大的所有元素划分为右子问题</strong></li>
-</ul>
-<p>4) 为什么快速排序不需要子问题解合并的步骤？</p>
-<ul>
-<li><strong>因为每次分解都对这个元素实现了排序</strong></li>
-</ul>
-<p>5) 为什么快速排序算法只有在最好情况下，时间复杂性才有 Ο(nlogn)？</p>
-<ul>
-<li><strong>因为每次选择基准元素的时候，很难保证每次都选择到所有元素中的中值元素，因此也就很难均匀地划分子问题</strong></li>
-</ul>
-<p>6) 什么情况下，快速排序算法复杂性会达到 Ο(n2 )？如何改进？</p>
-<ul>
-<li><strong>当每次选择的基准元素都为第一个元素</strong>，<strong>可以使用平衡快速排序和基于随机支点选择的快速排序法</strong></li>
-</ul>
-<p>7) 为什么快速排序算法只讨论平均情况下的时间复杂性？</p>
-<ul>
-<li><h2 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h2></li>
-</ul>
-<p>线性时间选择</p>
+<p>peripheral device外围设备</p>
+<p>utilities使用软件 </p>
+<p>electronic spread sheet电子表格</p>
+<p>heuristic启发式</p>
+<p>statement 语句（在计算机领域的翻译）</p>
+<hr>
 <ol>
-<li>线性时间选择问题提出是如何在最坏情况下用线性时间在一个包 含 n 个元素的线性序集中找到第 k 小元素。为什么采用快速排序 的 randomizedSelect 算法无法保证在最坏情况下可以用O (n )线性 时间找到第 k 小元素? </li>
-<li>线性时间选择算法的关键是要解决划分不平衡的问题，那么如何 选择基准元素才能解决这个问题?其选择的基准元素会出现在哪 个范围之内? </li>
-<li>线性时间选择算法基本思想的核心是什么?线性时间选择算法为 什么每一次递归搜索都至少能放弃 n/4 个元素? </li>
-<li>如何分析线性时间选择算法的计算效率？如何由其递归方程推算 其大 O?</li>
+<li>called…after 因…而被称为</li>
+<li><strong>bring to bear 运用（盲猜），施加</strong></li>
 </ol>
-<h2 id="第六周"><a href="#第六周" class="headerlink" title="第六周"></a>第六周</h2><p>回溯算法框架</p>
-<p>回溯法在问题的解空间树中，按深度优先策略，从根结点出发搜 索解空间树。其可以系统地搜索问题的所有解或任一解。 </p>
-<p>1）如何定义问题解空间？如何组织问题的解空间结构？ </p>
+<h2 id="the-third-class"><a href="#the-third-class" class="headerlink" title="the third class"></a>the third class</h2><blockquote>
+<p>imprint 刻录</p>
+<p>compression technology 压缩技术</p>
+<p>transmission media 传输介质</p>
+<p>logical request 逻辑请求</p>
+<p>system planning 系统规划</p>
+<p>electronic pulses 电子脉冲</p>
+<p>P2P 对等</p>
+<p>public security 公共安全</p>
+<p>interactivity 交互性</p>
+<p>usability 可用性</p>
+</blockquote>
+<hr>
+<p>in [the] light of 由于、鉴于</p>
+<p>mainframes 大型机</p>
+<ol start="3">
+<li>分句法</li>
+</ol>
+<p>综（缝）合法</p>
+<h2 id="the-forth-class"><a href="#the-forth-class" class="headerlink" title="the forth class"></a>the forth class</h2><blockquote>
+<p>Internet security 网络安全</p>
+</blockquote>
+<ol>
+<li>加字减字的问题</li>
+<li><p>被动态（英语科技文章）和主动态的问题</p>
 <ul>
-<li><strong>有一个n元向量来定义解空间，通过树的形式来组织问题解空间</strong></li>
+<li>被动语态直译只得1分</li>
 </ul>
-<p>2）回溯法的基本思想？</p>
-<ul>
-<li><p><strong>深度优先策略</strong></p>
-<p>3）常用的问题解空间树主要包含哪两种？各自有何特点。</p>
 </li>
-<li><p>子集树：<strong>求解的结果是集合SS的某一子集的时候</strong></p>
+<li><p>名词和动词的转换</p>
 </li>
-<li>排列树：<strong>求解的结果是集合SS的元素的某一种排列的时候</strong></li>
-</ul>
+</ol>
+<blockquote>
+<p>To user a computer needs some understanding of computer concepts</p>
+</blockquote>
+<p>understandings名词翻译成动词 </p>
+<p>  extrapolate…from 从…推断</p>
+<h2 id="the-fifth（6th）class"><a href="#the-fifth（6th）class" class="headerlink" title="the fifth（6th）class"></a>the fifth（6th）class</h2><p>tests：</p>
+<blockquote>
+<p>functional testing 功能测试</p>
+<p>numerical analysis 数值分析</p>
+<p>microprocessor 微处理器</p>
+<p>feasibility study 可行性研究</p>
+<p>multiprogramming 多道程序设计</p>
+<p>transmission media 传输介质</p>
+<p>logical request 逻辑请求</p>
+<p>chip dealer 芯片制造商</p>
+</blockquote>
+<p>近义词区分</p>
+<ol>
+<li>capacity能力，容量，产能</li>
+</ol>
+<p>excess capacity产能过剩</p>
+<ol start="2">
+<li><p>capability能力（指做某件事情所需的各项条件【技术，设备，人员】）</p>
+</li>
+<li><p>ability能力（强调人的能力）</p>
+</li>
+</ol>
+<h2 id="⑦"><a href="#⑦" class="headerlink" title="⑦"></a>⑦</h2><blockquote>
+<p>robust 健壮性</p>
+<p>interfacing 接口技术</p>
+</blockquote>
+<p>chalk up 获得（相当于achieve）</p>
+<p>tactical 策略性的</p>
+<p>devious 欺诈的，不诚实的</p>
+<p>ramifications 结果（一般形容复杂难以预料的结果）</p>
+<p><strong>crack</strong> problem（攻克难题）</p>
+<h2 id="⑧"><a href="#⑧" class="headerlink" title="⑧"></a>⑧</h2><p>近义词区分</p>
+<blockquote>
+<p>quite 相当、使用语境：父母鼓励孩子，上级鼓励下属</p>
+<p>extremely 相当，非常 使用语境：带有感情色彩</p>
+<p>very 使用语境：用于客观评价</p>
+</blockquote>
+<blockquote>
+<p><strong>quite, fairly, rather后面接形容词可互换。</strong></p>
+<ol>
+<li><strong>quite+冠词+形容词+名词</strong></li>
+<li><strong>冠词+fairly+形容词</strong></li>
+</ol>
+</blockquote>
+<h3 id="section-A"><a href="#section-A" class="headerlink" title="section A"></a>section A</h3><p>sophistication 复杂性</p>
+<p>portable 手提的，便携的，可移植的</p>
+<p>versatility 多用性</p>
+<h2 id="⑨"><a href="#⑨" class="headerlink" title="⑨"></a>⑨</h2><p>下列单词均有 监控 监视之意</p>
+<p>monitor</p>
+<p>snoop</p>
+<p>spy</p>
+<p>pry about/into</p>
+<p>下列单词均有 激增 剧增之意</p>
+<p>proliferate</p>
+<p>break through</p>
+<p>surge</p>
+<p>skyrocket</p>
+<p>leap</p>
+<p>下列单词均有 巨头 巨人之意</p>
+<p>giant</p>
+<p>titan</p>
+<p>behemoth 庞然大物</p>
+<h2 id="⑩"><a href="#⑩" class="headerlink" title="⑩"></a>⑩</h2><p>近义词区分与解析，下列单词均有重要的、主要的之意</p>
+<blockquote>
+<p>significant</p>
+<p>important</p>
+<p>major</p>
+<p>其中important的程度要强于significant，major侧重形容“贬义的”主要，比如主犯（major criminal）</p>
+</blockquote>
+<p>circumvent 绕过、规避v</p>
+<p>cater 满足需要，迎合，考虑v</p>
+<p>unit testing 单元测试</p>
+<p>program unit 程序单元</p>
+<p>17</p>
+<p>33</p>
 
         </div>
         <!-- .entry-content -->
@@ -442,19 +496,36 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2021/09/01/ES67891011/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                ES67891011</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
-            <a href="/2021/11/14/寄算机英语/" rel="next">
+            <a href="/2021/08/30/阿·贾克斯（Ajax）/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                </h3>
+                阿·贾克斯（Ajax）</h3>
                 <hr>
               </div>
             </a>
@@ -478,7 +549,7 @@
 
       <section class="author-profile">
         <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
-          <a href="" class="profile gravatar"><img src="" itemprop="image" alt="" height="70" width="70"></a>
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
           <div class="meta">
             <span class="title">Author</span>
             <h3 itemprop="name">
