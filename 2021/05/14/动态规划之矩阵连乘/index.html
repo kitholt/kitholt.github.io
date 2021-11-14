@@ -349,7 +349,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/recursion.jpg" alt></p>
 <p>图中用红色方框框起来的代表在递归的过程中，会被重复计算的矩阵链，这还只是四个矩阵，那如果是四十个，四百个…重复计算的矩阵链只会越来越多（这谁顶得住啊.jpg），因此我们希望寻找更好的方法来解决它。</p>
 <h3 id="Dynamic-planning"><a href="#Dynamic-planning" class="headerlink" title="Dynamic planning"></a><font style="color:red">Dynamic planning</font></h3><p>要解决重复计算的问题，我们能想到的是用一张表来保存每次计算出的矩阵连乘积，如果在后续的计算中要用到原先的结果，只需要去表中查找就好了。于是乎，动态规划就起了作用。那么，啥是动态规划？</p>
-<h4 id="What-is-it"><a href="#What-is-it" class="headerlink" title="What is it?"></a>What is it?</h4><p>先来看它的官方定义：动态规划算法通常用于求解具有某种<strong>最优性质</strong>的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有<a href="https://baike.baidu.com/item/最优值" target="_blank" rel="noopener">最优值</a>的解。动态规划算法与<a href="https://baike.baidu.com/item/分治法" target="_blank" rel="noopener">分治法</a>类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从<a href="https://baike.baidu.com/item/这些子" target="_blank" rel="noopener">这些子</a>问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。这就是动态规划法的基本思路。具体的动态规划算法多种多样，但它们具有相同的填表格式。</p>
+<h4 id="What-is-it"><a href="#What-is-it" class="headerlink" title="What is it?"></a>What is it?</h4><p>先来看它的官方定义：动态规划算法通常用于求解具有某种最优性质的问题。在这类问题中，可能会有许多可行解。每一个解都对应于一个值，我们希望找到具有<a href="https://baike.baidu.com/item/最优值" target="_blank" rel="noopener">最优值</a>的解。动态规划算法与<a href="https://baike.baidu.com/item/分治法" target="_blank" rel="noopener">分治法</a>类似，其基本思想也是将待求解问题分解成若干个子问题，先求解子问题，然后从<a href="https://baike.baidu.com/item/这些子" target="_blank" rel="noopener">这些子</a>问题的解得到原问题的解。与分治法不同的是，适合于用动态规划求解的问题，经分解得到子问题往往不是互相独立的。若用分治法来解这类问题，则分解得到的子问题数目太多，有些子问题被重复计算了很多次。如果我们能够保存已解决的子问题的答案，而在需要时再找出已求得的答案，这样就可以避免大量的重复计算，节省时间。我们可以用一个表来记录所有已解的子问题的答案。不管该子问题以后是否被用到，只要它被计算过，就将其结果填入表中。这就是动态规划法的基本思路。具体的动态规划算法多种多样，但它们具有相同的填表格式。</p>
 <p>PS：其实在生活中，我们有时候也会使用动态规划这一思想。比如，公司评选优秀员工（最），直接评选不好安排，但是我们可以“自底向上”地比较筛选，那方法就是：选出每个小组表现优秀的员工，又因为一个部门有很多小组，这样能选出一个部门的优秀员工，最后公司又是由很多部门组成的，最后通过类似“集成”的形式就能选出最优秀的员工了。</p>
 <h4 id="Exert-it！"><a href="#Exert-it！" class="headerlink" title="Exert it！"></a>Exert it！</h4><p>那么，对于矩阵链连乘积次数的求法，也能用类似的思路（自底向上），因为一个矩阵相乘的需要的连乘积次数为0。</p>
 <ol>
@@ -369,8 +369,7 @@
 </li>
 </ul>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/dp.jpg" alt></p>
-<p><em>承接纸上，解释代码三层for循环的r，i，k的取值范围</em></p>
-<p>拿两个矩阵相乘的情况举例，起始矩阵下标i从1开始，而i最后的位置应该为n-2，因为我们当前为两个矩阵相乘，到最后时结尾矩阵下标j位于整个矩阵序列的结尾处，所以此时起始矩阵下标i应该在结尾矩阵的下标j往回减2。结尾坐标的起始位置就是起始坐标的下标加上当前相乘矩阵的数目。举个例子，比如当前为两个矩阵相乘，那么 r = 2，那么起始坐标 i 的开始位置就是 1，结束位置就为 n - r+1，结尾下标为 j = i + n - 1。</p>
+<p>拿两个矩阵相乘的情况举例，起始矩阵下标i从1开始，而i最后的位置应该为n-2，因为我们当前为两个矩阵相乘，到最后时结尾矩阵下标j位于整个矩阵序列的结尾处，所以此时起始矩阵下标i应该在结尾矩阵的下标j往回减2。结尾坐标的起始位置就是起始坐标的下标加上当前相乘矩阵的数目。举个例子，比如当前为两个矩阵相乘，那么 r = 2，那么起始坐标 i 的开始位置就是 0，结束位置就为 n - r，结尾下标为 j = i + n - 1。</p>
 <p>然后我们在这个区间内再来求取断点 k ，断点的取值范围应该为[i,j)，然后对区间内的所有情况进行计算，即 m[i][k] + m[k+1][j] + 结果矩阵相乘次数（这里需要注意一下，这里是为了好理解，其实按照我们给定的输入，它的每三个数字代表两个矩阵，即比如 {35，30，25}，对应的矩阵应为 A1 = 35x30，A2 = 30x<em>25。所以完全写成递归式应该为 m[i][k] + m[k+1][j] + p[i]</em>p[k+1]*p[j]），比如当 i = i，r = 2 时，j = 1，k = i = 1 那么这时当前断点开始处的计算结果应为 m[1][1] + m[2][2] + p[0]p[1]p[2].</p>
 <h2 id="Code-Segment（Less-important）"><a href="#Code-Segment（Less-important）" class="headerlink" title="Code Segment（Less important）"></a>Code Segment（Less important）</h2><pre><code class="java">public class matrixChain {
     /***
@@ -476,7 +475,7 @@
           
             <div class="post-nepre half next">
           
-            <a href="/2021/04/14/霍夫曼树の创建、编码、解码/" rel="next">
+            <a href="/2021/04/22/批作业处理问题/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
               </div>
@@ -484,7 +483,7 @@
               Next Post</span>
               <div class="info">
                 <h3>
-                霍夫曼树の创建、编码、解码</h3>
+                批作业处理问题</h3>
                 <hr>
               </div>
             </a>
