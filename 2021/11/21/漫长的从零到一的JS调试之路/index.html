@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">漫长的从零到一的JS调试之路 | 欢迎来到Franの杂货铺</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="browsermode" content="application">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "KItholtFrank";
+  mashiro_option.author_name = "Frank";
+  mashiro_option.site_url = "https://kitholt.github.io/";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/kitholt/cdn/img/warriors.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/best.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/curry.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/chase.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/stadium.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/splashbros.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/coolkt.webp,".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://kitholt.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>你来啦!欢迎来到Franの杂货铺！</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/kitholt" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialgithub.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/u/7188904314" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialsina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/my/m/music/playlist?id=890672374" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/frank-41-24-53" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialzhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialQR.jpg">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">KItholt</span>
+            <span class="shironeko">Frank</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    资瓷
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      漫长的从零到一的JS调试之路</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-11-21<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="漫长的从零到一的JS调试之路"><a href="#漫长的从零到一的JS调试之路" class="headerlink" title="漫长的从零到一的JS调试之路"></a>漫长的从零到一的JS调试之路</h1><h2 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h2><h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><pre><code class="javascript"> &lt;script&gt;
+        //普通创建方式,使用构造函数
+        let colors = new Array(20)
+        console.log(colors)
+        //使用数组字面量
+        let color = [&#39;red&#39;,&#39;green&#39;,&#39;blue&#39;]
+        console.log(color)
+
+        /* 
+        创建数组的静态方法（两种）from(),of()，其中from()用于将类数组结构转换为数组，类数组是指有length属性和可索引元素的结构(字符串，集合，映射等)。of()用于将一组参数转换为数组
+        */
+        const strArr = Array.from(&#39;kitholt&#39;)
+        console.log(strArr)
+
+        const m = new Map().set(1,2).set(3,4)
+        console.log(Array.from(m))
+
+        const s = new Set().add(1).add(2).add(3)
+        console.log(Array.from(s))
+
+        //from()方法还能对数组进行       浅复制
+        const a1 = [1,[6,66],3,4]
+        const a2 = Array.from(a1)
+        a1[1][0] = 99
+        console.log(a2 === a1);//false
+        console.log(a2[1][0])
+    &lt;/script&gt;
+</code></pre>
+<h4 id="数组复制和填充"><a href="#数组复制和填充" class="headerlink" title="数组复制和填充"></a>数组复制和填充</h4><pre><code class="javascript">    &lt;script&gt;
+        /* copyWithin()用于批量复制数组。fill()用于向一个数组插入全部或者部分的值，通常需要指定范围，包含开始索引，不包含结束索引 */
+        const zeros = [0,0,0,0,0]
+        zeros.fill(1,1,4)//用1，填充索引大于等于1且小于4的元素，预期结果[0, 1, 1, 1, 0]
+        console.log(zeros)
+        //值得一提的是，对于超出数组边界或者0长度再或者是索引方向相反的情况，fill()都不会报错，而是忽略
+
+        const ints = [0,1,2,3,4,5,6,7,8,9]
+        ints.copyWithin(4,0,3)//结果为[0,1,2,3,0,1,2,7,8,9]
+        console.log(ints)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="数组排序方法"><a href="#数组排序方法" class="headerlink" title="数组排序方法"></a>数组排序方法</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 这里有两种方法，分别是reverse()和 sort()，其中reverse()能够接受一个比较函数，我们能够自定义这个 比较函数来决定是升序还是降序 */
+        const val = [1,4,2,5,41,32,7,6]
+        val.sort((a, b) =&gt; a &gt; b ? 1 : a &lt; b ? -1 : 0)//升序排列
+        console.log(val)
+        console.log(val.reverse())
+        //需要注意的是，这两种方法都返回调用它们数组的引用（会改变原数组）
+    &lt;/script&gt;
+</code></pre>
+<h4 id="数组的操作方法"><a href="#数组的操作方法" class="headerlink" title="数组的操作方法"></a>数组的操作方法</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        关于数组操作的方法，有concat()，它能创建一个数组的副本，然后将参数添加到这个副本的末尾。
+        slice()用于切割数组，需要注意的是这个方法不会影响原来的数组。
+        强大的splice()，说它强大是因为这一个方法，能够实现删除，插入，替换的操作。
+        */
+       const arr = [&#39;fran&#39;,&#39;伟鸿&#39;,&#39;陈部&#39;,&#39;志坚&#39;]
+       const arrConcat = arr.concat(&#39;胖子&#39;,&#39;仕豪&#39;,[&#39;浩彬&#39;,&#39;陈尹&#39;])
+       console.log(arrConcat)//[&#39;fran&#39;, &#39;伟鸿&#39;, &#39;陈部&#39;, &#39;志坚&#39;, &#39;胖子&#39;, &#39;仕豪&#39;, &#39;浩彬&#39;, &#39;陈尹&#39;]
+
+       const arrSlice =  arrConcat.slice(2)//从第二个位置开始拆分数组,还有一种方式dddd
+       console.log(arrSlice)
+
+       arr.splice(0,2)
+       console.log(&#39;***&#39;,arr)//[&#39;陈部&#39;, &#39;志坚&#39;]
+
+       arr.splice(1,0,&#39;胖子&#39;,&#39;仕豪&#39;)
+       console.log(arr)//[&#39;陈部&#39;, &#39;胖子&#39;, &#39;仕豪&#39;, &#39;志坚&#39;]
+    &lt;/script&gt;
+</code></pre>
+<h4 id="数组的迭代器方法"><a href="#数组的迭代器方法" class="headerlink" title="数组的迭代器方法"></a>数组的迭代器方法</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 对于一个数组，它有对应的索引，值，以及索引/值对。我们可以用下面三种方法来分别获取... */
+        const colors = [&#39;red&#39;,&#39;green&#39;,&#39;blue&#39;]
+        const colorsIndex = Array.from(colors.keys())
+        console.log(colorsIndex)
+        for(let i of colors.values()){
+            console.log(i)
+        }
+
+        const colorVal = Array.from(colors.values())
+        console.log(colorVal)
+
+        const colorEntries = Array.from(colors.entries())
+        console.log(colorEntries)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        对于数组的length属性，它不仅只读还可修改，通过修改length的属性，可以从数组末尾删除或者添加元素
+        */
+       const colors = [&#39;red&#39;,&#39;green&#39;,&#39;blue&#39;]
+       console.log(&#39;原数组&#39;,colors)
+       //添加一个black
+       colors[colors.length] = &#39;black&#39;
+       console.log(&#39;插入black&#39;,colors)
+       //将数组长度变为2
+       colors.length = 2
+       console.log(&#39;将数组长度变为2&#39;,colors)
+    &lt;/script&gt;
+</code></pre>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><h4 id="基本API"><a href="#基本API" class="headerlink" title="基本API"></a>基本API</h4><pre><code class="javascript">    &lt;script&gt;
+        //创建一个map
+        const myMap = new Map()
+        myMap.set(&#39;k1&#39;,&#39;v1&#39;)
+        .set(&#39;k2&#39;,&#39;v2&#39;)
+        .set(&#39;k3&#39;,&#39;v3&#39;)
+        /* get(),has(),delete()以及keys(),values(),entries()三个返回迭代器的方法 */
+        console.log(myMap)
+        console.log(myMap.get(&#39;k1&#39;))//根据键获取对应的值
+        console.log(myMap.has(&#39;k2&#39;))
+        myMap.delete(&#39;k2&#39;)
+        console.log(myMap)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 键和值在迭代器中是可以修改的，但是映射内部的引用无法修改 */
+        const m1 = new Map([[&#39;k1&#39;,&#39;v1&#39;]])
+        for(let key of m1.keys()){
+            key = &#39;newKey&#39;
+            console.log(key)//newKey
+            console.log(m1.get(&#39;k1&#39;))//结果为v1
+        }
+        /* 选择map还是obj？
+            插入操作看map
+            查询操作用obj
+        */
+    &lt;/script&gt;
+</code></pre>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h4 id="基本API-1"><a href="#基本API-1" class="headerlink" title="基本API"></a>基本API</h4><pre><code class="javascript">    &lt;script&gt;
+        //set的方法包括add(),delete(),has(),size()
+        const mySet = new Set();
+        mySet.add(&#39;v1&#39;).add(&#39;v2&#39;).add(&#39;v3&#39;).add(&#39;v3&#39;)
+        console.log(mySet)//{&#39;v1&#39;, &#39;v2&#39;, &#39;v3&#39;}
+        const result = mySet.has(&#39;v1&#39;)
+        console.log(result) 
+    &lt;/script&gt;
+</code></pre>
+<h2 id="对象，类与面向对象编程"><a href="#对象，类与面向对象编程" class="headerlink" title="对象，类与面向对象编程"></a>对象，类与面向对象编程</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><h4 id="合并对象"><a href="#合并对象" class="headerlink" title="合并对象"></a>合并对象</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        合并对象，顾名思义就是将两个对象进行合并。有时候也叫作“混入”，对象A（源对象）混入对象B（目标对象），注意该操作执行的【浅复制】9
+        */
+       let src, dest, result
+       //定义目标对象
+       dest = {}
+       //定义源对象
+       src = {id: &#39;src&#39;}
+       //增强后的对象,与此同时dest对象也会被修改
+       result = Object.assign(dest, src)
+       console.log(&quot;目标对象dest和增强后的对象result是否相等(同一个指针指向)？&quot;,result === dest)
+       result.id = &quot;null&quot;
+       console.log(result.id)
+       console.log(dest.id)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="增强的对象语法"><a href="#增强的对象语法" class="headerlink" title="增强的对象语法"></a>增强的对象语法</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        什么是语法糖，就是能让程序猴写代码写起来更舒服的语法结构
+        1.属性值简写（属性名和变量名一样时，即可触发对象属性的简写形式）
+        2.简写方法名
+        3.可计算属性 （可以在对象字面量中动态完成属性赋值，中括号包围的对象属性键表示这个属性会随着中括号里面的变量值的改变而改变
+        具体操作如下）
+        */
+
+        const name = &#39;fran_name&#39;
+        const age = &#39;fran_age&#39;
+        const major = &#39;fran_major&#39;
+        const say = &#39;fran_say&#39;
+        let person = {
+            [name]: &#39;fran&#39;,
+            [age]: 21,
+            [major]: &#39;Software engineer&#39;,
+            [say](){
+                console.log(`my name is ${this.fran_name}`)
+            }
+        }
+        console.log(person)//{fran_name: &#39;fran&#39;, fran_age: 21, fran_major: &#39;Software engineer&#39;}
+        /* 
+        这种操作有点像，先挖一个萝卜坑（中括号），给每个坑一个编号（变量名）然后再种萝卜（变量的值）
+        */
+
+        /* 
+        另外可计算属性和简写方法名能够“联动”产生一些“节目”效果,方法名也是对象的一个属性，它也是可以计算的,在方法名外面也可以加[]
+        */
+        person.fran_say()//my name is fran
+    &lt;/script&gt;
+</code></pre>
+<h4 id="对象属性的类型"><a href="#对象属性的类型" class="headerlink" title="对象属性的类型"></a>对象属性的类型</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 属性分为：
+            数据属性(就是我们平时定义的属性，包含一个保存数据值的位置。值会从这个位置读取，同时修改后也会写入到这个位置)
+            另外需要注意的是：我们可以对数据属性进行进一步地“约束”，这种“约束”叫作属性的特性。有四个特性configurable【属性是否能够删除】，enumerable【属性是否可以循环】，writable【属性的值是否能够修改】，value
+            利用Object.defineProperty()时，这四个特性默认都是false，当然可以人为设置
+
+            访问器属性(不含数据值，包含一个setter和getter函数)-----------------&gt;响应式数据的底层实现!!!!!!!
+            get函数(当访问访问器属性时，会被调用，用于返回一个有效值)
+            set函数(当写入 访问器属性时，会被调用，接收传入的新值，对数据进行修改)
+         */
+         let person = {}
+         person.name = &#39;jack&#39;
+         console.log(person.name)
+         Object.defineProperty(person,&#39;age&#39;,{
+             writable: false,
+             configurable: false,
+             value: 18
+         })
+         console.log(person.age)
+         person.age = 21
+         console.log(person.age)//结果仍为18，因为writable设置了false，也就是说属性的值无法修改
+         delete person.age//删除属性无效
+
+         //下面演示一下“响应式数据”---摘（改）（抄）自js高级程序设计
+         let book = {
+             year_: 2021,
+             edition: 1,
+         }
+         Object.defineProperty(book,&#39;year&#39;,{
+             get(){
+                return this.year_
+             },
+             set(newVal){
+                if(newVal &gt; 2021){
+                    this.year_ = newVal
+                    this.edition = newVal - 2021
+                }
+             }
+         })
+         book.year = 2025
+         console.log(book.edition)// 4
+         //现在想想，vue里的data配置项中的数据（每一个vc的属性）都会为每个数据匹配一个专有的访问器属性，当数据被修改的时候，会调用其对应的setter方法
+    &lt;/script&gt;
+</code></pre>
+<h4 id="对象解构"><a href="#对象解构" class="headerlink" title="对象解构"></a>对象解构</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        对象解构？官方说法就是 使用与 对象匹配的结构 来实现 对象属性赋值
+        大白话就是，如果你像得到某个对象的一些属性的值并用一些变量保存起来，最常规的做法就是 变量 = 对象.属性
+        */
+        let person = {
+            name: &#39;fran&#39;,
+            age: 21,
+            shoes:{
+                nike: &#39;nike&#39;,
+                anta: &#39;anta&#39;,
+            }
+        }
+        //常规赋值
+        let name = person.name
+        let age = person.age
+        console.log(&#39;常规赋值&#39;)
+        console.log(name,age)
+        //使用解构赋值
+        let {name: myName, age: myAge} = person
+        console.log(&#39;解构赋值&#39;)
+        console.log(myName, myAge)
+        //值得注意的是，如果有对象以参数传入某个函数，我们也能对这个对象参数进行解构赋值，比如下面这个例子
+        let showShoes = function({shoes:{nike, anta}}){
+            console.log(nike, anta)
+        }
+        //传入的是一个person对象，但是会将该对象的shoes属性结构出来
+        showShoes(person)
+    &lt;/script&gt;
+</code></pre>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><h4 id="构造函数-1"><a href="#构造函数-1" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        在js里，函数和构造函数也是属于Object这个祖先类，引入构造函数是为了更进一步确定对象类型
+        比如obj1 = {}，这是Object的实例，而person = new Person()，它既是Object的实例，也是Person的实例
+
+        如何区分普通函数和构造函数？
+        使用new操作符调用的函数就是构造函数
+
+        一般构造函数的函数名第一个字母是大写，普通函数的则是小写
+        */
+       //开始定义构造函数，   ？？应该能理解为创建一个类？？
+        function Person(name, age) {
+            this.name = name
+            this.age = age
+            this.sayName = function(){
+                console.log(`halo, my name is ${this.name}. I am ${this.age}.`)
+            }
+        }
+        let fran = new Person(&#39;fran&#39;,21)//halo, my name is fran. I am 21.
+        fran.sayName()
+    &lt;/script&gt;
+</code></pre>
+<h3 id="继承（原型）"><a href="#继承（原型）" class="headerlink" title="继承（原型）"></a>继承（原型）</h3><h4 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        原型是构造函数的一个属性，这个属性是一个对象，上面有特定引用类型对象的共享方法和属性，从而实现所有属性和方法在所有实例之间是共享的
+         */
+        function Person(name, age) {
+        this.name = name
+        this.age = age
+        //定义一个原型上的方法.
+        Person.prototype.sayName = function(){
+            console.log(`halo, my name is ${this.name}. I am ${this.age}.`)
+            }
+        }
+        let jack = new Person(&#39;jack&#39;,19)
+        let fran = new Person(&#39;fran&#39;,21)
+        jack.sayName()
+        fran.sayName()
+    &lt;/script&gt;
+</code></pre>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        组合继承，综合了原型链和盗用构造函数，将两者的优点结合了。在原型链的原型上继承属性和方法，而子类实例的属性则通过盗用构造函数（调用父类的构造方法）来进行赋值
+        */
+       function Person(name){
+           this.name = name
+           this.nationality = []
+       }
+       Person.prototype.sayName = function(){
+           console.log(`my name is ${this.name}`)
+       }
+
+       function YellowGuy(name, age){
+           Person.call(this,name)
+           this.age = age
+       }
+       YellowGuy.prototype = new Person()
+
+       YellowGuy.prototype.sayAge = function(){
+           console.log(`i am ${this.age}`)
+       }
+
+       let fran = new YellowGuy(&#39;fran&#39;,21)
+       fran.sayName()
+       fran.sayAge()
+       fran.nationality.push(&#39;China&#39;)
+       console.log(fran.nationality[0])
+    &lt;/script&gt;
+</code></pre>
+<h4 id="原型式继承"><a href="#原型式继承" class="headerlink" title="原型式继承"></a>原型式继承</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        使用背景： 你有一个对象，想在它的基础上再创建一个新的对象。你可以采取前面讲到的组合继承，但是组合继承有的时候是需要事先“约定”好的，不能很好的做到随时使用。我们可以封装一个函数Object(),传入要在此基础上修改的对象，返回一个新的对象，这个新的对象的原型指向传入的这个对象
+        但是需要注意的是：属性中包含引用值始终会在相关对象之间共享
+        该方式最大的有点就是减少了构造函数的创建。想在那个对象基础上创建一个新的对象，只需要将这个对象传入Object函数
+        */
+        function object(o){
+            function NewObj() {}
+            NewObj.prototype = o
+            return new NewObj()
+        }
+        let person =  {
+            name: &#39;&#39;
+        }
+        let fran = object(person)
+        fran.name = &#39;fran&#39;
+        console.log(fran.name)
+
+        /* 
+        寄生式继承和它类似，只不过多了个增强对象环节（增加新的方法），然后再将这个新对象返回...
+        */
+    &lt;/script&gt;
+</code></pre>
+<h4 id="寄生式组合继承"><a href="#寄生式组合继承" class="headerlink" title="寄生式组合继承"></a>寄生式组合继承</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        听名字就是组合继承的改进版，它是为了解决组合继承的效率问题，最主要的效率问题是父类构造函数会被调用两次，一次是在子类原型创建时调用，另外一次是在子类的构造函数中调用。
+
+        其实子类原型只要包含父类对象的实例属性即可，子类构造函数只要再执行的时候重写自己的原型即可
+
+        具体实现步骤就是：①利用寄生式继承来继承父类原型②执行完①会得到一个新对象，再将这个对象赋值给子类原型
+
+        仔细想想，组合继承的子类原型是父类构造函数的一个实例，而寄生式组合继承的则是一个“过渡对象”（这个对象的原型就是父类原型）
+        */
+        function object(o){
+            function NewObj() {}
+            NewObj.prototype = o
+            return new NewObj()
+        }
+
+        let Person = function(name){
+            this.name = name
+        }
+
+        let ChinesePerson = function(name, age){
+            Person.call(this, name)//重点！！！！！！！！！！！！！！这里调用父类的构造方法
+            this.age = age
+        }
+
+        //核心方法，这一步代替了 ChinesePerson.prototype = new Person()，减少一次调用父类构造方法的次数
+        function inheritPrototype(subType, superType){
+            //利用寄生式继承里面的object方法来得到“过渡对象”
+            let prototype = object(superType.prototype)
+            //执行完①会得到一个新对象，再将这个对象赋值给子类原型
+            subType.prototype = prototype
+        }
+        inheritPrototype(ChinesePerson, Person)
+        let fran = new ChinesePerson(&#39;fran&#39;,21)
+        console.log(fran)
+    &lt;/script&gt;
+</code></pre>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><h4 id="类构造函数"><a href="#类构造函数" class="headerlink" title="类构造函数"></a>类构造函数</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        什么是类构造函数？简单说就是在 类创建实例的时候 要调用的函数，此外要调用类构造函数一定要用new操作符！！!
+         */
+        class Person{
+            //下面这就是Person的类构造函数- -，构造函数用于对实例进行相关属性方法的赋值操作
+            constructor(name){
+                this.name = name
+                this.sayName = function(){
+                    console.log(`my name is ${this.name}`)
+                }
+            }
+        }
+        let p1 = new Person(&#39;fran&#39;)
+        p1.sayName()
+
+        //let p2 = Person()
+        //报错 Uncaught TypeError: Class constructor Person cannot be invoked without &#39;new&#39;
+
+        let p3 = new Person.constructor()
+        console.log(p3 instanceof Person.constructor)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="抽象基类"><a href="#抽象基类" class="headerlink" title="抽象基类"></a>抽象基类</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        抽象基类？？？不就是抽象类嘛，在java中定义抽象类一个abstract关键字就好了，但是在js中要在需要定义成抽象类的constructor中使用new.target来检测，new.target会保存 通过new关键字调用的类或函数，通过比较可以阻止对抽象基类的实例化
+        想想，因为js里没有abstract这个关键字，所以默认 所有的类都是可以实例化的。现在又引入了抽象基类这个概念，只好将识别 抽象基类的环节 推迟到constructor中执行，new.target作为一个检查点，如果new的是一个 抽象基类 就会抛出错误
+        */
+       class Vehicle{
+           constructor(price){
+               this.price = price
+               //设置“检查点，如果发现new的是Vehicle就抛出错误”
+               if(new.target === Vehicle){
+                   throw new Error(&#39;不好意思，Vehicle是一个抽象基类，无法被实例化- -，请实例化它的子类，不用谢&#39;)
+               }
+               /* if(!this.foo){
+                    throw new Error(&#39;这个子类必须实现foo方法&#39;)
+               }
+               console.log(&#39;创建Vehicle的子类实例成功&#39;) */
+           }
+           showPrice(){
+               console.log(`这辆车的价格是${this.price}w`)
+           }
+           /* foo(){
+               console.log(&#39;foo&#39;)
+           } */
+       }
+       Vehicle.prototype.foo = function(){
+            console.log(&#39;foo&#39;)
+       }
+
+       class Car extends Vehicle{
+           constructor(brand,price){
+               //注意子类的类构造函数内一定要先执行父类的类构造方法！！！不然会报错
+               super(price)
+               this.brand = brand
+               this.showBrand = function(){
+                   console.log(`这辆车是${this.brand}`)
+               }
+           }
+           /* foo(){
+               console.log(&#39;foo&#39;)
+           } */
+       }
+
+       //下面尝试new一下这个抽象基类（必抛错）
+       //let car = new Vehicle()//Uncaught Error: 不好意思，Vehicle是一个抽象基类，无法被实例化- -，请实例化它的子类，不用谢 at new Vehicle (抽象基类.html:19)
+       let toyota = new Car(&#39;丰田&#39;,20)
+       let auto = new Car(&#39;大众&#39;,10)
+       toyota.showBrand()
+       toyota.foo()
+       console.log(toyota.brand === auto.brand)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="原型方法与访问器"><a href="#原型方法与访问器" class="headerlink" title="原型方法与访问器"></a>原型方法与访问器</h4><pre><code class="javascript">    &lt;script&gt;
+        /* 
+        为了能在实例之间能够共享方法，类定义语法把在 类块定义的方法作为 原型方法
+        另外，类定义也支持设置访问器
+        */
+       class Person{
+           //添加到this的所有内容都会存在于不同的实例上
+           constructor(name,age){
+               this.name = name
+
+               /* 这是我之前犯的错误
+               this.age = age 
+               */
+
+               this.age_ = age
+               this.locate = () =&gt; {
+                   console.log(&#39;instance&#39;)
+               }
+               /* this.sayAge = function(){
+                   console.log(this.age)
+               } */
+           }
+           set age(age){
+                console.log(&#39;修改age&#39;)
+
+                /* 同上
+                this.age = age 
+                */
+
+                this.age_ = age
+           }
+           get age(){
+                console.log(&#39;读取age&#39;)
+                return this.age_
+           }
+           //这个就是定义在类的原型的方法，从这里可以看出，该方法位于类块里，constructor之外
+           locate(){
+               console.log(&#39;prototype&#39;)
+           }
+       }
+
+       let p1 = new Person(&#39;fran&#39;,21)
+       console.log(p1.name)
+       p1.locate()//instance
+       Person.prototype.locate()//prototype
+
+       p1.age
+       p1.age = 22
+
+       /* 
+       在设置访问器的时候遇到了栈溢出的问题：产生这个问题的原因很简单但是我一开始并没有发现：我把访问器的属性和实例属性写成一样的了。访问器属性的工作原理是：当访问到该属性，该属性本身是不会存放数据的，而是会调用set或者get函数，里面才是要处理的数据
+       就拿上面的age来说，实例属性和访问器属性都是age，乍一看合情合理：我访问age属性，自然就会调用相关函数改变age的值。大错特错，来看看set的内部有条this.age语句，这条语句相当于又访问了age这个访问属性，然后由调用set，然后.........就死循环最后就栈溢出了
+       解决方法很简单：属性命名不一样即可，一般真正用来存放数据的属性我们都会把它们“隐藏起来”（这样命名xxx_)，而访问器属性则直接命名xxx，有点代理的味道了
+       */
+    &lt;/script&gt;
+</code></pre>
+<h2 id="DOOOOOM"><a href="#DOOOOOM" class="headerlink" title="DOOOOOM"></a>DOOOOOM</h2>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2021/11/13/关于一个折磨了我快两天的不是bug的bug/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/frozen.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/Vue/frozen.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                关于一个折磨了我快两天的不是bug的bug（低血压人士误入）</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Kitholt Frank<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2021</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_uv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    </div>
+  </div><!-- .site-info -->
+    
+</footer>
+
+
+
+
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">KItholtFrank</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/kitholt" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            资瓷
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="8153220533"
+
+    server="tencent"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<noscript><iframe src="/blog/*>";</iframe></noscript>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
+ 
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
+
+
+</html>
