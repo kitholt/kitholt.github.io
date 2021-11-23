@@ -862,7 +862,357 @@
 <hr>
 <p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/learningJS/class_summary.jpg" alt></p>
 <p><span style="color:green;font-size:36px">顶不住了，别人画的是思维导图，我画的是些什么玩意er，可能我的思维比较混乱吧- -至少它在我脑海是这个布局</span></p>
-<h2 id="DOOOOOM"><a href="#DOOOOOM" class="headerlink" title="DOOOOOM"></a>DOOOOOM</h2>
+<h2 id="DOOOOOM"><a href="#DOOOOOM" class="headerlink" title="DOOOOOM"></a>DOOOOOM</h2><h4 id="节点关系"><a href="#节点关系" class="headerlink" title="节点关系"></a>节点关系</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        什么是节点，简单讲就是html标签（有点不严谨，确实不严谨），每个文档（document）是一个网页的根节点，这个根节点有一个唯一的子节点---&lt;html&gt;，也叫文档元素，所有的文档元素都在这个元素之内
+        节点之间两种关系：父子关系、同胞关系
+        每个节点都有一个childNodes和parentNodes属性，其中childNodes属性的值是一个NodeList类数组对象，存放的是一个有序节点（按照html标签的出现顺序），因为是一个类数组，我们可以用中括号或者item()的方法访问里面的元素
+        另外在childNodes里，每个childNode还有一个nextSibling和previousSibling属性，分别指向自己的后一个、前一个同胞元素
+        还有一点需要补充的是，父节点还有firstchild和lastChild两个属性，专门来访问第一个节点和最后一个节点
+        下面是简单的调试环节
+         */
+
+         //获取文档元素html
+        let html = document.documentElement
+        let htmlChildren = html.childNodes
+        console.log(htmlChildren)//NodeList(3) [head, text, body]
+
+        let head = html.firstChild
+        console.log(head)
+
+        let body = html.lastChild
+        console.log(body)
+
+        let headChildren = htmlChildren[0].childNodes
+        console.log(headChildren)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="操作节点"><a href="#操作节点" class="headerlink" title="操作节点"></a>操作节点</h4><pre><code class="javascript">/* 
+        操纵节点的一些方法
+        appendChild(), insertBefore(), replaceChild(), removeChild()，其中appendChild()是将元素插入到末尾，insertBefore()可以指定插入节点的位置, 剩下俩个不用过多解释- -
+        此外还有cloneNode()方法，通过传一个布尔参数来决定是否开启深复制，若为true则复制该节点以及其整个子DOM树，反之只复制该节点
+
+        normalize()方法，后续会进行补充...
+        */
+
+        let ul = document.documentElement.lastChild.childNodes[1]
+        console.log(ul)
+
+        let li = document.createElement(&#39;li&#39;)
+        li.innerHTML = 5
+        ul.appendChild(li)
+
+        ul.removeChild(li)
+
+        //偷懒，就不演示了
+    &lt;/script&gt;
+</code></pre>
+<h4 id="定位元素"><a href="#定位元素" class="headerlink" title="定位元素"></a>定位元素</h4><pre><code class="javascript">/* 
+        getElementById(), getElementByTagName()等返回的都是一个HTMLCollection对象，它和前面的NodeList很像，唯一的区别就是前者有一个额外的方法namedItem(),通过标签的name属性取得某一项的引用
+
+        通过查阅相关资料，NodeList包含的是一个节点的所有节点（包括了元素节点），而HTMLCollection只包含其元素节点，通过下面的一个小例子就能看出它们之间的差别
+        */
+       let htmlNodeList = document.documentElement.childNodes
+       console.log(htmlNodeList)//NodeList(3) [head, text, body]
+
+       let htmlHTMLCollection = document.documentElement.children
+       console.log(htmlHTMLCollection)//HTMLCollection(2) [head, body]
+
+       /* 
+       我们能看到多出了个TEXT_NODE
+       */
+    &lt;/script&gt;
+</code></pre>
+<h4 id="MutationObserver"><a href="#MutationObserver" class="headerlink" title="MutationObserver"></a>MutationObserver</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        这个强大的接口能够在DOM被修改时异步执行回调，使用这个接口能够观察文档，DOM树的一部分或者某个元素，或者元素属性、子节点、文本的变化
+
+        基本用法：
+        1.创建实例，并传入一个回调处理函数
+        2.使用observe()为该实例绑定观察对象，传两个参数，一个参数是指定要观察的DOM节点，第二个参数是一个配置对象，用于指定观察哪些方面的变化
+
+        每个回调都会收到一个MutationRecord实例的数组，这个数组记录了发生变化的相关信息
+
+        想想，貌似vue的$nextTick函数的实现原理好像就是这个...
+        */
+
+        let observer = new MutationObserver(() =&gt; console.log(&#39;&lt;body&gt; 标签的属性被改变了！！！&#39;))
+        observer.observe(document.body, {attributes: true})
+
+        document.body.className = &#39;foo&#39;
+        console.log(&#39;改变body的css类名&#39;)
+
+        /* 我们来观察一下回调执行的时机
+        结果：
+        改变body的css类名
+        &lt;body&gt; 标签的属性被改变了！！！ */
+    &lt;/script&gt;
+</code></pre>
+<h4 id="Selectors-API"><a href="#Selectors-API" class="headerlink" title="Selectors_API"></a>Selectors_API</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        可以替代之前的getElementById()和getElementByTagName()
+        querySelector()：接收CSS选择符参数，返回匹配的节点
+        querySelectorAll()：接收CSS选择符参数，返回所有匹配的节点，所有实例包装在NodeList中
+        matches(): 接收CSS选择符参数，如果元素匹配则该选择符返回true，反之返回false
+         */
+
+        console.log(document.body.querySelectorAll(&#39;p&#39;))//NodeList(6) [p, p, p, p, p, p], 需要注意的是，这个返回的NodeList是一个“静态”的，并非“实时”的
+
+        console.log(document.body.matches(&#39;body.p&#39;))
+    &lt;/script&gt;
+</code></pre>
+<h4 id="CSS类扩展"><a href="#CSS类扩展" class="headerlink" title="CSS类扩展"></a>CSS类扩展</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        classList属性，要操作类名，可通过此属性实现，HTML5提供了一下方法：
+        add(),contains(),remove(),toggle()
+        */
+        let div = document.querySelector(&#39;.red&#39;)
+        div.classList.remove(&#39;red&#39;)
+
+        div.classList.add(&#39;green&#39;)
+        console.log(div.style)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="插入标记"><a href="#插入标记" class="headerlink" title="插入标记"></a>插入标记</h4><pre><code class="javascript">&lt;script&gt;
+        /*
+        两个属性： 
+        innerHTML:dddd
+        outerHTML:调用它的元素会被传入的HTML字符串解析生成的HTML DOM子树给取代
+        两个方法，都接收两个参数（插入标记的位置，要插入的HTML或者文本）：
+        插入标记位置的可选参数：
+            1. beforebegin：元素之前，相当于在前面插入一个同胞节点
+            2. afterbegin：元素开头内部，相当于插入一个子节点
+            3. beforeend： 元素末尾内部，相当于插入一个子节点（末尾）
+            4. afterend： 元素之后，相当于在后面插入一个同胞节点
+        insertAdjacentHTML()，insertAdjacentText()
+        */
+
+    &lt;/script&gt;
+</code></pre>
+<h4 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        所谓遍历就是遍历DOM结构，有两种类型来遍历
+            1. NodeIterator
+                使用document.createNodeIterator()创建，该方法需要接收四个参数（[要遍历根节点的节点]，[要访问哪些节点]，[过滤对象 || 过滤函数]，[扩展实体引用]）
+                （whatToShow）要访问哪些节点，这个参数对应的常量是在NodeFilter中定义的
+                关于过滤对象的使用：
+                    过滤对象NodeFilter只有一个acceptNode()方法，具体实现下面会有
+                节点迭代器有两个主要的方法：nextNode()，previousNode()
+            2. TreeWalker,这可以说是前者的升级版，额外添加了不同方向遍历的方法：
+                parentNode()
+                firstChild()
+                lastChild()
+                nextSibling()
+                previousSibling()
+        */
+
+        //定义一个过滤对象NodeFilter，该过滤对象表示只接收&lt;p&gt;元素的节点
+        let filter = {
+            acceptNode(node){
+                return node.tagName.toLowerCase() == &#39;p&#39; ? NodeFilter.FILTER_ACCEPT: NodeFilter.FILTER_REJECT
+            }
+        }
+
+        let div = document.querySelector(&#39;.div1&#39;)
+        let iterator = document.createNodeIterator(div, NodeFilter.SHOW_ELEMENT, filter, false);
+        let node = iterator.nextNode()
+        while(node != null){
+            console.log(node.tagName)
+            node = iterator.nextNode()
+        }
+    &lt;/script&gt;
+</code></pre>
+<h4 id="待续…"><a href="#待续…" class="headerlink" title="待续…"></a>待续…</h4><h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h2 id="动画与Canvas图形"><a href="#动画与Canvas图形" class="headerlink" title="动画与Canvas图形"></a>动画与Canvas图形</h2><h4 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h4><p>（下面介绍摘自阮一峰老师的博客）</p>
+<p>设置这个API的目的是为了让各种网页动画效果（DOM动画、Canvas动画、SVG动画、WebGL动画）能够有一个统一的刷新机制，从而节省系统资源，提高系统性能，改善视觉效果。代码中使用这个API，就是告诉浏览器希望执行一个动画，让浏览器在下一个动画帧安排一次网页重绘。</p>
+<p><strong>requestAnimationFrame的优势，在于充分利用显示器的刷新机制，比较节省系统资源。</strong>显示器有固定的刷新频率（60Hz或75Hz），也就是说，每秒最多只能重绘60次或75次，requestAnimationFrame的基本思想就是与这个刷新频率保持同步，利用这个刷新频率进行页面重绘。此外，使用这个API，一旦页面不处于浏览器的当前标签，就会自动停止刷新。这就节省了CPU、GPU和电力。</p>
+<hr>
+<pre><code class="javascript">    &lt;script&gt;
+        /* 
+        requestAnimationFrame，瞎翻译：请求动画帧函数
+        该方法接收一个参数：是要在重绘屏幕前调用的函数
+        值得注意的是这个参数函数还能接收一个参数，该参数表示下次重绘的时间（待补充...）
+
+        额外注意：dom元素的style对象和dom元素的css样式表两者是独立的,没有任何关系，JS只能操作或修改行内样式！！！
+        */
+
+        var a = 0;
+        function step(){
+            a++;
+            console.log(a)
+            var g =  requestAnimationFrame(step)
+            if(a&gt;=100){
+                cancelAnimationFrame(g)
+            }
+        }
+        step()
+    &lt;/script&gt;
+</code></pre>
+<p>该方法也会返回一个请求ID，可以用于通过另外一个方法cancelAnimationFrame()来取消任务，这有点像setTimeout()</p>
+<hr>
+<p>补充要点：<span style="color:green;font-size:30px">什么是回流和重绘？</span></p>
+<ol>
+<li><p>回流：页面中元素尺寸、布局或者隐藏而需要重新构建页面</p>
+<p>以下操作会引起回流</p>
+<ol>
+<li>添加或者删除可见的DOM元素；</li>
+<li>元素尺寸改变——边距、填充、边框、宽度和高度</li>
+<li>内容变化，比如用户在input框中输入文字</li>
+<li>浏览器窗口尺寸改变——resize事件发生时</li>
+<li>计算 offsetWidth 和 offsetHeight 属性</li>
+</ol>
+</li>
+<li><p>重绘：元素的外观发生改变，但是布局没有发生改变</p>
+</li>
+</ol>
+<p>在页面设计中药尽量减少回流和重绘的次数，这就是所谓的性能优化（高阶操作）</p>
+<ul>
+<li>改变样式尽量集中改变，可以使用class属性给多个元素同时添加</li>
+<li>position属性为absolute或fixed的元素，重排开销比较小，不用考虑它对其他元素的影响</li>
+<li>优化动画- -</li>
+<li>…</li>
+</ul>
+<h4 id="绘制矩形"><a href="#绘制矩形" class="headerlink" title="绘制矩形"></a>绘制矩形</h4><pre><code class="javascript">    &lt;canvas class=&quot;drawing&quot; width=&quot;800&quot; height=&quot;300&quot; style=&quot;background-color: honeydew;&quot;&gt;&lt;/canvas&gt;
+    &lt;script&gt;
+        /* 
+        创建画布：&lt;canvas&gt;&lt;/canvas&gt;
+        获取画布的上下文：getContext()，根据接收的参数来决定获取的是什么类型的画布上下文对象，比如传入&#39;2d&#39;---一定要传参，不然会报错
+
+        两个基本属性：填充（fillStyle）和描边（strokeStyle）
+
+        矩形是唯一一个可以直接在2D画布中直接绘制的形状
+        相关方法（都接受四个参数：x坐标，y坐标，矩形宽度，矩形高度）：
+            1. fillRect()
+            2. strokeRect()
+            3. clearRect() 清除画布某个区域，可以用于“打孔”
+
+        注意：
+            1. lineWidth：描边宽度
+            2. lineCap控制线条端点[&#39;butt&#39;, &#39;round&#39;, &#39;square&#39;]
+            3. lineJoin控制线条交点的形状[&#39;round&#39;, &#39;bevel(取平？)&#39;, &#39;miter(出尖)&#39;]
+
+        */
+
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let context = drawing.getContext(&#39;2d&#39;)
+
+        //画一个红色矩形
+        context.fillStyle = &#39;red&#39;
+        context.fillRect(10, 10, 50, 50)
+        //给这个红色的矩形描一下边
+        context.strokeStyle = &#39;black&#39;
+        //设置描边宽度
+        context.lineWidth = 10
+
+        context.strokeRect(10, 10, 50, 50)
+        //再画一个透明的蓝色矩形
+        context.fillStyle = &#39;rgba(0, 0, 255, 0.5)&#39;
+        context.fillRect(30, 30, 50, 50)
+
+        //在这两个矩形重叠的地方打个“孔”
+        context.clearRect(40, 40, 10, 10)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="绘制路径"><a href="#绘制路径" class="headerlink" title="绘制路径"></a>绘制路径</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        Path路径，通过路径可以创建复杂的形状和线条。绘制路径的一般流程是
+        1. 创建路径beginPath()
+        2. 开始操作arc(), arc(), lineTo(), moveTo()...
+        3. 结束路径closePath()
+        4. 描画路径
+
+        绘制文本(接收参数：要绘制的字符串，x坐标，y坐标，可选的最大像素宽度)：
+            1. fillText()
+            2. strokeText()
+         */
+
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let context = drawing.getContext(&#39;2d&#39;)
+        //现在来尝试画一个不带数字的表盘
+        //先将“画笔”移到画布中央,此时原点（0,0）被移动此处
+        context.beginPath()
+        context.translate(400, 400)
+        //半径为400px，画一个圆
+        context.arc(0, 0, 400, 0, 2 * Math.PI, false)
+        //半径为390px，画一个内圆
+        context.arc(0, 0, 390, 0, 2 * Math.PI, false)
+
+        context.rotate(1)
+
+        //画一个时针
+        context.moveTo(0, 0)
+        context.lineTo(0, -360)
+        //画一个分针
+        context.moveTo(0, 0)
+        context.lineTo(-330, 0)
+        //结束路径
+        context.closePath()
+        //描画路径
+        context.stroke()
+
+        //给表盘顶部添加数字12
+        context.font = &#39;bold 14px Arial&#39;
+        context.textAlign = &#39;center&#39;
+        context.textBaseline = &#39;middle&#39;
+        context.fillText(&#39;12&#39;, 0, -375)
+
+    &lt;/script&gt;
+</code></pre>
+<h4 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        context这个笔可以根据以下属性自动为已有形状或路径生成阴影
+            shadowColor，shadowOffsetX，shadowOffsetY，shadowBlur
+        如何使用：只要在绘制图形或者路径前设置好适当的值即可
+        */
+
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let context = drawing.getContext(&#39;2d&#39;)
+
+        context.shadowOffsetX = 5
+        context.shadowOffsetY = 5
+        context.shadowColor = &#39;green&#39;
+
+        //画一个红色矩形
+        context.fillStyle = &#39;red&#39;
+        context.fillRect(10, 10, 50, 50)
+    &lt;/script&gt;
+</code></pre>
+<h4 id="渐变"><a href="#渐变" class="headerlink" title="渐变"></a>渐变</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        标准画布的兄弟---线性渐变画布
+        let gradient = context.createLinearGradient(x1, y1, x2, y2)
+        四个参数：起始xy坐标和终点xy坐标
+
+        调用addColorStop()为渐变指定颜色，接收两个参数，第一个表示色标位置，范围是0-1，第二个是css颜色字符串
+
+        之后将这个对象赋值给fillStyle或者strokeStyle
+
+        忘了说了，有线性渐变就自然有径向渐变createRadialGradient()，接收六个参数，前三个指定起点圆形的xy坐标和半径，后三个指定终点圆形的...
+        */
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let context = drawing.getContext(&#39;2d&#39;)
+
+        //创建渐变画布
+        let gradient = context.createLinearGradient(0, 0, 800, 300)
+        gradient.addColorStop(0,&#39;red&#39;)
+        gradient.addColorStop(0.5,&#39;yellow&#39;)
+        gradient.addColorStop(0.6,&#39;pink&#39;)
+        gradient.addColorStop(1,&#39;blue&#39;)
+        //线性渐变填充，这里会占画布的1/2
+        context.fillStyle = gradient
+        context.fillRect(0, 0, 400, 300)
+
+
+        //创建径向渐变
+        let radialGradient = context.createRadialGradient(600, 150, 90, 490, 150, 200)
+        radialGradient.addColorStop(0,&#39;white&#39;)
+        radialGradient.addColorStop(0.5,&#39;purple&#39;)
+        radialGradient.addColorStop(1,&#39;black&#39;)
+        //径向渐变填充
+        context.fillStyle = radialGradient
+        context.fillRect(400, 0, 400, 300)
+    &lt;/script&gt;
+</code></pre>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
