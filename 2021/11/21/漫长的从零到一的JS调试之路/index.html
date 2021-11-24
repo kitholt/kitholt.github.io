@@ -1212,6 +1212,137 @@
         context.fillRect(400, 0, 400, 300)
     &lt;/script&gt;
 </code></pre>
+<h4 id="图案"><a href="#图案" class="headerlink" title="图案"></a>图案</h4><pre><code class="javascript">     &lt;script&gt;
+        /*
+        如何使用： 
+            1. createPattern(),接收两个参数：一个HTML&lt;img&gt;元素和如何重复图像的字符串
+            2. 将填充样式设置为图案，context.fillStyle = pattern
+            3. 调用fillRect方法
+        */
+    &lt;/script&gt;
+</code></pre>
+<h4 id="图像数据"><a href="#图像数据" class="headerlink" title="图像数据"></a>图像数据</h4><pre><code class="javascript">    &lt;canvas class=&quot;drawing&quot; width=&quot;2000&quot; height=&quot;2000&quot;&gt;&lt;/canvas&gt;
+    &lt;img src=&quot;img/img1.jpg&quot; alt=&quot;&quot; width=&quot;500&quot; height=&quot;300&quot; id=&quot;img1&quot;&gt;
+    &lt;script&gt;
+
+        /* 
+        使用getImageData()获取画布上原始图像数据，该方法返回一个ImageData实例，有三个属性：width，height和data，data是一个包含图像所有的原始像素信息的数组
+        每个像素在数组中都有4个值表示分别表示红绿蓝透明，比如说第一个像素的信息是在数组第0到第3个值中，后面的以此类推
+
+        一个小应用：灰阶过滤器
+        */
+
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let ctx = drawing.getContext(&#39;2d&#39;)
+        let image, imageData, red, green, blue, len, average
+        //console.log(ctx)
+        image = document.getElementById(&#39;img1&#39;)
+
+
+
+
+        //在画布上绘制图像
+        window.onload = function(){
+            ctx.drawImage(image, 0, 0, 500, 300)
+             //取得图像数据
+            imageData = ctx.getImageData(0, 0, image.width, image.height)
+            data = imageData.data
+            len = data.length
+            for(let i = 0; i &lt; len; i += 4){
+                red = data[i]
+                green = data[i+1]
+                blue = data[i+2]
+                //三颜色求平均值
+                average =  Math.floor((red + green + blue) / 3)
+
+                //相当于过滤掉了颜色信息，只留下灰度信息（我不太知道这是啥原理...）
+                data[i] = average
+                data[i+1] = average
+                data[i+2] = average
+            }
+            //将修改的数据写回，并在画布上重新显示
+            imageData.data = data
+            ctx.putImageData(imageData, 0, 0)
+        }
+
+
+
+
+        /* 
+        在完成这个应用的过程中遇到一些小坑
+            一般图片的获取都是需要一定时间的，而drawImage()这个方法是同步执行的，如果图片还没加载完毕，画布就显示不出来图片
+        解决方法：
+            1. 对图片的操作全都放在window.onload里面
+            2. 使用promise异步完成，当图片加载完毕时在调用drawImage()--------------------------------------出错了，暂时找不到- -
+        下面使用promise来尝试解决
+        */
+
+        /* let promise = new Promise((resolve, reject) =&gt;{
+            if(image){
+                resolve()
+            }else{
+                console.log(&#39;图片还未加载完成...&#39;)
+            }
+        })
+        promise.then(() =&gt; {
+            //绘制图像
+            ctx.drawImage(image, 0, 0, 500, 300)
+            console.log(image.width)
+             //取得图像数据
+            imageData = ctx.getImageData(0, 0, image.width, image.height)
+            data = imageData.data
+            console.log(&quot;23333&quot;,data)
+            len = data.length
+            for(let i = 0; i &lt; len; i += 4){
+                red = data[i]
+                green = data[i+1]
+                blue = data[i+2]
+                //三颜色求平均值
+                average =  Math.floor((red + green + blue) / 3)
+
+                //相当于过滤掉了颜色信息，只留下灰度信息（我不太知道这是啥原理...）
+                data[i] = average
+                data[i+1] = average
+                data[i+2] = average
+            }
+            //将修改的数据写回，并在画布上重新显示
+            imageData.data = data
+            ctx.putImageData(imageData, 0, 0)
+        }) */
+    &lt;/script&gt;
+</code></pre>
+<h4 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h4><pre><code class="javascript">&lt;script&gt;
+        /* 
+        globalAlpha：设置所有绘制内容的透明度，取值0-1
+        globalCompositeOperation：表示新绘制的形状如何与画布中已有的形状融合
+        */
+
+        let drawing = document.querySelector(&#39;.drawing&#39;)
+        let ctx = drawing.getContext(&#39;2d&#39;)
+        //globalAlpha的例子
+        ctx.fillStyle = &#39;red&#39;
+        ctx.fillRect(0, 0, 80, 80)
+
+        //改变全局透明度
+        ctx.globalAlpha = 0.5
+
+        ctx.fillStyle = &#39;blue&#39;
+        ctx.fillRect(60, 60, 60, 60)
+
+        //恢复全局透明度
+        ctx.globalAlpha = 1
+
+        ctx.fillStyle = &#39;red&#39;
+        ctx.fillRect(500, 500, 80, 80)
+
+        //红色矩形会出现在蓝色矩形上面
+        ctx.globalCompositeOperation = &#39;destination-over&#39;
+
+        ctx.fillStyle = &#39;blue&#39;
+        ctx.fillRect(560, 560, 60, 60)
+
+    &lt;/script&gt;
+</code></pre>
 
         </div>
         <!-- .entry-content -->
