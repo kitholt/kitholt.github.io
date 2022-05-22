@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">霍夫曼树の创建、编码、解码 | 欢迎来到Franの杂货铺</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="browsermode" content="application">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "KItholtFrank";
+  mashiro_option.author_name = "Frank";
+  mashiro_option.site_url = "https://kitholt.github.io/";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/kitholt/cdn/img/warriors.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/best.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/curry.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/chase.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/stadium.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/splashbros.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/coolkt.webp,".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://kitholt.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>你来啦!欢迎来到Franの杂货铺！</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/kitholt" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialgithub.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/u/7188904314" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialsina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/my/m/music/playlist?id=890672374" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/frank-41-24-53" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialzhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialQR.jpg">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">KItholt</span>
+            <span class="shironeko">Frank</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    资瓷
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      霍夫曼树の创建、编码、解码</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-4-14<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h3 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h3><p>霍夫曼树的相关概念就不一一赘述了，直接上代码。放心，必要的地方我会加上我自己都<span style="font-size:25px;color:blue"><strong>看不懂的注释</strong></span></p>
+<p>Mr.Winterの实验要求：</p>
+<ol>
+<li>读取一个文本文件，并统计出每个字符的出现次数。随后将一个字符的出现次数作为字符的权值（霍夫曼树中的叶子节点的权值）</li>
+<li>将字符和其权值保存起来（链表？or动态数组？）</li>
+<li>利用得到的所有字符，构建霍夫曼树（拿到霍夫曼树的根节点）</li>
+<li>对每一个字符进行霍夫曼编码，并得到一张编码表</li>
+<li>根据编码表，输入一个编码后能够对其进行解码并返回其所对应的字符</li>
+</ol>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="读取文本文件并统计各个字符的出现次数（权值）"><a href="#读取文本文件并统计各个字符的出现次数（权值）" class="headerlink" title="读取文本文件并统计各个字符的出现次数（权值）"></a>读取文本文件并统计各个字符的出现次数（权值）</h3><pre><code class="java">package readtxt;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class ReadTxt {
+
+    /**
+     * 传入txt路径读取txt文件
+     *
+     * @param txtPath
+     * @return 返回读取到的内容
+     */
+    public static HashMap&lt;String, Integer&gt; readTxtAndCount(String txtPath) throws IOException {
+        File file = new File(txtPath);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        StringBuffer sb = new StringBuffer();
+        String text = null;
+        while ((text = bufferedReader.readLine()) != null) {//按行读取字符串
+            sb.append(text);//将每一行保存到StringBuffer缓冲里
+        }
+        String txt = sb.toString();//保存为字符串
+        char[] TXT = txt.toCharArray();//将字符串保存为字符数组
+        Map&lt;String, Integer&gt; m = new HashMap&lt;String, Integer&gt;();//创建哈希表（类似键值对），统计字符出现的次数
+        for (char c : TXT) {
+            String s = String.valueOf(c);//取出一个字符
+            if (null != m.get(s)) {//若该字符不是第一次出现
+                int count = m.get(s);//取出之前出现的次数count
+                m.put(s, count + 1);//+1
+            } else {
+                m.put(s, 1);//若一次也没有出现，则置为1
+            }
+        }
+        return (HashMap&lt;String, Integer&gt;) m;
+    }
+
+    public static void main(String[] args) throws IOException {
+        HashMap&lt;String,Integer&gt; m=ReadTxt.readTxtAndCount(&quot;U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;);
+    }
+}
+
+</code></pre>
+<p><em>值得一提的是，哈希表yyds。它的作用类似Python里面的字典（键值对），字符:出现次数</em></p>
+<h3 id="创建节点类Node保存字符信息"><a href="#创建节点类Node保存字符信息" class="headerlink" title="创建节点类Node保存字符信息"></a>创建节点类Node保存字符信息</h3><pre><code class="java">package node;
+
+public class Node implements Comparable&lt;Node&gt; {
+    //字符
+    public String sign;
+    //每个叶子节点对应的哈夫曼编码
+    String code;
+    //叶子节点的权重
+    public int weight;
+    //非叶子节点的左右孩子
+    public Node lchild;
+    public Node rchild;
+    Node next;//叶子节点的enxt，用于专门指向root，便于后续的解码操作
+
+    public Node(String sign, int weight) {
+        this.sign = sign;
+        this.weight = weight;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        return this.weight - o.weight;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;Node{&quot; +
+                &quot;sign=&#39;&quot; + sign + &#39;\&#39;&#39; +
+                &quot;, weight=&quot; + weight +
+                &#39;}&#39;;
+    }
+
+    public void CodingByPreOrder(String code, Node root) {//先序遍历哈夫曼树
+        if (!this.sign.equals(&quot;非叶子节点&quot;) &amp;&amp; !this.sign.equals(&quot;根节点&quot;)) {
+            this.code = code;
+            System.out.println(this.sign + &quot;的哈夫曼编码&quot; + code);
+        }
+        if (this.lchild != null) {
+            this.lchild.CodingByPreOrder(code += &quot;0&quot;, root);
+
+        }
+        //StringBuilder能够替换原字符串的最后一个字符（仅仅是替换最后一个），不使用String的substring方法是因为这个方法会替换所有与替换字符相同的字符
+        StringBuilder sb = new StringBuilder(code);//回溯时，需要修改最后一个字符，将其置为空，下一次向右递归code的最后一个字符就会被置为1
+        //replace(参数1，参数2，参数3)，参数1为要替换的开始位置，参数2为要替换的结束位置，参数3为替换内容,
+        code = sb.replace(code.length() - 1, code.length(), &quot;&quot;).toString();
+        if (this.rchild != null) {
+            this.rchild.CodingByPreOrder(code + &quot;1&quot;, root);
+        }
+        //将所有叶子节点的next都指向root节点，方便后续的解码操作
+        if (!this.sign.equals(&quot;非叶子节点&quot;) &amp;&amp; !this.sign.equals(&quot;根节点&quot;)) {
+            this.next = root;
+        }
+    }
+
+    /***
+     *
+     * @param root 霍夫曼树根节点
+     * @param code 输入的一个编码
+     * @param index code的索引下标
+     * @return
+     */
+    public String Decoding(Node root, String code, int index) {
+        Node ROOT=root;
+        StringBuilder s = new StringBuilder();
+        while (index &lt; code.length()) {//遍历code的每一个字符（也就是那一串01...）
+            if (code.charAt(index) == &#39;0&#39;) {
+                ROOT = ROOT.lchild;//向左子树移动
+            }
+            if (code.charAt(index) == &#39;1&#39;) {
+                ROOT = ROOT.rchild;//向右子树移动
+            }
+            if (ROOT.next == root) {//如果到达叶子节点，也就是它的next指向了根节点
+                s.append(ROOT.sign);
+                ROOT=root;//当解码出一个字符，需要将ROOT重置为root根节点，方便进行下一个字符的解码
+            }
+            index++;//索引后移
+        }
+        if(ROOT==root){//编码全部正确
+            System.out.println(code+ &quot;解码后对应的字符为&quot; + s.toString());
+            return s.toString();
+        }
+        else if(!s.toString().equals(&quot;&quot;)&amp;&amp;ROOT.next==null){//部分编码正确的情况
+            System.out.println(&quot;输入的编码部分有误，仅能解码出部分字符&quot;+s.toString()+&quot;...&quot;);
+            return s.toString();
+        }
+        else {//编码全部错误
+            System.out.println(&quot;输入的编码完全错误，无法解码...&quot;);
+            return null;
+        }
+    }
+}
+</code></pre>
+<h3 id="利用得到的节点类构建霍夫曼树"><a href="#利用得到的节点类构建霍夫曼树" class="headerlink" title="利用得到的节点类构建霍夫曼树"></a>利用得到的节点类构建霍夫曼树</h3><pre><code class="java">package huffmantree;
+import node.Node;
+import java.util.*;
+
+public class HuffmanTree {
+    /*
+    public static void main(String[] args) throws IOException {
+        Node root = createHuffmanTree(ReadTxt.readTxtAndCount(&quot;E:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;));
+        root.sign = &quot;根节点&quot;;
+        preOrder(root);
+    }*/
+
+    //构建哈弗曼树
+    public static Node createHuffmanTree(HashMap&lt;String, Integer&gt; arr) {
+        //int count = 0;
+        List&lt;Node&gt; nodes = new ArrayList&lt;Node&gt;();
+        //将字符出现的次数作为权值value，并以此加入node节点中
+        for (String key : arr.keySet()) {
+            nodes.add(new Node(key, arr.get(key)));
+        }
+        //System.out.println(nodes);//打印所有节点（验证）
+        Collections.sort(nodes);//将节点排序
+        System.out.println(&quot;各个字符对应的权重：&quot;);
+        System.out.println(&quot;nodes =&quot; + nodes);
+        while (nodes.size() &gt; 1) {
+            //取出根节点权值最小的兩顆二叉树
+            //取出权值最小的结点（二叉树）
+            Node leftNode = nodes.get(0);
+            //取出权值第二小的结点（二叉树）
+            Node rightNode = nodes.get(1);
+            //构建一棵新的二叉树
+            Node parent = new Node(&quot;非叶子节点&quot;, leftNode.weight + rightNode.weight);
+            parent.lchild = leftNode;
+            parent.rchild = rightNode;
+            //删除处理过的二叉树
+            nodes.remove(leftNode);
+            nodes.remove(rightNode);
+            //将parent加入到nodes
+            nodes.add(parent);
+            //重新排序
+            Collections.sort(nodes);
+            //System.out.println(&quot;第&quot; + (++count) + &quot;次处理后&quot; + nodes);
+        }
+        return nodes.get(0);
+    }
+
+    public static void preOrder(Node root) {//利用先序遍历打印霍夫曼编码表
+        if (root != null) {
+            root.CodingByPreOrder(&quot;&quot;, root);
+        } else {
+            System.out.println(&quot;空树无法遍历...&quot;);
+        }
+    }
+
+    public static String deCoding(Node root, String code, int index) {//解码
+        return root.Decoding(root, code, index);
+    }
+}
+
+
+</code></pre>
+<p><span style="color:red">PS：另外，编码和解码的核心代码在Node类中</span></p>
+<h3 id="主程序的测试代码"><a href="#主程序的测试代码" class="headerlink" title="主程序的测试代码"></a>主程序的测试代码</h3><pre><code class="java">import java.io.IOException;
+import java.util.Scanner;
+import huffmantree.HuffmanTree;
+import node.Node;
+import readtxt.ReadTxt;
+
+public class Test {
+    public static void main(String[] args) throws IOException {
+        boolean flag=true;
+        Scanner sc=new Scanner(System.in);
+        int key=0;
+        Node root=new Node(null,0);
+        while(flag){
+            menu();
+            while(true) {
+                key = sc.nextInt();
+                if(key&lt;1||key&gt;3){
+                    System.out.println(&quot;请输入正确的序号...&quot;);
+                    menu();
+                }else{
+                    break;
+                }
+            }
+
+            switch (key){
+                case 1:
+                    root=HuffmanTree.createHuffmanTree(ReadTxt.readTxtAndCount(&quot;U:\\烂盘\\dark二\\带二第二学期\\程序设计综合实验\\实验3\\Demo.txt&quot;));
+                    HuffmanTree.preOrder(root);
+                    break;
+                case 2:
+                    System.out.println(&quot;请输入一个来自编码表的编码...&quot;);
+                    String s=sc.next();
+                    HuffmanTree.deCoding(root,s,0);
+                    break;
+                case 3:
+                    flag=false;
+                    break;
+            }
+        }
+    }
+    public static void menu() {
+        System.out.println(&quot;\n    §※§※§※§※§※§ 霍夫曼编码与解码.§※§※§※§※§※§\t\n&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  1. 霍夫曼の编码(获得编码表).※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  2. 霍夫曼の解码.※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\t※◎※◎※◎※◎  3. 退出程序.※◎※◎※◎※◎\t&quot;);
+        System.out.println(&quot;\n\t请选择：\t&quot;);
+    }
+}
+
+</code></pre>
+<p>结果截图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/huffman1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/huffman2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/huffman3.png" alt></p>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/poor.webp" alt></p>
+<p><span style="color:green;font-size:24px">各位爷，代码也看了注释也读了思路应该也理清一点点了，接下来应该做啥就不用我说了吧（可怜巴巴）</span></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/undefined/批作业处理问题/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                批作业处理问题</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/undefined/关于我写了个装载问题的野鸡算法的那档事/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                关于我写了个装载问题的野鸡算法的那档事</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Kitholt Frank<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2021</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_uv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    </div>
+  </div><!-- .site-info -->
+    
+</footer>
+
+
+
+
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">KItholtFrank</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/kitholt" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            资瓷
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="8153220533"
+
+    server="tencent"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<noscript><iframe src="/blog/*>";</iframe></noscript>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
+ 
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
+
+
+</html>

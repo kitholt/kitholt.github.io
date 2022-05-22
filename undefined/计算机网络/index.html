@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">计算机网络(持续更新...) | 欢迎来到Franの杂货铺</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="browsermode" content="application">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "KItholtFrank";
+  mashiro_option.author_name = "Frank";
+  mashiro_option.site_url = "https://kitholt.github.io/";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/kitholt/cdn/img/warriors.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/best.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/curry.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/chase.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/stadium.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/splashbros.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/coolkt.webp,".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://kitholt.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>你来啦!欢迎来到Franの杂货铺！</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/kitholt" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialgithub.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/u/7188904314" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialsina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/my/m/music/playlist?id=890672374" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/frank-41-24-53" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialzhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialQR.jpg">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">KItholt</span>
+            <span class="shironeko">Frank</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    资瓷
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      计算机网络(持续更新...)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-3-3<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p>注：按照课时进度整理</p>
+<h2 id="Part①"><a href="#Part①" class="headerlink" title="Part①"></a>Part①</h2><h3 id="网络的分类"><a href="#网络的分类" class="headerlink" title="网络的分类"></a>网络的分类</h3><ul>
+<li>电信网络：向客户提供电话，电报以及传真等服务</li>
+<li>有线电视网络：向用户传送各类电视节目</li>
+<li><span style="color:red;font-size:30px"><strong>计算机网络</strong></span>：能允许用户能够在计算机之间传送数据文件</li>
+</ul>
+<h3 id="思考：internet和Internet有何区别？"><a href="#思考：internet和Internet有何区别？" class="headerlink" title="思考：internet和Internet有何区别？"></a>思考：<span style="font-size:35px;color:blue">i</span>nternet和<span style="font-size:60px;color:blue">I</span>nternet有何区别？</h3><ol>
+<li>internet指的是互<span style="font-size:35px;color:red">连</span>网，它泛指有多个计算机网络互相连而成的计算机网络（网络的网络）。在这些网络之间的通信协议可以任意选择，不一定非要TCP/IP协议</li>
+<li>Internet则是我们经常谈到的互<span style="font-size:35px;color:red">联</span>网（因特网），它是由当前全球最大的、开放的、由众多网络互相连接而成的互连网，它采用TCP/IP协议族作为通信的规则，其前身是美国的ARPANET。PS：现在的互联网具有三级结构，即主干网、地区网、校园网（企业网）</li>
+</ol>
+<h3 id="相关名词："><a href="#相关名词：" class="headerlink" title="相关名词："></a>相关名词：</h3><p>ISP（Internet Service Provider）：互联网服务提供者，也就是提供IP地址，比如我国的三大通信巨头：“移”不动、“联”不通、“信”不过，根据覆盖面积大小和IP数量的不同，ISP又分为：主干ISP、地区ISP、本地ISP</p>
+<h3 id="互联网的组成："><a href="#互联网的组成：" class="headerlink" title="互联网的组成："></a>互联网的组成：</h3><h4 id="边缘部分："><a href="#边缘部分：" class="headerlink" title="边缘部分："></a>边缘部分：</h4><p>连接在互联网的所有的端系统（手机端、电脑端、网络摄像头……），通过C/S方式和P2P方式进行通信</p>
+<h4 id="核心部分："><a href="#核心部分：" class="headerlink" title="核心部分："></a>核心部分：</h4><p>路由器使用<strong><em>分组交换</em></strong>向边缘部分的端系统提供连通性</p>
+<h5 id="啥是分组交换？"><a href="#啥是分组交换？" class="headerlink" title="啥是分组交换？"></a>啥是分组交换？</h5><p>在通信过程中，通信双方以分组为单位、使用存储-转发机制实现数据交互的通信方式，被称为分组交换（PS:packet switching）。</p>
+<p>分组交换也称为包交换，它将用户通信的数据划分成多个更小的等长数据段，在每个数据段的前面加上必要的控制信息作为数据段的首部，每个带有首部的数据段就构成了一个分组。首部指明了该分组发送的地址，当交换机收到分组之后，将根据首部中的地址信息将分组转发到目的地，这个过程就是分组交换。能够进行分组交换的通信网被称为分组交换网。</p>
+<p>分组交换的本质就是存储转发，它将所接受的分组暂时存储下来，在目的方向路由上排队，当它可以发送信息时，再将信息发送到相应的路由上，完成转发。其存储转发的过程就是分组交换的过程。</p>
+<p>分组交换的思想来源于报文交换，报文交换也称为存储转发交换，它们交换过程的本质都是存储转发，所不同的是分组交换的最小信息单位是分组，而报文交换则是一个个报文。由于以较小的分组为单位进行传输和交换，所以分组交换比报文交换快。报文交换主要应用于公用电报网中。</p>
+<h2 id="Part②"><a href="#Part②" class="headerlink" title="Part②"></a>Part②</h2><h3 id="计算机网络的分类"><a href="#计算机网络的分类" class="headerlink" title="计算机网络的分类"></a>计算机网络的分类</h3><ul>
+<li>按照作用范围分类</li>
+</ul>
+<ol>
+<li>广域网（远程网）WAN（Wide Area Network）</li>
+<li>城域网MAN（Metropolitan Area Network）</li>
+<li>局域网LAN（Local Area Network）</li>
+<li>个人局域网PAN（Personal Area Network）</li>
+</ol>
+<ul>
+<li>按照网络的使用者分类</li>
+</ul>
+<ol>
+<li>公用网（public network）</li>
+<li>专用网（private network）</li>
+</ol>
+<ul>
+<li>用来把用户接入到互联网的网络</li>
+</ul>
+<ol>
+<li>接入网AN（Access Network）</li>
+</ol>
+<h3 id="计算机网络的性能"><a href="#计算机网络的性能" class="headerlink" title="计算机网络的性能"></a>计算机网络的性能</h3><p>七dark指标</p>
+<p><strong>1、速率</strong></p>
+<p>计算机发送出的信号都是数字形式的。比特（bit）来源于binary digit，意思是一个”<strong>二进制数字</strong>“，因此一个比特就是二进制数字中的一个1或0。比特也是信息论中使用的信息量的单位。网络技术中的<strong>速率</strong>指的是<strong>数据的传送速率</strong>，它也称为<strong>数据率</strong>或<strong>比特率</strong>。速率的单位是bit/s（比特每秒）（或b/s，有时也写作bps，即bit per second）。</p>
+<p>当提到网络的速率时，往往指的是<strong>额定速率</strong>或<strong>标称速率</strong>，而并非网络实际上运行的速率。</p>
+<p><strong>2、带宽</strong></p>
+<p>”带宽“有以下两种不同的意义：</p>
+<p>（1）带宽本来指某个<strong>信号具有的频带宽度。</strong>信号的带宽是指该信号所包含的各种不同频率成分所占据的频率范围。这种意义的带宽的单位是赫兹（或千赫、兆赫、吉赫等），在过去很长的一段时间，通信的主干线路传送的是模拟信号（即连续变化的信号）。因此表示某信道允许通过的信号频带范围就称为该信道的带宽。</p>
+<p><strong>3、吞吐量</strong></p>
+<p>吞吐量表示在单位时间内通过某个网络的实际数据量。</p>
+<p><strong>4、时延</strong></p>
+<p>时延是指数据从网络的一端传送到另一端所需的时间。时延是个很重要的性能指标，它有时也称为延迟或者迟延。</p>
+<p>网络中的时延是由一下几个不同的部分组成的：</p>
+<p>（1）发送时延</p>
+<p>发送时延是主机或路由器发送数据帧所需要的时间，也就是从发送数据帧的第一个比特算起，到该帧的最后一个比特发送完毕所需的时间。因此发送时延也叫做传输时延。发送时延的计算公式是：</p>
+<p>发送时延=数据帧长度（bit）/发送速率（bit/s）</p>
+<p>（2）传播时延</p>
+<p>传播时延是电磁波在信道中传播一定的距离需要花费的时间。传播时延的计算公式是：</p>
+<p>传播时延=信道长度（m）/电磁波在信道上大的传播速率（m/s）</p>
+<p>电磁波在自由空间的传播速率是光速。即3.0*10^5km/s。</p>
+<p>发送时延发生在机器内部的发送器中，与传输信道的长度没有任何关系。传播时延发生在机器外部的传输信道媒体上，而与信道的发送速率无关。信号传送的距离越远，传播时延就越大。</p>
+<p>（3）处理时延</p>
+<p>主机或路由器在收到分组时需要花费一定时间进行处理，例如分析分组的首部，从分组中提取数据部分、进行差错检验或查找合适的路由等，这就产生了处理时延。</p>
+<p>（4）排队时延</p>
+<p>分组在进行网络传输时，要经过许多路由器。但分组在进入路由器后要先在输入队列中排队等待，在路由器确定了转发接口后，还要在输出队列中排队等待转发。这就产生了排队时延。排队时延的长短取决于网络当时的通信量。当网络的通信量很大时会发生队列溢出，使分组丢失，这相当于排队时延无穷大。</p>
+<p>这样数据在网络中经历的总时延就是以上四种时延之和：<strong><span style="color:red;font-size:30px">总时延=发送时延+传播时延+处理时延+排队时延</span>。</strong></p>
+<p>一般来说，小时延的网络要优于大时延的网络。</p>
+<p><strong>5、时延带宽积</strong></p>
+<p>把传播时延和带宽相乘，就可以得到：传播时延带宽积，即：</p>
+<p>时延带宽积=传播时延*带宽</p>
+<p><strong>6、往返时间RTT</strong></p>
+<p>在计算机网络中，往返时间RTT是一个重要的性能指标。这是因为在许多情况下，互联网上的信息不仅仅单方向传输而是双向交互的。因此，我们有时很需要知道双向交互一次所需的时间。</p>
+<p><strong>7、利用率</strong></p>
+<p>利用率有信道利用率和网络利用率等。信道利用率指出某信道有百分之几的时间是被利用的（有数据通过）。完全空闲的信道利用率是零。网络利用率则是全网络 的信道利用率的加权平均值。信道利用率并非越高越好。这是因为，根据排队论的理论，当某信道的利用率增大时，该信道引起的时延也就迅速增加。</p>
+<p>信道或网络的利用率过高会产生非常大的时延。</p>
+<h3 id="计算机网络的非性能"><a href="#计算机网络的非性能" class="headerlink" title="计算机网络的非性能"></a>计算机网络的非性能</h3><ol>
+<li>费用（网络设计和实现的费用，简称“网费”【我猜的】）</li>
+<li>质量（构件质量）</li>
+<li>标准化</li>
+<li>…</li>
+</ol>
+<h2 id="Part③"><a href="#Part③" class="headerlink" title="Part③"></a>Part③</h2><h3 id="计算机网络分层：分层基本原则"><a href="#计算机网络分层：分层基本原则" class="headerlink" title="计算机网络分层：分层基本原则"></a>计算机网络分层：分层基本原则</h3><ol>
+<li><p>各层之间相互<strong>独立</strong>，每层只实现一种相对独立的功能</p>
+</li>
+<li><p>每层之间<strong>界面自然清晰</strong>，易于理解，相互交流尽可能少</p>
+</li>
+<li><p>结构上可分隔开，每层都采用<strong>最合适的技术</strong>来实现</p>
+</li>
+<li><p>2保持<strong>上层</strong>对<strong>下层</strong>的独立性，上层<strong>单向</strong>使用下层提供的服务</p>
+</li>
+<li><p>整个分层结构都应该促进标准化工作</p>
+</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/jsjwl/jsjwlfcjg.jpg" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/jsjwl/jsjwlfc1.png" alt></p>
+<h3 id="OSI参考模型"><a href="#OSI参考模型" class="headerlink" title="OSI参考模型"></a>OSI参考模型</h3><p><em>应用层</em>：所有能和用户交互产生网络流量的程序</p>
+<p><em>表示层</em>：用于处理在两个通信系统中交换信息的表示方式（语法和语义）</p>
+<ol>
+<li>数据格式转换（翻译官）</li>
+<li>数据加密解密</li>
+<li>数据压缩和恢复（比如，视频聊天）</li>
+</ol>
+<p><em>会话层</em>：向表示层实体/用户进程提供<strong>建立连接</strong>并在连接上<strong>有序</strong>地<strong>传输</strong>数据（建立同步）</p>
+<ol>
+<li><p>建立管理终止会话</p>
+</li>
+<li><p>使用校验点可以使会话在通信失效时从 校验点恢复继续通信，实现数据同步（适合传输大文件）</p>
+</li>
+</ol>
+<p><em>传输层</em>：负责主机中<strong>两个进程</strong>的通信，即<strong>端到端</strong>的通信，传输单位是报文段或者是用户数据报</p>
+<ol>
+<li>可靠传输（在发送数据时，发送端必须收到接收端的确认信息才能够进行下一步发送操作），不可靠传输（不用确认，直接发送 ）</li>
+<li>差错控制</li>
+<li>流量控制</li>
+<li>复用（多个应用层进程可同时使用下面的运输层的服务）分用（运输层把收到的信息分别交付给上面应用层中的相应进程）</li>
+</ol>
+<p><em>网络层（IP层）</em>：把<strong>分组</strong>从源端传到目的端，为分组交换网上的不同主机提供通信服务，网络层传输单位是<strong>数据报</strong></p>
+<ol>
+<li>路由选择</li>
+<li>流量控制（协调发送端的发送速度）</li>
+<li>差错控制</li>
+<li>拥塞控制（若所有节点都来不及接受分组，而要丢弃大量分组的话，网络就处于拥塞状态。因此要采取一定措施缓解这种拥塞）</li>
+</ol>
+<p><em>数据链路层</em>：把网络层的数据报<strong>组装成帧</strong>。数据链路层的传输单位是<strong>帧</strong></p>
+<ol>
+<li>成帧：定义帧的开始和结束</li>
+<li>差错控制（帧错+位错）</li>
+<li>流量控制</li>
+<li>访问控制（控制对信道的访问）—不懂…</li>
+</ol>
+<p><em>物理层</em>：在<strong>物理媒体</strong>上实现比特流的<strong>透明传输</strong>，传输单位是比特</p>
+<ol>
+<li><p>定义接口特性</p>
+</li>
+<li><p>定义传输模式（单工、半双工、双工）</p>
+</li>
+<li><p>定义传输速率</p>
+</li>
+<li><p>比特同步</p>
+</li>
+<li><p>比特编码</p>
+</li>
+</ol>
+<h1 id="不是笔记的笔记"><a href="#不是笔记的笔记" class="headerlink" title="不是笔记的笔记"></a>不是笔记的笔记</h1><h3 id="chapter①"><a href="#chapter①" class="headerlink" title="chapter①"></a>chapter①</h3><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwljsjwl_rv1.jpg" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwljsjwl_rv2.jpg" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwljsjwl_rv3.jpg" alt></p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwljsjwl_rv4.jpg" alt></p>
+<h1 id="死记硬背（期末）"><a href="#死记硬背（期末）" class="headerlink" title="死记硬背（期末）"></a>死记硬背（期末）</h1><p>\1. 组成一个网络的必要条件：多个具有独立功能的计算机系统、通讯子网、网络软件</p>
+<p>\2. 计算机网络的生产与发展：面向终端的计算机网络阶段、以共享资源为主要目的的计算机网络阶段、标准、开放的计算机网络阶段、高速、智能的计算机网络阶段</p>
+<p>\3. 计算机网络的组成：物理结构：网络软、硬件子系统</p>
+<p>逻辑结构：资源子网、通讯子网</p>
+<p>\4. 计算机网络体系结构：是系统、实体、层次、协议的集合，是计算机网络及其部件所应完成功能的精确定义</p>
+<p>\5. 系统：计算机网络构成的系统通常是包括一个或多个实体的具有信息处理和通信功能的物理整体。</p>
+<p>\6. 实体：在网络分层体系结构中，每一层都由一些实体组成。在一个计算机系统中,能完成某一特定功能的进程或程序都可成为一个逻辑实体。实体既可以是软件实体，也可以是硬件实体。 </p>
+<p>\7. 层次：是人们对复杂问题的一种处理方法。通常将系统中能提供某种或某类型服务功能的逻辑构造称为层。</p>
+<p>\8. 协议：是指两个实体间完成通信或服务所必须遵循的规则和约定。</p>
+<p>\9. 接口(Interface)，是同一个节点或节点内相邻层之间交换信息的连接点。</p>
+<p>\10. 同等层：不同系统的相同层次。</p>
+<p>\11. 同等层实体(对等实体)：不同系统同等层上的两个正通信的实体。</p>
+<p>\12. 同等层通信：不同系统同等层实体之间存在的通信。</p>
+<p>\13. 同等层(对等)协议：同等层实体之间通信所遵守的规则。各层的协议只对所属层的操作有约束力，而不涉及到其他层。</p>
+<p>\14. 服务：层次结构中各层都支持其上一层进行工作，这种支持就是服务。</p>
+<p>\15. 服务访问点(SAP)：接口上相邻两层实体交换信息的地方。是相邻两层实体的逻辑接口。如N层SAP就是N+1层可以访问N层的地方。</p>
+<p>\16. 服务原语：是指某一层实体向另一层实体报告事件的发生。</p>
+<p>\17. 服务原语主要有4种类型：请求、指示、响应、确认。</p>
+<p>\18. 数据单元：通常将传递数据的每一个单位叫做数据单元。</p>
+<p>\19. 协议数据单元：通常将不同计算机系统的对等层实体之间所交换的数据单位的每一部分称为协议数据单元。</p>
+<p>\20. 服务数据单元：第N层要求第N-1层提供服务时所要传递的数据单元。</p>
+<p>\21. 接口数据单元：在同一系统的相邻两层实体的一次交互中，将传递的参数和返回的结果。</p>
+<p>\22. OSI是Open System Interconnection 的缩写，意为开放系统互联参考模型</p>
+<p>\23. 任何一个通信系统都可以看作是由发送设备、传输信道和接收设备三大部分组成。我们把产生和发送信息的一端称为信源，把接收信息的一端称为信宿，把信源传送到信宿的通信线路称为信道。</p>
+<p>\24. 信息泛指那些通过各种方式传播的、可被感受的声音、文字、图像、符号等所表征的某一特定事物的消息、情报或知识。</p>
+<p>\25. 数据是一种承载信息的实体，是对客观事物的符号表示，在计算机科学中是指所有输入到计算机中并被计算机程序处理的符号的总称。数据分为模拟数据（连续）和数字数据（离散）两种。</p>
+<p>\26. 信号是数据的具体物理表现形式，它具有确定的物理描述,如电信号、光信号或磁场强度等。信号分为模拟信号（连续）和数字信号（离散）两种。</p>
+<p>\27. 模拟信号：是一种连续变化的电信号，例如电话语音信号、电视信号等，它是随时间变化的函数曲线</p>
+<p>\28. 数字信号：是离散的不连续的电脉冲序列,  通常用“高”和“低”电平脉冲序列组成的编码来表示数据。</p>
+<p>\29. 基带信号(Baseband Signal)直接用两种不同的电压表示数字信号1和0，然后将其送到线路上进行传输。因此，一般将对应矩形电脉冲信号的固有频率称为“基带”，将相应的信号称为基带信号</p>
+<p>\30. 宽带信号(Wideband Signal)用多组基带信号和0分别调制不同频率的载波，并由这些分别占用不同频段的调制载波组成。换言之，宽带信号是指将基带信号进行调制后形成的频分复用模拟信号</p>
+<p>\31. 模拟通信系统：普通的电话、广播、电视等信号都属于模拟信号,由模拟信号所构成的通信系统属于模拟通信系统。模拟通信系统通常由信源、调制器、信道、解调器、信宿以及噪声源组成</p>
+<p>\32. 数字通信系统：计算机通信、数字电话以及数字电视等信号都属于数字信号，由数字信号构成的通信系统属于数字通信系统。数字通信系统通常由信源、编码器、信道、解码器、信宿以及噪声源组成</p>
+<p>\33. 数据传输速率：是指每秒钟传输的二进制比特数，又称数据率或比特率，速率的单位是 b/s，或kb/s, Mb/s, Gb/s 等</p>
+<p>\34. 带宽（bandwidth）：本来是指信号具有的频带宽度，单位是赫（或千赫、兆赫、吉赫等），现在“带宽”是数字信道所能传送的“最高数据率”的同义语，单位是“比特每秒”，或 b/s (bit/s)</p>
+<p>\35. 吞吐量（throughout）是指一组特定的数据在特定的时间段经过特定的路径所传输的信息量的实际测量值。</p>
+<p>\36. 码元传输速率：在信息传输通道中，携带数据信息的信号单元叫码元，每秒钟通过信道传输的码元数称为码元传输速率，简称波特率。</p>
+<p>\37. 波特率：是指数据信号对载波的调制速率，用单位时间内载波调制状态改变的次数来表示（也就是每秒调制的符号数），其单位是波特（Baud，symbol/s）。</p>
+<p>\38. 时延（delay 或Latency）：是指一个报文或分组从一个网络（或一条链路）的一端传送到另一端所需的时间。通常来讲，时延是由以下几个不同的部分组成的。</p>
+<p>\39. 数据经历的总时延(delay或latency)就是发送时延、传播时延、处理时延和排队时延之和</p>
+<p>\40. 发送时延：节点在发送数据时使数据块从节点进入传输介质所需要的时间，也就是从数据块的第一个比特开始发送算起，到最后一个比特发送完毕所需的时间。又称为传输时延。</p>
+<p>\41. 传播时延：电磁波在信道上需要传播一定的距离而花费的时间。</p>
+<p>\42. 处理时延：数据在交换节点为存储转发而进行一些必要的处理所花费的时间。</p>
+<p>\43. 排队时延：分组在经过网络传输时，要经过很多路由器。但分组在进入路由器后要先在输入队列中排队等待处理。在路由器确定了转发接口后，还要在输出队列中排队等待转发。因此而产生的时延。</p>
+<p>\44. 时延带宽积：是指某一链路所能容纳的比特数。链路的时延带宽积又称为以比特为单位的链路长度。</p>
+<p>\45. 信道利用率：指出某信道有百分之几的时间是被利用的（有数据通过）。完全空闲的信道的利用率是零。信道利用率并非越高越好。</p>
+<p>\46. 网络利用率则是全网络的信道利用率的加权平均值。</p>
+<p>\47. 误码率：在一定时间内收到的数字信号中发生差错的比特数与同一时间所收到的数字信号的总比特数之比,就叫做“误码率”，也可以叫做“误比特率”。</p>
+<p>\48. 误码率（BER：bit error rate）是衡量数据在规定时间内数据传输精确性的指标。</p>
+<p>\49. 信道：是指以传输介质为基础的信号通路，它可以细分成狭义信道和广义信道。</p>
+<p>\50. 狭义信道：将有信号传输介质的信道称为狭义信道，按照具体介质的不同类型来划分，可细分为：有线信道、无线信道</p>
+<p>\51. 广义信道：根据研究对象和关心问题的不同，广义信道按照其包含的功能通常也可分成两种：调制信道和编码信道。</p>
+<p>\52. 模拟信道：传输模拟信号的信道。</p>
+<p>\53. 数字信道：传输数字信号的信道</p>
+<p>\54. 信道容量：是指信道在单位时间内可以传输的最大信号量，通常用来表示信道的极限传输能力。</p>
+<p>\55. 香农定理：在信号处理和信息理论的相关领域中，通过研究信号在经过一段距离后如何衰减以及一个给定信号能加载多少数据后得到了一个著名的公式，叫做香农（Shannon）定理</p>
+<p>\56. 并行传输是指数据以成组的方式在多个并行信道上传输。</p>
+<p>\57.  串行传输是指数据以串行方式，在一条信道上传输。</p>
+<p>\58. 同步传输（Synchronous）：位同步（包括外同步法、内同步法）字符同步</p>
+<p>\59. 异步传输（asynchronous）：异步传输一次只传输一个字符,每个字符用一位起始位引导、一位停止位结束。</p>
+<p>\60. 基带传输：是一种不搬移基带信号频谱的传输方式。未对载波调制的待传信号称为基带信号，它所占的基本频带称为基带，基带的高限频率与低限频率之比通常远大于1。基带传输广泛用于音频电缆和同轴电缆等传送数字电话信号</p>
+<p>\61. 频带传输：是在计算机网络系统的远程通信中把数字信息调制成模拟信号后再发送和传输，到达接收端时再把模拟信号解调成原来的数字信号的传输技术。</p>
+<p>\62. 数字数据的数字信号编码：就是如何把数字数据用物理信号的波形表示，是用高低电平的不同组合来表示二进制的方法</p>
+<p>\63. 解码：</p>
+<p>\64. 数字数据的模拟信号编码：  数字数据的调制基于调幅、调频、调相3种调制技术，分别称为幅移键控、频移键控和相移键控</p>
+<p>\65. 振幅调制（Amplitude modulation，AM）：是以原来的模拟数据为调制信号对载波的幅值按调制信号的幅值进行调制，调制后载波信号的频率和相位不变,幅值随调制信号的幅值变化而变化</p>
+<p>\66. 频率调制（Frequency modulation，FM）：是以原来的模拟数据为调制信号,对载波的频率按调制信号的频率进行调制,调制后载波信号的相位和幅值不变，频率随调制信号的幅值变化而变化</p>
+<p>\67. 相位调制（Phase modulation，PM）：是以原来的模拟数据为调制信号,对载波的相位按调制信号的相位进行调制，调制后载波信号的频率和幅值不变,相位随调制信号的幅值变化而变化</p>
+<p>\68. 模拟数据数字编码的最常用方法是脉冲编码调制（Pulse Code Modulation，PCM)：PCM的工作过程包括3个步骤：采样、量化与编码</p>
+<p>\69. 多路复用：传输信号要求的带宽与传输介质允许通过的带宽是不一样的，为了节省开销，应当充分利用传输介质的带宽。在一条介质上同时传送多于一路以上信号的传输方式，叫做该介质的多路复用。</p>
+<p>\70. 频分多路复用：在物理信道的可用带宽超过单个原始信号所需带宽情况下，可将该物理信道的总带宽分割成若干个与传输单个信号带宽相同的子信道，每个子信道传输一路信号，这就是频分多路复用</p>
+<p>\71. 时分多路复用：时分多路复用（TDM）是将一条物理信道的传输时间划分为若干个时间片，每个用户分得一个时间片，在其占有的时间片内用户使用通信信道的全部带宽。</p>
+<p>\72. 波分多路复用（WDM）：采用的是波长分隔多路复用技术,在同一传输信道内传输多路不同波长的光信号。</p>
+<p>\73. 码分多路复用(CDM)：是一种用于移动通信系统的新技术,笔记本电脑和掌上电脑等移动性计算机的连网通信将会大量使用码分多路复用技术。</p>
+<p>\74. 有线(导向)传输介质：双绞线、同轴电缆、光纤</p>
+<p>\75. 同轴电缆（Coaxial Cable）  ：有基带同轴电缆和宽带同轴电缆。</p>
+<p>\76. 物理层的功能：物理连接的建立、维持和释放、物理服务数据单元的传输(传输数据)、完成物理层的一些管理工作</p>
+<p>\77. 物理层4大接口的特性：机械特性、电气特性、功能特性、规程特性</p>
+<p>\78. 集线器（Hub）：主要功能是对接收到的信号进行再生、整形、放大，以扩大网络的传输距离，同时将所有节点集中在以它为中心的节点上。集线器工作在OSI参考模型中的物理层上。集线器与网卡、网线等传输介质一样，属于局域网中的基础设备，采用CSMA/CD访问方式。</p>
+<p>\79. 链路：指的是从一个节点到相邻节点的一段物理线路，并且在这段物理线路的中间，没有任何其他的交换节点。</p>
+<p>\80. 数据链路：当两个节点在一条路径上传输数据时，它们之间除了必须要有一条物理线路以外，还必须要有一些必不可少的通信协议，来控制数据的传输过程。附加了实现这些协议的硬件和软件的链路，才能被称为数据链路。</p>
+<p>\81. 帧同步：又称帧定界，指接收方能从接收到的比特流中准确提取数据帧，准确地区分出一帧的开始和结束位置。</p>
+<p>\82. 差错控制 ：在数据通信中受物理链路性能和网络通信环境等因素的影响，难免会出现一些传送错误。数据链路层主要是通过“差错控制”技术来实现此功能的。 </p>
+<p>\83. 链路管理：包括数据链路的建立、维持、释放</p>
+<p>\84. MAC寻址：数据能发送到正确的目的地、接收方知道发送方的地址、由于局域网有多种媒体接入控制，无法采用统一的数据链路层，局域网的数据链路层分为逻辑链路控制和接入链路控制两层。</p>
+<p>\85. 透明传输 ：比特数据的任何组合都能在链路上传输，当数据的比特组合与控制字符相同时，采用相应的处理。</p>
+<p>\86. 数据链路层提供的服务：无确认的无连接服务、有确认的无连接服务、有确认的面向连接服务 </p>
+<p>\87. 流量控制：该功能使发送与接收数据同步，是指采用一定技术措施，使通信网络中部分或全部链路，以及节点上的信息流量不超过某限制值，从而来保证信息流动顺畅，避免由于信息流量过大而造成信息拥挤，使信息通过能力下降，甚至造成系统“死锁”的情况发生</p>
+<p>\88. 停止等待ARQ协议：ARQ (Automatic Repeat reQuest)，直译是自动重传请求，但意思是自动请求重传。</p>
+<p>\89. 差错产生的原因：在数据通信中，接收端收到的数据与发送端的数据不一致</p>
+<p>\90. 常用的检错码有：奇偶校验码、循环冗余码、海明码等。</p>
+<p>\91. 纠错码：每个传输的分组带上足够的冗余信息；接收端能发现并自动纠正传输差错。</p>
+<p>\92. 差错控制的常用方法：反馈纠错、前向纠错、混合纠错</p>
+<p>\93. 差错控制的常用编码：奇偶校验码、循环冗余码CRC</p>
+<p>\94. 网桥含义：网桥是第2层的设备，它的功能是连接两个或多个LAN分段。其中每一个分段都是一个独立的冲突域。</p>
+<p>\95. 交换机含义：交换机(Switch)也称为交换器或交换式集线器，是专门为计算机之间能够相互通信且独享带宽而设计的一种包交换设备。</p>
+<p>\96. 交换机的帧转发方式：存储式转发、直通式转发、无碎片式转发</p>
+<p>\97. 交换机的交换技术：端口交换技术、帧交换技术、信元交换技术</p>
+<p>\98. 局域网（Local Area Network，简称LAN）通常是指在某一区域内由多台计算机互连而成的计算机组。局域网可由一间办公室内的两台计算机组成，也可以由一个公司内的上千台计算机组成。</p>
+<p>\99. 局域网系统主要由局域网硬件系统和局域网软件系统这两部分组成。</p>
+<p>\100. 局域网的性能：拓扑结构、传输介质（同轴电缆、双绞线、光纤、电磁波等）、介质访问控制方法</p>
+<p>\101. 局域网的拓扑结构：星形网、环形网、总线网、树形网</p>
+<p>\102. 局域网的类型：共享介质局域网、交换式局域网</p>
+<p>\103. 局域网的网络模式：客户机/服务器模式（Client/Server，C/S）、浏览器/服务器模式、对等服务器网络模式</p>
+<p>\104. 局域网参考模型：局域网的体系结构只包含了数据链路层和物理层，其中，数据链路层又分为逻辑链路控制和介质访问控制两个子层。</p>
+<p>\105. 802.1：A定义了局域网体系结构;B定义了网络互连、网络管理与性能测试</p>
+<p>\106. 802.2：定义了局域网逻辑链路控制LLC子层的功能与服务</p>
+<p>\107. 802.3：定义了局域网CSMA/CD总线介质访问控制子层及物理层规范</p>
+<p>\108. 802.11：定义了无线局域网访问方法和物理层规范</p>
+<p>\109. 介质访问控制方法概念：将传输介质的频带有效地分配给网络上各结点的方法称为介质访问控制方法</p>
+<p>\110. IEEE 802规定了多种局域网媒体介质访问方法：适合总线结构的带冲突检测的载波监听多路访问（CSMA/CD）方法、适合环型结构的令牌总线（Token Bus）方法、适合环型结构的令牌环（Token Ring）方法</p>
+<p>\111. ALOHA系统最初是在无线电信道上实现的。纯ALOHA可以工作在无线信道，也可以工作在总线式网络中</p>
+<p>\112. CSMA：载波监听多点接入CSMA（Carrier Sense Multiple Access）又称载波侦听多路访问，CSMA协议与ALOHA的主要区别就是多了一个载波监听装置，其功能为发送前监听</p>
+<p>\113. CSMA协议的类型：非坚持CSMA、1-坚持CSMA、p-坚持CSMA</p>
+<p>\114. 冲突：在信道上可能有两个或更多的设备在同一瞬间都发送帧，从而在信道上因造成帧的重叠而出现差错，这种现象称为冲突</p>
+<p>\115. CSMA/CD接收过程：网上每个站点平时都在监听总线，如果有信息帧到来，则接收信息帧；然后再分析和判断信息帧中的接收端地址，如果该地址为本站地址，则复制接收该帧；否则，简单丢弃该帧。</p>
+<p>\116. 常用的以太网MAC帧格式有两种标准：DIX Ethernet V2标准、IEEE802.3标准</p>
+<p>\117. 以太网数据封装格式：以太网IP数据报的封装在RFC 894中进行了详细的定义，IEEE 802网络的IP数据报封装则是在R.FC1042中定义</p>
+<p>\118. 以太网地址：单播地址(Unicast Address)、多播地址(Multicast Address)、广播地址(Broadcast Address)</p>
+<p>\119. 10BASE-T中的T指双绞线，10BASE-5指传输距离500米(即粗缆)</p>
+<p>IEEE标准共有以下几种:</p>
+<p>l 10BASE-5：粗缆。最大传输距离500米，使用AUI连接器连接或使用收发器电缆和收发器(MAU)进行连接。</p>
+<p>l 10BASE-2：细缆。实际传输距离为185米，使用BNC连接器(T型和N型)。</p>
+<p>l 10BASE-T：双绞线。传输距离100米，使用RJ45连接器。</p>
+<p>l 10BASE-F：光纤。分为FP，FL，FB 三种链接类型，FP使用无源集线器连接，传输距离500米，FB使用有源连接器，传输距离3000米，FL可以使用多个中继器，可以进一步延长器传输距离。</p>
+<p>l 100BASE-TX：双绞线，使用两对非屏蔽双绞线或两对1类屏蔽双绞线连接，传输距离100米</p>
+<p>l 100BASE-T4：4对3类非屏蔽双绞线，传输距离100米</p>
+<p>l 100BASE-F： 单模或多模光纤，传输距离2000米左右</p>
+<p>l 1000BASE-T：5类非屏蔽双绞线，传输距离100米</p>
+<p>l 1000BASE-CX：屏蔽类双绞线，传输距离25-50米</p>
+<p>l 1000BASE-LX：单模光纤，传输距离5000米/多模光纤，传输距离316-550米</p>
+<p>l 1000BASE-SX：多模光纤，连接光纤使用SC型光纤连接器，传输距离275米至550米</p>
+<p>\120. 10Gbit/s万兆以太网，目标在于：扩展以太网，使其能够超越LAN，以进入WAN和MAN</p>
+<p>\121. VLAN的概念：虚拟局域网，即VLAN (Virtual Local Area Network)。它是一种把局域网设备从逻辑上划分成更小的局域网，从而实现虚拟工作组的数据交换技术。</p>
+<p>\122. 802.1Q标准：通用标准，基于IEEE 802.1Q附加的VLAN信息，就像在传递物品时附加的标签。因此，它也被称作“标签型VLAN(Tagging VLAN)”。</p>
+<p>\123. ISL( Inner Switch Link)：专用标准，是Cisco特有的标记方法，只有Cisco的设备才可以理解ISL封装的数据帧</p>
+<p>\124. VLAN链路类型：接入链路(Access Link)、干道链路(Trunk Link)、混合(hybrid)链路</p>
+<p>\125. 令牌环网工作流程：截获令牌并且发送数据帧、接收与转发数据、取消数据帧并且重发令牌</p>
+<p>\126. 令牌总线网的工作原理：截获令牌、地址转载、令牌转发</p>
+<p>\127. 局域网的扩展：利用集线器/交换机进行扩展</p>
+<p>\128. 交换式以太网的主要特点：兼顾性、兼容性、易用性、灵活性、支持性</p>
+<p>\129. 无线局域网(Wireless Local-Area Network，WLAN)也称Radio LAN，就像其名字所描述的一样：它挣脱了传统线缆束缚，提供了以太网或者令牌网络的功能</p>
+<p>\130. WLAN的主要类型：红外局域网、扩频无线局域网、窄带微波无线局域网</p>
+<p>\131. IEEE802.11a扩充了标准的物理层，它工作在5.0GHz频带，传输速率为5Mb/s、11Mb/s和54Mb/s，采用正交频分多路复用(OFDM) 技术。</p>
+<p>\132. IEEE802.11b标准工作在2.4GHz频带，采用DSSS扩频技术和补偿编码键控(CCK)调制方式。传输速率为1Mb/s、2Mb/s、5.5Mb/s和11Mb/s。</p>
+<p>\133. IEEE802.11g标准工作在2.4GHz频带，采用正交频分多路复用(OFDM) 技术，速率可达54Mb/s</p>
+<p>\134. 无线局域网的组成：有固定基础设施的无线局域网(Infrastructure工作模式)、无固定基础设施的无线局域网(Ad-hoc工作模式)</p>
+<p>\135. WLAN的体系结构：IEEE802.11标准中的物理层、IEEE802.11标准中的MAC子层</p>
+<p>\136. 无线局域网中的复杂性问题：具体可分为隐蔽站问题和暴露站问题。</p>
+<p>\137. WLAN的介质访问控制方式：分布控制方式、中心控制方式</p>
+<p>\138. WLAN的组建方式：无线网络网卡、无线网络Hub、无线网络网桥</p>
+<p>\139. 网络层的功能：主要功能是提供路由，选择到达目标主机的最佳路径，并沿该路径传送数据包。其它功能:消除网络拥塞、流量控制、拥塞控制、建立和拆除网络连接、多路复用、分段和组块、服务选择和传输等功能。</p>
+<p>\140. 网络层提供的两种服务：面向连接服务、无连接服务</p>
+<p>\141. 面向连接服务类似于电话系统，而无连接服务则类似于邮政系统</p>
+<p>\142. IP 地址的编址方法：分类的 IP 地址、子网的划分、构成超网。</p>
+<p>\143. 特殊IP地址和专用IP地址：广播地址、有限广播地址、 “0”地址、回送地址</p>
+<p>\144. 子网划分原因：IP 地址空间的利用率有时很低、给每一个物理网络分配一个网络号会使每个网络中的主机数太大，因而使网络性能变坏。两级的 IP 地址不够灵活。</p>
+<p>\145. 掩码：掩码(NetMask)有网络掩码和子网掩码两种</p>
+<p>\146. IP 层转发分组的流程：直接交付和间接交付、使用子网掩码的分组转发</p>
+<p>\147. 网络地址转换类型：静态NAT、动态地址NAT、NAPT</p>
+<p>\148. 地址解析协议ARP 是解决同一个局域网上的主机或路由器的 IP 地址和硬件地址的映射问题</p>
+<p>\149. 逆地址解析协议 RARP：使只知道自己硬件地址的主机能够知道其 IP 地址</p>
+<p>\150. DHCP (Dynamic Host Configuration Protocol):动态主机配置协议，l    工作在客户机/服务器(C/S)模式下，包括DHCP服务器和DHCP客户端两个角色，主要提供IP地址、默认网关、子网掩码的信息</p>
+<p>\151. DHCP的工作流程分为四步，分别是客户端请求IP、服务器响应、客户端选择IP、服务器确认IP租约。</p>
+<p>\152. 网际控制报文协议 ICMP(Internet Control Message Protocol)作用：为了提高 IP 数据报交付成功的机会，在网际层使用了网际控制报文协议 ICMP (Internet Control Message Protocol)。</p>
+<p>\153. ICMP 允许主机或路由器报告差错情况和提供有关异常情况的报告。</p>
+<p>\154. ICMP 不是高层协议，而是 IP 层的协议。</p>
+<p>\155. ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据报发送出去。</p>
+<p>\156. 路由选择的不同策略：静态路由选择策略——即非自适应路由选择，其特点是简单和开销较小，但不能及时适应网络状态的变化；动态路由选择策略——即自适应路由选择，其特点是能较好地适应网络状态的变化，但实现起来较为复杂，开销也比较大。</p>
+<p>\157. 距离矢量路由选择算法是让每个路由器维护一张表(即向量)，表中给出了到每个目的地已知的最佳距离和路线。通过与相邻路由器交换信息来更新表的信息。距离矢量路由选择算法也被称为Bellman-Ford路由选择算法和Ford-Fulkerson算法，即RIP算法。</p>
+<p>\158. 最常见的距离矢量路由协议主要有：路由信息协议 (Routing Information Protocol,RIP)、内部网关路由协议 (Interior Gateway Routing Protocol,IGRP)等。</p>
+<p>\159. 自治系统AS(Autonomous System)的定义：在单一的技术管理下的一组路由器，而这些路由器使用一种AS内部的路由选择协议和共同的度量以确定分组在该AS内的路由，同时还使用一种AS 之间的路由选择协议用以确定分组在AS之间的路由。</p>
+<p>\160. 内部网关协议 IGP (Interior Gateway Protocol)   即在一个自治系统内部使用的路由选择协议。目前这类路由选择协议使用得最多，如 RIP 和 OSPF 协议。</p>
+<p>\161. 外部网关协议EGP (External Gateway Protocol)   若源站和目的站处在不同的自治系统中，当数据报传到一个自治系统的边界时，就需要使用一种协议将路由选择信息传递到另一个自治系统中。这样的协议就是外部网关协议 EGP。在外部网关协议中目前使用最多的是 BGP-4。</p>
+<p>\162. 因特网的路由选择协议</p>
+<p>² 内部网关协议 IGP：具体的协议有多种，如 RIP 和 OSPF 等。</p>
+<p>² 外部网关协议 EGP：目前使用的协议就是 BGP。</p>
+<p>\163. 内部网关协议RIP (Routing Information Protocol)：RIP 是一种分布式的基于距离向量的路由选择协议。RIP 协议要求网络中的每一个路由器都要维护从它自己到其他每一个目的网络的距离记录。</p>
+<p>\164. 内部网关协议OSPF （Open Shortest Path First开放最短路径优先）是分布式的链路状态协议。</p>
+<p>\165. OSPF的区域：为了使 OSPF 能够用于规模很大的网络，OSPF 将一个自治系统再划分为若干个更小的范围，叫作区域。</p>
+<p>\166. OSPF三个要点</p>
+<p>① 向本自治系统中所有路由器发送信息，这里使用的方法是洪泛法。</p>
+<p>② 发送的信息就是与本路由器相邻的所有路由器的链路状态，但这只是路由器所知道的部分信息。</p>
+<p>③ 只有当链路状态发生变化时，路由器才用洪泛法向所有路由器发送此信息。</p>
+<p>\167. 内部网关路由协议(Interior Gateway Routing Protocol，IGRP)是一种在自治系统中提供路由选择功能的思科专有路由协议。</p>
+<p>\168. IGRP是一种距离矢量内部网关协议(IGP)。增强的内部网关路由选择协议(Enhanced Interior Gateway Routing Protocol，EIGRP)是增强版的IGRP。</p>
+<p>\169. 外部网关协议 BGP：是不同自治系统的路由器之间交换路由信息的协议，它只传输路径信息。BGP 较新版本是BGP-4（BGP 第 4 个版本）</p>
+<p>\170. xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+<p>\171. 路由器主要有以下几种功能：网络互联功能、数据处理功能、网络管理功能</p>
+<p>\172. 直接交付和间接交付：互联网络中路由器转发IP分组的物理传输过程与数据报转发交付机制称为分组交付，分组交付可以分为直接交付和间接交付两类。当分组的源主机和目的主机是在同一个网络，或转发是在最后一个路由器与目的主机之间时将直接交付。如果目的主机与源主机不在同一个网络上，分组将间接交付</p>
+<p>\173. 路由器的结构：路由选择部分和分组转发部分；分组转发部分，由三部分组成：交换结构、一组输入端口和一组输出端口</p>
+<p>\174. 路由器交换结构：通过总线进行交换、通过纵横交换结构进行交换、共享存储器</p>
+<p>\175. 路由工作原理:p227</p>
+<p>\176. 路由表类型：静态路由表、动态路由表</p>
+<p>\177. 路由表项包括：目的网络前缀、子网掩码、下一跳字段</p>
+<p>\178. 路由表项的类型：网络路由、主路由、默认路由</p>
+<p>\179. 路由表结构：网络ID 、转发地址 、接口 、跃点数</p>
+<p>\180. IPv6地址主要有：单点传送、多点传送、任意点传送三种类型，它们也分别被称为单播地址、组播地址和泛播地址。</p>
+<p>\181. 单点传送地址是一个单接口标识符，送往单点传送地址的包将会被传送到该地址所标识的接口上。</p>
+<p>\182. 任意点传送地址是一组接口的标识符。送往某个任意点传送地址的包将会被传送到该地址所标识的一组接口中距离源节点最近（根据使用的路由协议进行度量）的一个接口上。 </p>
+<p>\183. 多点传送地址是一组接口的标识符。送往某个多点传送地址的包将会被传送到该地址所标识的所有接口上。</p>
+<p>\184. 从 IPv4 向 IPv6 过渡：双协议栈(dual stack)、隧道(Tunneling)技术、NAT-PT (Network Address Translation-Protocol Translation，附带协议转换的网络地址转换)</p>
+<p>\185. 端口：当一个应用程序(比如一个用户)进程想和远程的一个应用程序进程建立连接时，它必须指定是与哪个应用程序进程相连。正常采取的方法是定义进程能够侦听连接请求的传输地址。在因特网中，这些端点被称作端口(port)。</p>
+<p>\186. TSAP (Transport Service Access Point，传输服务访问点)。网络层中类似的端点(即网络层地址)则被称为NSAP。 IP地址就是NSAP的一个例子</p>
+<p>\187. 传输实体建立连接的方法：三次握手(three-way handshake)方法。</p>
+<p>\188. 释放传输连接：三次握手释放连接</p>
+<p>\189. 终止连接的方式：非对称释放和对称释放</p>
+<p>\190. 非对称释放是电话系统的工作方式：当一方挂机时，连接即告中断。</p>
+<p>\191. 对称释放把连接当做两个独立的单向连接处理，要求每一方单独释放连接。</p>
+<p>\192. 流量控制和缓冲：总结来说，对于低带宽流量，在发送方缓存比较好；对于高带宽流量的稳定传输，在接收方缓存比较好</p>
+<p>\193. TCP/IP的传输层有两个不同的协议：用户数据报协议(UDP)；传输控制协议(TCP)。</p>
+<p>l 区别</p>
+<p>² UDP在传送数据之前不需要建立连接，即提供无连接的服务。此外，UDP不提供广播或者多播服务。</p>
+<p>² TCP则提供面向连接的服务，在传送数据之前必须先建立连接。TCP也不提供广播或者多播服务。</p>
+<p>\194. 用户数据报协议（UDP）概述：传输层协议需要具备以下功能：一是创建进程到进程的通信；二是在传输层提供控制机制</p>
+<p>\195. ＵＤＰ端口分配方法：客户进程的端口号分配、服务器进程的端口号分配</p>
+<p>\196. 套接字地址：UDP需要两个标识符，IP地址和端口号，它们各用在一端以建立一条连接。一个IP地址与一个端口号合起来就叫做套接字地址或插口地址。</p>
+<p>\197. 要使用UDP的服务，需要一对套接字地址：客户套接字地址和服务器套接字地址。</p>
+<p>\198. TCP是一种面向连接的、可靠的传输层协议。TCP协议向应用层用户进程提供可靠性、全双工的数据流传输</p>
+<p>\199. TCP数据编号与确认：TCP是面向字节的；在连接建立时，双方要商定初始序号；TCP的确认是对接收到的数据的最高序号表示确认</p>
+<p>\200. TCP流量控制：TCP协议是面向字节的。TCP将要传送的报文段看成是字节组成的数据流</p>
+<p>\201. 发送缓存与接收缓存：TCP需要缓存来存储数据。在每一个方向都有两个缓存，即发送缓存与接收缓存</p>
+<p>\202. 糊涂窗口综合征：  发送端产生的症状解决的方法是防止发送端TCP逐个字节地发送数据。必须强迫发送端TCP等待，让它收集数据，以便发送大块数据；接收端产生的症状解决方法。(1)Clark解决方法。(2)延迟的确认</p>
+<p>\203. TCP拥塞控制：加速递减策略、慢启动</p>
+<p>\204. 按照通信过程中，双方的地位是否相等，可以把网络应用模式分为：客户/服务器 (C/S ，Client/Server)模式、对等模式 (P2P，Peer to Peer)模式</p>
+<p>\205. P2P是Peer-to-Peer的缩写，称为对等网，强调系统中节点之间的对等关系， P2P网络强调节点地位的对等性。P2P中对等点之间的位置关系是逻辑意义上的。</p>
+<p>\206. 域名服务：在网络上辨别一台计算机的方式是利用IP，但是一组IP数字很不容易记，且没有什么联想的意义，因此，为网络上的服务器取一个有意义又容易记的名字，这个名字就叫域名(Domain Name)。</p>
+<p>\207. 域名：在TCP/IP中实现的这种层次型命名管理机制称为域名系统</p>
+<p>\208. TCP/IP域名系统包括概念上相互独立的两个层面。其中，一个层面是抽象层面，它规定命名语法以及域名管理特权的分派规则；另一个层面是具体层面，它描述如何具体实现从域名到IP地址的高效率映射。</p>
+<p>\209. 了解DNS服务器两种查询方式：迭代查询和递归查询</p>
+<p>\210. 文件传送协议 FTP 只提供文件传送的一些基本的服务，它使用 TCP 可靠的传输服务</p>
+<p>\211. FTP 使用客户机/服务器模式工作</p>
+<p>\212. 一个 FTP 服务器进程可同时为多个客户进程提供服务。FTP 的服务器进程由两大部分组成：一个主进程，负责接受新的请求；另外有若干个从属进程，负责处理单个请求。</p>
+<p>\213. FTP用户登录的类型：匿名访问、凭用户名和密码</p>
+<p>\214. 简单文件传输协议(Trivial File Transfer Protocol, TFTP)最初是打算用于引导无盘系统(通常是工作站或X终端), 所以它使用的是UDP而不是TCP来进行文件传输，以保证算法简单。</p>
+<p>\215. TFTP报文不提供用户名和口令，这是因为TFTP被设计用于系统引导进程，它不可能提供用户名和口令。</p>
+<p>\216. 端口号：TFTP服务器使用UDP端口69</p>
+<p>\217. 远程登录协议Telnet用途：简单地说，远程登录是指用户使用Telnet命令，使自己的计算机暂时成为远程主机的一个仿真终端这样一个过程。</p>
+<p>\218. Telnet远程登录服务实际上将用户用来登录的计算机当作一个输入终端，而将要登录的远程计算机或者远程主机作为具有快速处理能力的主机</p>
+<p>\219. 电子邮件系统具有三个主要组成部件： 用户代理(user agent)、 邮件服务器、电子邮件使用的协议</p>
+<p>\220. 电子邮件格式：由信封(envelope)和内容(content)两部分组成。</p>
+<p>\221. 电子邮件的相关协议：邮件读取协议 POP 或 IMAP 、邮件传送协议 SMTP </p>
+<p>\222. 浏览器/服务器模式（B/S模式）：浏览器就是在用户计算机上的万维网客户程序。万维网文档所驻留的计算机则运行服务器程序，因此这个计算机也称为万维网服务器；客户程序向服务器程序发出请求，服务器程序向客户程序送回客户所要的万维网文档。</p>
+<p>\223. 页面(page)：在一个客户程序主窗口上显示出的万维网文档称为页面</p>
+<p>\224. 超链接</p>
+<p>\225. 超文本文档</p>
+<p>\226. 统一资源定位符 URL（Uniform Resource Locator)：使用统一资源定位符 URL来标志万维网上的各种文档</p>
+<p>\227. 超文本传送协议 HTTP (HyperText Transfer Protocol)：在万维网客户程序与万维网服务器程序之间进行交互所使用的协议</p>
+<p>\228. HTTP 是一个应用层协议，它使用 TCP 连接进行可靠的传送。</p>
+<p>\229. 超文本标记语言 HTML</p>
+<p>\230. 动态主机配置协议 DHCP含义：动态主机配置协议 (Dynamic Host Configuration Protocol， DHCP ) 提供了即插即用连网(plug-and-play networking)的机制。</p>
+<p>\231. DHCP具有以下特点：安全而可靠的配置、集中管理、节省IP</p>
+<p>\232. 作用域：是一个网络中的所有可分配的IP地址的连续范围。主要用来定义网络中单一的物理子网的IP地址范围。</p>
+<p>\233. 超级作用域：是一组作用域的集合，它用来实现同一个物理子网中包含多个逻辑IP子网。</p>
+<p>\234. 排除范围：是不用于分配的IP地址序列。</p>
+<p>\235. 地址池：在用户定义了DHCP作用域及排除范围后，剩余的地址构成了一个地址池，地址池中的地址可以动态地分配给网络中的客户使用。</p>
+<p>\236. 租用期(lease period)：DHCP 服务器分配给 DHCP 客户的 IP 地址是临时的，因此 DHCP 客户只能在一段有限的时间内使用这个分配到的 IP 地址。DHCP 协议称这段时间为租用期。 </p>
+<p>\237. 保留地址：用户可以利用保留地址创建一个永久的地址租用期。保留地址保证子网中的指定硬件设备使用同一个IP地址。</p>
+<p>\238. DHCP 工作时使用客户/服务器方式</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/undefined/算法分析与设计/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                算法分析与设计(持续更新...)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/undefined/蛋疼のNode学习之路/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt2.jpeg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                蛋疼のNode学习之路(持续更新...)</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Kitholt Frank<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2021</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_uv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    </div>
+  </div><!-- .site-info -->
+    
+</footer>
+
+
+
+
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">KItholtFrank</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/kitholt" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            资瓷
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    id="8153220533"
+
+    server="tencent"
+
+    type="playlist"
+
+    fixed="true"
+
+    autoplay="false"
+
+    loop="all"
+
+    order="random"
+
+    preload="auto"
+
+    volume="0.7"
+
+    mutex="true"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<noscript><iframe src="/blog/*>";</iframe></noscript>
+<script src="https://cdn.jsdelivr.net/gh/Sanarous/files@1.151/js/click.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
+ 
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> <script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/clickBom.js"></script>
+
+
+</html>
