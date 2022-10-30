@@ -340,7 +340,7 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="JS算法之脑洞大开—freeCodeCamp"><a href="#JS算法之脑洞大开—freeCodeCamp" class="headerlink" title="JS算法之脑洞大开—freeCodeCamp"></a>JS算法之脑洞大开—freeCodeCamp</h1><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/js_algorithm/js_freeCodeCamp.png" alt></p>
+          <h1 id="JS算法之脑洞大开"><a href="#JS算法之脑洞大开" class="headerlink" title="JS算法之脑洞大开"></a>JS算法之脑洞大开</h1><h2 id="freeCodeCamp（部分）"><a href="#freeCodeCamp（部分）" class="headerlink" title="freeCodeCamp（部分）"></a>freeCodeCamp（部分）</h2><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/js_algorithm/js_freeCodeCamp.png" alt></p>
 <p>问题描述：寻找两个数组的对称差集</p>
 <p>代码块（思路1）：</p>
 <pre><code class="js">function diffArray(arr1, arr2) {
@@ -640,6 +640,441 @@ fearNotLetter(&quot;abce&quot;);
 
 uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
 </code></pre>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/js_algorithm/js_freeCodeCamp_8.png" alt></p>
+<p>问题描述：Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.</p>
+<p>The range will be an array of two numbers that will not necessarily be in numerical order.</p>
+<p>For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers <em>between</em> 1 and 3. The answer here would be 6.</p>
+<p>思考：寻找一个有序序列的最小公倍数，可以从头开始，比如序列abcdef，先寻找a，b的最大公倍数，并将结果保存起来（scm）。遍历序列，重复以上步骤。寻找最小公倍数的关键判断条件（scm * k % num2 !== 0）</p>
+<p>代码块：</p>
+<pre><code class="js">function smallestCommons(arr) {
+  let scm = 0
+  let num2 = 0
+
+  if(arr[0] &gt; arr[1]){
+    let temp = arr[0]
+    arr[0] = arr[1]
+    arr[1] = temp
+  }
+  //最小公倍数初始化为第一个数
+  scm = arr[0]
+  //从第二个数开始
+  for(let i = arr[0]; i &lt; arr[1]; i++){
+    num2 = i + 1
+    let k = 1
+    //判断是否为最小公倍数
+    while((scm * k % num2 !== 0)){
+      k++
+    }
+    //更新最小公倍数
+    scm = scm * k
+    console.log(&#39;scm&#39;, scm, i)
+  }
+  return scm;
+}
+</code></pre>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/js_algorithm/js_freeCodeCamp_10.png" alt></p>
+<p>问题描述：Create a function that sums two arguments together. If only one argument is provided, then return a function that expects one argument and returns the sum.</p>
+<p>For example, <code>addTogether(2, 3)</code> should return <code>5</code>, and <code>addTogether(2)</code> should return a function.</p>
+<p>Calling this returned function with a single argument will then return the sum:</p>
+<pre><code class="js">var sumTwoAnd = addTogether(2);
+</code></pre>
+<p><code>sumTwoAnd(3)</code> returns <code>5</code>.</p>
+<p>If either argument isn’t a valid number, return undefined.</p>
+<p>思考：关键在于typeof的使用，以及闭包的应用（嵌套函数</p>
+<p>代码块：</p>
+<pre><code class="js">function addTogether() {
+
+  let args = arguments
+  //如果只接收一个参数，判断是否为数值类型
+  if(args.length == 1){
+    if(typeof(args[0]) == &#39;number&#39;){
+      return function f(x){
+        if(typeof(x) == &#39;number&#39;){
+          return args[0] + x
+        }
+        return undefined
+      }
+    }
+  }
+  //如果接收两个参数
+  if(typeof(args[0]) == &#39;number&#39; &amp;&amp; typeof(args[1]) == &#39;number&#39;){
+    //console.log(args[1])
+    return args[0] + args[1];
+  }
+  return undefined
+}
+
+//addTogether(2,3);
+</code></pre>
+<hr>
+<hr>
+<hr>
+<h2 id="最大子数组"><a href="#最大子数组" class="headerlink" title="最大子数组"></a>最大子数组</h2><p>输入是以数字组成的数组，例如 <code>arr = [1, -2, 3, 4, -9, 6]</code>.</p>
+<p>任务是：找出所有项的和最大的 <code>arr</code> 数组的连续子数组。</p>
+<p>写出函数 <code>getMaxSubSum(arr)</code>，用其找出并返回最大和。</p>
+<h2 id="JS小案例合集"><a href="#JS小案例合集" class="headerlink" title="JS小案例合集"></a>JS小案例合集</h2><h3 id="①贪吃蛇"><a href="#①贪吃蛇" class="headerlink" title="①贪吃蛇"></a>①贪吃蛇</h3><p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/js_algorithm/贪吃蛇.png" alt></p>
+<p>HTML：</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/index.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+        &lt;!-- 开始游戏按钮 --&gt;
+        &lt;button class = &#39;startBtn&#39;&gt;Play&lt;/button&gt;
+        &lt;!-- 暂停游戏按钮 --&gt;
+        &lt;button class = &#39;pauseBtn&#39;&gt;Pause&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;./js/config.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;./js/index.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>CSS：</p>
+<pre><code class="css">*{
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 600px;
+    height: 600px;
+    background: purple;
+    border: 20px solid royalblue;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+/* 按钮公共样式 */
+.container button {
+    border: none;
+    outline: none;
+}
+
+/* 开始按钮 */
+.startBtn {
+    width: 150px;
+    height: 60px;
+    border-radius: 15px;
+    box-shadow: 3px 4px 0px 0px #1564ad;
+    background:linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    background-color:#79bbff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+}
+
+.pauseBtn {
+     width: 150px;
+    height: 60px;
+    border-radius: 15px;
+    box-shadow: 3px 4px 0px 0px #8a2a21;
+    background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+    background-color:#c62d1f;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    display: none;
+}
+</code></pre>
+<p>JS：</p>
+<p>config.js配置文件</p>
+<pre><code class="javascript">/* 游戏相关配置
+config文件一般用于放置数据信息
+*/
+
+//地图对象
+let gridData = []
+
+//设置网格宽高
+let tr = 30
+let td = 30
+
+//蛇身体的大小
+let snakeBody = 20
+
+//设置新的蛇头的旧的蛇头之间的位置关系，能够计算出新的蛇头的坐标
+let directionNum = {
+    left: {x: -1, y: 0, flag: &#39;left&#39;},
+    right: {x: 1, y: 0, flag: &#39;right&#39;},
+    top: {x: 0, y: -1, flag: &#39;top&#39;},
+    bottom: {x: 0, y: 1, flag: &#39;bottom&#39;},
+}
+
+/* 蛇的基本信息 
+snakePos数组的长度表示蛇的长度，domConent表示蛇的头身的样式
+flag表示区别头身
+*/
+let snake = {
+    //蛇的初始移动方向
+    direction: directionNum.right,
+
+    //蛇的初始位置
+    snakePos: [
+        {x: 0, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39;},
+        {x: 1, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39;},
+        {x: 2, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39;},
+        {x: 3, y: 0, domContent: &#39;&#39;, flag: &#39;head&#39;},
+    ]
+}
+
+//设置食物的基本信息
+let food = {
+    x: 0, y: 0, domContent: &#39;&#39;,
+}
+
+//游戏分数
+let score = 0
+
+//计时器
+let timeStopper = null
+
+//游戏速度
+let speed = 60
+</code></pre>
+<p>index.js主程序文件</p>
+<pre><code class="javascript">/* 
+绘制蛇的方法
+*/
+function drawSnake() {
+    for (let i = 0; i &lt; snake.snakePos.length; i++) {
+        if (!snake.snakePos[i].domContent) {
+            snake.snakePos[i].domContent = document.createElement(&#39;div&#39;)
+            snake.snakePos[i].domContent.style.position = &#39;absolute&#39;
+            snake.snakePos[i].domContent.style.width = snakeBody + &#39;px&#39;
+            snake.snakePos[i].domContent.style.height = snakeBody + &#39;px&#39;
+            snake.snakePos[i].domContent.style.left = snake.snakePos[i].x * snakeBody + &#39;px&#39;
+            snake.snakePos[i].domContent.style.top = snake.snakePos[i].y * snakeBody + &#39;px&#39;
+
+            if (snake.snakePos[i].flag === &#39;head&#39;) {
+                snake.snakePos[i].domContent.style.background = &#39;red&#39;
+            } else {
+                snake.snakePos[i].domContent.style.background = &#39;green&#39;
+            }
+            document.querySelector(&#39;.container&#39;).append(snake.snakePos[i].domContent)
+        }
+    }
+}
+
+/* 
+绘制食物
+*/
+function drawFood() {
+    //食物坐标是随机的，且不能生成在蛇头或者蛇身
+
+    //写一个while循环，直到生成符合条件的坐标
+    while (true) {
+        let isRepeated = false
+        //随机生成一个坐标
+        food.x = Math.floor(Math.random() * tr)
+        food.y = Math.floor(Math.random() * td)
+        //开始循环判断，食物坐标和当前蛇的位置坐标进行比较
+        for (let i = 0; i &lt; snake.snakePos.length; i++) {
+            if (snake.snakePos[i].x === food.x &amp;&amp; snake.snakePos[i].y === food.y) {
+                isRepeated = true
+                break
+            }
+        }
+        //如果没有重复
+        if (!isRepeated) {
+            break
+        }
+    }
+
+    if (!food.domContent) {
+        food.domContent = document.createElement(&#39;div&#39;)
+        food.domContent.style.width = snakeBody + &#39;px&#39;
+        food.domContent.style.height = snakeBody + &#39;px&#39;
+        food.domContent.style.position = &#39;absolute&#39;
+        food.domContent.style.backgroundColor = &#39;yellow&#39;
+
+        document.querySelector(&#39;.container&#39;).append(food.domContent)
+    }
+    food.domContent.style.left = food.x * snakeBody + &#39;px&#39;
+    food.domContent.style.top = food.y * snakeBody + &#39;px&#39;
+}
+
+/* 初始化 */
+function initGame() {
+    //初始化地图
+    for (let i = 0; i &lt; tr; i++) {
+        for (let j = 0; j &lt; td; j++) {
+            gridData.push({
+                x: j,
+                y: i
+            })
+        }
+    }
+    //绘制蛇
+    drawSnake(snake)
+    //绘制食物
+    drawFood()
+}
+
+//碰撞检测，判断蛇头是否撞到食物，身体，墙壁
+function isCollided(newHead) {
+    let info = {
+        isCollided: false,
+        isEat: false,
+    }
+    //如果撞到墙壁
+    if (newHead.x &lt; 0 || newHead.x &gt;= td || newHead.y &lt; 0 || newHead.y &gt;= td) {
+        info.isCollided = true
+        return info
+    }
+    //如果撞到自己
+    for (let i = 0; i &lt; snake.snakePos.length; i++) {
+        if (newHead.x === snake.snakePos[i].x &amp;&amp; newHead.y === snake.snakePos[i].y) {
+            info.isCollided = true
+            return info
+        }
+    }
+    //如果吃到食物
+    if (newHead.x === food.x &amp;&amp; newHead.y === food.y) {
+        score++
+        info.isEat = true
+        return info
+    }
+    return info
+}
+
+function resetConfig() {
+    score = 0
+    snake = {
+        //蛇的初始移动方向
+        direction: directionNum.right,
+
+        //蛇的初始位置
+        snakePos: [
+            { x: 0, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39; },
+            { x: 1, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39; },
+            { x: 2, y: 0, domContent: &#39;&#39;, flag: &#39;body&#39; },
+            { x: 3, y: 0, domContent: &#39;&#39;, flag: &#39;head&#39; },
+        ]
+    }
+    food = {
+        x: 0, y: 0, domContent: &#39;&#39;,
+    }
+}
+
+/* 蛇的移动方法 */
+function snakeMove() {
+    let oldHead = snake.snakePos[snake.snakePos.length - 1]
+    //新的蛇头的坐标
+    let newHead = {
+        domcontent: &#39;&#39;,
+        x: oldHead.x + snake.direction.x,
+        y: oldHead.y + snake.direction.y,
+        flag: &#39;head&#39;
+    }
+    let collisionResult = isCollided(newHead)
+    if (collisionResult.isCollided) {
+        if (window.confirm(`
+            游戏结束，当前得分为${score}，是否要重新开始游戏？
+            `)) {
+            //重新开始游戏
+            document.querySelector(&#39;.container&#39;).innerHTML = `
+                &lt;!-- 开始游戏按钮 --&gt;
+                &lt;button class = &#39;startBtn&#39; style = &#39;display:none&#39;&gt;Play&lt;/button&gt;
+                &lt;!-- 暂停游戏按钮 --&gt;
+                &lt;button class = &#39;pauseBtn&#39; style = &#39;display:none&#39;&gt;Pause&lt;/button&gt;
+            `
+             resetConfig()
+             drawSnake()
+             drawFood()
+            /* 这一句出问题....，加了这一句后 无法重新开始游戏 */
+            //clearInterval(timeStopper)
+
+
+        } else {
+            //退出游戏
+            document.onkeydown = null
+            document.querySelector(&#39;.container&#39;).onclick = null
+            clearInterval(timeStopper)
+        }
+        return
+    }
+    //将旧的头修改成身体
+    oldHead.flag = &#39;body&#39;
+    oldHead.domContent.style.background = &#39;green&#39;
+    snake.snakePos.push(newHead)
+    //如果吃到食物，则重新生成食物
+    if (collisionResult.isEat) {
+        drawFood()
+    } else {
+        //没吃到食物，需要移除最后一个元素（蛇的最后一段,也就是数组的第一个元素
+        document.querySelector(&#39;.container&#39;).removeChild(snake.snakePos[0].domContent)
+        snake.snakePos.shift()
+    }
+    //重新绘制蛇
+    drawSnake()
+}
+
+function startGame() {
+    timeStopper = setInterval(function () {
+        snakeMove()
+    }, speed)
+}
+
+/* 绑定事件 */
+function bindEvent() {
+    //1.键盘事件，决定蛇的移动方向
+    document.onkeydown = function (e) {
+        console.log(e.key)
+        if ((e.key === &#39;ArrowUp&#39; || e.key.toLowerCase() === &#39;w&#39;) &amp;&amp; snake.direction.flag !== &#39;bottom&#39;) {
+            snake.direction = directionNum.top
+        }
+        if ((e.key === &#39;ArrowDown&#39; || e.key.toLowerCase() === &#39;s&#39;) &amp;&amp; snake.direction.flag !== &#39;top&#39;) {
+            snake.direction = directionNum.bottom
+        }
+        if ((e.key === &#39;ArrowLeft&#39; || e.key.toLowerCase() === &#39;a&#39;) &amp;&amp; snake.direction.flag !== &#39;right&#39;) {
+            snake.direction = directionNum.left
+        }
+        if ((e.key === &#39;ArrowRight&#39; || e.key.toLowerCase() === &#39;d&#39;) &amp;&amp; snake.direction.flag !== &#39;left&#39;) {
+            snake.direction = directionNum.right
+        }
+    }
+    //2.开始游戏，蛇动
+    startGame()
+
+    //3.点击容器暂停
+    document.querySelector(&#39;.container&#39;).onclick = function (e) {
+        //console.log(e.target)
+        //通过事件委托，判断用户点击的是container容器还是暂停按钮
+        if (e.target.className === &#39;container&#39;) {
+            document.querySelector(&#39;.pauseBtn&#39;).style.display = &#39;block&#39;
+            clearInterval(timeStopper)
+        } else {
+            document.querySelector(&#39;.pauseBtn&#39;).style.display = &#39;none&#39;
+            startGame()
+        }
+    }
+}
+
+/* 游戏主方法 */
+function main() {
+    //用户点击了开始游戏之后，再开始后面的操作
+    document.querySelector(&#39;.startBtn&#39;).onclick = function (e) {
+        e.stopPropagation()
+        document.querySelector(&#39;.startBtn&#39;).style.display = &#39;none&#39;
+        //初始化游戏(已完成)
+        initGame()
+        //绑定事件，让游戏动起来
+        bindEvent()
+    }
+}
+main()
+</code></pre>
 
         </div>
         <!-- .entry-content -->
@@ -661,7 +1096,7 @@ uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
                   <div class="tag-cloud-title">
                   </div>
                   <div class="tag-cloud-tags">
-                  <a href="/tags/Spring/" style="font-size: 10px; color: #f38181">Spring</a> <a href="/tags/ajax/" style="font-size: 10px; color: #f38181">ajax</a> <a href="/tags/css/" style="font-size: 13.33px; color: #d4a19c">css</a> <a href="/tags/js/" style="font-size: 16.67px; color: #b4c1b8">js</a> <a href="/tags/nodeJs/" style="font-size: 10px; color: #f38181">nodeJs</a> <a href="/tags/spring/" style="font-size: 10px; color: #f38181">spring</a> <a href="/tags/vue/" style="font-size: 10px; color: #f38181">vue</a> <a href="/tags/吐槽/" style="font-size: 13.33px; color: #d4a19c">吐槽</a> <a href="/tags/大学所学/" style="font-size: 16.67px; color: #b4c1b8">大学所学</a> <a href="/tags/机器学习/" style="font-size: 10px; color: #f38181">机器学习</a> <a href="/tags/算法/" style="font-size: 20px; color: #95e1d3">算法</a> <a href="/tags/设计模式/" style="font-size: 10px; color: #f38181">设计模式</a>
+                  <a href="/tags/Spring/" style="font-size: 10px; color: #f38181">Spring</a> <a href="/tags/ajax/" style="font-size: 10px; color: #f38181">ajax</a> <a href="/tags/css/" style="font-size: 12.5px; color: #dc9996">css</a> <a href="/tags/js/" style="font-size: 15px; color: #c4b1aa">js</a> <a href="/tags/nodeJs/" style="font-size: 10px; color: #f38181">nodeJs</a> <a href="/tags/spring/" style="font-size: 10px; color: #f38181">spring</a> <a href="/tags/sql/" style="font-size: 10px; color: #f38181">sql</a> <a href="/tags/vue/" style="font-size: 10px; color: #f38181">vue</a> <a href="/tags/吐槽/" style="font-size: 12.5px; color: #dc9996">吐槽</a> <a href="/tags/大学所学/" style="font-size: 17.5px; color: #adc9bf">大学所学</a> <a href="/tags/机器学习/" style="font-size: 10px; color: #f38181">机器学习</a> <a href="/tags/算法/" style="font-size: 20px; color: #95e1d3">算法</a> <a href="/tags/设计模式/" style="font-size: 10px; color: #f38181">设计模式</a>
                   </div>
                 </div>
 
@@ -676,9 +1111,26 @@ uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/undefined/My（Your）SQL/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/brokenHeart.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                My（Your）SQL</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/undefined/学一学神经网络/" rel="next">
               <div class="background">

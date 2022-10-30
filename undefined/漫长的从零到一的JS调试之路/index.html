@@ -340,7 +340,120 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="漫长的从零到一的JS调试之路"><a href="#漫长的从零到一的JS调试之路" class="headerlink" title="漫长的从零到一的JS调试之路"></a>漫长的从零到一的JS调试之路</h1><h2 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h2><h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><pre><code class="javascript"> &lt;script&gt;
+          <h1 id="漫长的从零到一的JS调试之路"><a href="#漫长的从零到一的JS调试之路" class="headerlink" title="漫长的从零到一的JS调试之路"></a>漫长的从零到一的JS调试之路</h1><h2 id="关于变量"><a href="#关于变量" class="headerlink" title="关于变量"></a>关于变量</h2><h3 id="var"><a href="#var" class="headerlink" title="var"></a>var</h3><p>声明的作用域是函数作用域</p>
+<p>使用var定义的变量会成为包含它的函数的局部变量</p>
+<p>使用var定义的变量会自动提升到函数作用域顶部（声明提升）</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>let声明的是<strong>块作用域</strong>，需要注意的是<strong>块作用域</strong>是<strong>函数作用域</strong>的子集</p>
+<p>let定义的变量不会进行声明提升，这称为“暂时性死区”</p>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><p>可以理解为java中的声明一个常量</p>
+<h2 id="关于数据类型"><a href="#关于数据类型" class="headerlink" title="关于数据类型"></a>关于数据类型</h2><h3 id="Undefined（定义了但未赋予初始值）"><a href="#Undefined（定义了但未赋予初始值）" class="headerlink" title="Undefined（定义了但未赋予初始值）"></a>Undefined（定义了但未赋予初始值）</h3><p>它的值就是undefined，使用var或let声明变量没赋初值，就相当于赋予了undefined</p>
+<h3 id="Null"><a href="#Null" class="headerlink" title="Null"></a>Null</h3><p>它的值为null，逻辑上它的值表示一个空对象指针</p>
+<h3 id="Boolean"><a href="#Boolean" class="headerlink" title="Boolean"></a>Boolean</h3><h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><p>有个特殊的值：NaN（不是数值“Not a Number”），用来表示本来要返回数值的操作失败了</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>可以用单（‘’）、双引号（“”）或者反引号（`）标示</p>
+<h3 id="Symbol"><a href="#Symbol" class="headerlink" title="Symbol"></a>Symbol</h3><p>确保对象属性使用唯一标识符，防止属性冲突的危险</p>
+<h3 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h3><h2 id="关于正则表达式"><a href="#关于正则表达式" class="headerlink" title="关于正则表达式"></a>关于正则表达式</h2><p>用于定义一些字符串的规则</p>
+<p>语法：</p>
+<p>var 变量 =  new RegExp(“正则表达式”,”匹配模式”);</p>
+<p>完成上述new后得到一个正则表达式对象，随后我们就能用这个对象去检查其他字符串是否符合该正则表达式的规范</p>
+<p>此外还能使用字面量来创建正则表达式：</p>
+<p>var 变量 = /正则表达式/匹配模式</p>
+<hr>
+<p>正则表达式规则：</p>
+<p>/[abc]/：表示含有a或b或c的字符串</p>
+<hr>
+<p>/[ ^ abc]/：表示匹配除了[abc]的所有字符</p>
+<hr>
+<p>/a{n}/：花括号的n表示对它前面一个内容起作用，{n}表示正好出现n次</p>
+<p>扩展：/（abcd）{n}/：表示abcd这一个整体正好出现n次</p>
+<p>另外也可以这样写，/a{x，y}/，这表示a可以出现x到y次（出现次数”区间化“）</p>
+<p>具体规则还有好多，可参考官方文档…</p>
+<h2 id="关于DOM"><a href="#关于DOM" class="headerlink" title="关于DOM"></a>关于DOM</h2><ul>
+<li>全称Document Object Model</li>
+<li>js通过DOM来对html文档进行操作。</li>
+<li>Document：指的是整个html页面</li>
+<li>Object：将网页的每一部分都转换为一个对象（每一个标签）</li>
+<li>Model：使用模型表示对象之间的关系，方便我们获取对象</li>
+</ul>
+<hr>
+<p>onload事件会在整个页面加载完成之后才触发</p>
+<p>为window绑定一个onload事件，该事件对应的响应函数将会在页面加载完成之后执行，这样就可以确保我们的代码执行时所有的DOM对象已经加载完毕</p>
+<h2 id="关于BOM"><a href="#关于BOM" class="headerlink" title="关于BOM"></a>关于BOM</h2><ul>
+<li><p>全称浏览器对象模型</p>
+</li>
+<li><p>可以使我们通过js来操作对象</p>
+</li>
+<li><p>在BOM中为我们提供了一组对象，用来完成对浏览器的操作</p>
+</li>
+<li><p>BOM对象</p>
+<ul>
+<li><p>Window</p>
+<ul>
+<li>代表整个浏览器的窗口，同时window也是网页的全局对象</li>
+</ul>
+</li>
+<li><p>Navigator</p>
+<ul>
+<li>代表当前浏览器的信息，通过该对象可以识别不同的浏览器</li>
+</ul>
+</li>
+<li><p>History</p>
+<ul>
+<li>代表浏览器的历史记录，可以通过该对象来操作浏览器的历史记录，由于隐私原因，该对象不能获取到具体的历史记录，只能操纵浏览器向前或者向后翻页，且该操作只在当次访问时有效</li>
+</ul>
+</li>
+<li><p>Screen</p>
+<ul>
+<li>代表用户的屏幕的信息，通过该对象可以获取到用户的显示器的相关的信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件句柄"><a href="#事件句柄" class="headerlink" title="事件句柄"></a>事件句柄</h2><ul>
+<li>onclick…</li>
+</ul>
+<h2 id="关于typeof、instanceof、-（这个不算高级吧）"><a href="#关于typeof、instanceof、-（这个不算高级吧）" class="headerlink" title="关于typeof、instanceof、===（这个不算高级吧）"></a>关于typeof、instanceof、===（这个不算高级吧）</h2><ul>
+<li><p>typeof</p>
+<ul>
+<li><p>可以判断undefined、数值、字符串、布尔值、function（且判断显示的数据类型以字符串的形式返回）</p>
+</li>
+<li><p><span style="color:red">但无法判断（null和object）、（object和array）</span></p>
+</li>
+</ul>
+</li>
+<li><p>instanceof</p>
+<ul>
+<li>判断一个对象是否是一个类的实例</li>
+</ul>
+</li>
+<li><p>===</p>
+<ul>
+<li>可以判断null和undefined</li>
+</ul>
+</li>
+</ul>
+<h2 id="关于区分数据类型和变量类型"><a href="#关于区分数据类型和变量类型" class="headerlink" title="关于区分数据类型和变量类型"></a>关于区分数据类型和变量类型</h2><ul>
+<li><p>数据类型</p>
+<ul>
+<li>基本类型</li>
+<li>对象类型</li>
+</ul>
+</li>
+<li><p>变量类型</p>
+<ul>
+<li>基本类型</li>
+<li>引用类型</li>
+</ul>
+</li>
+</ul>
+<p>乍一看很像，说简单点，变量类型就是一个装数据类型的容器，比如变量类型中的基本类型保存的就是基本类型的数据，例子有var a = 3</p>
+<h2 id="关于IIFE（Immediately-Invoked-Function-Expression）"><a href="#关于IIFE（Immediately-Invoked-Function-Expression）" class="headerlink" title="关于IIFE（Immediately Invoked Function Expression）"></a>关于IIFE（Immediately Invoked Function Expression）</h2><p>立刻执行函数</p>
+<p>类似于函数声明，但由于包含在括号内，所以会被解释成函数式表达式，紧跟在第一组括号后面的第二组括号会立即调用前面的函数表达式，具体如下所示：</p>
+<pre><code class="javascript">(function(){
+    //块级作用域
+})();
+</code></pre>
+<h2 id="集合引用类型"><a href="#集合引用类型" class="headerlink" title="集合引用类型"></a>集合引用类型</h2><h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><h4 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h4><pre><code class="javascript"> &lt;script&gt;
         //普通创建方式,使用构造函数
         let colors = new Array(20)
         console.log(colors)
@@ -1670,6 +1783,515 @@
     animation()
 &lt;/script&gt;
 </code></pre>
+<h1 id="ES67891011（特性"><a href="#ES67891011（特性" class="headerlink" title="ES67891011（特性"></a>ES67891011（特性</h1><h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p>允许按照一定模式从数组和对象中提取值，对变量进行赋值</p>
+<pre><code class="javascript">const group = [&#39;张三&#39;,&#39;李四&#39;,&#39;王五&#39;,‘赵六];
+let [zhang, li, wang, zhao] = group
+
+const pepople = {
+    name: &#39;Lee&#39;,
+    age: 18;
+    say: function(){
+        console.log(&#39;hello, my name is Lee&#39;);
+    }
+};
+let {say} = people;
+</code></pre>
+<h2 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h2><p>（`）反引号</p>
+<ol>
+<li>可直接出现换行符</li>
+<li>在模板字符串里，变量使用${变量名}进行拼接</li>
+</ol>
+<h2 id="简化对象写法"><a href="#简化对象写法" class="headerlink" title="简化对象写法"></a>简化对象写法</h2><p>允许在大括号里面直接写入变量和函数，作为对象的属性和方法</p>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><pre><code class="javascript">let add = n =&gt; n+n
+</code></pre>
+<ol>
+<li>箭头函数的this是静态的，始终指向函数声明所在的作用域下的this的值，并不会随着调用者的不用而不同</li>
+<li>不能作为构造函数实例化对象</li>
+<li>不能使用argument</li>
+<li>当只有一个形参时，可以省略小括号</li>
+<li>此外，当代码只有一句时，可以省略return </li>
+</ol>
+<h2 id="扩展运算符（…）"><a href="#扩展运算符（…）" class="headerlink" title="扩展运算符（…）"></a><span style="color:red">扩展运算符（…）</span></h2><p>能将数组转换为逗号分隔的参数序列</p>
+<ol>
+<li>数组合并</li>
+<li>数组克隆</li>
+<li>将伪数组转为真数组</li>
+</ol>
+<h2 id="Symbol（符号）"><a href="#Symbol（符号）" class="headerlink" title="Symbol（符号）"></a>Symbol（符号）</h2><p>符号实例是唯一的，用于标识对象的唯一属性</p>
+<p>Symbol不能new，只能使用Symbol()初始化</p>
+<p>Symbol没有字面量语法</p>
+<hr>
+<p>注意区分let a = Symbol()和let a = Symbol.for();</p>
+<p>全局注册表中定义的符号和使用Symbol()定义的符号并<strong>不相同</strong></p>
+<h2 id="迭代器-Iterator"><a href="#迭代器-Iterator" class="headerlink" title="迭代器(Iterator)"></a>迭代器(Iterator)</h2><p>通俗说就是遍历，可迭代对象通过实现iterable接口，而且可以通过迭代器Iterator来消费</p>
+<p>工作原理：每个可迭代对象都有一个Symbol.Iterator的属性，这个属性是一个方法</p>
+<ol>
+<li>它会创建一个指针对象，指向当前数据结构的起始位置</li>
+<li>第一次调用对象的next方法，指针会后移指向数据结构的第一个成员</li>
+<li>不断调用next，指针不断后移，直到到头</li>
+<li>每调用next方法返回一个包含value和done的属性对象</li>
+</ol>
+<h2 id="生成器-generator"><a href="#生成器-generator" class="headerlink" title="生成器(generator)"></a>生成器(generator)</h2><pre><code class="javascript">function* generatorFn(){
+    //code1
+    yield param1；
+    //code2
+    yield param2
+}
+</code></pre>
+<p>function*表示这是一个生成器函数</p>
+<p>值得一提的是，调用这个函数并不会立即执行，它会返回一个生成器对象</p>
+<pre><code class="javascript">function* generatorFn(){
+    //code1
+    yield param1；
+    //code2
+    yield param2
+}
+
+//得到生成器函数
+let gen = generatorFn();
+</code></pre>
+<h3 id="yield的作用"><a href="#yield的作用" class="headerlink" title="yield的作用"></a>yield的作用</h3><p>yield有产出、产量、返回的意思，因此不难理解yield就相当于生成器里的return关键字。也就是说生成器函数能够返回多次（执行多次）</p>
+<h3 id="next"><a href="#next" class="headerlink" title="next()"></a>next()</h3><p>它实现了iterator接口，因此也有next()方法，调用该方法能执行每个yield之前的代码，并且next()也可传入参数，该参数会覆盖上一个yield返回的值</p>
+<h2 id="promise（一个对象）"><a href="#promise（一个对象）" class="headerlink" title="promise（一个对象）"></a><span style="color:red">promise（一个对象）</span></h2><p>用于封装异步操作</p>
+<p>promise的出现是为了解决<strong>回调地狱</strong></p>
+<p>Promise是一个构造函数，通过new关键字实例化对象</p>
+<blockquote>
+<p>语法</p>
+</blockquote>
+<pre><code class="javascript">new Promise((resolve, reject) =&gt; {});
+</code></pre>
+<ul>
+<li>Promise接受一个函数作为参数（参数函数）</li>
+<li>在参数函数中接受两个参数：<ul>
+<li>resolve</li>
+<li>reject</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>promise实例</p>
+</blockquote>
+<ul>
+<li><p>state：状态</p>
+<ol>
+<li><p>pending（准备）</p>
+</li>
+<li><p>fulfilled（成功）</p>
+</li>
+<li><p>rejected（失败）</p>
+<p>通过调用resolve()和reject()来改变promise对象的状态（分别对应fulfilled和rejected）</p>
+</li>
+</ol>
+</li>
+<li><p>result：结果</p>
+</li>
+</ul>
+<blockquote>
+<p>promise状态的改变是一次性的</p>
+</blockquote>
+<h3 id="promise的结果"><a href="#promise的结果" class="headerlink" title="promise的结果"></a>promise的结果</h3><pre><code class="javascript">//创建promise对象
+  const p = new Promise((resolve,reject)=&gt;{
+    setTimeout(() =&gt; {
+       resolve(&#39;用户数据&#39;); 
+    }, 1000);
+});
+
+p.then((value) =&gt;{
+    console.log(value+&#39;访问成功&#39;);
+}).catch(()=&gt;{
+    console.log(&#39;访问失败&#39;);
+});
+</code></pre>
+<h3 id="promise的方法"><a href="#promise的方法" class="headerlink" title="promise的方法"></a>promise的方法</h3><ul>
+<li><p>then方法</p>
+<ul>
+<li><p>参数是两个函数</p>
+</li>
+<li><p><span style="color:red">它的返回值是一个新的promise对象（且状态为pending）</span></p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code class="javascript"> &lt;script&gt;
+        const p = new Promise((resolve,reject) =&gt; {
+            resolve(&#39;yes&#39;);
+           // reject();
+        });
+        //当p的状态是fulfilled时，执行第一个参数函数，打印‘成功调用’
+        p.then(() =&gt; {console.log(&#39;成功调用&#39;)}, () =&gt; {console.log(&#39;调用失败...&#39;)});
+        console.log(p);
+    &lt;/script&gt;
+</code></pre>
+<p>注意：如果promise的状态不改变，then里的方法不会执行</p>
+<p>解决：使用return可以将实例的状态改成fulfilled</p>
+<pre><code class="javascript">const p = new Promise((resolve,reject) =&gt; {
+    resolve();
+});
+
+const t = p.then(() =&gt;{
+    console.log(&#39;success&#39;);
+    return 233;
+});
+//值得一提的是，return不仅能够将新的promise的状态改变成fulfilled，而且还能够将return后面的值传递出去，作为链式调用的下一个then方法的参数
+t.then((value) =&gt; {//此时的value为上面的233
+    //code
+});
+</code></pre>
+<ul>
+<li><p>catch方法</p>
+<pre><code class="javascript">const p = new Promise((resolve,reject) =&gt; {
+    rejected();
+});
+
+const t = p.catch((reason) =&gt;{
+    console.log(&#39;reason：&#39;+reason);
+});
+</code></pre>
+<ol>
+<li>当promise的状态改为rejected时，会执行</li>
+<li>当promise的执行体中出现代码错误，会执行</li>
+</ol>
+</li>
+</ul>
+<h2 id="数值扩展"><a href="#数值扩展" class="headerlink" title="数值扩展"></a>数值扩展</h2><p>Number.EPSILON是js表示的最小精度（其值为2.2204460……）【小数点后十六位】</p>
+<p>在两个数比较大小时，如果这两个数的绝对值小于Number.EPSILON，则认为这两个数是相等的（有点像高数里的极限）</p>
+<pre><code class="javascript">function equal(a, b){
+    if(Math.abs(a-b) &lt; Number.EPSILON){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+</code></pre>
+<ul>
+<li><p>Number.isFinite</p>
+<p>用于判断一个数值是否为有限数 </p>
+</li>
+<li><p>Number.isNaN</p>
+<p>检测一个数值是否为NaN</p>
+</li>
+<li><p>Number.parseInt Number.parseFloat</p>
+<p>将字符串转为整型或者浮点数</p>
+</li>
+<li><p>Number.isInteger</p>
+</li>
+<li><p>Math.trunc</p>
+<p>将数字的小数部分去掉</p>
+<p>值得一提的是trunc是truncate（截断）的缩写</p>
+</li>
+<li><p>Math.sign</p>
+<p>判断一个数是正数 负数 还是零</p>
+<p>正数返回1，负数返回-1，零返回0</p>
+</li>
+</ul>
+<h2 id="对象扩展"><a href="#对象扩展" class="headerlink" title="对象扩展"></a>对象扩展</h2><ul>
+<li>Object.assign(target, source)</li>
+</ul>
+<p>两个对象target，source，source会覆盖target的对象属性</p>
+<ul>
+<li><p>Object.setPrototypeOf()</p>
+<p>设置对象的原型</p>
+</li>
+</ul>
+<h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>模块化是指将一个大的文件拆分成许多小文件，然后将小文件结合起来</p>
+<p>优点：</p>
+<ol>
+<li>防止命名冲突</li>
+<li>代码复用</li>
+<li>高维护性</li>
+</ol>
+<h3 id="模块化语法"><a href="#模块化语法" class="headerlink" title="模块化语法"></a>模块化语法</h3><p>export：向外暴露接口</p>
+<p>import：引入其他模块提供的功能</p>
+<h3 id="多种暴露的方式"><a href="#多种暴露的方式" class="headerlink" title="多种暴露的方式"></a>多种暴露的方式</h3><ul>
+<li><p>分别暴露</p>
+<pre><code class="javascript">export let param = 0；
+export function fun(){};
+</code></pre>
+</li>
+<li><p>统一暴露</p>
+<pre><code class="javascript"> let param = 0；
+ function fun(){};
+export {param， fun}
+</code></pre>
+</li>
+<li><p>默认暴露</p>
+<pre><code class="javascript">export default{
+    //你要暴露的数据,一般为对象
+}
+</code></pre>
+</li>
+</ul>
+<h3 id="多种导入方式"><a href="#多种导入方式" class="headerlink" title="多种导入方式"></a>多种导入方式</h3><ul>
+<li>通用导入方式</li>
+</ul>
+<pre><code class="javascript">&lt;script type=&quot;module&quot;&gt;
+    import * as m1 from &quot;js文件路径&quot;;   
+&lt;/script&gt;
+</code></pre>
+<ul>
+<li><p>解构赋值形式</p>
+<pre><code class="javascript">//第一种解构赋值
+import {想要从模块获取的变量或方法} from &#39;js路径&#39;
+//第二种解构赋值，如果出现了导入的变量重名的情况，可以想数据库的select操作一样，用as给变量重命名
+import {a} from &#39;js路径&#39;
+import {a as bb} from &#39;js路径&#39;
+//第三种，当暴露方式为默认暴露时，default必须起别名，因为default是一个关键字
+import {default as m} from ‘./m.js’
+</code></pre>
+</li>
+<li><p>简便形式（只针对默认暴露）</p>
+<pre><code class="javascript">import mm from ‘./mm.js’
+</code></pre>
+</li>
+</ul>
+<h1 id="ES8"><a href="#ES8" class="headerlink" title="ES8"></a>ES8</h1><h2 id="async-amp-amp-await"><a href="#async-amp-amp-await" class="headerlink" title="async &amp;&amp; await"></a>async &amp;&amp; await</h2><blockquote>
+<p>async函数</p>
+</blockquote>
+<ol>
+<li>async函数的返回值为promise对象</li>
+<li>promise对象的结果有async函数执行的返回值决定</li>
+</ol>
+<blockquote>
+<p>await表达式</p>
+</blockquote>
+<ol>
+<li>await必须写在async函数中</li>
+<li>其右侧的表达式一般为promise对象</li>
+<li>await返回的是promise成功的值</li>
+<li>await的promise失败了，就会抛出异常，需要通过try-catch捕获处理</li>
+</ol>
+<h2 id="对象方法扩展"><a href="#对象方法扩展" class="headerlink" title="对象方法扩展"></a>对象方法扩展</h2><ul>
+<li><p>Object.values()</p>
+<p>返回一个给定对象的所有可枚举属性值的数组</p>
+</li>
+<li><p>Object.entries()</p>
+<p>返回一个给定对象自身可遍历属性[key, value]的数组</p>
+</li>
+<li><p>Object.getOwnPropertyDescriptor()</p>
+<p>返回指定对象所有自身属性的描述对象</p>
+</li>
+</ul>
+<h1 id="手撕Promise源码"><a href="#手撕Promise源码" class="headerlink" title="手撕Promise源码"></a>手撕Promise源码</h1><pre><code class="javascript">/**
+ * 手写一个promise（前端面试可能会要求手撕promise）
+ * 关于自定义一个promise，首先promise有两个属性一个是PromiseState，PromiseResult
+ * resolve，reject方法
+ * 以及十分重要的then方法
+ * ①
+ * 并且为了保证每一个promise的状态只能改变一次，需要在调用resolve和reject方法时进行判断，如果不为pending则改变状态
+ * ②
+ * 在异步任务执行回调的过程中，会出现then的方法执行不了的问题，这是因为同步代码会按照代码的书写顺序执行，而异步代码还没执行，此时的PromiseSate的状态还未改变（pending），因此在执行then方法的时候无法判断
+ * 此时需要在then方法中增加判断是否为pending的语句，并且将成功或者失败才调用的回调函数绑定在Promise对象上
+ * 
+ * 通过对Promise源码的复盘，我明白了回调函数执行真正的位置是在resolve和reject中，而then方法的作用仅仅是接受并且绑定回调函数
+ * （未完）
+ */
+
+function Promise(executor){
+    //设置两个属性
+    this.PromiseState = &#39;pending&#39;;
+    this.PromiseResult = null;
+
+    //保存成功或者失败的回调函数
+    this.callback = {};
+    //保存Promise的this
+    const _self = this;
+
+    //设置resolve函数
+    function resolve(data){
+        if(_self.PromiseState != &#39;pending&#39;) return;
+        _self.PromiseState = &#39;fulfilled&#39;;
+        _self.PromiseResult = data;
+        if(_self.callback.onResolved){//如果已经绑定了 成功状态后才执行的回调函数
+            _self.callback.onResolved(data);
+        }
+    }
+
+    //设置reject函数
+    function reject(data){
+        if(_self.PromiseState != &#39;pending&#39;) return;
+        _self.PromiseState = &#39;rejected&#39;;
+        _self.PromiseResult = data;
+        if(_self.callback.onRejected){//如果绑定了 失败状态后才执行的回调函数
+            _self.callback.onRejected(data);
+        }
+    }
+
+    //设置并调用执行器函数
+    executor(resolve, reject);
+
+    //定义then函数,将它绑定在promise的原型上
+    Promise.prototype.then = function(onResolved, onRejected){
+         if(this.PromiseState === &#39;fulfilled&#39;){//如果同步事件，且状态为成功，对应的回调函数会立刻在then里执行
+            onResolved(this.PromiseResult);
+        }
+        if(this.PromiseState === &#39;rejected&#39;){//如果同步事件，且状态为失败，对应的回调函数会立刻在then里执行
+            onRejected(this.PromiseResult);
+        } 
+        if(this.PromiseState === &#39;pending&#39;){//如果为异步事件，在执行then方法时的状态必为pending，因此需要将回调函数保存起来，并在resolve或者reject中执行
+            this.callback = {
+                onRejected,onResolved
+            }
+        }
+    }
+
+}
+</code></pre>
+<h2 id="改进一"><a href="#改进一" class="headerlink" title="改进一"></a>改进一</h2><p>但是，我们发现使用上述代码时，如果调用多个then方法，会出现只执行最后一个then方法的结果，这是因为上述代码保存callback是以对象的形式保存的，每执行一次then，后一个then保存的callback会覆盖掉前一个保存的。因此代码可以进一步改进，就是将callback保存的形式改为数组，在调用时直接遍历，下面放上改进代码</p>
+<pre><code class="javascript">//将callback改为数组
+this.callbacks = [];
+
+//在resolve最后一行改为
+_self.callbacks.forEach((item) =&gt; {item.onResolved(data)});
+//在reject最后一行改为
+_self.callbacks.forEach((item) =&gt; {item.onRejected(data)});
+
+//then方法的判断pending状态的代码改为
+this.callbacks.push({
+                onRejected,onResolved
+            })
+</code></pre>
+<h2 id="改进二"><a href="#改进二" class="headerlink" title="改进二"></a>改进二</h2><p><strong>同步</strong>修改状态then方法结果返回</p>
+<pre><code class="javascript"> Promise.prototype.then = function(onResolved, onRejected){
+        return new Promise((resolve, reject) =&gt;{
+         if(this.PromiseState === &#39;fulfilled&#39;){//如果同步事件，且状态为成功，对应的回调函数会立刻在then里执行
+           let result = onResolved(this.PromiseResult);
+           if(result instanceof Promise){
+            result.then(v =&gt;{
+                resolve(v);
+            },r =&gt;{
+                reject(r);
+            });
+           }
+           else{
+               resolve(result);
+           }
+        }
+        if(this.PromiseState === &#39;rejected&#39;){//如果同步事件，且状态为失败，对应的回调函数会立刻在then里执行
+            onRejected(this.PromiseResult);
+        } 
+        if(this.PromiseState === &#39;pending&#39;){//如果为异步事件，在执行then方法时的状态必为pending，因此需要将回调函数保存起来，并在resolve或者reject中执行
+            this.callbacks.push({
+                onRejected,onResolved
+            })
+        }
+    })
+  }
+</code></pre>
+<p>then方法返回的结果是一个promise对象，而这个promise对象的结果是由其指定的回调函数决定的</p>
+<ol>
+<li>如果抛出异常，返回的promise变为rejected，reason为抛出的异常</li>
+<li>如果返回的是非promise的任意值，返回的promise的值变为resolved，value为返回的值</li>
+<li>如果返回的是另一个新的promise，则这个的promise的结果会变成返回的promise的结果</li>
+</ol>
+<hr>
+<p>异步修改状态then方法结果返回</p>
+<pre><code class="javascript">   Promise.prototype.then = function(onResolved, onRejected){
+        const self = this;
+        return new Promise((resolve, reject) =&gt;{
+         if(this.PromiseState === &#39;fulfilled&#39;){//如果同步事件，且状态为成功，对应的回调函数会立刻在then里执行
+           let result = onResolved(this.PromiseResult);
+           if(result instanceof Promise){
+            result.then(v =&gt;{
+                resolve(v);
+            },r =&gt;{
+                reject(r);
+            });
+           }
+           else{
+               resolve(result);
+           }
+        }
+        if(this.PromiseState === &#39;rejected&#39;){//如果同步事件，且状态为失败，对应的回调函数会立刻在then里执行
+            let result = onRejected(this.PromiseResult);
+            if(result instanceof Promise){
+             result.then(v =&gt;{
+                 resolve(v);
+             },r =&gt;{
+                 reject(r);
+             });
+            }
+            else{
+                reject(result);
+            }
+
+        } 
+        if(this.PromiseState === &#39;pending&#39;){//如果为异步事件，在执行then方法时的状态必为pending，因此需要将回调函数保存起来，并在resolve或者reject中执行
+            this.callbacks.push({
+                onResolved: function(){
+                   let result = onResolved(self.PromiseResult);
+                   if(result instanceof Promise){
+                    result.then(v =&gt;{
+                        resolve(v);
+                    },r =&gt;{
+                        reject(r);
+                    });
+                   }
+                   else{
+                    resolve(result);
+                   }
+                },
+                onRejected: function(){
+                    let result = onRejected(self.PromiseResult);
+                    if(result instanceof Promise){
+                     result.then(v =&gt;{
+                         resolve(v);
+                     },r =&gt;{
+                         reject(r);
+                     });
+                    }
+                    else{
+                     resolve(result);
+                    }
+                }
+            })
+        }
+        })
+    }
+</code></pre>
+<h2 id="注：未完待续，回头再研究其他方法的源码"><a href="#注：未完待续，回头再研究其他方法的源码" class="headerlink" title="注：未完待续，回头再研究其他方法的源码"></a>注：未完待续，回头再研究其他方法的源码</h2><h1 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h1><p>定义：Promise based HTTP client for the browser and node.js</p>
+<p>用于发送ajax请求（browser）</p>
+<p>用于发送http请求（node.js）</p>
+<h2 id="可以使用-函数axios-发送ajax请求"><a href="#可以使用-函数axios-发送ajax请求" class="headerlink" title="可以使用 函数axios()发送ajax请求"></a>可以使用 函数axios()发送ajax请求</h2><pre><code class="javascript">//为按钮绑定发送get请求的事件
+btns[0].onclick = function(){
+                axios({//该函数接收一个对象作为参数
+                    method: &#39;GET&#39;,
+                    url: &#39;http://localhost:3000/comments/1&#39;
+                }).then(repsonse =&gt; {
+                    console.log(repsonse);
+                })
+            };
+</code></pre>
+<p>除了发送get请求，还可发送post，put，delete请求</p>
+<p>另外，除了使用上述的方法发送请求，还可以使用axios对象发送请求</p>
+<blockquote>
+<p>axios.request(config)</p>
+<p>axios.post(url, data, config)</p>
+<p>…</p>
+</blockquote>
+<p>需要注意的是config指的是一个配置对象，我们可以设置一些属性，比如：请求方式，baseURL，设置超时等</p>
+<h2 id="创建实例对象发送请求"><a href="#创建实例对象发送请求" class="headerlink" title="创建实例对象发送请求"></a>创建实例对象发送请求</h2><p>我们可以使用axios的create()方法，该方法接收一个配置对象config，并返回一个与axios相近的对象</p>
+<p>Q：为什么要创建实例对象发送请求呢？</p>
+<p>A：在实际项目中，页面一般会从不同的服务器发送请求，axios的配置对象就会随着服务器的不同而变化。因此创建不同的实例对象，每个实例对象负责一个服务器，各司其职</p>
+<h2 id="axios拦截器"><a href="#axios拦截器" class="headerlink" title="axios拦截器"></a>axios拦截器</h2><h2 id="axios取消请求"><a href="#axios取消请求" class="headerlink" title="axios取消请求"></a>axios取消请求</h2><pre><code class="javascript">let cancel = null;
+btns[4].onclick = function(){
+    if(cancel != null){//检测上一次的请求是否已经完成
+        cancel();//取消上一次的请求
+       };
+     axios({
+           method: &#39;GET&#39;,
+           url: &#39;http://localhost:3000/comments/1&#39;,
+         //给配置对象添加属性，该属性用于取消请求
+           cancelToken: new axios.CancelToken(function(c){//通过该回调函数能拿到一个cancel对象
+                cancel = c;
+                   })
+        }).then(repsonse =&gt; {
+               console.log(repsonse);
+               console.log(cancel);
+               cancel = null;//cancel的值初始化
+        });
+};
+</code></pre>
 
         </div>
         <!-- .entry-content -->
@@ -1691,7 +2313,7 @@
                   <div class="tag-cloud-title">
                   </div>
                   <div class="tag-cloud-tags">
-                  <a href="/tags/Spring/" style="font-size: 10px; color: #f38181">Spring</a> <a href="/tags/ajax/" style="font-size: 10px; color: #f38181">ajax</a> <a href="/tags/css/" style="font-size: 13.33px; color: #d4a19c">css</a> <a href="/tags/js/" style="font-size: 16.67px; color: #b4c1b8">js</a> <a href="/tags/nodeJs/" style="font-size: 10px; color: #f38181">nodeJs</a> <a href="/tags/spring/" style="font-size: 10px; color: #f38181">spring</a> <a href="/tags/vue/" style="font-size: 10px; color: #f38181">vue</a> <a href="/tags/吐槽/" style="font-size: 13.33px; color: #d4a19c">吐槽</a> <a href="/tags/大学所学/" style="font-size: 16.67px; color: #b4c1b8">大学所学</a> <a href="/tags/机器学习/" style="font-size: 10px; color: #f38181">机器学习</a> <a href="/tags/算法/" style="font-size: 20px; color: #95e1d3">算法</a> <a href="/tags/设计模式/" style="font-size: 10px; color: #f38181">设计模式</a>
+                  <a href="/tags/Spring/" style="font-size: 10px; color: #f38181">Spring</a> <a href="/tags/ajax/" style="font-size: 10px; color: #f38181">ajax</a> <a href="/tags/css/" style="font-size: 12.5px; color: #dc9996">css</a> <a href="/tags/js/" style="font-size: 15px; color: #c4b1aa">js</a> <a href="/tags/nodeJs/" style="font-size: 10px; color: #f38181">nodeJs</a> <a href="/tags/spring/" style="font-size: 10px; color: #f38181">spring</a> <a href="/tags/sql/" style="font-size: 10px; color: #f38181">sql</a> <a href="/tags/vue/" style="font-size: 10px; color: #f38181">vue</a> <a href="/tags/吐槽/" style="font-size: 12.5px; color: #dc9996">吐槽</a> <a href="/tags/大学所学/" style="font-size: 17.5px; color: #adc9bf">大学所学</a> <a href="/tags/机器学习/" style="font-size: 10px; color: #f38181">机器学习</a> <a href="/tags/算法/" style="font-size: 20px; color: #95e1d3">算法</a> <a href="/tags/设计模式/" style="font-size: 10px; color: #f38181">设计模式</a>
                   </div>
                 </div>
 

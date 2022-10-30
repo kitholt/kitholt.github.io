@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-10-07T15:31:23.436Z</updated>
+  <updated>2022-10-26T04:28:48.104Z</updated>
   <id>/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JS算法之脑洞大开---freeCodeCamp</title>
-    <link href="/undefined/JS%E7%AE%97%E6%B3%95%E4%B9%8B%E8%84%91%E6%B4%9E%E5%A4%A7%E5%BC%80-freeCodeCamp/"/>
-    <id>/undefined/JS算法之脑洞大开-freeCodeCamp/</id>
-    <published>2022-10-07T15:30:00.000Z</published>
-    <updated>2022-10-07T15:31:23.436Z</updated>
+    <title>My（Your）SQL</title>
+    <link href="/undefined/My%EF%BC%88Your%EF%BC%89SQL/"/>
+    <id>/undefined/My（Your）SQL/</id>
+    <published>2022-10-26T01:30:00.000Z</published>
+    <updated>2022-10-26T04:28:48.104Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,33 @@
       
         
         
-          &lt;h1 id=&quot;JS算法之脑洞大开—freeCodeCamp&quot;&gt;&lt;a href=&quot;#JS算法之脑洞大开—freeCodeCamp&quot; class=&quot;headerlink&quot;
+          &lt;h1 id=&quot;My（Your）SQL&quot;&gt;&lt;a href=&quot;#My（Your）SQL&quot; class=&quot;headerlink&quot; title=&quot;My（Your）SQL&quot;&gt;&lt;/a&gt;My（Your）SQL&lt;/h1&gt;&lt;h2 id=&quot;数据类型&quot;&gt;&lt;a href=&quot;#数据类型&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="sql" scheme="/tags/sql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS算法之脑洞大开---freeCodeCamp</title>
+    <link href="/undefined/JS%E7%AE%97%E6%B3%95%E4%B9%8B%E8%84%91%E6%B4%9E%E5%A4%A7%E5%BC%80-freeCodeCamp/"/>
+    <id>/undefined/JS算法之脑洞大开-freeCodeCamp/</id>
+    <published>2022-10-07T15:30:00.000Z</published>
+    <updated>2022-10-14T01:31:26.806Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;JS算法之脑洞大开&quot;&gt;&lt;a href=&quot;#JS算法之脑洞大开&quot; class=&quot;headerlink&quot; title=&quot;JS算法之脑洞大开&quot;&gt;&lt;/a&gt;JS算法之脑洞大开&lt;/h1&gt;&lt;h2 id=&quot;freeCodeCamp（部分）&quot;&gt;&lt;a
         
       
     
@@ -73,7 +99,7 @@
     <link href="/undefined/%E6%BC%AB%E9%95%BF%E7%9A%84%E4%BB%8E%E9%9B%B6%E5%88%B0%E4%B8%80%E7%9A%84JS%E8%B0%83%E8%AF%95%E4%B9%8B%E8%B7%AF/"/>
     <id>/undefined/漫长的从零到一的JS调试之路/</id>
     <published>2021-11-21T04:52:30.000Z</published>
-    <updated>2022-06-14T11:48:43.168Z</updated>
+    <updated>2022-10-12T12:25:54.400Z</updated>
     
     <summary type="html">
     
@@ -81,7 +107,7 @@
       
         
         
-          &lt;h1 id=&quot;漫长的从零到一的JS调试之路&quot;&gt;&lt;a href=&quot;#漫长的从零到一的JS调试之路&quot; class=&quot;headerlink&quot; title=&quot;漫长的从零到一的JS调试之路&quot;&gt;&lt;/a&gt;漫长的从零到一的JS调试之路&lt;/h1&gt;&lt;h2 id=&quot;集合引用类型&quot;&gt;&lt;a
+          &lt;h1 id=&quot;漫长的从零到一的JS调试之路&quot;&gt;&lt;a href=&quot;#漫长的从零到一的JS调试之路&quot; class=&quot;headerlink&quot; title=&quot;漫长的从零到一的JS调试之路&quot;&gt;&lt;/a&gt;漫长的从零到一的JS调试之路&lt;/h1&gt;&lt;h2 id=&quot;关于变量&quot;&gt;&lt;a
         
       
     
@@ -173,32 +199,6 @@
   </entry>
   
   <entry>
-    <title>ES67891011</title>
-    <link href="/undefined/ES67891011/"/>
-    <id>/undefined/ES67891011/</id>
-    <published>2021-09-01T02:00:00.000Z</published>
-    <updated>2022-06-14T11:45:36.892Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;ES67891011&quot;&gt;&lt;a href=&quot;#ES67891011&quot; class=&quot;headerlink&quot; title=&quot;ES67891011&quot;&gt;&lt;/a&gt;ES67891011&lt;/h1&gt;&lt;h2 id=&quot;解构赋值&quot;&gt;&lt;a href=&quot;#解构赋值&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="js" scheme="/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
     <title>寄·算机英格力士</title>
     <link href="/undefined/%E5%AF%84%E7%AE%97%E6%9C%BA%E8%8B%B1%E8%AF%AD/"/>
     <id>/undefined/寄算机英语/</id>
@@ -264,32 +264,6 @@
         
         
           &lt;h1 id=&quot;试试jQuery&quot;&gt;&lt;a href=&quot;#试试jQuery&quot; class=&quot;headerlink&quot; title=&quot;试试jQuery&quot;&gt;&lt;/a&gt;试试jQuery&lt;/h1&gt;&lt;h2 id=&quot;使用jQuery&quot;&gt;&lt;a href=&quot;#使用jQuery&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="js" scheme="/tags/js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>琢磨JS（不是笔记的笔记）</title>
-    <link href="/undefined/%E7%90%A2%E7%A3%A8JS/"/>
-    <id>/undefined/琢磨JS/</id>
-    <published>2021-08-15T05:00:00.000Z</published>
-    <updated>2022-06-14T11:39:41.302Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;琢磨JS（不是笔记的笔记）&quot;&gt;&lt;a href=&quot;#琢磨JS（不是笔记的笔记）&quot; class=&quot;headerlink&quot; title=&quot;琢磨JS（不是笔记的笔记）&quot;&gt;&lt;/a&gt;琢磨JS（不是笔记的笔记）&lt;/h1&gt;&lt;h2 id=&quot;关于变量&quot;&gt;&lt;a
         
       
     
@@ -536,6 +510,33 @@
     
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
+    
+  </entry>
+  
+  <entry>
+    <title>关于我写了个装载问题的野鸡算法的那档事</title>
+    <link href="/undefined/%E5%85%B3%E4%BA%8E%E6%88%91%E5%86%99%E4%BA%86%E4%B8%AA%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8E%E9%B8%A1%E7%AE%97%E6%B3%95%E7%9A%84%E9%82%A3%E6%A1%A3%E4%BA%8B/"/>
+    <id>/undefined/关于我写了个装载问题的野鸡算法的那档事/</id>
+    <published>2021-04-10T13:00:00.000Z</published>
+    <updated>2022-06-14T11:22:00.331Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;由于原来的（书上的）算法我实在是看不懂…所以我想仿照我之前解决全排列的思路（逐个选择法）解决这个问题&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
