@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2022-10-26T04:28:48.104Z</updated>
+  <updated>2022-10-31T10:10:28.661Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>油腻APP</title>
+    <link href="/undefined/%E6%B2%B9%E8%85%BBAPP/"/>
+    <id>/undefined/油腻APP/</id>
+    <published>2022-10-31T10:00:00.000Z</published>
+    <updated>2022-10-31T10:10:28.661Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;油腻APP&quot;&gt;&lt;a href=&quot;#油腻APP&quot; class=&quot;headerlink&quot; title=&quot;油腻APP&quot;&gt;&lt;/a&gt;油腻APP&lt;/h1&gt;&lt;h2 id=&quot;①uni-app、页面、组件之间的关系&quot;&gt;&lt;a href=&quot;#①uni-app、页面、组件之间的关系&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="uni-app" scheme="/tags/uni-app/"/>
+    
+  </entry>
   
   <entry>
     <title>My（Your）SQL</title>
@@ -510,33 +536,6 @@
     
       <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>关于我写了个装载问题的野鸡算法的那档事</title>
-    <link href="/undefined/%E5%85%B3%E4%BA%8E%E6%88%91%E5%86%99%E4%BA%86%E4%B8%AA%E8%A3%85%E8%BD%BD%E9%97%AE%E9%A2%98%E7%9A%84%E9%87%8E%E9%B8%A1%E7%AE%97%E6%B3%95%E7%9A%84%E9%82%A3%E6%A1%A3%E4%BA%8B/"/>
-    <id>/undefined/关于我写了个装载问题的野鸡算法的那档事/</id>
-    <published>2021-04-10T13:00:00.000Z</published>
-    <updated>2022-06-14T11:22:00.331Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;由于原来的（书上的）算法我实在是看不懂…所以我想仿照我之前解决全排列的思路（逐个选择法）解决这个问题&lt;/p&gt;
-&lt;p&gt;&lt;img
-        
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
