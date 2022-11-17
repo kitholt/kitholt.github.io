@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">学习设计me式（Design Pattern） | 欢迎来到Franの杂货铺</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <meta name="browsermode" content="application">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "KitholtFrank";
+  mashiro_option.author_name = "Frank";
+  mashiro_option.site_url = "https://kitholt.github.io/";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/kitholt/cdn/img/warriors.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/best.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/curry.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/chase.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/stadium.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/splashbros.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/coolkt.webp,".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://kitholt.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>你来啦!欢迎来到Franの杂货铺！</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/kitholt" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialgithub.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/u/7188904314" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialsina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/my/m/music/playlist?id=890672374" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/frank-41-24-53" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialzhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialQR.jpg">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Kitholt</span>
+            <span class="shironeko">Frank</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-tag" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/categories/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-bookmark" aria-hidden="true"></i>
+                    分类
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    资瓷
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/img/title_pic.png);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/img/title_pic.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      学习设计me式（Design Pattern）</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-7-19<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="设计模式-（Design-Pattern）"><a href="#设计模式-（Design-Pattern）" class="headerlink" title="设计模式?（Design Pattern）"></a>设计模式?（Design Pattern）</h1><p>软件设计中普遍存在的各种问题，所提出的<strong>解决方案</strong></p>
+<hr>
+<p>目的：</p>
+<ol>
+<li>代码重用性</li>
+<li>可读性（代码具有规范性）</li>
+<li>可扩展性（增加新功能，比较方便）</li>
+<li>可靠性（增加新功能，对原先的功能没有影响）</li>
+<li><span style="color:red">低耦合、高内聚</span></li>
+</ol>
+<h2 id="七大原则（设计模式设计的依据）"><a href="#七大原则（设计模式设计的依据）" class="headerlink" title="七大原则（设计模式设计的依据）"></a>七大原则（设计模式设计的依据）</h2><h3 id="单一职责（singleResponsibility）"><a href="#单一职责（singleResponsibility）" class="headerlink" title="单一职责（singleResponsibility）"></a>单一职责（singleResponsibility）</h3><pre><code>对类来说，一个类只负责一类职责（比如userDao）如果A类负责两个职责，则需要将A类的粒度分解为A1、A2
+</code></pre><p> 效果：</p>
+<ul>
+<li>降低类的复杂度</li>
+<li>提高类的可读性</li>
+<li>降低变更引起的风险</li>
+</ul>
+<h3 id="接口隔离原则（Interface-Segregation-Principle）"><a href="#接口隔离原则（Interface-Segregation-Principle）" class="headerlink" title="接口隔离原则（Interface Segregation Principle）"></a>接口隔离原则（Interface Segregation Principle）</h3><p>客户端不应该依赖它不需要的接口，也就是说一个类对另一个类的依赖应该建立在<em>最小</em>的接口上</p>
+<hr>
+<p><span style="color:red">思考：接口隔离其实是对一个接口的<strong>分解的过程</strong>（接口A拆分成A1、A2…）</span></p>
+<h3 id="依赖倒转原则（Dependency-Inversion-Principle）-【面向接口编程】"><a href="#依赖倒转原则（Dependency-Inversion-Principle）-【面向接口编程】" class="headerlink" title="依赖倒转原则（Dependency Inversion Principle）/【面向接口编程】"></a>依赖倒转原则（Dependency Inversion Principle）/【面向接口编程】</h3><p>what：</p>
+<ol>
+<li>抽象不依赖细节，细节应该依赖抽象</li>
+<li>高层模块不依赖底层模块，二者都依赖于抽象</li>
+<li>使用接口或者抽象类去指定规范，具体实现则交给他们的实现类去完成</li>
+</ol>
+<h3 id="里氏替换原则（Liskov-Substitution-Principle）-【LSP原则】"><a href="#里氏替换原则（Liskov-Substitution-Principle）-【LSP原则】" class="headerlink" title="里氏替换原则（Liskov Substitution Principle）/【LSP原则】"></a>里氏替换原则（Liskov Substitution Principle）/【LSP原则】</h3><p>子类可以扩展父类的功能，但不能改变父类原有的功能</p>
+<p>How：</p>
+<p>原来的父类和子类都继承一个基类，去掉原有的继承关系，采用依赖、聚合、组合的关系来替代</p>
+<h3 id="开闭原则（Open-Closed-Principle）"><a href="#开闭原则（Open-Closed-Principle）" class="headerlink" title="开闭原则（Open Closed Principle）"></a>开闭原则（Open Closed Principle）</h3><p>何为开闭？</p>
+<ul>
+<li>开：一个软件实体（类、模块、函数）对其扩展是开放的</li>
+<li>闭：对其修改是关闭的</li>
+</ul>
+<p><span style="color:red">思考：大白话讲就是，如果我们想要给软件新增一些功能，我们应该在不影响（改动）源代码的情况下去增加功能</span></p>
+<h3 id="迪米特法则（最少知道原则）（Demeter-Principle）"><a href="#迪米特法则（最少知道原则）（Demeter-Principle）" class="headerlink" title="迪米特法则（最少知道原则）（Demeter Principle）"></a>迪米特法则（最少知道原则）（Demeter Principle）</h3><ol>
+<li>一个对象应该对其他对象保持最少的了解（A对象在使用B对象时只关心调用，不关心B对象的实现的细节）</li>
+<li>类之间的关系越密切，耦合度越高</li>
+</ol>
+<p>一个栗子：</p>
+<p>若A、B两个类有耦合关系，那么B类就不要以局部变量的形式出现在A类中。如果出现，A、B的关系就是非直接朋友关系。反之，若B类作为A的<strong>成员变量</strong>或者<strong>方法的参数</strong>再或是<strong>方法的返回值</strong>，则称A、B的关系是直接朋友关系</p>
+<h3 id="合成复用原则（Composite-Reuse-Principle）"><a href="#合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="合成复用原则（Composite Reuse Principle）"></a>合成复用原则（Composite Reuse Principle）</h3><p>尽量用合成/聚合的方式，而不是使用继承</p>
+<p>（后续可补充）</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>针对接口编程，而不是针对实现编程</li>
+<li>解决对象之间的松耦合设计</li>
+<li>将不用变化的代码独立出来，在以后的编程过程中尽量扩展而不是修改（个人理解）</li>
+</ul>
+<h2 id="正餐"><a href="#正餐" class="headerlink" title="正餐"></a>正餐</h2><p>创建型模式：单独对对象的创建进行研究，从而能够高效地创建对象</p>
+<ul>
+<li>单例模式</li>
+<li>抽象工厂模式</li>
+<li>原型模式</li>
+<li>建造者模式</li>
+<li>工厂模式</li>
+</ul>
+<p>结构型模式：设计对象的结构、继承和依赖关系</p>
+<ul>
+<li>适配器模式</li>
+<li>桥接模式</li>
+<li>装饰模式</li>
+<li>组合模式</li>
+<li>外观模式</li>
+<li>享元模式</li>
+<li>代理模式</li>
+</ul>
+<p>行为型模式：设计对象的行为，使对象的工作效率提高</p>
+<ul>
+<li>模板方法模式</li>
+<li>命令模式</li>
+<li>访问者模式</li>
+<li>迭代器模式</li>
+<li>观察者模式</li>
+<li>中介者模式</li>
+<li>备忘录模式</li>
+<li>解释器模式</li>
+<li>状态模式</li>
+<li>策略模式</li>
+<li>责任链模式</li>
+</ul>
+<hr>
+<h3 id="①单例模式（Singleton）"><a href="#①单例模式（Singleton）" class="headerlink" title="①单例模式（Singleton）"></a>①单例模式（Singleton）</h3><p>下定义：采取一定方法在整个软件系统中，对某个类只能存在一个对象实例</p>
+<p>它の几种创建方式：</p>
+<p>饿汉式</p>
+<pre><code class="java">package singleton.type1;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getSingleton();
+        singleton s2=singleton.getSingleton();
+        System.out.println(s1==s2);
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+    }
+}
+//所谓饿汉，就是不管三七二十一，在类加载的时候就已经创建好单例对象了
+class singleton{
+    private static final singleton singleton=new singleton();//使用静态变量去创建单例对象
+
+    private singleton(){//构造方法私有化，防止外部new对象
+
+    }
+    public static singleton getSingleton(){//向外提供一个方法获取单例对象
+        return singleton;
+    }
+}
+
+</code></pre>
+<pre><code class="java">package singleton.type2;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1= singleton.getSingleton();
+        singleton s2= singleton.getSingleton();
+        System.out.println(s1==s2);
+        System.out.println(s1.hashCode());
+        System.out.println(s2.hashCode());
+    }
+}
+
+class singleton{
+
+    private static singleton singleton;
+
+    private singleton(){//构造方法私有化，防止外部new对象
+
+    }
+
+    static{
+        singleton=new singleton();//使用静态代码块创建单例对象
+    }
+
+    public static singleton getSingleton(){//向外提供一个方法获取单例对象
+        return singleton;
+    }
+
+}
+</code></pre>
+<p>注意：对于饿汉式，因为在类加载时就已经创建，若不使用单例对象，可能造成内存的浪费</p>
+<hr>
+<p>懒汉式（单线程且不安全）</p>
+<pre><code class="java">package singleton.type3;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getSingleton();
+        singleton s2=singleton.getSingleton();
+        System.out.println(s1==s2);
+    }
+}
+
+class singleton{
+    private static singleton singleton;
+    private singleton(){ }
+
+    public static singleton getSingleton(){//所谓懒汉就是，只有要用到单例对象时才创建，不用就不创建。就像青蛙一样，你戳它一下 它就往前跳一下
+        if(singleton==null){
+            singleton=new singleton();
+        }
+        return singleton;
+    }
+}
+
+</code></pre>
+<p>注意：如果遇到这一种情况：线程 1 运行到<span style="color:red">instance = new Singleton()</span>处的时候，线程 2 抢到的 CPU 的执行权，进入 getInstance() 方法，也运行了<span style="color:red">instance = new Singleton()</span>，但线程 2 创建了对象这件事情，线程 1 压根儿不晓得，等到线程 1 重新获得 CPU 执行权的时候，从原先的地方 处继续执行，又运行了 instance = new Singleton(); 这行代码，这样就会存在多个对象，得到singleton就不再唯一，这样就失去了原本的意义</p>
+<hr>
+<p>最完美的创建方式来啦！使用枚举！</p>
+<pre><code class="java">package singleton.typeEnum;
+
+public class demo {
+
+
+    public static void main(String[] args) {
+        singleton s1=singleton.SINGLETON;
+        singleton s2=singleton.SINGLETON;
+        System.out.println(s1==s2);
+        s1.test();
+    }
+
+}
+
+enum singleton{
+    SINGLETON;
+    public void test(){
+        System.out.println(&quot;is singleton...&quot;);
+    }
+}
+
+</code></pre>
+<p>使用枚举的方式实现单例模式是《Effective Java》作者力推的方式，在很多优秀的开源代码中经常可以看到使用枚举方式实现单例模式的（身影），枚举类型不允许被继承，同样是线程安全的且只能被实例化一次</p>
+<hr>
+<p>除此之外，还能使用静态内部类的方式来实现单例模式</p>
+<pre><code class="java">package singleton.type4;
+
+public class demo {
+    public static void main(String[] args) {
+        singleton s1=singleton.getInstance();
+        singleton s2=singleton.getInstance();
+        System.out.println(s1==s2);
+    }
+}
+
+class singleton {
+    private singleton(){}
+
+    private static class getSingleton{//创建内部类
+        private static final singleton instance=new singleton();//将单例对象设置为内部类成员变量
+    }
+    public static singleton getInstance(){//对外开放一个获取单例对象
+        return getSingleton.instance;
+    }
+}
+
+</code></pre>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><h4 id="简单工厂模式（（））"><a href="#简单工厂模式（（））" class="headerlink" title="简单工厂模式（（））"></a>简单工厂模式（（））</h4><p>下定义：是由一个工厂对象决定创建出哪一种产品类的实例。定义一个创建对象的类，由这个类去<strong>封装实例化对象的行为</strong></p>
+<p>典型案例：订购pizza业务</p>
+<p>pizza工厂：</p>
+<pre><code class="java">package factory.simpleFactory.pizzaStore.simplePizzaFactory;
+
+import factory.simpleFactory.pizzaStore.pizza.pizza;
+import factory.simpleFactory.pizzaStore.pizza.spicyPizza;
+
+import java.util.Scanner;
+
+public class pizzaFactory {
+    public pizza createPizza(){
+        System.out.println(&quot;******使用简单工厂模式...******&quot;);
+        System.out.println(&quot;请选择要制作的pizza...&quot;);
+        pizza pizza=null;
+        String type=getType();
+        if(type.equals(&quot;spicy&quot;)){
+            pizza=new spicyPizza();
+            pizza.setName(type);
+            System.out.println(type+&quot;Pizza制作完成...&quot;);
+        }
+        else if(type.equals(&quot;NewOrleans&quot;)){
+            pizza=new spicyPizza();
+            pizza.setName(type);
+            System.out.println(type+&quot;Pizza制作完成...&quot;);
+        }
+        else {
+            System.out.println(&quot;制作失败，暂无此种类...&quot;);
+        }
+        return pizza;
+    }
+
+
+
+
+    private String getType(){//获取要制造的pizza的种类
+        String type;
+        Scanner sc=new Scanner(System.in);
+        type=sc.next();
+        return type;
+    }
+}
+
+</code></pre>
+<p>订购pizza业务：</p>
+<pre><code class="java">package factory.simpleFactory.pizzaStore;
+
+import factory.simpleFactory.pizzaStore.pizza.pizza;
+import factory.simpleFactory.pizzaStore.simplePizzaFactory.pizzaFactory;
+
+public class orderPizza {
+    pizzaFactory pizzaFactory;
+
+    orderPizza(pizzaFactory pizzaFactory){
+        this.pizzaFactory=pizzaFactory;
+    }
+
+    public pizza order(){
+       return pizzaFactory.createPizza();
+    }
+
+    public static void main(String[] args) {
+        orderPizza orderPizza=new orderPizza(new pizzaFactory());
+        pizza pizza=orderPizza.order();
+        while(pizza!=null){
+            pizza=orderPizza.order();
+        }
+    }
+}
+
+</code></pre>
+<p>这里没有放出pizza类…</p>
+<p>结果如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/simpleFactory.png" alt></p>
+<h4 id="②工厂方法模式（简单工厂的进阶）"><a href="#②工厂方法模式（简单工厂的进阶）" class="headerlink" title="②工厂方法模式（简单工厂的进阶）"></a>②工厂方法模式（简单工厂的进阶）</h4><p>下定义：定义一个创建子类的抽象方法，由子类决定要实例化的类。简单工厂模式是在工厂内部就实例化需要的类，而工厂方法则是将<span style="color:red">对象的实例化的权限交给了子类</span>，一般来说，这一个子类对应一类产品</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/factorymethod.png" alt></p>
+<h4 id="③抽象工厂模式（工厂方法的进阶）"><a href="#③抽象工厂模式（工厂方法的进阶）" class="headerlink" title="③抽象工厂模式（工厂方法的进阶）"></a>③抽象工厂模式（工厂方法的进阶）</h4><p>下定义：定义一个接口用于创建相关的<span style="color:red;font-size:30px"><strong>对象簇</strong></span>,而无需指定具体的类</p>
+<hr>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/abstractfactory.png" alt></p>
+<p>Hold on，什么是簇？簇的意思就是聚集的一团东西，就比如华为产品簇（包含手机，电脑，智能穿戴设备等），在这里就是指多个产品（类）上图中的各个pizza。OrderPizza就是抽象工厂，它旗下又有BJOrderPizza和LDOrderPizza这两个具体生产Pizza的子类。其实严格来说抽象工厂的具体工厂所实现的类都是不同类别的。上面的例子最终都是和pizza有关的。这个例子不能很好的区别抽象工厂和工厂方法的区别。</p>
+<h4 id="关于工厂模式的思考与理解"><a href="#关于工厂模式的思考与理解" class="headerlink" title="关于工厂模式的思考与理解"></a><span style="color:blue;font-size:25px">关于工厂模式的思考与理解</span></h4><p>学完了工厂设计模式，我明白了此类设计模式的思想就是来源于<em>现实生活</em> 。我看看我显示屏旁的机箱里的电脑配件…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/computer.png" alt></p>
+<p>配一台电脑不就要经过工厂模式的一系列操作么。</p>
+<p>下面开始讲故事：</p>
+<p>张三（三迟但到）是个计算机天才aka装B猿，呸，装机猿。刚开始装机数量不是特别多，他一个人也应付得过来且口碑也不错。但是随着客户的数量的增加，他一个人有点吃不消了。因此他想，”为什么开一个工厂来专门装电脑呢？“。很快他找银行贷了一笔款用于新建工厂<span style="color:red"><strong>（这就是简单工厂设计模式）</strong></span>。工厂<em>内部</em>负责生产。效率相比以前大大提升<span style="color:red"><strong>（利用工厂生成需要的对象）</strong></span>。</p>
+<hr>
+<p>但是过了一阵子，张三发现每个用户的装机要求不尽相同，有人想要一台配置不高的办公电脑，而有人是臭打游戏的（比如我），他们想要一台配置高的发烧电脑。因此他们对配件的要求也不一样。可是<strong>工厂只有一个</strong>，所有配件的生产都在这里进行，同时工厂场地有限<span style="color:red"><strong>（类の大小）</strong></span>，虽然能扩建但是较为麻烦<span style="color:red"><strong>（在一个工厂类不断地添加新的代码）</strong></span>。很快张三想到了解决方案：再开设几个工厂生产不同的整机<span style="color:red"><strong>（具体实现类）</strong></span>，这几个工厂都要听总工厂的指示<span style="color:red"><strong>（实现总工厂的抽象方法）</strong></span>，生产符合不同配置需求的整机<span style="color:red"><strong>（产品对象）</strong></span>张三很快就做强做大，总工厂也变成了大公司。</p>
+<hr>
+<p>当然大公司也有大公司的麻烦，随着计算机硬件的高速发展，人们不再满足于购买整机，他们更加偏向于DIY：自己买配件来组装电脑。张三注意到了这个现象，所以他联系许多硬件的生产厂商，拿到他们的销售权。最后原先的工厂不再组装整机，而是组装加工配件。比如GPU工厂、CPU工厂、主板工厂…<span style="color:red"><strong>（具体工厂）</strong></span>，如果在后续还有新的电脑硬件需求，只要再开设一间新的代工厂<span style="color:red"><strong>（新的具体工厂）</strong></span>就好了</p>
+<hr>
+<p>上面的三种发展历程对应的是工厂模式的演变过程。从一个人全干到交给工厂再到交给多个工厂完成。可以看出，生产一个简单产品，我们可以用简单工厂模式，但是如果产品需要扩展，我们就需要工厂方法模式。如果一个产品不够还需要多种类别的产品，也就是产品簇，我们就要采取抽象工厂模式。</p>
+<hr>
+<p>最后我想说，设计模式源于生活！生活中的例子能够加深我对不同设计模式的理解</p>
+<h3 id="④原型模式（Prototype）对象-clone"><a href="#④原型模式（Prototype）对象-clone" class="headerlink" title="④原型模式（Prototype）对象.clone()"></a>④原型模式（Prototype）对象.clone()</h3><p>下定义：用原型实例执行创建对象的种类，而且通过拷贝这些原型，创建新的对象</p>
+<p>优点：</p>
+<ol>
+<li>创建新的对象比较复杂时，可以利用原型模式来简化对象的创建过程，同时也能提高效率</li>
+<li>不同重复新初始化对象，而是动态地获得对象运行时的状态</li>
+<li>如果原始对象发生变化，比如增加属性或者删除属性，其他克隆对象也能发生相应的变化，无需修改代码</li>
+</ol>
+<p>缺点：</p>
+<p>需要为每一个类配备一个克隆方法，对旧的类需要修改其源代码，这违背了OCP原则</p>
+<h3 id="⑤建造者模式（Builder）"><a href="#⑤建造者模式（Builder）" class="headerlink" title="⑤建造者模式（Builder）"></a>⑤建造者模式（Builder）</h3><p>下定义：生成器模式，是一种对象构建模式，他可以将复杂对象的建造过程抽象出来，使这个抽象过程的不同实现方法可以构造不同表现的对象</p>
+<p>建造者模式的四个角色</p>
+<ol>
+<li>Product（产品角色）：一个具体的产品对象</li>
+<li>Builder（抽象建造者）：创建一个Product对象的各个部件指定的接口或抽象类</li>
+<li>ConcreteBuilder（具体建造者）：实现接口，构建和装配各个部件</li>
+<li><p>Director（指挥者）：构建一个是使用Builder接口的对象，它主要用于创建一个复杂对象，它主要有两个作用，<strong>隔离客户和对象的生产过程</strong>，<strong>负责控制对象的生产过程</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/builderUML.png" alt></p>
+</li>
+</ol>
+<p>————————————-人工分界线————————————-</p>
+<h3 id="⑥适配器模式（Adapter）"><a href="#⑥适配器模式（Adapter）" class="headerlink" title="⑥适配器模式（Adapter）"></a>⑥适配器模式（Adapter）</h3><p>下定义：将某个类的接口转换成客户端期望的另一个接口表示，主要是为了兼容性，让原本接口不匹配的两个类能够协同工作，适配器又名为包装器（Wrapper）</p>
+<p>一般来说适配器的作用就是使src类和target类发生联系：target——adapter——src</p>
+<p>适配器有三种类型：</p>
+<ol>
+<li>类适配器模式【适配器继承src类】</li>
+<li>对象适配器模式（最常用）【适配器持有src类】</li>
+<li>接口适配器模式</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/adapterUML.png" alt></p>
+<h3 id="⑦桥接模式（Bridge）"><a href="#⑦桥接模式（Bridge）" class="headerlink" title="⑦桥接模式（Bridge）"></a>⑦桥接模式（Bridge）</h3><p>下定义：将实现与抽象放在两个不同的层次，是这两个层次能够独立改变</p>
+<p>作用：替代多层继承方案，有效地避免了类爆炸问题，可以减少子类的数量，降低维护系统的维护成本</p>
+<p><span style="font-size:30px"><strong>但是</strong></span>，该模式的引入会增加对系统的理解和设计难度，再者该模式还需要正确识别出系统中两个独立变化的维度（抽象和实现）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/bridgeUML.png" alt></p>
+<h3 id="⑧装饰者模式（晕…）"><a href="#⑧装饰者模式（晕…）" class="headerlink" title="⑧装饰者模式（晕…）"></a>⑧装饰者模式（晕…）</h3><p>下定义：动态的将新功能附加到对象上。在功能拓展上，比继承更有弹性，装饰者模式也体现了OCP原则</p>
+<p>现实情景：快递包装、咖啡加料…</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/decoratorUML.png" alt></p>
+<h3 id="⑨组合模式（Composite）-部分整体"><a href="#⑨组合模式（Composite）-部分整体" class="headerlink" title="⑨组合模式（Composite）/部分整体"></a>⑨组合模式（Composite）/部分整体</h3><p>下定义：它创建了对象组的树形结构，将对象组合成树形结构以表示“整体-部分”的层次关系</p>
+<p>使用情景：当我们要处理的对象可以生成一颗树形结构，而我们要对树上的节点和叶子节点进行操作时，它能够提供一致的方式，而不用考虑它是节点还是叶子</p>
+<p>具体场景：学校院系展示</p>
+<p><span style="color:red">注意：</span>如果节点和叶子具有较大的差异性，比如方法和属性很多都不一样，则不适合组合模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/compositeUML.png" alt></p>
+<h3 id="⑩外观模式（Facade）-最简单的设计模式，原来以前使用过"><a href="#⑩外观模式（Facade）-最简单的设计模式，原来以前使用过" class="headerlink" title="⑩外观模式（Facade）/最简单的设计模式，原来以前使用过"></a>⑩外观模式（Facade）/最简单的设计模式，原来以前使用过</h3><p>下定义：也称过程模式，为子系统中的一组接口提供一个一致的界面。此模式定义了一个高层接口，这个接口使得这一子系统容易使用</p>
+<h3 id="⑪享元模式（Flyweight）"><a href="#⑪享元模式（Flyweight）" class="headerlink" title="⑪享元模式（Flyweight）"></a>⑪享元模式（Flyweight）</h3><p>下定义：又称蝇量模式，使用共享技术有效支持大量<strong>细粒度</strong>的对象，常用于系统的底层开发，比如数据库连接池、String常量池等</p>
+<p>享元模式能够有效解决重读对象的内存的浪费问题，比如数据库连接池的connection</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/flyweight.png" alt></p>
+<p>　其中，Flyweight是抽象享元角色。它是产品的抽象类，同时定义出对象的外部状态和内部状态（外部状态及内部状态相关内容见后方）的接口或实现；ConcreteFlyweight是具体享元角色，是具体的产品类，实现抽象角色定义的业务；UnsharedConcreteFlyweight是不可共享的享元角色，一般不会出现在享元工厂中；FlyweightFactory是享元工厂，它用于构造一个池容器，同时提供从池中获得对象的方法。</p>
+<h3 id="⑫代理模式"><a href="#⑫代理模式" class="headerlink" title="⑫代理模式"></a>⑫代理模式</h3><p><span style="color:red"><strong>注意区别于装饰模式</strong></span></p>
+<p>下定义：为一个对象提供一个替身，控制这个对象的访问，即通过代理对象访问目标对象，这样做的好处是可以在目标对象实现的基础上，增强额外的功能操作，进而做到扩展目标对象的功能</p>
+<p>代理分类：</p>
+<h4 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h4><p>最简单的代理，有手就行（雀氏雀氏）</p>
+<p>proxy代理对象和target目标对象共同实现一个interface接口，然后将代理对象内部聚合目标对象，然后即可在调用目标对象的目标方法前后进行各种操作。</p>
+<p>但是，不要高兴得太早，因为代理对象和目标对象要实现一样的接口，所以会有很多的代理类，并且一旦接口增加了方法，目标对象和代理对象都要进行维护…（维护？狗都不干）</p>
+<h4 id="动态代理（JDK代理）"><a href="#动态代理（JDK代理）" class="headerlink" title="动态代理（JDK代理）"></a>动态代理（JDK代理）</h4><p>代理对象不需要实现接口，但是目标对象要实现接口</p>
+<p>cglib代理（可在内存中动态创建对象，不需要实现接口）</p>
+<p><span style="color:green">————————————-人工分界线（以下是行为型设计模式）————————————-</span></p>
+<h3 id="⑬模板方法模式（Template-Method）"><a href="#⑬模板方法模式（Template-Method）" class="headerlink" title="⑬模板方法模式（Template Method）"></a>⑬模板方法模式（Template Method）</h3><p><span style="color:red"><strong>注意区别于外观模式</strong></span></p>
+<p>下定义：在一个抽象类公开定义了执行它的方法的模板，它的子类按需要重写方法实现，<strong>但调用将以抽象类中定义的方式进行</strong></p>
+<p>现实生活中的例子：小时候没少背一些作文模板吧！不同文体是什么样的模板我不用解释了吧（反正现在也忘得差不多了- -）</p>
+<h3 id="⑭命令模式（Command）"><a href="#⑭命令模式（Command）" class="headerlink" title="⑭命令模式（Command）"></a>⑭命令模式（Command）</h3><p>下定义：在命令模式中存在着这样一条关系链：</p>
+<p>传统的调用方式：</p>
+<p><em>调用者——被调用者</em></p>
+<p>在命令模式下：</p>
+<p><em>调用者（Invoker）——<strong>命令（Command）</strong>——被调用者（Receiver）</em></p>
+<p>很显然我们能够看出，命令模式能够很好的消除调用者与被调用者之间的耦合（实现解耦）</p>
+<p>现实情景：打仗的时候，将军发布进攻命令，众将士发起冲锋</p>
+<p>主要实现方式（类图）：</p>
+<p>（待补充…）</p>
+<h3 id="⑮访问者模式-（看不懂了…-）"><a href="#⑮访问者模式-（看不懂了…-）" class="headerlink" title="⑮访问者模式/（看不懂了….）"></a>⑮访问者模式/（看不懂了….）</h3><p>下定义：null </p>
+<h3 id="⑯迭代者模式（Iterator）"><a href="#⑯迭代者模式（Iterator）" class="headerlink" title="⑯迭代者模式（Iterator）"></a>⑯迭代者模式（Iterator）</h3><p>下定义：如果我们的集合元素是用不同的方式实现的，比如数组，集合类等，当客户端要遍历这些元素就会使用到不同的遍历方式，而且会暴露元素的内部结构，可以考虑使用迭代器模式解决</p>
+<p>提供一种遍历集合元素的统一接口，用一致的方法遍历集合元素，不需要知道集合对象的底层表示</p>
+<p><span style="color:red">主要目的：将管理对象集合和遍历对象集合的责任分开</span></p>
+<ol>
+<li>Iterator：迭代器接口，是系统提供，含义hasNext，next，remove</li>
+<li>ConcreteIterator：具体的迭代器类</li>
+<li>Aggregate：统一的聚合接口，将客户端和具体聚合解耦</li>
+<li>ConcreteAggregate：具体的聚合，持有对象集合</li>
+</ol>
+<h3 id="⑰观察者模式（Observer）-太简单了"><a href="#⑰观察者模式（Observer）-太简单了" class="headerlink" title="⑰观察者模式（Observer）/太简单了"></a>⑰观察者模式（Observer）/太简单了</h3><p>下定义：定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。比如社交账号上的订阅或者关注按钮，多个用户关注同一个up主，up主发布新动态时便会通知所有关注他的用户</p>
+<p>优点：使用该模式后，会以集合的方式来管理用户（Observer），包括注册，移除和通知</p>
+<h3 id="⑱中介者模式（Mediator）-减少子系统之间的相互调用"><a href="#⑱中介者模式（Mediator）-减少子系统之间的相互调用" class="headerlink" title="⑱中介者模式（Mediator）/减少子系统之间的相互调用"></a>⑱中介者模式（Mediator）/减少子系统之间的<strong>相互调用</strong></h3><p><span style="color:red">注意和外观模式进行区分</span></p>
+<p>下定义：用来降低多个对象和类之间的通信复杂性。这种模式提供了一个中介类，该类通常处理不同类之间的通信，并支持松耦合，使代码易于维护。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/mediatorUML.png" alt></p>
+<h3 id="⑲备忘录模式（Memento）"><a href="#⑲备忘录模式（Memento）" class="headerlink" title="⑲备忘录模式（Memento）"></a>⑲备忘录模式（Memento）</h3><p>下定义：在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，这样以后就可以将这个对象恢复到原先保存的状态（游戏的存档机制？？？）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/mementoUML.png" alt></p>
+<h3 id="⑳解释器模式（Interpreter）-看到文法我就蚌埠煮了"><a href="#⑳解释器模式（Interpreter）-看到文法我就蚌埠煮了" class="headerlink" title="⑳解释器模式（Interpreter）/看到文法我就蚌埠煮了"></a>⑳解释器模式（Interpreter）/看到文法我就蚌埠煮了</h3><p>下定义：给一个语言表达式，定义它的文法的一种表示，并定义一个解释器，使用该解释器来解释语言中的句子（表达式）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/interpreter.png" alt></p>
+<p>Context：环境角色（上下文），含有解释器之外的全局信息</p>
+<p>AbstractExpression：抽象表达式，声明一个抽象的解释操作，这个方法为抽象语法树中所有节点共享</p>
+<p>TerminalExpression：终结符表达式，实现文法中的终结符相关的解释操作</p>
+<p>NonTerminalExpression：非终结符表达式，实现文法中的非终结符相关的解释操作</p>
+<h3 id="②①状态模式（State）"><a href="#②①状态模式（State）" class="headerlink" title="②①状态模式（State）"></a>②①状态模式（State）</h3><p>下定义：它主要解决对象在多种状态转换时，需要对外输出不同的行为的问题。状态和行为是一一对应的，状态之间可以相互转换。当一个对象的状态发生变化时，允许改变其行为，这个对象看起来像是改变了其类</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/state.png" alt></p>
+<p>Context：维护state实例，这个实例定义当前实例</p>
+<p>state：定义一个接口封装与Context的一个特点接口相关行为</p>
+<p>concreteState：每个子类实现一个与context的一个状态的相关行为</p>
+<h3 id="②②策略模式（Strategy）"><a href="#②②策略模式（Strategy）" class="headerlink" title="②②策略模式（Strategy）"></a>②②策略模式（Strategy）</h3><p>下定义：定义算法族，分别封装起来，让他们之间可以相互替换，此模式让算法的变化独立于使用算法的用户</p>
+<p>该算法题体现了几个设计原则，第一，把变化的代码从不变的代码分离开来；第二，针对接口编程而不是具体类；第三，多用组合/聚合，少用继承</p>
+<p>  <span style="color:red">注意和桥接模式进行区分</span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/strategyUML.png" alt></p>
+<h3 id="②③职责链模式（Chain-Of-Responsibility）"><a href="#②③职责链模式（Chain-Of-Responsibility）" class="headerlink" title="②③职责链模式（Chain Of Responsibility）"></a>②③职责链模式（Chain Of Responsibility）</h3><p>下定义：责任链模式，为请求创建一个接受者对象的链，这种模式对请求的发送者和接受者进行解耦</p>
+<p>该模式通常每个接收者都包含对另一个接收者的引用，如果一个对象不能处理该请求，那么它会把相同的请求传送给下一个接收者，以此类推…</p>
+<hr>
+<p>最佳应用场景：多个对象处理同一个请求，比如多级请求、请假/加薪、易班请假等审批流程。再比如javaWeb的拦截器</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/designPattern/chainUML.png" alt></p>
+<h1 id="未完待续…"><a href="#未完待续…" class="headerlink" title="未完待续…"></a>未完待续…</h1><p>现在只是简单理解了这些设计模式的基本思想，自身的思考还是不够。当然也有些模式还是一知半解。希望在后续的学习中能够有一些新的见解…嗯，先这样吧…</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+      <!--     <div class="post-tags">
+					<div class="tag-cloud">
+                  <div class="tag-cloud-title">
+                  </div>
+                  <div class="tag-cloud-tags">
+                  <a href="/tags/Spring/" style="font-size: 12.5px; color: #dc9996">Spring</a> <a href="/tags/ajax/" style="font-size: 10px; color: #f38181">ajax</a> <a href="/tags/css/" style="font-size: 12.5px; color: #dc9996">css</a> <a href="/tags/js/" style="font-size: 15px; color: #c4b1aa">js</a> <a href="/tags/nodeJs/" style="font-size: 10px; color: #f38181">nodeJs</a> <a href="/tags/sql/" style="font-size: 10px; color: #f38181">sql</a> <a href="/tags/uni-app/" style="font-size: 10px; color: #f38181">uni-app</a> <a href="/tags/vue/" style="font-size: 10px; color: #f38181">vue</a> <a href="/tags/吐槽/" style="font-size: 12.5px; color: #dc9996">吐槽</a> <a href="/tags/大学所学/" style="font-size: 17.5px; color: #adc9bf">大学所学</a> <a href="/tags/机器学习/" style="font-size: 10px; color: #f38181">机器学习</a> <a href="/tags/算法/" style="font-size: 20px; color: #95e1d3">算法</a> <a href="/tags/设计模式/" style="font-size: 10px; color: #f38181">设计模式</a>
+                  </div>
+                </div>
+
+          </div> -->
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/undefined/关于盒子模型的不是笔记的笔记/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                关于盒子模型的不是笔记的笔记</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/undefined/学习春天の云/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                学习春天の云（springCloud）</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Kitholt Frank<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2021</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_uv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+    </div>
+  </div><!-- .site-info -->
+    
+
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="7751536252"
+  mutex="true"
+  fixed="true"
+  loop="all"
+  order="random"
+  preload="auto"
+  volume="0.7">
+
+</meting-js>
+
+
+
+
+
+
+</footer>
+
+
+
+
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">KitholtFrank</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/kitholt" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-tag" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/categories/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-bookmark" aria-hidden="true"></i>
+            分类
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            资瓷
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    0="m"
+
+    1="e"
+
+    2="t"
+
+    3="i"
+
+    4="n"
+
+    5="g"
+
+    6=":"
+
+    7="t"
+
+    8="r"
+
+    9="u"
+
+    10="e"
+
+    bold="[1mmeting:true[22m"
+
+    strip="meting:true"
+
+    stripColors="meting:true"
+
+    trap="ԠΣŦ༏ŋɢ:ŦɌՍҼ"
+
+    zalgo="mͤ̑̑̏ͭ̾̒ͧͮ͒͗͐̿̍ͮ͗ͦͩ ҉̵̢̛͉̝̰͕̦̹̙͙͙̠͈͔͈̲̯̠̘̲̩̰̬̻͓͚͉̠͜ͅͅe̶̵̢̹͍͚̹̮̦̬͍̘̭̱̻̻̳̬͈̤͇̞̲̱͔͔͚̗͓̮̳̯̖̝͇̱̙̩̺̦̞͔̯̮̗͔͉͈̣̰̰͈̱͙̬͚͉̞̭̰̔̎͋ͯ̀̆̑͗̾ͪ̑ͥ͟ͅͅț̵̭̠͔͓͙͈ͤͪ̐̾͋ͦ̀͘͘i̵͎̼̟̝̳̖̭̗̥̠̻͈͉̟̯̯̖͖͓̘̤̦̘̖͚̟̳̫̖̩͎̙͙̳̲̬͈̼͈͔͒ͨͥ́̄͌̍̏͛ͭ̅̅ͩ̋͢ͅn̷̰̦̦̗͕̫͇̠̪̻̞͎̦̪̦̥̹̳͖̲̮ͨ̀̂̔̿͆ͭ͒ͭ̏ͩ̉̂̋͋̆̚͠g̷̛̖̱̣̤͉̣͉̯̠̲̯̗̥͖͎̭̯̣͍͎͓̠̝͔͉̖͈̪̣̱̭͙̞̺͔̥͓͖̦̯̪̼̙̱̫̻̘̓̀ͩ̏͌͢ͅͅ:̸̫̝̠̠̰̼͈̜̫̮̻̠̬̜͕͚̖̞̮͓̙͇͎̿̐ͧͩͮͬ̒̏ͧ́̂͌͋ͫͤͥ̅̏ͮ̀̕͢͠ť̡̬̩̘͉͚̻̞̤̗͓̲̜͈̰͎̲͔̰̫̫̥̦̹̣̺̤̈̅ͪ̒ͣ͑ͥ̐̃̋̇̀ŗ̷̴̜̫̞͉͖̬̺̫̰͔͎̘̘̝̭̲̫̬͍͔̲͎̦̻͔̲̲̣̻̰̭̘̗̩͚̫̭͈̰͆́̑͌̉̄̒ͤ̍̋ͮ̎͠͞ͅṳ̞̫̰̬̲̥͉͉̱͚̩͓̙̻̠̰̠̺̳̫̲͖̪͇̥̻̳̙̮̞̫̬͇͓͍̠͓͉̝̘͉̞̩͙ͪ͒ͯ͋ͨ̊̆̂̇ͫ̏ͧ̌̕͠ͅe̷ͨ͛ͣ̏ͤ̉̓͊̋̑̅ͬ͛ͫ́́̚͡ ҉̦͙̥̪̯̟͈͙̲̖͎̻̳̬͚̜͍̠̠̠͔̫͖͍̬̜͙͉̹̙͚͔̬̝̙̙̗͇͚̥͇̼͖͓̻͚̤͙̦̪̗͔͇͚̰̻̻̲̦͔͔͖̟͙̘"
+
+    zebra="m[7me[27mt[7mi[27mn[7mg[27m:[7mt[27mr[7mu[27me"
+
+    rainbow="[31mm[39m[33me[39m[32mt[39m[34mi[39m[35mn[39m[31mg[39m[33m:[39m[32mt[39m[34mr[39m[35mu[39m[31me[39m"
+
+    random="[94mm[39m[37me[39m[92mt[39m[92mi[39m[33mn[39m[34mg[39m[36m:[39m[36mt[39m[4mr[24m[35mu[39m[94me[39m"
+
+    america="[31mm[39m[37me[39m[34mt[39m[31mi[39m[37mn[39m[34mg[39m[31m:[39m[37mt[39m[34mr[39m[31mu[39m[37me[39m"
+
+    reset="[0mmeting:true[0m"
+
+    dim="[2mmeting:true[22m"
+
+    italic="[3mmeting:true[23m"
+
+    underline="[4mmeting:true[24m"
+
+    inverse="[7mmeting:true[27m"
+
+    hidden="[8mmeting:true[28m"
+
+    strikethrough="[9mmeting:true[29m"
+
+    black="[30mmeting:true[39m"
+
+    red="[31mmeting:true[39m"
+
+    green="[32mmeting:true[39m"
+
+    yellow="[33mmeting:true[39m"
+
+    blue="[34mmeting:true[39m"
+
+    magenta="[35mmeting:true[39m"
+
+    cyan="[36mmeting:true[39m"
+
+    white="[37mmeting:true[39m"
+
+    gray="[90mmeting:true[39m"
+
+    grey="[90mmeting:true[39m"
+
+    brightRed="[91mmeting:true[39m"
+
+    brightGreen="[92mmeting:true[39m"
+
+    brightYellow="[93mmeting:true[39m"
+
+    brightBlue="[94mmeting:true[39m"
+
+    brightMagenta="[95mmeting:true[39m"
+
+    brightCyan="[96mmeting:true[39m"
+
+    brightWhite="[97mmeting:true[39m"
+
+    bgBlack="[40mmeting:true[49m"
+
+    bgRed="[41mmeting:true[49m"
+
+    bgGreen="[42mmeting:true[49m"
+
+    bgYellow="[43mmeting:true[49m"
+
+    bgBlue="[44mmeting:true[49m"
+
+    bgMagenta="[45mmeting:true[49m"
+
+    bgCyan="[46mmeting:true[49m"
+
+    bgWhite="[47mmeting:true[49m"
+
+    bgGray="[100mmeting:true[49m"
+
+    bgGrey="[100mmeting:true[49m"
+
+    bgBrightRed="[101mmeting:true[49m"
+
+    bgBrightGreen="[102mmeting:true[49m"
+
+    bgBrightYellow="[103mmeting:true[49m"
+
+    bgBrightBlue="[104mmeting:true[49m"
+
+    bgBrightMagenta="[105mmeting:true[49m"
+
+    bgBrightCyan="[106mmeting:true[49m"
+
+    bgBrightWhite="[107mmeting:true[49m"
+
+    blackBG="[40mmeting:true[49m"
+
+    redBG="[41mmeting:true[49m"
+
+    greenBG="[42mmeting:true[49m"
+
+    yellowBG="[43mmeting:true[49m"
+
+    blueBG="[44mmeting:true[49m"
+
+    magentaBG="[45mmeting:true[49m"
+
+    cyanBG="[46mmeting:true[49m"
+
+    whiteBG="[47mmeting:true[49m"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+<noscript><iframe src="/blog/*>";</iframe></noscript>
+
+
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
+ 
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
+
+<script src="https://cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/xuehua.js"></script>
+
+
+
+
+
+
+</html>
