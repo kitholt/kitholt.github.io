@@ -499,11 +499,12 @@ $(document).ready(function () {
       setCookie('bgImgSetting', url, 30)
     })
   }
-  changeBG('#sakura-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/themebg/sakura.png')
-  changeBG('#gribs-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/themebg/plaid.jpg')
+  changeBG('#sakura-bg', 'https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/hexo/marvel.jpg')
+  changeBG('#gribs-bg', 'https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/hexo/nature.png')
   changeBG('#pixiv-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/themebg/star.png')
   changeBG('#KAdots-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/themebg/point.png')
-  changeBG('#totem-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/themebg/little-monster.png')
+  // changeBG('#totem-bg', 'https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/ie-monster.png')
+  changeBG('#totem-bg', 'https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/hexo/cute.jpg')
   changeBGnoTrans('#bing-bg', 'https://api.shino.cc/bing/')
   $('.skin-menu #white-bg').click(function () {
     mashiro_global.variables.skinSecter = false

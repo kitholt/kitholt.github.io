@@ -47,7 +47,7 @@
     <link href="/undefined/My%EF%BC%88Your%EF%BC%89SQL/"/>
     <id>/undefined/My（Your）SQL/</id>
     <published>2022-10-26T01:30:00.000Z</published>
-    <updated>2022-10-26T04:28:48.104Z</updated>
+    <updated>2022-11-17T11:27:04.892Z</updated>
     
     <summary type="html">
     
@@ -99,7 +99,7 @@
     <link href="/undefined/%E5%AD%A6%E4%B8%80%E5%AD%A6%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     <id>/undefined/学一学神经网络/</id>
     <published>2022-05-22T15:45:00.000Z</published>
-    <updated>2022-06-14T11:23:47.645Z</updated>
+    <updated>2022-11-17T12:30:18.945Z</updated>
     
     <summary type="html">
     
@@ -117,6 +117,8 @@
     
     
       <category term="机器学习" scheme="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="神经网络" scheme="/tags/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   

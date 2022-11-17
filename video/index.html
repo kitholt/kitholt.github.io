@@ -6,7 +6,7 @@
   
   <title itemprop="name">video | 欢迎来到Franの杂货铺</title>
   
-    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/hexo/Golden_State_Warriors.ico">
   
   <meta http-equiv="x-dns-prefetch-control" content="on">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
@@ -450,6 +450,7 @@
       </section>
   </div><!-- #primary -->
 </div>
+
     </div>    
     <div class="ins-search">
     <div class="ins-search-mask"></div>
@@ -488,26 +489,74 @@
   </div>
 </footer> -->
 <footer id="colophon" class="site-footer" role="contentinfo">
-  <div class="site-info">
+  <div class="site-info"> 
     <div class="footertext">
       <div class="img-preload">
         <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
         <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
       </div>
-      <p style="color: #666666;">&copy 2018</p>
+      <p style="color: #666666;">&copy 2021</p>
     </div>
     <div class="footer-device">
+    <span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
     <p style="font-family: 'Ubuntu', sans-serif;">
         <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
         </span>
       </p>
     </div>
   </div><!-- .site-info -->
+
+
+<meting-js
+  server="netease"
+  type="playlist"
+  id="7751536252"
+  mutex="true"
+  fixed="true"
+  loop="all"
+  order="random"
+  preload="auto"
+  volume="0.7">
+</meting-js>
+
+
+<!--壁纸切换-->
+  <div class="skin-menu no-select" id="mainskin"  style="position: fixed">
+    <div class="theme-controls row-container">
+        <ul class="menu-list">
+            <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+            <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+            <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+            <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+            <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+            <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+            <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+            <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+        </ul>
+    </div>
+    <div class="font-family-controls row-container">
+        <button type="button" class="control-btn-serif selected" data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+        <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+    </div>
+  </div>   
+  <canvas id="night-mode-cover"></canvas> 
+    <div class="changeSkin-gear no-select">
+      <div class="keys" id="setbtn"> <span id="open-skinMenu"> 切换壁纸 | SCHEME TOOL 
+        &nbsp;<i class="iconfont icon-gear inline-block rotating"></i> </span></div>
+  </div><!--skin.end-->
+
+
+
+
+
 </footer>
 
 
 
 <!-- <script src="/js/tocbot.js"></script> -->
+
+
+
 <script type="text/javascript" src="/js/lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 <script type="text/javascript" src="/js/InsightSearch.js"></script>
@@ -520,6 +569,27 @@
 <!-- 不蒜子 网页计数器 -->
 <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 /* <![CDATA[ */
 if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
@@ -569,6 +639,46 @@ $(document).ready(function() {
     }
   }
 });
+
+
+
+
+
+
+
+
+var now = new Date();
+
+  function createtime() {
+
+    var grt= new Date("02/01/2021 2:14:00");//此处修改你的建站时间或者网站上线时间
+
+    now.setTime(now.getTime()+250);
+
+    days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+
+    hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+
+    if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+
+    mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+
+    seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+
+    snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+
+    document.getElementById("timeDate").innerHTML = "Franの杂货铺已经开张 "+dnum+" 天 ";
+
+    document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒啦";
+
+  }
+
+  setInterval("createtime()",250);
+
+
+
+
+
 </script>
 
     <div class="openNav no-select" style="height: 50px;">
@@ -764,144 +874,6 @@ $(document).ready(function() {
 </style>
 <meting-js
 
-    0="m"
-
-    1="e"
-
-    2="t"
-
-    3="i"
-
-    4="n"
-
-    5="g"
-
-    6=":"
-
-    7="t"
-
-    8="r"
-
-    9="u"
-
-    10="e"
-
-    bold="[1mmeting:true[22m"
-
-    strip="meting:true"
-
-    stripColors="meting:true"
-
-    trap="ԠΣͳ༏Ҋɢ:Ŧ®Ʊξ"
-
-    zalgo="m̴̧̡͕̙͖̻̰̟̟̹̳̣̬̦͈̻͎͇̪̜̘͚͖͙͓̫̜̼͓̝̯͔̲̫̙͇̩͍͉̫̼͔̪̳̭͎͚̣̺̠̥̰̺͚͈̦̼̰̼̼̩̪̫͙͈̭͇͕ͪ͗ͫ̂̈͋ͯ̕͠ͅę̴̷̬̬̝̗̻͖̪͙̥̩̹̜͈̗͚͖̼͇͓̞͕̺̗̮̯̺͚͉̗̞͎̪͖̊̑̃̒̄̃̔̓ͮ͗͆ͥͧͥͪ̇̓͠t̢͉͍̠̜̝̺̥͈͖̟͕̮̮̬̘̜̜̣̜͍̠͕̗̜̳̪̦̜̖͇͉̱̤̩̳͚͍̘͓̫̯͍̲̮̻̼̅ͮ̈͂͂ͬͩ̒̎̓ͥ͆͟͢͞͡ͅͅͅͅi̸̢̠̖̫̤̥͍͓̠̟͓̯̫̺͕̣͖̩̠͍̜̗̞͍̜͕̘̰̲͚̦̰̖̱͒̇͋̊̎̒ͭ̋̔ͭ̿̇́̚͢ͅņ͙̣͓͕̥̫̖̦̦͈̭̜̪̙̮̗̣̤̭͕̮̝̥̗̳̺̝̲̣͖̪̫͓̜͉̩̤̣̝̜̪͕̠̞̙̗̬̞̗̫̰͈̟̗͙͉̹͖͖͍̬͙̺ͥ̌ͣ̌ͯ̇ͭ̊̾̑ͭ͑̚̕͟͝ͅg̸̈̾̓̈̂ ҉̡̺̟̪͓̘̻̺̪̣̺͈̩̘̲̺̪̰̬̫͔̫̼̤͚͖͇̦͇̤̹̜̘̳͕͇ͅ:̶̸̛͓̝̝̬͉͉̹̫̰̗͎̦̪̻͓̖̝̙͓̟̮̗̳̯͇̤͓̩̤̲̎̇̏̒ͪ͛̊͋̀́ͅṫ̒͂̂̂ͯ͗̉̾̄͋̂̅́̂̌ͥ͜͢ ҉͚̯̟͎̺͓̞̰͙̫̜̭̞͡ͅṛ̟̳̞̝̼̳̘̙̪̭̞̠̦̬̗̳͓͇̜̼̹̖͉͙̫̩̹̅ͩ̑̉̒͗ͤͬ́͠ͅu̧̨̜̠̮̩̟̼͖̟̞͙͈͚̩͕̱͕̘͚̞͓͔͙̞̇̇̄̀͂ͣͤͪ̽ͬ̃̿͗́̓ͯ̍ͅͅeͪ̔ͩͧͤ̎̐̈̔ͧ̈̽̆̃̽̊̿ ҉̀͡͞ ҉̱͍̱͎͔̖̫̬̝̹̺͈̝̥̘͙̮̠̩͕̟͖̠̺͕̞̥̬͙͍̞̞̖̱͍̙̞͉̦ͅ"
-
-    zebra="m[7me[27mt[7mi[27mn[7mg[27m:[7mt[27mr[7mu[27me"
-
-    rainbow="[31mm[39m[33me[39m[32mt[39m[34mi[39m[35mn[39m[31mg[39m[33m:[39m[32mt[39m[34mr[39m[35mu[39m[31me[39m"
-
-    random="[37mm[39m[94me[39m[92mt[39m[33mi[39m[92mn[39m[4mg[24m[32m:[39m[34mt[39m[7mr[27m[4mu[24m[91me[39m"
-
-    america="[31mm[39m[37me[39m[34mt[39m[31mi[39m[37mn[39m[34mg[39m[31m:[39m[37mt[39m[34mr[39m[31mu[39m[37me[39m"
-
-    reset="[0mmeting:true[0m"
-
-    dim="[2mmeting:true[22m"
-
-    italic="[3mmeting:true[23m"
-
-    underline="[4mmeting:true[24m"
-
-    inverse="[7mmeting:true[27m"
-
-    hidden="[8mmeting:true[28m"
-
-    strikethrough="[9mmeting:true[29m"
-
-    black="[30mmeting:true[39m"
-
-    red="[31mmeting:true[39m"
-
-    green="[32mmeting:true[39m"
-
-    yellow="[33mmeting:true[39m"
-
-    blue="[34mmeting:true[39m"
-
-    magenta="[35mmeting:true[39m"
-
-    cyan="[36mmeting:true[39m"
-
-    white="[37mmeting:true[39m"
-
-    gray="[90mmeting:true[39m"
-
-    grey="[90mmeting:true[39m"
-
-    brightRed="[91mmeting:true[39m"
-
-    brightGreen="[92mmeting:true[39m"
-
-    brightYellow="[93mmeting:true[39m"
-
-    brightBlue="[94mmeting:true[39m"
-
-    brightMagenta="[95mmeting:true[39m"
-
-    brightCyan="[96mmeting:true[39m"
-
-    brightWhite="[97mmeting:true[39m"
-
-    bgBlack="[40mmeting:true[49m"
-
-    bgRed="[41mmeting:true[49m"
-
-    bgGreen="[42mmeting:true[49m"
-
-    bgYellow="[43mmeting:true[49m"
-
-    bgBlue="[44mmeting:true[49m"
-
-    bgMagenta="[45mmeting:true[49m"
-
-    bgCyan="[46mmeting:true[49m"
-
-    bgWhite="[47mmeting:true[49m"
-
-    bgGray="[100mmeting:true[49m"
-
-    bgGrey="[100mmeting:true[49m"
-
-    bgBrightRed="[101mmeting:true[49m"
-
-    bgBrightGreen="[102mmeting:true[49m"
-
-    bgBrightYellow="[103mmeting:true[49m"
-
-    bgBrightBlue="[104mmeting:true[49m"
-
-    bgBrightMagenta="[105mmeting:true[49m"
-
-    bgBrightCyan="[106mmeting:true[49m"
-
-    bgBrightWhite="[107mmeting:true[49m"
-
-    blackBG="[40mmeting:true[49m"
-
-    redBG="[41mmeting:true[49m"
-
-    greenBG="[42mmeting:true[49m"
-
-    yellowBG="[43mmeting:true[49m"
-
-    blueBG="[44mmeting:true[49m"
-
-    magentaBG="[45mmeting:true[49m"
-
-    cyanBG="[46mmeting:true[49m"
-
-    whiteBG="[47mmeting:true[49m"
-
 </meting-js>
 <script>
   $(function(){
@@ -914,5 +886,163 @@ $(document).ready(function() {
     })
   });
 </script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/piao.js"></script>
+ 
+<script src="https://cdn.jsdelivr.net/gh/wallleap/cdn/js/canvas-nest.min.js"></script>
+
+<script src="https://cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+
+<script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+
+<script>
+/*!
+ * Fairy Dust Cursor.js
+ * - 90's cursors collection
+ * -- https://github.com/tholman/90s-cursor-effects
+ * -- http://codepen.io/tholman/full/jWmZxZ/
+ */
+
+//鼠标点击雪花特效
+(function fairyDustCursor() {
+  
+  var possibleColors = ["#D61C59", "#E7D84B", "#1B8798"]
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  var cursor = {x: width/2, y: width/2};
+  var particles = [];
+  
+  function init() {
+    bindEvents();
+    loop();
+  }
+  
+  // Bind events that are needed
+  function bindEvents() {
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('touchmove', onTouchMove);
+    document.addEventListener('touchstart', onTouchMove);
+    
+    window.addEventListener('resize', onWindowResize);
+  }
+  
+  function onWindowResize(e) {
+    width = window.innerWidth;
+    height = window.innerHeight;
+  }
+  
+  function onTouchMove(e) {
+    if( e.touches.length > 0 ) {
+      for( var i = 0; i < e.touches.length; i++ ) {
+        addParticle( e.touches[i].clientX, e.touches[i].clientY, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+      }
+    }
+  }
+  
+  function onMouseMove(e) {    
+    cursor.x = e.clientX;
+    cursor.y = e.clientY;
+    
+    addParticle( cursor.x, cursor.y, possibleColors[Math.floor(Math.random()*possibleColors.length)]);
+  }
+  
+  function addParticle(x, y, color) {
+    var particle = new Particle();
+    particle.init(x, y, color);
+    particles.push(particle);
+  }
+  
+  function updateParticles() {
+    
+    // Updated
+    for( var i = 0; i < particles.length; i++ ) {
+      particles[i].update();
+    }
+    
+    // Remove dead particles
+    for( var i = particles.length -1; i >= 0; i-- ) {
+      if( particles[i].lifeSpan < 0 ) {
+        particles[i].die();
+        particles.splice(i, 1);
+      }
+    }
+    
+  }
+  
+  function loop() {
+    requestAnimationFrame(loop);
+    updateParticles();
+  }
+  
+  /**
+   * Particles
+   */
+  
+  function Particle() {
+
+    this.character = "*";
+    this.lifeSpan = 120; //ms
+    this.initialStyles ={
+      "position": "fixed",
+      "top": "0", //必须加
+      "display": "block",
+      "pointerEvents": "none",
+      "z-index": "10000000",
+      "fontSize": "20px",
+      "will-change": "transform"
+    };
+
+    // Init, and set properties
+    this.init = function(x, y, color) {
+
+      this.velocity = {
+        x:  (Math.random() < 0.5 ? -1 : 1) * (Math.random() / 2),
+        y: 1
+      };
+      
+      this.position = {x: x - 10, y: y - 20};
+      this.initialStyles.color = color;
+      //console.log(color);
+
+      this.element = document.createElement('span');
+      this.element.innerHTML = this.character;
+      applyProperties(this.element, this.initialStyles);
+      this.update();
+      
+      document.body.appendChild(this.element);
+    };
+    
+    this.update = function() {
+      this.position.x += this.velocity.x;
+      this.position.y += this.velocity.y;
+      this.lifeSpan--;
+      
+      this.element.style.transform = "translate3d(" + this.position.x + "px," + this.position.y + "px,0) scale(" + (this.lifeSpan / 120) + ")";
+    }
+    
+    this.die = function() {
+      this.element.parentNode.removeChild(this.element);
+    }
+    
+  }
+  
+  /**
+   * Utils
+   */
+  
+  // Applies css `properties` to an element.
+  function applyProperties( target, properties ) {
+    for( var key in properties ) {
+      target.style[ key ] = properties[ key ];
+    }
+  }
+  
+  init();
+})();
+</script>
