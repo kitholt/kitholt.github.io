@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">学习春天の靴子（springBoot） | 欢迎来到Franの杂货铺</title>
+  
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "KitholtFrank";
+  mashiro_option.author_name = "Frank";
+  mashiro_option.site_url = "https://kitholt.github.io/";
+  mashiro_option.v_appId = "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz";
+  mashiro_option.v_appKey = "e9eG1y4IcG54g4l676M1xeWQ";
+  mashiro_option.mathjax = "0";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/kitholt/cdn/img/warriors.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/best.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/curry.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/chase.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/stadium.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/splashbros.webp,https://cdn.jsdelivr.net/gh/kitholt/cdn/img/coolkt.webp,".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-dim">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://kitholt.github.io/">
+          <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>你来啦!欢迎来到Franの杂货铺！</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="http://github.com/kitholt" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialgithub.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://weibo.com/u/7188904314" target="_blank" class="social-github" title="sina">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialsina.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://music.163.com/#/my/m/music/playlist?id=890672374" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/frank-41-24-53" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialzhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li class="wechat">
+                  <a href="/#">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialwechat.png">
+                  </a>
+                  <div class="wechatInner">
+                    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/socialQR.jpg">
+                  </div>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">Kitholt</span>
+            <span class="shironeko">Frank</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    清单
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/music/">
+                          <i class="fa fa-headphones" aria-hidden="true"></i>
+                          歌单
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/bangumi/">
+                          <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                          番组
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-tag" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/categories/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-bookmark" aria-hidden="true"></i>
+                    分类
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    资瓷
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      学习春天の靴子（springBoot）</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+          </a>
+        </span>
+        <span>
+          <a href=""></a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2021-7-6<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="学习春天の靴子（springBoot）"><a href="#学习春天の靴子（springBoot）" class="headerlink" title="学习春天の靴子（springBoot）"></a>学习春天の靴子（springBoot）</h1><p>ps：<span style="color:blue">以下笔记内容主要搬运自尚硅谷(雷神)的笔记</span></p>
+<h2 id="Chapter1—自动配置原理"><a href="#Chapter1—自动配置原理" class="headerlink" title="Chapter1—自动配置原理"></a>Chapter1—自动配置原理</h2><h3 id="1-1、依赖管理"><a href="#1-1、依赖管理" class="headerlink" title="1.1、依赖管理"></a>1.1、依赖管理</h3><ul>
+<li>父项目做依赖管理</li>
+</ul>
+<pre><code class="xml">依赖管理    
+&lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+&lt;/parent&gt;
+
+他的父项目
+ &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-dependencies&lt;/artifactId&gt;
+    &lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+  &lt;/parent&gt;
+
+几乎声明了所有开发中常用的依赖的版本号,自动版本仲裁机制
+</code></pre>
+<ul>
+<li>开发导入starter场景启动器</li>
+</ul>
+<pre><code class="xml">1、见到很多 spring-boot-starter-* ： *就某种场景
+2、只要引入starter，这个场景的所有常规需要的依赖我们都自动引入
+3、SpringBoot所有支持的场景
+https://docs.spring.io/spring-boot/docs/current/reference/html/using-spring-boot.html#using-boot-starter
+4、见到的  *-spring-boot-starter： 第三方为我们提供的简化开发的场景启动器。
+5、所有场景启动器最底层的依赖
+&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+  &lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+  &lt;scope&gt;compile&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<ul>
+<li>可以修改默认版本号</li>
+</ul>
+<pre><code class="xml">1、查看spring-boot-dependencies里面规定当前依赖的版本 用的 key。
+2、在当前项目里面重写配置
+    &lt;properties&gt;
+        &lt;mysql.version&gt;5.1.43&lt;/mysql.version&gt;
+    &lt;/properties&gt;
+</code></pre>
+<h3 id="1-2、自动配置"><a href="#1-2、自动配置" class="headerlink" title="1.2、自动配置"></a>1.2、自动配置</h3><pre><code class="xml">&lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+      &lt;version&gt;2.3.4.RELEASE&lt;/version&gt;
+      &lt;scope&gt;compile&lt;/scope&gt;
+    &lt;/dependency&gt;
+</code></pre>
+<ul>
+<li><p>自动配好SpringMVC</p>
+</li>
+<li><p>引入SpringMVC全套组件</p>
+</li>
+<li><p>自动配好SpringMVC常用组件（功能）</p>
+</li>
+<li><p>自动配好Web常见功能，如：字符编码问题</p>
+</li>
+<li><p>SpringBoot帮我们配置好了所有web开发的常见场景</p>
+</li>
+<li><p>默认的包结构</p>
+</li>
+<li><p>主程序所在包及其下面的所有子包里面的组件都会被默认扫描进来</p>
+</li>
+<li><p>无需以前的包扫描配置</p>
+</li>
+<li><p>想要改变扫描路径，@SpringBootApplication(scanBasePackages=<strong>“xxx”</strong>)</p>
+</li>
+<li><p>或者@ComponentScan 指定扫描路径</p>
+</li>
+</ul>
+<pre><code class="java">@SpringBootApplication
+等同于
+@SpringBootConfiguration
+@EnableAutoConfiguration
+@ComponentScan(&quot;com.atguigu.boot&quot;)
+</code></pre>
+<h2 id="Chapter2—容器功能"><a href="#Chapter2—容器功能" class="headerlink" title="Chapter2—容器功能"></a>Chapter2—容器功能</h2><h3 id="2-1、组件添加"><a href="#2-1、组件添加" class="headerlink" title="2.1、组件添加"></a>2.1、组件添加</h3><h4 id="1、-Configuration"><a href="#1、-Configuration" class="headerlink" title="1、@Configuration"></a>1、@Configuration</h4><ul>
+<li><p><strong>Full模式与Lite模式</strong></p>
+</li>
+<li><p><code>`</code>java<br>#############################Configuration使用示例######################################################<br>/**</p>
+<ul>
+<li>1、配置类里面使用@Bean标注在方法上给容器注册组件，默认也是单实例的</li>
+<li>2、配置类本身也是组件</li>
+<li>3、proxyBeanMethods：代理bean的方法</li>
+<li>Full(proxyBeanMethods = true)、【保证每个@Bean方法被调用多少次返回的组件都是单实例的】</li>
+<li>Lite(proxyBeanMethods = false)【每个@Bean方法被调用多少次返回的组件都是新创建的】</li>
+<li><p>组件依赖必须使用Full模式默认。其他默认是否Lite模式<br><em>
+</em><br><em>
+</em>/<br>@Configuration(proxyBeanMethods = false) //告诉SpringBoot这是一个配置类 == 配置文件<br>public class MyConfig {</p>
+<p>/**</p>
+<ul>
+<li>Full:外部无论对配置类中的这个组件注册方法调用多少次获取的都是之前注册容器中的单实例对象</li>
+<li>@return<br>*/<br>@Bean //给容器中添加组件。以方法名作为组件的id。返回类型就是组件类型。返回的值，就是组件在容器中的实例<br>public User user01(){<br>User zhangsan = new User(“zhangsan”, 18);<br>//user组件依赖了Pet组件<br>zhangsan.setPet(tomcatPet());<br>return zhangsan;<br>}</li>
+</ul>
+<p>@Bean(“tom”)<br>public Pet tomcatPet(){<br>return new Pet(“tomcat”);<br>}<br>}</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>  ################################@Configuration测试代码如下########################################<br>  @SpringBootConfiguration<br>  @EnableAutoConfiguration<br>  @ComponentScan(“com.atguigu.boot”)<br>  public class MainApplication {</p>
+<pre><code>  public static void main(String[] args) {
+      //1、返回我们IOC容器
+      ConfigurableApplicationContext run = SpringApplication.run(MainApplication.class, args);
+
+      //2、查看容器里面的组件
+      String[] names = run.getBeanDefinitionNames();
+      for (String name : names) {
+          System.out.println(name);
+      }
+
+      //3、从容器中获取组件
+
+      Pet tom01 = run.getBean(&quot;tom&quot;, Pet.class);
+
+      Pet tom02 = run.getBean(&quot;tom&quot;, Pet.class);
+
+      System.out.println(&quot;组件：&quot;+(tom01 == tom02));
+
+
+      //4、com.atguigu.boot.config.MyConfig$$EnhancerBySpringCGLIB$$51f1e1ca@1654a892
+      MyConfig bean = run.getBean(MyConfig.class);
+      System.out.println(bean);
+
+      //如果@Configuration(proxyBeanMethods = true)代理对象调用方法。SpringBoot总会检查这个组件是否在容器中有。
+      //保持组件单实例
+      User user = bean.user01();
+      User user1 = bean.user01();
+      System.out.println(user == user1);
+
+
+      User user01 = run.getBean(&quot;user01&quot;, User.class);
+      Pet tom = run.getBean(&quot;tom&quot;, Pet.class);
+
+      System.out.println(&quot;用户的宠物：&quot;+(user01.getPet() == tom));
+
+
+
+  }
+</code></pre><p>  }</p>
+<pre><code>
+```java
+ * 4、@Import({User.class, DBHelper.class})
+ *      给容器中自动创建出这两个类型的组件、默认组件的名字就是全类名
+ *
+ *
+ *
+ */
+
+@Import({User.class, DBHelper.class})
+@Configuration(proxyBeanMethods = false) //告诉SpringBoot这是一个配置类 == 配置文件
+public class MyConfig {
+}
+</code></pre><h4 id="2、-Conditional"><a href="#2、-Conditional" class="headerlink" title="2、@Conditional"></a>2、@Conditional</h4><p>条件装配：满足Conditional指定的条件，则进行组件注入</p>
+<h3 id="2-2、配置绑定"><a href="#2-2、配置绑定" class="headerlink" title="2.2、配置绑定"></a>2.2、配置绑定</h3><h4 id="1、-ConfigurationProperties"><a href="#1、-ConfigurationProperties" class="headerlink" title="1、@ConfigurationProperties"></a>1、@ConfigurationProperties</h4><pre><code class="java">/**
+ * 只有在容器中的组件，才会拥有SpringBoot提供的强大功能
+ */
+@Component
+@ConfigurationProperties(prefix = &quot;mycar&quot;)
+public class Car {
+
+    private String brand;
+    private Integer price;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;Car{&quot; +
+                &quot;brand=&#39;&quot; + brand + &#39;\&#39;&#39; +
+                &quot;, price=&quot; + price +
+                &#39;}&#39;;
+    }
+}
+</code></pre>
+<h3 id="2-3、按需开启自动配置项"><a href="#2-3、按需开启自动配置项" class="headerlink" title="2.3、按需开启自动配置项"></a>2.3、按需开启自动配置项</h3><pre><code class="java">虽然我们127个场景的所有自动配置启动的时候默认全部加载。xxxxAutoConfiguration
+按照条件装配规则（@Conditional），最终会按需配置。
+</code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>SpringBoot先加载所有的自动配置类  xxxxxAutoConfiguration</li>
+<li><p>每个自动配置类按照条件进行生效，默认都会绑定配置文件指定的值。xxxxProperties里面拿。xxxProperties和配置文件进行了绑定</p>
+</li>
+<li><p>生效的配置类就会给容器中装配很多组件</p>
+</li>
+<li><p>只要容器中有这些组件，相当于这些功能就有了</p>
+</li>
+<li><p>定制化配置</p>
+</li>
+<li><p>用户直接自己@Bean替换底层的组件</p>
+</li>
+<li>用户去看这个组件是获取的配置文件什么值就去修改。</li>
+</ul>
+<p><strong>xxxxxAutoConfiguration —&gt; 组件  —&gt;</strong> <strong>xxxxProperties里面拿值  —-&gt; application.properties</strong></p>
+<h2 id="Chapter3—配置文件"><a href="#Chapter3—配置文件" class="headerlink" title="Chapter3—配置文件"></a>Chapter3—配置文件</h2><h3 id="1、文件类型"><a href="#1、文件类型" class="headerlink" title="1、文件类型"></a>1、文件类型</h3><h4 id="1-2、yaml"><a href="#1-2、yaml" class="headerlink" title="1.2、yaml"></a>1.2、yaml</h4><h4 id="1-2-1、简介"><a href="#1-2-1、简介" class="headerlink" title="1.2.1、简介"></a>1.2.1、简介</h4><p>YAML 是 “YAML Ain’t Markup Language”（YAML 不是一种标记语言）的递归缩写。在开发的这种语言时，YAML 的意思其实是：”Yet Another Markup Language”（仍是一种标记语言）。 </p>
+<p>非常适合用来做以数据为中心的配置文件</p>
+<h4 id="1-2-2、基本语法"><a href="#1-2-2、基本语法" class="headerlink" title="1.2.2、基本语法"></a>1.2.2、基本语法</h4><ul>
+<li>key: value；kv之间有空格</li>
+<li><p>大小写敏感</p>
+</li>
+<li><p>使用缩进表示层级关系</p>
+</li>
+<li><p>缩进不允许使用tab，只允许空格</p>
+</li>
+<li><p>缩进的空格数不重要，只要相同层级的元素左对齐即可</p>
+</li>
+<li><p>‘#’表示注释</p>
+</li>
+<li><p>字符串无需加引号，如果要加，’’与””表示字符串内容 会被 转义/不转义</p>
+</li>
+</ul>
+<h4 id="1-2-3、示例"><a href="#1-2-3、示例" class="headerlink" title="1.2.3、示例"></a>1.2.3、示例</h4><pre><code class="java">@Data
+public class Person {
+
+    private String userName;
+    private Boolean boss;
+    private Date birth;
+    private Integer age;
+    private Pet pet;
+    private String[] interests;
+    private List&lt;String&gt; animal;
+    private Map&lt;String, Object&gt; score;
+    private Set&lt;Double&gt; salarys;
+    private Map&lt;String, List&lt;Pet&gt;&gt; allPets;
+}
+
+@Data
+public class Pet {
+    private String name;
+    private Double weight;
+}
+</code></pre>
+<pre><code class="yaml"># yaml表示以上对象
+person:
+  userName: zhangsan
+  boss: false
+  birth: 2019/12/12 20:12:33
+  age: 18
+  pet: 
+    name: tomcat
+    weight: 23.4
+  interests: [篮球,游泳]
+  animal: 
+    - jerry
+    - mario
+  score:
+    english: 
+      first: 30
+      second: 40
+      third: 50
+    math: [131,140,148]
+    chinese: {first: 128,second: 136}
+  salarys: [3999,4999.98,5999.99]
+  allPets:
+    sick:
+      - {name: tom}
+      - {name: jerry,weight: 47}
+    health: [{name: mario,weight: 47}]
+</code></pre>
+<h3 id="2、配置提示"><a href="#2、配置提示" class="headerlink" title="2、配置提示"></a>2、配置提示</h3><p>自定义的类和配置文件绑定一般没有提示。</p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+            &lt;optional&gt;true&lt;/optional&gt;
+        &lt;/dependency&gt;
+
+
+ &lt;build&gt;
+        &lt;plugins&gt;
+            &lt;plugin&gt;
+                &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                &lt;configuration&gt;
+                    &lt;excludes&gt;
+                        &lt;exclude&gt;
+                            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                            &lt;artifactId&gt;spring-boot-configuration-processor&lt;/artifactId&gt;
+                        &lt;/exclude&gt;
+                    &lt;/excludes&gt;
+                &lt;/configuration&gt;
+            &lt;/plugin&gt;
+        &lt;/plugins&gt;
+    &lt;/build&gt;
+</code></pre>
+<h2 id="Chapter4—Web开发"><a href="#Chapter4—Web开发" class="headerlink" title="Chapter4—Web开发"></a>Chapter4—Web开发</h2><h3 id="1-1、模板抽取（thymeleaf）"><a href="#1-1、模板抽取（thymeleaf）" class="headerlink" title="1.1、模板抽取（thymeleaf）"></a>1.1、模板抽取（thymeleaf）</h3><ol>
+<li>首先，根据需求提取出模板网页</li>
+<li>在模板网页中，利用th:fragment=”xxx”将模板”碎片化“</li>
+<li>然后在需要的网页中使用th:insert=“[模板名称]::[碎片名]”或th:replace=“[模板名称]::[碎片名]”或th:include=“[模板名称]::[碎片名]”</li>
+</ol>
+<h3 id="1-2、拦截器配置"><a href="#1-2、拦截器配置" class="headerlink" title="1.2、拦截器配置"></a>1.2、拦截器配置</h3><ol>
+<li><p>配置拦截器</p>
+</li>
+<li><p>将拦截器注册到容器中（其实是先配置到一个config配置类中，然后容器再通过调用 配置类 来进行 装配）</p>
+<p>必要时会指定拦截路径</p>
+</li>
+</ol>
+<h4 id="1-2-1、拦截器原理（复习）"><a href="#1-2-1、拦截器原理（复习）" class="headerlink" title="1.2.1、拦截器原理（复习）"></a>1.2.1、拦截器原理（复习）</h4><p>1、根据当前请求，找到<strong>HandlerExecutionChain【</strong>可以处理请求的handler以及handler的所有 拦截器】</p>
+<p>2、先来<strong>顺序执行</strong> 所有拦截器的 preHandle方法</p>
+<ul>
+<li>1、如果当前拦截器prehandler返回为true。则执行下一个拦截器的preHandle</li>
+<li>2、如果当前拦截器返回为false。直接    倒序执行所有已经执行了的拦截器的  afterCompletion；</li>
+</ul>
+<p><strong>3、如果任何一个拦截器返回false。直接跳出不执行目标方法</strong></p>
+<p><strong>4、所有拦截器都返回True。执行目标方法</strong></p>
+<p><strong>5、倒序执行所有拦截器的postHandle方法。</strong></p>
+<p><strong>6、前面的步骤有任何异常都会直接倒序触发</strong> afterCompletion</p>
+<p>7、页面成功渲染完成以后，也会倒序触发 afterCompletion</p>
+<h3 id="1-3、文件上传"><a href="#1-3、文件上传" class="headerlink" title="1.3、文件上传"></a>1.3、文件上传</h3><pre><code class="java">    /**
+     * MultipartFile 自动封装上传过来的文件
+     * @param email
+     * @param username
+     * @param headerImg
+     * @param photos
+     * @return
+     */
+    @PostMapping(&quot;/upload&quot;)
+    public String upload(@RequestParam(&quot;email&quot;) String email,
+                         @RequestParam(&quot;username&quot;) String username,
+                         @RequestPart(&quot;headerImg&quot;) MultipartFile headerImg,
+                         @RequestPart(&quot;photos&quot;) MultipartFile[] photos) throws IOException {
+
+        log.info(&quot;上传的信息：email={}，username={}，headerImg={}，photos={}&quot;,
+                email,username,headerImg.getSize(),photos.length);
+
+        if(!headerImg.isEmpty()){
+            //保存到文件服务器，OSS服务器
+            String originalFilename = headerImg.getOriginalFilename();
+            headerImg.transferTo(new File(&quot;H:\\cache\\&quot;+originalFilename));
+        }
+
+        if(photos.length &gt; 0){
+            for (MultipartFile photo : photos) {
+                if(!photo.isEmpty()){
+                    String originalFilename = photo.getOriginalFilename();
+                    photo.transferTo(new File(&quot;H:\\cache\\&quot;+originalFilename));
+                }
+            }
+        }
+
+
+        return &quot;main&quot;;
+    }
+</code></pre>
+<h3 id="1-4、原生组件注入（Servlet、Filter、Listener）"><a href="#1-4、原生组件注入（Servlet、Filter、Listener）" class="headerlink" title="1.4、原生组件注入（Servlet、Filter、Listener）"></a>1.4、原生组件注入（Servlet、Filter、Listener）</h3><p>该注解写在主程序类中</p>
+<p>@ServletComponentScan(basePackages = <strong>“xxx”</strong>) :指定原生Servlet组件都放在那里</p>
+<hr>
+<p>下列注解用来表示各个组件：</p>
+<p>@WebServlet(urlPatterns = <strong>“/my”</strong>)</p>
+<p>@WebFilter(urlPatterns={<strong>“/css/*“</strong>,<strong>“/images/*“</strong>})</p>
+<p>@WebListener</p>
+<hr>
+<h4 id="1-4-1、利用RegistrationBean来注入组件"><a href="#1-4-1、利用RegistrationBean来注入组件" class="headerlink" title="1.4.1、利用RegistrationBean来注入组件"></a>1.4.1、利用RegistrationBean来注入组件</h4><pre><code class="java">@Configuration
+public class MyRegistConfig {
+
+    @Bean
+    public ServletRegistrationBean myServlet(){
+        MyServlet myServlet = new MyServlet();
+
+        return new ServletRegistrationBean(myServlet,&quot;/my&quot;,&quot;/my02&quot;);//在注入的servlet，以及对应的映射路径
+    }
+
+
+    @Bean
+    public FilterRegistrationBean myFilter(){
+
+        MyFilter myFilter = new MyFilter();
+//        return new FilterRegistrationBean(myFilter,myServlet());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(myFilter);
+        filterRegistrationBean.setUrlPatterns(Arrays.asList(&quot;/my&quot;,&quot;/css/*&quot;));
+        return filterRegistrationBean;
+    }
+
+    @Bean
+    public ServletListenerRegistrationBean myListener(){
+        MySwervletContextListener mySwervletContextListener = new MySwervletContextListener();
+        return new ServletListenerRegistrationBean(mySwervletContextListener);
+    }
+}
+</code></pre>
+<h2 id="Chapter5—数据访问"><a href="#Chapter5—数据访问" class="headerlink" title="Chapter5—数据访问"></a>Chapter5—数据访问</h2><h3 id="导入JDBC场景"><a href="#导入JDBC场景" class="headerlink" title="导入JDBC场景"></a>导入JDBC场景</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+</code></pre>
+<h3 id="导入数据库驱动"><a href="#导入数据库驱动" class="headerlink" title="导入数据库驱动"></a>导入数据库驱动</h3><pre><code class="xml">默认版本：&lt;mysql.version&gt;8.0.22&lt;/mysql.version&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;mysql&lt;/groupId&gt;
+            &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+&lt;!--            &lt;version&gt;5.1.49&lt;/version&gt;--&gt;
+        &lt;/dependency&gt;
+想要修改版本
+1、直接依赖引入具体版本（maven的就近依赖原则）
+2、重新声明版本（maven的属性的就近优先原则）
+    &lt;properties&gt;
+        &lt;java.version&gt;1.8&lt;/java.version&gt;
+        &lt;mysql.version&gt;5.1.49&lt;/mysql.version&gt;
+    &lt;/properties&gt;
+</code></pre>
+<h3 id="另外，可以通过修改spring-jdbc来修改JdbcTemplate的相关值"><a href="#另外，可以通过修改spring-jdbc来修改JdbcTemplate的相关值" class="headerlink" title="另外，可以通过修改spring.jdbc来修改JdbcTemplate的相关值"></a>另外，可以通过修改spring.jdbc来修改JdbcTemplate的相关值</h3><h3 id="测试："><a href="#测试：" class="headerlink" title="测试："></a>测试：</h3><pre><code class="xml">@Slf4j
+@SpringBootTest
+class Boot05WebAdminApplicationTests {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;//！！！！！！！！！！！！！这里的自动注入可能会无法注入，解决方法在下面
+
+
+    @Test
+    void contextLoads() {
+
+//        jdbcTemplate.queryForObject(&quot;select * from account_tbl&quot;)
+//        jdbcTemplate.queryForList(&quot;select * from account_tbl&quot;,)
+        Long aLong = jdbcTemplate.queryForObject(&quot;select count(*) from account_tbl&quot;, Long.class);
+        log.info(&quot;记录总数：{}&quot;,aLong);
+    }
+
+}
+</code></pre>
+<h3 id="解决JdbcTemplate无法自动注入的问题："><a href="#解决JdbcTemplate无法自动注入的问题：" class="headerlink" title="解决JdbcTemplate无法自动注入的问题："></a><span style="color:red">解决JdbcTemplate无法自动注入的问题：</span></h3><pre><code class="xml"> &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-boot-starter-data-jdbc&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+       &lt;!-- &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;
+            &lt;version&gt;5.0.8.RELEASE&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;--&gt;
+</code></pre>
+<p>只要不引入上面那个注释掉的依赖就可以了（我也不知道为什么，我给这个折磨了好一阵子了。。。）</p>
+<hr>
+<h3 id="使用Druid数据源"><a href="#使用Druid数据源" class="headerlink" title="使用Druid数据源"></a>使用Druid数据源</h3><ol>
+<li><p>引入druid-starter</p>
+<pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.alibaba&lt;/groupId&gt;
+            &lt;artifactId&gt;druid-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.1.17&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>能够进行自动配置的相关属性</p>
+<ul>
+<li>扩展配置项 <strong>spring.datasource.druid</strong></li>
+<li><p>DruidSpringAopConfiguration.<strong>class</strong>,   监控SpringBean的；配置项：<strong>spring.datasource.druid.aop-patterns</strong></p>
+</li>
+<li><p>DruidStatViewServletConfiguration.<strong>class</strong>, 监控页的配置：<strong>spring.datasource.druid.stat-view-servlet；默认开启</strong></p>
+</li>
+<li><p>DruidWebStatFilterConfiguration.<strong>class</strong>, web监控配置；<strong>spring.datasource.druid.web-stat-filter；默认开启</strong></p>
+</li>
+<li><p>DruidFilterConfiguration.<strong>class</strong>}) 所有Druid自己filter的配置</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用mybatis"><a href="#使用mybatis" class="headerlink" title="使用mybatis"></a>使用mybatis</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;org.mybatis.spring.boot&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;2.1.4&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>使用yaml配置mybatis（替代原先的mybatis-congfig.xml全局配置文件）</p>
+<pre><code class="yaml"># 配置mybatis规则
+mybatis:
+#  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+ 可以不写全局；配置文件，所有全局配置文件的配置都放在configuration配置项中即可
+</code></pre>
+<p>总的来说整合mybatis的操作和以前几乎一样</p>
+<ul>
+<li>导入mybatis官方starter</li>
+<li><p>编写mapper接口。标准@Mapper注解</p>
+</li>
+<li><p>编写sql映射文件并绑定mapper接口</p>
+</li>
+<li>在application.yaml中指定Mapper配置文件的位置，以及指定全局配置文件的信息 （建议；<strong>配置在mybatis.configuration</strong>）</li>
+</ul>
+<h3 id="mybatis-plus-mybatisX-不用手写crud了！"><a href="#mybatis-plus-mybatisX-不用手写crud了！" class="headerlink" title="mybatis-plus(mybatisX)不用手写crud了！"></a>mybatis-plus(mybatisX)不用手写crud了！</h3><pre><code class="xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.4.1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<ul>
+<li>MybatisPlusAutoConfiguration 配置类，MybatisPlusProperties 配置项绑定。<strong>mybatis-plus：xxx 就是对**</strong>mybatis-plus的定制**</li>
+<li><p><strong>SqlSessionFactory 自动配置好。底层是容器中默认的数据源</strong></p>
+</li>
+<li><p><strong>mapperLocations 自动配置好的。有默认值。**</strong>classpath*:/mapper/*<em>/\</em>.xml；任意包的类路径下的所有mapper文件夹下任意路径下的所有xml都是sql映射文件。  建议以后sql映射文件，放在 mapper下**</p>
+</li>
+<li><p><strong>容器中也自动配置好了</strong> <strong>SqlSessionTemplate</strong></p>
+</li>
+<li><p><strong>@Mapper 标注的接口也会被自动扫描；建议直接</strong> @MapperScan(<strong>“xxx”</strong>) 批量扫描就行</p>
+</li>
+</ul>
+<p><span style="color:red;font-size:36px">注意：</span></p>
+<p>mybatis_plus 默认会使用 “id” 为主键字段，如果数据库的主键字段不是“id”的话，使用mybatis-plus中的 selectById ,getById 方法查询数据是查询不出来的。所以就会出现空指针…（折磨人，别问我为什么知道…）</p>
+<p>解决方法：</p>
+<p>在实体类的主键字段加上@TableId(value =“数据库你的主键字段”)注解即可</p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/AliPayQR.png"></li>
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/WeChanQR.png"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/undefined/学习春天の云/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/cdn/jsjwlrigid.png">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                学习春天の云（springCloud）</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/undefined/关于算法周预习作业的一些答案/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/aimeiju.jpg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                关于算法周预习作业的一些答案</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+<div id="vcomments"></div>
+<script>
+  window.onload = function(){
+      var valine = new Valine();
+      valine.init({
+        el: '#vcomments',
+        appId: "vK4njxg3C8GQOr9L6M8Hav7x-gzGzoHsz",
+        appKey: "e9eG1y4IcG54g4l676M1xeWQ",
+        path: window.location.pathname,
+        placeholder: "整点留言呗"
+      })
+  }
+</script>
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg" itemprop="image" alt="" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="" itemprop="url" rel="author"></a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i></p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            // PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Kitholt Frank<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/kitholt/cdn/img/kt3.jpeg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">KitholtFrank</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/kitholt" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            清单
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/music/">
+                  <i class="fa fa-headphones" aria-hidden="true"></i>
+                  歌单
+                </a>
+              </li>
+            
+              <li>
+                <a href="/bangumi/">
+                  <i class="fa fa-film faa-vertical" aria-hidden="true"></i>
+                  番组
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-tag" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/categories/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-bookmark" aria-hidden="true"></i>
+            分类
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            资瓷
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+<!-- require MetingJS -->
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<meting-js
+
+    0="m"
+
+    1="e"
+
+    2="t"
+
+    3="i"
+
+    4="n"
+
+    5="g"
+
+    6=":"
+
+    7="t"
+
+    8="r"
+
+    9="u"
+
+    10="e"
+
+    bold="[1mmeting:true[22m"
+
+    strip="meting:true"
+
+    stripColors="meting:true"
+
+    trap="ԠΣͳ༏Ҋɢ:Ŧ®Ʊξ"
+
+    zalgo="m̴̧̡͕̙͖̻̰̟̟̹̳̣̬̦͈̻͎͇̪̜̘͚͖͙͓̫̜̼͓̝̯͔̲̫̙͇̩͍͉̫̼͔̪̳̭͎͚̣̺̠̥̰̺͚͈̦̼̰̼̼̩̪̫͙͈̭͇͕ͪ͗ͫ̂̈͋ͯ̕͠ͅę̴̷̬̬̝̗̻͖̪͙̥̩̹̜͈̗͚͖̼͇͓̞͕̺̗̮̯̺͚͉̗̞͎̪͖̊̑̃̒̄̃̔̓ͮ͗͆ͥͧͥͪ̇̓͠t̢͉͍̠̜̝̺̥͈͖̟͕̮̮̬̘̜̜̣̜͍̠͕̗̜̳̪̦̜̖͇͉̱̤̩̳͚͍̘͓̫̯͍̲̮̻̼̅ͮ̈͂͂ͬͩ̒̎̓ͥ͆͟͢͞͡ͅͅͅͅi̸̢̠̖̫̤̥͍͓̠̟͓̯̫̺͕̣͖̩̠͍̜̗̞͍̜͕̘̰̲͚̦̰̖̱͒̇͋̊̎̒ͭ̋̔ͭ̿̇́̚͢ͅņ͙̣͓͕̥̫̖̦̦͈̭̜̪̙̮̗̣̤̭͕̮̝̥̗̳̺̝̲̣͖̪̫͓̜͉̩̤̣̝̜̪͕̠̞̙̗̬̞̗̫̰͈̟̗͙͉̹͖͖͍̬͙̺ͥ̌ͣ̌ͯ̇ͭ̊̾̑ͭ͑̚̕͟͝ͅg̸̈̾̓̈̂ ҉̡̺̟̪͓̘̻̺̪̣̺͈̩̘̲̺̪̰̬̫͔̫̼̤͚͖͇̦͇̤̹̜̘̳͕͇ͅ:̶̸̛͓̝̝̬͉͉̹̫̰̗͎̦̪̻͓̖̝̙͓̟̮̗̳̯͇̤͓̩̤̲̎̇̏̒ͪ͛̊͋̀́ͅṫ̒͂̂̂ͯ͗̉̾̄͋̂̅́̂̌ͥ͜͢ ҉͚̯̟͎̺͓̞̰͙̫̜̭̞͡ͅṛ̟̳̞̝̼̳̘̙̪̭̞̠̦̬̗̳͓͇̜̼̹̖͉͙̫̩̹̅ͩ̑̉̒͗ͤͬ́͠ͅu̧̨̜̠̮̩̟̼͖̟̞͙͈͚̩͕̱͕̘͚̞͓͔͙̞̇̇̄̀͂ͣͤͪ̽ͬ̃̿͗́̓ͯ̍ͅͅeͪ̔ͩͧͤ̎̐̈̔ͧ̈̽̆̃̽̊̿ ҉̀͡͞ ҉̱͍̱͎͔̖̫̬̝̹̺͈̝̥̘͙̮̠̩͕̟͖̠̺͕̞̥̬͙͍̞̞̖̱͍̙̞͉̦ͅ"
+
+    zebra="m[7me[27mt[7mi[27mn[7mg[27m:[7mt[27mr[7mu[27me"
+
+    rainbow="[31mm[39m[33me[39m[32mt[39m[34mi[39m[35mn[39m[31mg[39m[33m:[39m[32mt[39m[34mr[39m[35mu[39m[31me[39m"
+
+    random="[37mm[39m[94me[39m[92mt[39m[33mi[39m[92mn[39m[4mg[24m[32m:[39m[34mt[39m[7mr[27m[4mu[24m[91me[39m"
+
+    america="[31mm[39m[37me[39m[34mt[39m[31mi[39m[37mn[39m[34mg[39m[31m:[39m[37mt[39m[34mr[39m[31mu[39m[37me[39m"
+
+    reset="[0mmeting:true[0m"
+
+    dim="[2mmeting:true[22m"
+
+    italic="[3mmeting:true[23m"
+
+    underline="[4mmeting:true[24m"
+
+    inverse="[7mmeting:true[27m"
+
+    hidden="[8mmeting:true[28m"
+
+    strikethrough="[9mmeting:true[29m"
+
+    black="[30mmeting:true[39m"
+
+    red="[31mmeting:true[39m"
+
+    green="[32mmeting:true[39m"
+
+    yellow="[33mmeting:true[39m"
+
+    blue="[34mmeting:true[39m"
+
+    magenta="[35mmeting:true[39m"
+
+    cyan="[36mmeting:true[39m"
+
+    white="[37mmeting:true[39m"
+
+    gray="[90mmeting:true[39m"
+
+    grey="[90mmeting:true[39m"
+
+    brightRed="[91mmeting:true[39m"
+
+    brightGreen="[92mmeting:true[39m"
+
+    brightYellow="[93mmeting:true[39m"
+
+    brightBlue="[94mmeting:true[39m"
+
+    brightMagenta="[95mmeting:true[39m"
+
+    brightCyan="[96mmeting:true[39m"
+
+    brightWhite="[97mmeting:true[39m"
+
+    bgBlack="[40mmeting:true[49m"
+
+    bgRed="[41mmeting:true[49m"
+
+    bgGreen="[42mmeting:true[49m"
+
+    bgYellow="[43mmeting:true[49m"
+
+    bgBlue="[44mmeting:true[49m"
+
+    bgMagenta="[45mmeting:true[49m"
+
+    bgCyan="[46mmeting:true[49m"
+
+    bgWhite="[47mmeting:true[49m"
+
+    bgGray="[100mmeting:true[49m"
+
+    bgGrey="[100mmeting:true[49m"
+
+    bgBrightRed="[101mmeting:true[49m"
+
+    bgBrightGreen="[102mmeting:true[49m"
+
+    bgBrightYellow="[103mmeting:true[49m"
+
+    bgBrightBlue="[104mmeting:true[49m"
+
+    bgBrightMagenta="[105mmeting:true[49m"
+
+    bgBrightCyan="[106mmeting:true[49m"
+
+    bgBrightWhite="[107mmeting:true[49m"
+
+    blackBG="[40mmeting:true[49m"
+
+    redBG="[41mmeting:true[49m"
+
+    greenBG="[42mmeting:true[49m"
+
+    yellowBG="[43mmeting:true[49m"
+
+    blueBG="[44mmeting:true[49m"
+
+    magentaBG="[45mmeting:true[49m"
+
+    cyanBG="[46mmeting:true[49m"
+
+    whiteBG="[47mmeting:true[49m"
+
+</meting-js>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
